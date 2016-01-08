@@ -1,0 +1,140 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>vDef Symboles proportionnels</title>
+<link rel="stylesheet" href="../css/style.css">
+<meta name="AppleTitle" content="Aide MapTheme">
+<meta name="AppleIcon" content="MapTheme Help/img/MapThemeIcon.png">
+<meta name="keywords" content="Symboles proportionnels">
+</head>
+<body>
+<a name=pg7_119>
+</a>
+<table class="switch" width=100%>
+<tr>
+<td align="left">
+<a href="help:anchor='pg0_3' bookID=Aide MapTheme">Index Menu</a>
+</td>
+<td align="right">
+<a href="help:anchor='pg0_4' bookID=Aide MapTheme">Index Alphabétique</a>
+</td>
+</tr>
+</table>
+<br>
+<table border=0 cellspacing=0 cellspacing=0 width=100%>
+<tr>
+<td class="item">
+vDef Symboles proportionnels
+</td>
+</tr>
+<tr>
+<td>
+<p>
+La vDef Symboles proportionnels permet de représenter les objets sous forme de symboles proportionnels à la valeur d'un champ, localisés au centroïde des objets (à défaut d'une coordonnée spécifiée dans les options de la vDef). La proportionnalité est calculée en fonction de la surface. Les objets sont affichés dans l'ordre décroissant des valeurs.
+</p>
+</td>
+</tr>
+
+<tr>
+<td class="item2">
+Statistiques
+</td>
+</tr>
+<tr>
+<td>
+<p>
+La rubrique "Champ" permet de spécifier le champ sur lequel la vue sera basée. Ce champ doit contenir des valeurs numériques.<br>
+La rubrique "Proportionnalité" permet de spécifier le type de proportionnalité que l'on désire obtenir. Avec S=Q, on calcule la surface des symboles par rapport à la  quantité. Pour S=Q2/3, on calcule la surface des carrés par rapport à la quantité élevée à la puissance 2/3. Il en est de même pour les autres valeurs de S.<br>
+Le popup "Calcul du min" permet de calculer automatiquement (sur le type, sur la sélection, ou sur les contrastes) la limite inférieur pour la représentation des objets. Cette valeur correspond à la plus petite valeur du champ que l'on souhaite représenter.<br>
+Le popup "Calcul du max" permet de calculer automatiquement (sur le type, sur la sélection, ou sur les contrastes) la limite supérieure pour la représentation des objets. Cette valeur correspond à la plus grande valeur du champ que l'on souhaite représenter.
+</p>
+</td>
+</tr>
+
+<tr>
+<td class="item2">
+Apparence
+</td>
+</tr>
+<tr>
+<td>
+<p>
+Le champ "Taille minimale" permet de fixer la hauteur du symbole correspondant à la valeur minimale spécifiée. On obtient dans "Taille maximale" la hauteur du symbole correspondant à la valeur maximale spécifiée.<br>
+Le bouton "Symbole" permet de sélectionner un symbole, via le <a href="pg7_201.html">gestionnaire d'icônes</a>. La taille originale du symbole est indiquée à droite de ce bouton.
+</p>
+</td>
+</tr>
+
+<tr>
+<td class="item2">
+Visibilité
+</td>
+</tr>
+<tr>
+<td>
+<p>
+Les deux pop-up permettent de régler la plage d'échelles pour lesquelles le style est visible.
+</p>
+</td>
+</tr>
+
+<tr>
+<td class="item2">
+Options : Généralités
+</td>
+</tr>
+<tr>
+<td>
+<p>
+Le champ "Echelle de référence" permet de régler la proportionnalité en fonction de l'échelle. Chacune des tailles indiquées est re-calculée lors de l'affichage en fonction de l'échelle en cours et de l'échelle de référence.<br>
+Le champ "Unité" permet de choisir entre une expression des mesures (tailles, épaisseurs, ...) en pixels ou en millimètres.<br>
+</p>
+</td>
+</tr>
+<tr>
+<td class="item2">
+Options : Afficher l'objet si
+</td>
+</tr>
+<tr>
+<td>
+<p>
+Cette option permet de fixer des conditions d'affichage, pour chaque objet. Une condition d'affichage se compose de trois éléments :<br>
+- Un champ de la table attributaire,<br>
+- Un opérateur,<br>
+- Une valeur.<br>
+Un objet ne répondant pas à la condition définie ne sera pas affiché par le style, sans avoir à le masquer.
+</p>
+</td>
+</tr>
+<tr>
+<td class="item2">
+Options : Offset
+</td>
+</tr>
+<tr>
+<td>
+<p>
+Cette option permet de choisir deux champs x et y qui modifient l'emplacement de l'affichage sans pour autant modifier la géométrie de l'objet. Ces champs peuvent être renseignés en utilisant l'outil <a href="pg2_301.html">Offset</a>.
+</p>
+</td>
+</tr>
+
+<tr>
+<td class="item2">
+Appliquer
+</td>
+</tr>
+<tr>
+<td>
+<p>
+Ce bouton permet d'enregistrer les modifications apportées au style et de l'appliquer à la vue en cours si ce style est représenté à l'écran.</p>
+</td>
+</tr>
+
+</table>
+<p>
+<a href="pg1_604.html">Boîte de présentation</a>
+</p>
+</body>
+</html>

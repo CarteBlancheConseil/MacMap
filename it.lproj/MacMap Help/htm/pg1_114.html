@@ -1,0 +1,15 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>XMap Formato di esportazione</title><link rel="stylesheet" href="../css/style.css"><meta name="AppleTitle" content="Aiuto MacMap®"><meta name="AppleIcon" content="MacMap Help/img/MacMapIcon.png"><meta name="keywords" content="Formato di esportazione"></head><body><a name=pg1_114></a><table class="switch" width=100%><tr><td align="left"><a href="help:anchor='pg0_3' bookID=Aiuto MacMap®">Indice Menu</a></td><td align="right"><a href="help:anchor='pg0_4' bookID=Aiuto MacMap®">Indice Alfabetico</a></td></tr></table><br><table border=0 cellspacing=0 cellspacing=0 width=100%><tr><td class="item">XMap Formato di esportazione</td></tr><tr><td><p>Permette di definire, per ogni tipo, la lista dei campi della base dati da esportare.<br>A sinistra compaiono i campi disponibili per l'esportazione, a destra la lista dei campi esportati.<br>I pulsanti situati nella zona centrale permettono di modificare la lista, aggiungendo o ritirando i campi da esportare.<br>Attualmente, le esportazioni <a href="pg1_123.html">MacMap® Testo</a>, <a href="pg1_106.html">ShapeFile</a>, <a href="pg1_118.html">Mif-Mid</a> e <a href="pg1_115.html">KML</a> utilizzano questa possibilità.<br>Il pulsante "Proiezione" permette di definire la proiezione dei dati in uscita. Se la proiezione del documento è stata definita, è quindi possibile riproiettare dinamicamente i dati durante l'esportazione.</p></td></tr>
+
+<tr>
+<td class="scripttitle">
+Comando script
+</td>
+</tr>
+<tr>
+<td class="scriptitem">
+<pre class="scriptitem">
+&lt;fexp&gt;    &lt;int&gt;<i class=varitem>Codice EPSG della proiezione</i>&lt;/int&gt;    &lt;!--Lista delle descrizioni del tipo--&gt;    &lt;container&gt;        &lt;name&gt;<i class=varitem>Nome del tipo</i>&lt;/name&gt;        &lt;!--Lista dei campi da esportare--&gt;        &lt;string&gt;<i class=varitem>Nome del campo</i>&lt;/string&gt;        &lt;!--Questo tag deve essere ripetuto per ciascun campo da esportare--&gt;    &lt;/container&gt;    &lt;!--Questa sequenza deve essere ripetuta per ciascuna definizione del tipo--&gt;&lt;/fexp&gt;
+</pre>
+</td>
+</tr>
+</table></body></html>

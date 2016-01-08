@@ -1,0 +1,59 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>XMap - Export Format</title>
+<link rel="stylesheet" href="../css/style.css">
+<meta name="AppleTitle" content="MacMap® Help">
+<meta name="AppleIcon" content="MacMap Help/img/MacMapIcon.png">
+<meta name="keywords" content="Export Format">
+</head>
+<body>
+<a name=pg1_114>
+</a>
+<table class="switch" width=100%>
+<tr>
+<td align="left">
+<a href="help:anchor='pg0_3' bookID=MacMap® Help">Menu Index</a>
+</td>
+<td align="right">
+<a href="help:anchor='pg0_4' bookID=MacMap® Help">Alphabetical Index</a>
+</td>
+</tr>
+</table>
+<br>
+<table border=0 cellspacing=0 cellspacing=0 width=100%>
+<tr>
+<td class="item">XMap - Export Format</td>
+</tr>
+<tr>
+<td>
+<p>This allows you to determine the list of attributes of the database to be exported, by type.<br>The fields available are presented on the list on the left, the fields exported on the list on the right.<br>The buttons in the central area make it possible to alter the list of exported fields.<br>
+<a href="pg1_123.html">MacMap® Text</a>, <a href="pg1_106.html">ShapeFile</a>, <a href="pg1_118.html">Mif-Mid</a> and <a href="pg1_115.html">KML</a> exports currently use this option.<br> The &quot;Projection&quot; button allows you to access a window where you can set the outgoing data projection. If the document projection has been set, this allows you to dynamically reproject the data on export.</p>
+</td>
+</tr>
+
+<tr>
+<td class="scripttitle">
+Script Command
+</td>
+</tr>
+<tr>
+<td class="scriptitem">
+<pre class="scriptitem">
+&lt;fexp&gt;
+    &lt;int&gt;<i class=varitem>EPSG projection identifier</i>&lt;/int&gt;
+    &lt;!--List of type definitions--&gt;
+    &lt;container&gt;
+        &lt;name&gt;<i class=varitem>Type name</i>&lt;/name&gt;
+        &lt;!--List of fields for export--&gt;
+        &lt;string&gt;<i class=varitem>Field name</i>&lt;/string&gt;
+        &lt;!--This tag must be repeated for each field to export--&gt;
+    &lt;/container&gt;
+    &lt;!--This sequence must be repeated for each type definition--&gt;
+&lt;/fexp&gt;
+</pre>
+</td>
+</tr>
+</table>
+</body>
+</html>

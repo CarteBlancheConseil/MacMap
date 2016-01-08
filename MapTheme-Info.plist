@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>French</string>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>prj</string>
+				<string>PRJ</string>
+				<string>project</string>
+				<string>proj</string>
+				<string>mmprj</string>
+				<string>MMPRJ</string>
+				<string>mmproject</string>
+				<string>mmproj</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>MoXProject.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>kMacMapProjectBundle</string>
+			<key>CFBundleTypeOSTypes</key>
+			<array>
+				<string>proj</string>
+			</array>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSTypeIsPackage</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>typ</string>
+				<string>TYP</string>
+				<string>type</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>MoXType.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>kMacMapTypeBundle</string>
+			<key>CFBundleTypeOSTypes</key>
+			<array>
+				<string>data</string>
+			</array>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSTypeIsPackage</key>
+			<true/>
+		</dict>
+	</array>
+	<key>CFBundleExecutable</key>
+	<string>MapTheme</string>
+	<key>CFBundleHelpBookFolder</key>
+	<string>MapTheme Help</string>
+	<key>CFBundleHelpBookName</key>
+	<string>MapTheme Help</string>
+	<key>CFBundleIconFile</key>
+	<string>MapThemeApp.icns</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.cbconseil.maptheme</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>MapTheme</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>3.7.3</string>
+	<key>CFBundleSignature</key>
+	<string>MThm</string>
+	<key>CFBundleVersion</key>
+	<string>3.7.3</string>
+	<key>CSResourcesFileMapped</key>
+	<true/>
+	<key>NSAppleScriptEnabled</key>
+	<true/>
+</dict>
+</plist>

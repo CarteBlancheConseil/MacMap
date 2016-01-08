@@ -1,0 +1,167 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>vDef - Proportional Lines</title>
+<link rel="stylesheet" href="../css/style.css">
+<meta name="AppleTitle" content="MacMap® Help">
+<meta name="AppleIcon" content="MacMap Help/img/MacMapIcon.png">
+<meta name="keywords" content="vDef, Proportional, Line">
+</head>
+<body>
+<a name=pg7_1O9>
+</a>
+<table class="switch" width=100%>
+<tr>
+<td align="left">
+<a href="help:anchor='pg0_3' bookID=MacMap® Help">Menu Index</a>
+</td>
+<td align="right">
+<a href="help:anchor='pg0_4' bookID=MacMap® Help">Alphabetical Index</a>
+</td>
+</tr>
+</table>
+<br>
+<table border=0 cellspacing=0 cellspacing=0 width=100%>
+<tr>
+<td class="item">
+vDef - Proportional Lines
+</td>
+</tr>
+<tr>
+<td>
+<p>
+The Proportional Lines vDef lets you represent objects as lines whose width is proportional to the value of a field. Objects are displayed in order of decreasing value.</p>
+</td>
+</tr>
+
+<tr>
+<td class="item2">
+Statistics
+</td>
+</tr>
+<tr>
+<td>
+<p>
+The "Field" section lets you specify the field on which the view will be based. This field must contain numeric values.<br>
+The "Proportionality" section lets you specify the proportionality type that you wish to obtain. With W=Q, you calculate the width of lines relative to the quantity. For W=Q3/2, you calculate the width of lines relative to the quantity raised to the power of 3/2. It is the same for other values of W.<br>
+The "Min calculation" popup lets you calculate automatically the lower limit for the representation of objects (based on type, selection or contrasts). This value corresponds to the smallest value of the field that you wish to represent.<br>
+The "Max calculation" popup lets you calculate automatically the upper limit for the representation of objects (based on type, selection or contrasts). This value corresponds to the largest value of the field that you wish to represent.
+</p>
+</td>
+</tr>
+
+<tr>
+<td class="item2">
+Appearance
+</td>
+</tr>
+<tr>
+<td>
+<p>
+The "Minimum Thickness" field lets you set the line width corresponding to the specified minimum value. In the "Maximum Thickness" field, you obtain the width of lines corresponding to the specified maximum value.<br>
+The "Offset" field lets you offset the line (to the right for a positive value and to the left for a negative value).<br>
+The "Miter Limit" field lets you set the limit at which joins are beveled.<br>
+The "Smoothing" field lets you smooth the segmentation (remove angularities).<br>
+The "Interior" field lets you select a color or a gradient. Selecting a gradient lets you color lines based on another field. Clicking on the color enables the Gradient panel, which lets you define a substyle.<br>
+The "Cap" field lets you select the type of line ending (butt, round or projecting).<br>
+The "Join" field lets you select the representation type for each of the joins of the segmentation (miter, rounded or bevel).<br>
+The "Dash" field lets you select a dash style.
+</p>
+</td>
+</tr>
+
+<tr>
+<td class="item2">
+Visibility
+</td>
+</tr>
+<tr>
+<td>
+<p>
+The two popups let you set the scale range for which the style is visible.
+</p>
+</td>
+</tr>
+
+<tr>
+<td class="item2">
+Gradient
+</td>
+</tr>
+<tr>
+<td>
+<p>
+The Gradient panel lets you create substyles. The definition of these substyles consists of discretizing a statistical series and then assigning a color to each of the classes.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+The "Field" section lets you specify the field on which the view will be based. This field must contain numeric values.<br>
+The "Discretization" section lets you select an automatic method for defining classes.<br>
+The "Number of Classes" section lets you specify the number of classes desired.<br>
+The "Min calculation" popup lets you calculate automatically the lower limit for the representation of objects (based on type, selection or contrasts). This value corresponds to the smallest value of the field that you wish to represent.<br>
+The "Max calculation" popup lets you calculate automatically the upper limit for the representation of objects (based on type, selection or contrasts). This value corresponds to the largest value of the field that you wish to represent.<br>
+The "Discretize" button lets you calculate the limits for classes, based on the specified settings. This calculation can be done based on type, selection or contrasts. The result is displayed in the list and can be modified manually if necessary (by clicking on a value in the list).<br>
+You can add or remove classes by using the "+" and "-" buttons.<br>
+The "Colorimetry" section lets you select the colors to apply to each of the classes. These colors are automatically calculated based on the reference colors.<br>
+The associated wells let you edit the color of the class or the pattern.
+</p>
+</td>
+</tr>
+
+<tr>
+<td class="item2">
+Options: General
+</td>
+</tr>
+<tr>
+<td>
+<p>
+The "Scale of Reference" field lets you set the proportionality based on the scale. Each of the sizes indicated is recalculated when displayed according to the current scale and reference scale.<br> The "Unit" field lets you select between various measurements (size, thickness, ...) in pixels or in millimeters.<br> The "CMYK" field lets you set the type of color you want: CMYK or RGB.
+</p>
+</td>
+</tr>
+<tr>
+<td class="item2">
+Options: Display object if
+</td>
+</tr>
+<tr>
+<td>
+<p>
+This option lets you define display conditions for each object. A display condition is made up of three elements:<br> - A field in the attribute table,<br> - An operator,<br> - A value.<br> An object not meeting the defined condition will not be displayed by the style, without having to hide it.
+</p>
+</td>
+</tr>
+<tr>
+<td class="item2">
+Options: Offset
+</td>
+</tr>
+<tr>
+<td>
+<p>
+This option lets you select two x and y fields which modify the location of the display without modifying the object geometry. These fields can be filled in using the <a href="pg2_301.html">Offset</a> tool.
+</p>
+</td>
+</tr>
+
+<tr>
+<td class="item2">
+Apply
+</td>
+</tr>
+<tr>
+<td>
+<p>
+This button saves the changes to the style and apply it to the current view if this style is shown at screen.</p>
+</td>
+</tr>
+
+</table>
+<p>
+<a href="pg1_604.html">Presentation Box</a>
+</p>
+</body>
+</html>

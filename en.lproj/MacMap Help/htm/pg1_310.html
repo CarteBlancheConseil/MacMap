@@ -1,0 +1,58 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>XMap - Import Data</title>
+<link rel="stylesheet" href="../css/style.css">
+<meta name="AppleTitle" content="MacMap® Help">
+<meta name="AppleIcon" content="MacMap Help/img/MacMapIcon.png">
+<meta name="keywords" content="Import Data">
+</head>
+<body>
+<a name=pg1_310>
+</a>
+<table class="switch" width=100%>
+<tr>
+<td align="left">
+<a href="help:anchor='pg0_3' bookID=MacMap® Help">Menu Index</a>
+</td>
+<td align="right">
+<a href="help:anchor='pg0_4' bookID=MacMap® Help">Alphabetical Index</a>
+</td>
+</tr>
+</table>
+<br>
+<table border=0 cellspacing=0 cellspacing=0 width=100%>
+<tr>
+<td class="item">XMap - Import Data</td>
+</tr>
+<tr>
+<td>
+<p>This function lets you import external attribute data into a MacMap® database. This data can be in tab delimited text, csv or dbf format. After selecting the type in which to import the data, you can specify the action to be applied for each field in the file:<br>- Ignore so as not to take the field into account,<br>- Search to define a search key,<br>- Fill to transfer data contained in this field,<br>- Create and then fill if a field with the same name does not already exist in the target table.<br>Each field in the external file must be linked to a field in the target table.<br>The &quot;Fill only one object&quot; option lets you detect the case where a line in the file involves several objects.<br>The &quot;Include hidden objects&quot; option lets you include hidden objects in the processing.<br>Potential import errors can be seen in the Mac OS X log (&quot;Console&quot; application). They are delimited by the following tags:<br>-- DATAJOIN REPORT BEGIN --<br>...<br>-- DATAJOIN REPORT END --<br> They are also reported in a text file with the &quot;.burp&quot; extension located at the same level as the imported file.</p>
+</td>
+</tr>
+
+<tr>
+<td class="scripttitle">
+Script Command
+</td>
+</tr>
+<tr>
+<td class="scriptitem">
+<pre class="scriptitem">
+&lt;dataimport&gt;
+    &lt;path&gt;<i class=varitem>File path (POSIX)</i>&lt;/path&gt;
+    &lt;name&gt;<i class=varitem>File name (dbf, tabbed text or csv)</i>&lt;/name&gt;
+    &lt;name&gt;<i class=varitem>Type name</i>&lt;/name&gt;
+    &lt;bool&gt;<i class=varitem>1 to include hidden objects, otherwise 0</i>&lt;/bool&gt;
+    &lt;bool&gt;<i class=varitem>1 if the search key must be unique, otherwise 0</i>&lt;/bool&gt;
+    &lt;!--Beginning of the description of operations to be carried out on the different columns, relating to their number--&gt;
+    &lt;int&gt;<i class=varitem>1(=Ignore)|2(=Search)|3(=Fill)|4(=Create then fill)</i>&lt;/int&gt;
+    &lt;name&gt;<i class=varitem>Field name</i>&lt;/name&gt;
+    &lt;!--This sequence must be repeated for each column in the file--&gt;
+&lt;/dataimport&gt;
+</pre>
+</td>
+</tr>
+</table>
+</body>
+</html>

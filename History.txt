@@ -1,0 +1,301 @@
+---------------------------------------------------------------------------------------------------------------------------
+VERSIONS EN COURS
+---------------------------------------------------------------------------------------------------------------------------
+v3.7.5
+o Bug bloquant l'import des fichiers de points
+o Erreur de traduction dans la version italienne sur l'XMap rotation
+
+v3.7.4
+o Bug dans l'export en série, problème dans le chemin d'accès au repertoire destination
+o Bug bloquant l'ouverture de la palette Coordonnées en versions italienne et anglaise
+
+v3.7.3
+o Bug dans l'export PDF, perte de l'inter-mots
+
+v3.7.2
+o Correction d'un bug sur les géométries complexes (pb realloc)
+o Correction sur la lecture des paramètres des tool (select, shape, printarea)
+
+v3.7.0
+o Refonte fenêtre carto en externe
+o Tools revus en mode CoreGraphics.
+o Refonte minifiche en externe
+o Fiche, Tableur, Lien multimédia et Pack Stats complet portés en Cocoa
+o Toutes XMapBoxes portées en Cocoa
+o Format d'export revu pour accepter des noms de champs alternatifs pour l'export (SHP, MIF/MID et MMT)
+o Export GML
+
+---------------------------------------------------------------------------------------------------------------------------
+ANCIENNES VERSIONS
+---------------------------------------------------------------------------------------------------------------------------
+v3.6.4
+o Regression sur base 3.6.2 suite à problèmes de stabilité liès à la suppression QuickDraw en cours
+
+v3.6.3
+o Suppression des FSSpec et fonctions associées
+o Suppression des appels FSRef dans MapDocument et TypeAdd/TypeNew
+o Différenciation du log pour trace sous 10.9
+o Ajout des fonctions CGContext sur les tools
+o Minifiche Cocoa en component, suppression de la classe bStatusWd et remplacement par bStatusIntf
+
+v3.6.2
+o Correction d'un bug sur le nommage des nouveaux styles
+o Correction d'un bug l'affectation du champ rotation dans le vdef Texte
+o Correction d'un bug sur l'affichage des gradients dans la vDef Surfaces choroplèthe
+
+v3.6.1
+o Correction gestionnaire de styles
+
+v3.6.0
+o Import GPX
+o refonte vDefs
+o Import PostGIS
+o Export PostGIS
+o refonte gestionnaire de styles
+
+v3.5.3
+o Viewer dans MapTheme
+o Correction d'un bug dans le renommage des vue : interdiction d'écraser une vue portant le même nom
+o Correction d'un bug dans Gestion des types : les bonnes valeurs s'affichent dans les bon champs
+o Réintroduction du choix de la taille de police dans la vDef texte via le font picker (demande Rouen)
+
+v3.5.2
+o Corrections sur Gestionnaire de types, Contraintes de saisie, et vDef Histogramme pour plantage sous 10.7 (switch de méthode de release en fonction de la version d'OS).
+
+v3.5.1
+o Correction d'un bug à l'ajout d'objets sur les types avec tables jointes
+o Correction d'un bug provoquant l'initialisation aléatoire des touches d'activation de jonction dans les outils utilisant cette fonction
+o Correction d'un bug sur Associer par un champ (non prise en compte de la longueur min)
+o Correction d'un bug dans les tableurs (disparition de certaines colonnes Calc à la réouverture).
+o Correction d'un bug dans les XMaps Rectangle et Polygones (résultats éronnés dans le cas de la création en cm à l'échelle avec des bases qui ne sont pas en m).
+o Moteur graphique acceptant les backgrounds couleur pour les surfaces en trames.
+o Enregistrer/Enregistrer sous/Ignorer dans la gestion des vues pour la boite présentation.
+o WMS : Choix sur de SRID de la base si plusieurs projections sont dispo sur le serveur.
+o Préférences : accessible même si il n'y a pas de type dans la base.
+o Gestionnaire de Styles : Activation/Désactivation des boutons du dialogue en fonction de la sélection vdef/style. Masquage de la fenêtre à l'edit pour éviter problèmes avec vdefs COCOA.
+o Moteur graphique utilisant les fonctions CG ShowGlyphs en remplacement de ShowText.
+o ATSUI remplacé par CoreText (bCoreTextInfo).
+o Reprojection et mise à l'échelle à la volée.
+o Correction d'un bug dans l'import DXF (pb sur le nom qui se traduisait pas l'échec de l'import).
+o Correction d'un bug empéchant l'ouverture de la XMapBox Dessin II.
+o Liste d'objets (Cocoa)
+o Bookmarks (Cocoa)
+o Textes complexes (Cocoa)
+o CursorTrack et modificationn de la boite à outils
+o TypeManager (Cocoa) avec extensions (info sur les types)
+o MakeConstraints (Cocoa) = DBConstraints avec extensions (génération automatique des contraintes sur un champ à partir d'un autre champ)
+o vDef Histogrammes (Cocoa)
+o vDef Symboles proportionnels
+
+v3.4.2
+o Correction d'un bug sur les encodages des noms de fichiers entre UTF8 et MacRoman (imports exports, tout ce qui touche aux tables externes)
+o Correction d'un bug dans la sélection des icon/pattern dans les pickers (pdf)
+o Correction d'un bug sur le tool PrintArea, dans la détermination du rectangle à partir de sélection ou contrastes.
+o Correction d'un bug dans PropCircle et PropRect pour les styles définis avec un détourage à 0 (style pas enregistré)
+o Améliorations sur XMapBox Draw II (Validation en sortie de zone de texte, retrait des zones de texte du UserFocus en fin d'édition
+
+v3.4.0.0 béta
+o Correction d'un problème de précision numérique dans l'interface des vdefs choroplèthes et proportionnelles
+o Correction d'un problème de précision numérique dans la fonction Remplir pour la conversion Doubles->String
+o Correction d'un bug dans la changement de genre des champs sur les tables avec endianness différent de la plateforme
+o Imports multi-fichiers SHP, NMEA, POINT, DXF, MIF-MID, MMT et RASTER, et filtrage des fichiers par l'extension
+o Imports multi-fichiers dans les pickers Dash, Pattern et Icons, et filtrage des fichiers par l'extension
+o Ajout de types multi-fichiers
+o Sélectionner scriptable
+o Tout sélectionner dedans fonctionne également sur une sélection de départ
+o Correction d'un problème de l’affectation de l’opacité sur une sélection multi sous-type dans les vDefs Quick (Text, Rect, Circle,Surf)
+o Correction du problème de mise à jour des îcones dans la boîte de présentation
+o Option cm à l'échelle dans l'outil Formes Simples
+o Zone d'impression ajustable
+o Correction d'un bug dans Surfacifier
+o Correction d'un bug dans Créateur de surfaces
+o Correction d'un bug dans les sélections par cercle et polygone
+o Modification du mode de dessin du tool Offset
+o Correction d'un bug de mise à jour du dessin lors de la création de nouveaux objets
+o Correction d'un bug dans l'outil justification (valeurs erronées si le champs cible n'était pas de type flottant)
+o Raccourci clavier pour les jonctions
+o vDef Texte avec Affichage multi-champ
+o vDef Raster avec classes et options d'affichage
+o Gestion des raccourcis clavier
+o Support CMYK dans les vDefs (interface à compléter)
+o Gradient continu dans les vDefs choroplèthes
+o Gestionnaire de types : Ajout, Création, Retrait, Changement de nom, Protection et Déprotection.
+o XMapBox utilisateur (pour applications spécifiques)
+o Fixer l'origine (interface à compléter)
+o Fixer l'échelle de référence (boîte présentation)
+o Test Légende (boîte présentation)
+
+v3.4.0.1 béta
+o Modification de la boite Calc avec un bouton permettant de réaliser somme, moyenne, médiane, variance, écart type, min et max, sur les sélections miulti-objets
+o Correction d'un bug dans l'import MMT
+o Correction d'un bug dans l'import SHP concernant la lecture du DBF
+o Amélioration de la gestion des rasters, et accélération de l'import raster
+o Correction d'un bug amenant à un plantage dans le dessin de certains linéaires décalés
+o Option de création automatique des types à l'import (SHP, NMEA, POINT, DXF, MIF-MID, MMT) et accessibilité à grille d'import directe depuis l'interface
+o Accessibilité au format d'export directe depuis l'interface des exports SHP, DXF, MIF-MID, et MMT
+o Ajout automatique des types créés dans la vue en cours avec les imports (SHP, NMEA, POINT, DXF, MIF-MID, MMT).
+o Option d'ajout des types dans Ouvrir un type et Créer un type.
+o Correction d'un bug amenant à un plantage dans le nettoyage automatique (en utilisation avec associer par exemple)
+o Correction d'un bug dans le nettoyage automatique (prise en compte des évènements Undo/Redo sur Intel)
+o Correction d'un bug dans le nettoyage automatique (pas de découpage sur les carrefours pré-existants)
+o Ré-introduction de la sélection différenciée par drag et par pointé
+o Nettoyage automatique et cohérence topologique utilisables simultanément
+o Ajout-Retrait de classes manuel, et possibilité de ne pas représenter certaines classes dans les vdefs choroplèthes (surface choroplèthe, ligne colorée, point coloré, et rectangles colorés)
+o Géoréférencement de rasters (calage raster)
+o Gestion des rectangles arrondis dans le moteur d'affichage et dans librairie XML
+o Gestion des contours de background texte dans le moteur d'affichage et dans librairie XML
+o Gestion de la taille des backgrounds texte dans le moteur d'affichage et dans librairie XML
+o Report des compléments sur l'affichage des backgrounds dans la vdef texte
+o Calcs Largeur du texte (pixel) et Longueur du texte (pixel)
+o Correction d'un bug provoquant un plantage au changement de nom des styles et vues
+o Tag GoogleMapStatic
+
+v3.4.0.2 béta
+o Amélioration sur l'affichage des textes (calcul de longueur plus complet, intégrant les bearing), problème de la séparation en lettres non résolu.
+o Suppression des backgrounds blancs et noir dans les exports PDF.
+o Suppression des backgrounds transparents dans l'affichage des textes.
+o Clip dans l'export PDF.
+o Tables texte : en ouverture tous les champs sont considérés comme textes.
+o Modification des noms de champs réservés dans les tables MacMap® de façon a pouvoir importer des fichiers contenant ces noms de champ (ex : Name). Transparent pour l'utilisateur.
+o Amélioration dans les modifications d'infos sur les champs de la bdd (plus de recopie pour un simple changement de nom ou de décimale).
+o Correction d'un bug à l'affichage des graphes bivariés et centres mobiles faisant disparaitre l'affichage pour les petites plages de valeurs.
+o Correction d'un bug sur la fiche provoquant un plantage quand on double-clique dans le vide.
+o Marge de recherche au dessin via les styles, intégration de la fonction dans les exports raster.
+
+v3.3.2
+o Correction d'un problème de précision numérique dans l'interface des vdefs choroplèthes et proportionnelles
+o Correction d'un problème de précision numérique dans la fonction Remplir pour la conversion Doubles->String
+o Correction d'un bug dans la changement de genre des champs sur les tables avec endianness différent de la plateforme
+o Imports multi-fichiers SHP, NMEA, POINT, DXF, MIF-MID, MMT et RASTER, et filtrage des fichiers par l'extension
+o Imports multi-fichiers dans les pickers Dash, Pattern et Icons, et filtrage des fichiers par l'extension
+o Ajout de types multi-fichiers
+o Sélectionner scriptable (non documenté)
+o Tout sélectionner dedans fonctionne également sur une sélection de départ
+o Correction d'un problème de l’affectation de l’opacité sur une sélection multi sous-type dans les vDefs Quick (Text, Rect, Circle,Surf)
+o Correction du problème de mise à jour des îcones dans la boîte de présentation
+o Zone d'impression ajustable
+o Correction d'un bug dans Surfacifier
+o Correction d'un bug dans Créateur de surfaces
+o Correction d'un bug dans les sélections par cercle et polygone
+o Modification du mode de dessin du tool Offset
+o Correction d'un bug de mise à jour du dessin lors de la création de nouveaux objets
+o Correction d'un bug dans l'outil justification (valeurs erronées si le champs cible n'était pas de type flottant)
+o Correction d'un bug dans l'import MMT
+o Correction d'un bug dans l'import SHP concernant la lecture du DBF
+o Amélioration de la gestion des rasters, et accélération de l'import raster
+o Correction d'un bug amenant à un plantage dans le dessin de certains linéaires décalés
+o Option de création automatique des types à l'import (SHP, NMEA, POINT, DXF, MIF-MID, MMT) et accessibilité à grille d'import directe depuis l'interface
+o Accessibilité au format d'export directe depuis l'interface des exports SHP, DXF, MIF-MID, et MMT
+o Ajout automatique des types créés à la vue en cours avec les imports (SHP, NMEA, POINT, DXF, MIF-MID, MMT).
+o Option d'ajout des types à la vue en cours avec Ouvrir un type et Créer un type.
+o Correction d'un bug amenant à un plantage dans le nettoyage automatique (en utilisation avec associer par exemple)
+o Correction d'un bug dans le nettoyage automatique (prise en compte des évènements Undo/Redo sur Intel)
+o Correction d'un bug dans le nettoyage automatique (pas de découpage sur les carrefours pré-existants)
+o Nettoyage automatique et cohérence topologique utilisables simultanément
+
+Géocodeur
+o Correction d'un problème interface (intervertion des champs droite et gauche sur les linéaires)
+o Correction d'un problème sur l'ouverture des fichiers avec chemin d'accès contenant des caractères hors ASCII (code > 127)
+
+v3.3.0.1 béta
+o Correction d'un bug sur les jonctions amenant à une activation du magnétisme sur tous les types, et les objets masqués
+o Requètes avec options "puis contraster", "puis masquer ceux-ci", "puis masquer les autres", et enchaînement de macros
+o Correction d'un bug dans l'export des géométries au format MMT
+o Correction de bug (interruption inapropriée) sur le delete en mode script
+o Commande script pour Transfert de Type, Grille d'import, Format d'export, Importer les champ, Exporter les champs
+o Tool Redessiner
+o Mode "A main levé" sur le tool Saisie
+o XMap Traitement des chaînes
+o Ajout du sens de lecture dans l'éditeur vDef Texte de la version italienne (oublié jusqu'alors)
+o Correction dans surfacifier et linéariser, pour obtenir des objets topologiques même si les segmentation sont inversées
+o Les opérateurs Egal à, Différent de, Commençe par, Se termine par et Contient ne tiennent plus compte de la casse et de l'accentuation
+o Le tableur, la Fiche, les fenêtres du pack statistiques et le lien multimédia sont remis à jour lorsque l'utilisateur les appelle alors qu'ils sont déjà ouvert.
+o Bertin
+o Style virtuel client WMS
+o XMap Publication multiple
+
+v3.3.0.0 béta
+o Meilleure gestion des fenêtres de wait permettant un gain de temps significatif (toutes tâches gérant des wait)
+o Correction d'un bug sur l'export pour les tableurs (cas des colonnes présentent plusieurs fois)
+o Correction d'un bug sur les représentations avec patterns qui n'étaient pas exportés en PDF ni imprimés
+o Requètes avec questions ouvertes
+o Correction d'un bug sur l'affichage des textes le long qui amenait à un plantage
+o Accélération significative du temps de réponse aux requêtes base de données
+o Meilleure gestion de la boucle d'affichage permettant une interruption par scroll, zoom, ou autre
+o Import/export Texte (MMT)
+o Possibilité de fixer une projection en export dans "Format d'export"
+o Possibilité de fixer une projection en import dans "Grille d'import"
+o Possibilité d'incruster le champ Géométrie en utilisant le format MMT dans "Importer les données", intégrant la possibilité de re-projection à l'import
+o Possibilité de reprojeter à l'export en SHP, Mif-Mid, DXF et MMT
+o Possibilité de reprojeter à l'import en SHP, Mif-Mid, DXF et MMT
+o Calcs Centroïde X WGS84 et Centroïde Y WGS84
+o Boîte coordonnées avec indication Longitude/Latitude WGS84
+o Pack d'externes nouvelles et adaptation des externes standard pour Scripts
+o XMap Décalage de géométrie
+o Calc pour détection des géométries avec points en doublons
+o Calc "Texte à l'écran"
+o XMap Associer par un champ (scriptable)
+o Import de fichier de point (utilisant la possibilité de re-projection à l'import, scriptable)
+o Import de fichier GPS (tags NMEA au format texte, scriptable)
+
+v3.2.3
+o Correction d'un bug sur l'affichage des textes le long qui amenait à un plantage
+o Accélération significative du temps de réponse aux requêtes base de données.
+o Meilleure gestion de la boucle d'affichage permettant une interruption par scroll, zoom, ou autre.
+o Correction d'un bug sur les jonctions ammenant à une activation du magnétisme sur tous les types, et les objets masqués.
+o Requètes avec options "puis contraster", "puis masquer ceux-ci", "puis masquer les autres", et enchaînement de macros.
+o Ajout du sens de lecture dans l'éditeur vDef Texte de la version italienne (oublié jusqu'alors)
+o Correction dans surfacifier et linéariser, pour obtenir des objets topologiques même si les segmentation sont inversées
+o Mode "A main levé" sur le tool Saisie
+o Les opérateurs Egal à, Différent de, Commençe par, Se termine par et Contient ne tiennent plus compte de la casse et de l'accentuation
+o Le tableur, la Fiche, les fenêtres du pack statistiques et le lien multimédia sont remis à jour lorsque l'utilisateur les appelle alors qu'ils sont déjà ouvert.
+
+v3.2.2
+o Meilleure gestion des fenêtres de wait permettant un gain de temps significatif (toutes tâches gérant des wait)
+o Correction d'un bug sur l'export pour les tableurs (cas des colonnes présentent plusieurs fois)
+o Correction d'un bug sur les représentations avec patterns qui n'étaient pas exportés en PDF ni imprimés
+o Requètes avec questions ouvertes
+
+
+
+---------------------------------------------------------------------------------------------------------------------------
+REMARQUES MARCELLO
+---------------------------------------------------------------------------------------------------------------------------
+o Problèmes à l’incrustation du champ sous-type (libellé pas pris en compte).
+o Clefs de recherches multiples dans les incrustations.
+o Problème dans la géog "le long"
+o Afficher le rectangle du zoom+
+o Rétablir le copier-coller dans les vDefs.
+
+TRAITE
+o Améliorer la perception globale des réglages des vDefs : il manque une vue globale du style.
+o Problème du respect de la casse dans les sélections.
+o Proposition d’actualisation de la fiche par modification de la sélection.
+o Remettre à jour le tableur lors d’un pomme-B
+o Proposer avec l’application une librairie de symboles, trames, et tiretés. 
+o Problème dans la sélection sur les objets présentant un texte non affiché (bug à corriger)
+o Introduire une option d’ouverture automatique de la fiche à la saisie.
+o vDef Raster avec classes et options d'affichage
+o vDef Texte : Affichage mono-champ, impossible récuperer les styles 1.x
+o Raccourci clavier pour les jonctions
+o Import ShapeFile, GeoTiff... mono table à passer en multi
+o Retirer un type
+o Problème de l’affectation de l’opacité sur une sélection multi sous-type dans les vDefs
+o Problème de mise à jour des îcones dans la boîte de présentation
+o Déplacement de la zone d’impression.
+o Problème dans le surfacifier
+o Outil Offset : Sans prévisualisation c’est difficile à utiliser.
+o Problèmes de rafraichissement en fin de saisie
+o Problème des calcs appliquées sur une sélection multiple qui renvoient le résultat sur le premier objet (connu, à faire évoluer)
+o Etudier la possibilité de ré-introduire la sélection différenciée par Drag et par pointé
+o Impossible d'utiliser le nottoyage automatique avec la cohérence topologique.
+o VDef Gradient : ajouter des boutons pour l’ajout/retrait manuel de classes.
+o Problème de navigation clavier dans les dialogues de vDefs (non respect de l’ordre d’affichage).
+o Améliorer la perception globale des réglages des vDefs : il manque une vue globale des rubriques utilisant un champ.
+o Marge de recherche au dessin.
+o Il manque un "Enregistrer sous…", pose le problème de la perte des vues.
+
+HORS SUJET
+o Dans les options de vDefs, tous les champs classes sont disponibles. -> NORMAL
+o Problème du séparateur décimal sur les fichiers textes. A étudier, mais impossible à résoudre pour certains formats. En fait ce n’est possible que pour le format texte tabulé (hors MMT).
+
