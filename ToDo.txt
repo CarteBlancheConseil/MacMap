@@ -1,15 +1,9 @@
-A faire :
-- Retrait des fonctions Giga de la doc en ligne
-
 FAIT pour 3.7.0 :
-- Délégation du chargement des externes, splash screen et barre des menu au loader, et modification des ressources correspondantes
-- Extraction fonctions Giga, Viewer et MapThème
 - Corriger problème de copie (crash) sur certains objets à géométrie complexe
 - Suppression QuickDraw
 - Externalisation Cocoa minifiche
 - Externalisation Cocoa fenêtre principale
-- Refonte Cocoa Pack Stat
-- Export GML
+- Refonte Cocoa Stat
 - Refonte Cocoa fenêtres flottantes (XMapBox, ExtWindows, ToolBox)
 - Suppression NAVServices pour Cocoa
 - Outils : adaption à la fenêtre carto Cocoa
@@ -17,8 +11,6 @@ FAIT pour 3.7.0 :
 
 FAIT pour 3.6.0 :
 - XMap Présentation : Légende
-- Import-Export PostGIS
-- Import GPX
 - Refonte vDef sous Cocoa
 
 FAIT pour 3.5.0 :
@@ -43,8 +35,6 @@ XMap Préférences : fixer l'origine
 XMaps Import : Option créer le type si nécessaire et accès grille d'import
 Outil sélection (sélection par drag et pointé)
 XMap Gestion des types
-XMap Calage Raster
 XMap Raccourcis clavier
 XMap sélectionner : scriptable
 XMaps Créer un type / Ouvrir un type : Option d'ajout automatique à la vue
-Mises a jour menus Méga/Giga : Grille d'import, Format d'export, Gestion des types, raccourcis claviers
