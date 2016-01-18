@@ -49,16 +49,23 @@ bStdNSXBox	::bStdNSXBox(bGenericXMLBaseElement* elt, bGenericMacMapApp* gapp, CF
 	_controller=NULL;
 	_sign=GetSignature(this);
     _wd_open=false;
+    if(elt==NULL){
 char	name[FILENAME_MAX];
-	GetName(this,name);
+        GetName(this,name);
 //    strcat(name," [Cocoa]");
-	(void)_gapp->menuMgr()->add_item(kMenuMgrMenuPalettesID,name,_sign);
+        (void)_gapp->menuMgr()->add_item(kMenuMgrMenuPalettesID,name,_sign);
+    }
 }
 
 // ---------------------------------------------------------------------------
 // Destructeur
 // -----------
 bStdNSXBox::~bStdNSXBox(){
+//_bTrace_("bStdNSXBox::~bStdNSXBox",false);
+    if(_creator==NULL){
+//_tm_("yep");
+        (void)_gapp->menuMgr()->rmv_item(kMenuMgrMenuPalettesID,_sign);
+    }
 }
 
 // ---------------------------------------------------------------------------

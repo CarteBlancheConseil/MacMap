@@ -48,15 +48,22 @@ bStdXBox::bStdXBox(bGenericXMLBaseElement* elt, bGenericMacMapApp* gapp, CFBundl
 		:bStdXMapWithIntf(elt,gapp,bndl){
 	setclassname("xbox");
 	_sign=GetSignature(this);
+    if(elt==NULL){
 char	name[FILENAME_MAX];
-	GetName(this,name);
-	(void)_gapp->menuMgr()->add_item(kMenuMgrMenuPalettesID,name,_sign);
+        GetName(this,name);
+        (void)_gapp->menuMgr()->add_item(kMenuMgrMenuPalettesID,name,_sign);
+    }
 }
 
 // ---------------------------------------------------------------------------
 // Destructeur
 // -----------
 bStdXBox::~bStdXBox(){
+//_bTrace_("bStdXBox::~bStdXBox",true);
+    if(_creator==NULL){
+//_tm_("yep");
+        (void)_gapp->menuMgr()->rmv_item(kMenuMgrMenuPalettesID,_sign);
+    }
 }
 
 // ---------------------------------------------------------------------------
