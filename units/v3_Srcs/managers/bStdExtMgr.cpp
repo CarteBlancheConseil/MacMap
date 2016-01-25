@@ -28,11 +28,7 @@
 //----------------------------------------------------------------------------
 
 #include "bStdExtMgr.h"
-//#include "bExtLibMgr.h"
 #include "bDummyExtLib.h"
-
-//#include "bStdExtLib.h"
-
 #include "bMacMapApp.h"
 #include <mox_intf/ext_utils.h>
 #include <mox_intf/endian.h>
@@ -258,7 +254,6 @@ bGenericExt*	ext;
 		ext=get(i);
 		if(ext){
 			ext->idle(NULL);
-			//IdleApp();// ????
 		}
 	}
 	IdleApp();
@@ -452,7 +447,6 @@ char cb[256];
 	
 	lb->name(cb);
 	la->name(ca);
-//fprintf(stderr,"%s->%s\n",cb,ca);
 	return(strcmp(cb,ca));
 }
 

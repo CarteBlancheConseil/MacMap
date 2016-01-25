@@ -109,7 +109,7 @@ CGRect				cgr=CGDisplayBounds(cgdid);
 	if(_wd_open){
 		_openit=true;
 	}
-_tm_(&_sign+" => frame:"+_bnds.origin.x+";"+_bnds.origin.y+";"+_bnds.size.width+";"+_bnds.size.height);
+_tm_((unsigned int*)&_sign+" => frame:"+_bnds.origin.x+";"+_bnds.origin.y+";"+_bnds.size.width+";"+_bnds.size.height);
 }
 
 // ---------------------------------------------------------------------------

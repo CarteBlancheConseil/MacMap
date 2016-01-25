@@ -44,9 +44,6 @@
 #include <Cocoa/Cocoa.h>
 
 //----------------------------------------------------------------------------
-#define kBaseChouetteID	9990
-
-//----------------------------------------------------------------------------
 @interface TypeNewViewController : NSViewController{
     IBOutlet NSPopUpButton* _tpk_pop;
     IBOutlet NSPopUpButton* _bsk_pop;
@@ -207,12 +204,6 @@ bool	atv=true;
 			}
 			dt=data;
 			break;
-		case kBaseChouetteID:
-			if(!get_conn_prm(data)){
-				return(false);
-			}
-			dt=data;
-			break;
 	}
 	
 	if(_gapp->typesMgr()->add(name,path,dt,tbl,kind)!=noErr){
@@ -265,10 +256,6 @@ _tm_("kBaseLocalDBID");
         case 2:
             (*tbl)=kBasePostGISID;
 _tm_("kBasePostGISID");
-           break;
-        case 3:
-            (*tbl)=kBaseChouetteID;
-_tm_("kBaseChouetteID");
            break;
     }
 
@@ -344,10 +331,10 @@ bool				ret=false;
 		strcat(data,str);
 		strcat(data,"\n");
 		if(get_string(kXMapTypeNewConnPrmUserID,str)){
-			strcat(data,str);
-			strcat(data,"\n");
-			get_string(kXMapTypeNewConnPrmPasswordID,str);
-			strcat(data,str);
+			//strcat(data,str);
+			//strcat(data,"\n");
+			//get_string(kXMapTypeNewConnPrmPasswordID,str);
+			//strcat(data,str);
 			//strcat(data,"unused");
 			//strcat(data,"\n");
 		}

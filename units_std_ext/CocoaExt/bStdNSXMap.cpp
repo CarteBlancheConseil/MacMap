@@ -99,7 +99,7 @@ CGRect				cgr=CGDisplayBounds(cgdid);
 		_bnds.origin.x=100;
 		_bnds.origin.y=100;
 	}
-_tm_(&_sign+" => frame:"+_bnds.origin.x+";"+_bnds.origin.y+";"+_bnds.size.width+";"+_bnds.size.height);
+_tm_((unsigned int*)&_sign+" => frame:"+_bnds.origin.x+";"+_bnds.origin.y+";"+_bnds.size.width+";"+_bnds.size.height);
 _tm_(_wd_open);
 }
 
@@ -153,12 +153,15 @@ UInt32	kind=GetEventKind(evt);
 // 
 // -----------
 void bStdNSXMap::idle(void* prm){
-//_bTrace_("bStdNSXMap::idle",true);
+//_bTrace_("bStdNSXMap::idle",false);
 //_tm_(_cfname);
-	if((_wd_open==false)&&(_controller!=NULL)){
-		CCWDXMap_Dispose(_controller);
-		_controller=NULL;
+	if((_wd_open==true)&&(_controller==NULL)){
+        edit(NULL);
 	}
+    else if((_wd_open==false)&&(_controller!=NULL)){
+        CCWDXMap_Dispose(_controller);
+        _controller=NULL;
+    }
 	else if(_controller!=NULL){
 		CCWDXMap_Idle(_controller);
 	}
