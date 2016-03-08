@@ -114,7 +114,7 @@ bXMapShortcuts::bXMapShortcuts(bGenericXMLBaseElement* elt, bGenericMacMapApp* g
 				,_macr(sizeof(shortcut_prm))
 				,_scrp(sizeof(shortcut_prm)){
 	set_flags(kXMapNeedIdle+kXMapNeedEvents);
-	setclassname("shortcut_prms");
+	setclassname("shortcuts");
 }
 
 // ---------------------------------------------------------------------------

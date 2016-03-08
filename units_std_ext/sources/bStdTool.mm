@@ -42,14 +42,17 @@
 
 #include <Cocoa/Cocoa.h>
 
-#include <Cocoa/Cocoa.h>
-
 // ---------------------------------------------------------------------------
 //
 // -----------
 static void NSMakeMapKeyWindow(bGenericMacMapApp* gapp){
+    if([[NSApplication sharedApplication] modalWindow]==nil){
 NSWindow*   ref=(NSWindow*)gapp->mapIntf()->ref();
-    [ref makeKeyWindow];
+        [ref makeKeyWindow];
+    }
+    
+    
+    //[[NSApplication sharedApplication] mainWindow];
     //    - (void)makeKeyWindow;
     //    - (void)makeMainWindow;
 }

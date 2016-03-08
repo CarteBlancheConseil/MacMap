@@ -39,7 +39,7 @@
 // ---------------------------------------------------------------------------
 //  
 // ------------
--(id)initWithExt:(bGenericExt*)ext{
+-(id)initWithExt:(bStdExt*)ext{
 _bTrace_("[bStdNSAppModalWindowController initWithExt]",true);
 	self=[self initWithWindowNibName:@"Palette"];
 	if(self){

@@ -2,6 +2,9 @@
 VERSIONS EN COURS
 ---------------------------------------------------------------------------------------------------------------------------
 v3.7.5
+o Plus de désactivation des fenêtres modales quand la souris entre sur la mainWindow
+
+v3.7.5
 o Erreur de traduction dans la version italienne sur l'XMap rotation
 
 v3.7.4

@@ -440,6 +440,21 @@ typedef struct shortcut_prm{
 }shortcut_prm;
 
 //----------------------------------------------------------------------------
+// MakeConstraints
+//------------
+typedef struct MakeConstraints_prm{
+    bGenericType*	tp;
+    int				field;
+    int				srcfield;
+    int				srcuse;
+}MakeConstraints_prm;
+
+enum{
+    kMakeConstraintsUseValue=1,
+    kMakeConstraintsUseLabel=2
+};
+
+//----------------------------------------------------------------------------
 
 
 

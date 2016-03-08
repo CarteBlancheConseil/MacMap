@@ -262,6 +262,7 @@ bool bXMapNetClean::test(void* prm){
 // Intf
 // ------------
 bool bXMapNetClean::wd_event(EventRef evt, WindowRef wd){
+_bTrace_("bXMapNetClean::wd_event",true);
 bool		b=true;
 HICommand	cmd;
 UInt32		clss=GetEventClass(evt);
@@ -306,7 +307,7 @@ ControlRef	c;
 				c=get_control(kXMapNetCleanSignature,kXMapNetCleanOptionsNodeCheckID);
 				_act_prm.check_nodes=GetControl32BitValue(c);
 				c=get_control(kXMapNetCleanSignature,kXMapNetCleanOptionsEdgeCheckID);
-				_act_prm.check_edges=GetControl32BitValue(c);
+				_act_prm.check_edges=GetControl32BitValue(c);            
 				break;
 			case kHICommandCancel:
 				break;

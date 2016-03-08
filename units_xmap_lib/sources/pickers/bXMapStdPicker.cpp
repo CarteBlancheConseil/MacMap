@@ -102,8 +102,7 @@ bool bXMapStdPicker::process(int msg, void* prm){
 // 
 // ------------
 bool bXMapStdPicker::test(void* prm){
-//	return(_gapp->typesMgr()->count()>0);
-	return(true);
+	return(_gapp->document()!=NULL);
 }
 
 // ---------------------------------------------------------------------------
@@ -289,77 +288,6 @@ void bXMapStdPicker::choose_action(DataBrowserItemID item){
 // -----------
 void bXMapStdPicker::draw(CGContextRef ctx){
 }
-
-// ---------------------------------------------------------------------------
-// 
-// ------------
-//void bXMapStdPicker::import(NavObjectFilterUPP filter){
-//_bTrace_("bXMapDashPicker::import",true);
-//int						status;
-//FSRef					*ref;
-//int						n;
-//char					path[PATH_MAX*3];
-//char					name[FILENAME_MAX*3];
-//NavDialogOptionFlags	flags=0;
-//CFURLRef				url;
-//CFStringRef				cfs;
-//void*					data;
-//int						sz;
-//
-//	flags|=kNavAllowMultipleFiles;
-//	flags|=kNavAllowOpenPackages;
-//
-//	if((status=NAV_GetFSRefs(NULL,0,&ref,&n,filter,flags,NULL,NULL))){
-//_te_("NAV_GetFSRefs failed with "+status);	
-//		return;
-//	}
-//	for(int i=0;i<n;i++){
-//		url=CFURLCreateFromFSRef(kCFAllocatorDefault,&ref[i]);
-//		cfs=CFURLCopyFileSystemPath(url,kCFURLPOSIXPathStyle);
-//		CFStringGetCString(cfs,path,FILENAME_MAX*3,kCFStringEncodingMacRoman);
-//		CFRelease(cfs);
-//		
-//		cfs=CFURLCopyLastPathComponent(url);
-//		CFStringGetCString(cfs,name,FILENAME_MAX*3,kCFStringEncodingMacRoman);
-//		CFRelease(cfs);
-//		CFRelease(url);
-//		
-//		path[strlen(path)-strlen(name)]=0;
-//_tm_(i+"->"+path+"->"+name);	
-//		process(kExtProcessCallFromIntf,NULL);
-//
-//bStdDirectory	dr(path);
-//		if(dr.status()){
-//_te_("Directory bad status "+dr.status());
-//			break;
-//		}
-//		
-//bStdFile		f(name,"r");
-//		if(f.status()){
-//_te_("File bad status "+f.status());
-//			return;
-//		}
-//		
-//		f.mount((char**)&data,&sz);
-//		if(f.status()){
-//_te_("File bad status at mount "+f.status());
-//			return;
-//		}
-//		
-//		if(_prm.tp){
-//			(void)_prm.tp->fields()->set_param(_sub,name,data,sz);
-//		}
-//		else{
-//			//(void)_gapp->document()->set_param(_sub,name,data,sz);
-//		}
-//		free(data);
-//	}
-//
-//	if(ref){
-//		free(ref);
-//	}
-//}
-
 
 // ---------------------------------------------------------------------------
 //

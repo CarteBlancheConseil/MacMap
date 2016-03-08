@@ -28,6 +28,7 @@
 //----------------------------------------------------------------------------
 
 #import "NSUIUtils.h"
+#import "mm_messages.h"
 
 // ---------------------------------------------------------------------------
 // 
@@ -223,6 +224,25 @@ bGenericUnit*		u;
 }
 
 // ---------------------------------------------------------------------------
+//
+// ------------
+void NSPopupButtonPopulateWithCalcs(NSPopUpButton* c, bGenericMacMapApp* gapp, long current){
+char	str[256];
+
+    for(long i=1;i<=gapp->calcMgr()->count();i++){
+        gapp->calcMgr()->ext_name(i,str);
+        NSPopupButtonAddMenuItemValue(c,str);
+    }
+    
+    if([c pullsDown]==YES){
+        [c selectItemAtIndex:(current)];
+    }
+    else{
+        [c selectItemAtIndex:(current-1)];
+    }
+}
+
+// ---------------------------------------------------------------------------
 // 
 // ------------
 void NSPopupButtonPopulateWithConstrainedFields(NSPopUpButton* c, bGenericType* tp, long start, long current){	
@@ -232,6 +252,76 @@ NSPopupButtonPopulateWithFields(c,tp,start,current);
 			NSPopupButtonMenuItemDisable(c,i-start);
 		}
 	}
+}
+
+// ---------------------------------------------------------------------------
+//
+// ------------
+void NSPopupButtonPopulateWithConstraints(NSPopUpButton* c, bGenericType* tp, int field, int current){
+int	n=tp->fields()->count_constraints(field);
+    if(n<1){
+        return;
+    }
+    
+int		i,fk,ck,d;
+char	cval[256];
+int		ival;
+double	dval;
+    
+    tp->fields()->get_kind(field,&fk);
+    tp->fields()->get_decs(field,&d);
+    ck=tp->fields()->get_constraints_kind(field);
+    
+    if(ck!=fk){
+        fk=_char;
+    }
+    switch(fk){
+        case _bool:
+        case _int:
+            for(i=1;i<=n;i++){
+                tp->fields()->get_constraint(field,i,&ival);
+                sprintf(cval," %d",ival);
+                NSPopupButtonAddMenuItemValue(c,cval);
+                if(i==current){
+                    if([c pullsDown]==YES){
+                        [c selectItemAtIndex:i];
+                    }
+                    else{
+                        [c selectItemAtIndex:(i-1)];
+                    }
+                }
+            }
+            break;
+        case _double:
+            for(i=1;i<=n;i++){
+                tp->fields()->get_constraint(field,i,&dval);
+                sprintf(cval," %.*f",d,dval);
+                NSPopupButtonAddMenuItemValue(c,cval);
+                if(i==current){
+                    if([c pullsDown]==YES){
+                        [c selectItemAtIndex:i];
+                    }
+                    else{
+                        [c selectItemAtIndex:(i-1)];
+                    }
+                }
+            }
+            break;
+        case _char:
+            for(i=1;i<=n;i++){
+                tp->fields()->get_constraint(field,i,cval);
+                NSPopupButtonAddMenuItemValue(c,cval);
+                if(i==current){
+                    if([c pullsDown]==YES){
+                        [c selectItemAtIndex:i];
+                    }
+                    else{
+                        [c selectItemAtIndex:(i-1)];
+                    }
+                }
+            }
+            break;
+    }
 }
 
 // ---------------------------------------------------------------------------
@@ -256,7 +346,7 @@ char	str[256];
 // ------------
 void NSPopupButtonMenuItemEnable(NSPopUpButton* c, long index){
 	if((index<0)||(index>=[c numberOfItems])){
-		fprintf(stderr,"PAS DE ITEM\n");
+		fprintf(stderr,"NO ITEM\n");
 	}
 	else{
 NSMenuItem* item=[c itemAtIndex:index];
@@ -269,7 +359,7 @@ NSMenuItem* item=[c itemAtIndex:index];
 // ------------
 void NSPopupButtonMenuItemDisable(NSPopUpButton* c, long index){
 	if((index<0)||(index>=[c numberOfItems])){
-		fprintf(stderr,"PAS DE ITEM\n");
+		fprintf(stderr,"NO ITEM\n");
 	}
 	else{
 NSMenuItem* item=[c itemAtIndex:index];
@@ -286,7 +376,7 @@ NSMenuItem* item=[c itemAtIndex:index];
 		return([item tag]);
 	}
 	else{
-		fprintf(stderr,"PAS DE ITEM\n");
+		fprintf(stderr,"NO ITEM\n");
 	}
 	return(0);
 }
@@ -301,8 +391,21 @@ NSString*	nstr=[NSString stringWithCString:title encoding:NSMacOSRomanStringEnco
 		[item setTitle:nstr];
 	}
 	else{
-		fprintf(stderr,"PAS DE ITEM\n");
+		fprintf(stderr,"NO ITEM\n");
 	}
+}
+
+// ---------------------------------------------------------------------------
+//
+// ------------
+void NSPopupButtonMenuItemGetTitle(NSPopUpButton* c, long index, char* title, size_t max){
+NSMenuItem* item=[c itemAtIndex:index];
+    if(item){
+        [[item title] getCString:title maxLength:max encoding:NSMacOSRomanStringEncoding];
+    }
+    else{
+        fprintf(stderr,"NO ITEM\n");
+    }
 }
 
 // ---------------------------------------------------------------------------
@@ -323,7 +426,6 @@ NSString*	nsstr=[c stringValue];
 void NSTextFieldSetValue(NSTextField* c, const char* str){
 NSString*	nsstr=[NSString stringWithCString:str encoding:NSMacOSRomanStringEncoding];
 	[c setStringValue:nsstr];
-//	[c setCharValue:str];
 }
 
 // ---------------------------------------------------------------------------
@@ -357,5 +459,14 @@ CGRect NSMainSreenBounds(){
 // -----------
 CGFloat NSMenuBarHeight(){
 	return([NSMenuView menuBarHeight]);
+}
+
+// ---------------------------------------------------------------------------
+//
+// -----------
+NSString* MMLocalizedString(const char* msg_id, int maj){
+char    msg[__MESSAGE_STRING_LENGTH_MAX__];
+    message_string(msg_id,msg,maj);
+    return [NSString stringWithCString:msg encoding:NSMacOSRomanStringEncoding];
 }
 

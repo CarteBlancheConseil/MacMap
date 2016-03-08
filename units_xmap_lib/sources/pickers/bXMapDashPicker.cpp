@@ -39,46 +39,6 @@
 #include <QuickTime/QuickTimeComponents.h>
 
 // ---------------------------------------------------------------------------
-// 
-// ------------
-//static Boolean imp_file_filter(AEDesc* item, 
-//							   void* xinfo, 
-//							   void* cba, 
-//							   NavFilterModes mode){
-//NavFileOrFolderInfo*	info=(NavFileOrFolderInfo*)xinfo;
-//OSErr					err;
-//FSRef					ref;
-//CFURLRef				url=CFURLCreateFromFSRef(kCFAllocatorDefault,&ref);
-//CFStringRef				cfs;
-//char					ext[FILENAME_MAX];
-//	
-//	if(item->descriptorType==typeFSRef) {
-//		if(!info->isFolder){
-//			if((err=AEGetDescData(item,&ref,sizeof(FSRef)))){
-//				return(false);
-//			}
-//			url=CFURLCreateFromFSRef(kCFAllocatorDefault,&ref);
-//			cfs=CFURLCopyPathExtension(url);
-//			CFRelease(url);
-//			if(!cfs){
-//				return(false);
-//			}
-//			CFStringGetCString(cfs,ext,FILENAME_MAX,kCFStringEncodingUTF8);
-//			CFRelease(cfs);
-//			strupper(ext);
-//			if(!strcmp(ext,"XML")){
-//				return(true);
-//			}
-//			return(false);
-//		}
-//		else{
-//			return(true);
-//		}
-//	}
-//	return(false);
-//}
-
-// ---------------------------------------------------------------------------
 // Constructeur
 // ------------
 bXMapDashPicker	::bXMapDashPicker(bGenericXMLBaseElement* elt, bGenericMacMapApp* gapp, CFBundleRef bndl) 
@@ -138,14 +98,6 @@ _te_("GetDash==NULL");
 	CGContextStrokePath(ctx);
 	delete dsh;
 }
-
-// ---------------------------------------------------------------------------
-// 
-// ------------
-//void bXMapDashPicker::import(NavObjectFilterUPP filter){
-//_bTrace_("bXMapDashPicker::import",true);
-//	bXMapStdPicker::import(imp_file_filter);
-//}
 
 // ---------------------------------------------------------------------------
 //

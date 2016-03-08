@@ -78,7 +78,9 @@
 //
 // ------------
 -(IBAction)doGrid:(id)sender{
+    [[[self view] window] setIsVisible:NO];
     SendCommandToApplication('IGrd');
+    [[[self view] window] setIsVisible:YES];
 }
 // ---------------------------------------------------------------------------
 //
@@ -113,7 +115,9 @@ _bTrace_("[GISIOImportViewController allocWithNibNamed owner class]",true);
 //
 // ------------
 -(IBAction)doExportFormat:(id)sender{
+    [[[self view] window] setIsVisible:NO];
     SendCommandToApplication('FExp');
+    [[[self view] window] setIsVisible:YES];
 }
 // ---------------------------------------------------------------------------
 //

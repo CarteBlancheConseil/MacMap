@@ -39,62 +39,6 @@
 #include <QuickTime/QuickTimeComponents.h>
 
 // ---------------------------------------------------------------------------
-// 
-// ------------
-//static Boolean imp_file_filter(AEDesc* item, 
-//							   void* xinfo, 
-//							   void* cba, 
-//							   NavFilterModes mode){
-//NavFileOrFolderInfo*	info=(NavFileOrFolderInfo*)xinfo;
-//OSErr					err;
-//FSRef					ref;
-//CFURLRef				url=CFURLCreateFromFSRef(kCFAllocatorDefault,&ref);
-//CFStringRef				cfs;
-//char					ext[FILENAME_MAX];
-//	
-//	if(item->descriptorType==typeFSRef) {
-//		if(!info->isFolder){
-//			if((err=AEGetDescData(item,&ref,sizeof(FSRef)))){
-//				return(false);
-//			}
-//			url=CFURLCreateFromFSRef(kCFAllocatorDefault,&ref);
-//			cfs=CFURLCopyPathExtension(url);
-//			CFRelease(url);
-//			if(!cfs){
-//				return(false);
-//			}
-//			CFStringGetCString(cfs,ext,FILENAME_MAX,kCFStringEncodingUTF8);
-//			CFRelease(cfs);
-//			strupper(ext);
-//			if(!strcmp(ext,"JPG")){
-//				return(true);
-//			}
-//			else if(!strcmp(ext,"JPEG")){
-//				return(true);
-//			}
-//			else if(!strcmp(ext,"TIF")){
-//				return(true);
-//			}
-//			else if(!strcmp(ext,"TIFF")){
-//				return(true);
-//			}
-//			else if(!strcmp(ext,"PNG")){
-//				return(true);
-//			}
-//			else if(!strcmp(ext,"PDF")){
-//				return(true);
-//			}
-//			
-//			return(false);
-//		}
-//		else{
-//			return(true);
-//		}
-//	}
-//	return(false);
-//}
-
-// ---------------------------------------------------------------------------
 // Constructeur
 // ------------
 bXMapIconPicker	::bXMapIconPicker(bGenericXMLBaseElement* elt, bGenericMacMapApp* gapp, CFBundleRef bndl) 
@@ -184,24 +128,6 @@ _te_("img==NULL");
 		CGImageRelease(img);
 	}
 }
-
-// ---------------------------------------------------------------------------
-// 
-// ------------
-//void bXMapIconPicker::import(NavObjectFilterUPP filter){
-///*UInt32	sgn[]={	kQTFileTypeJPEG,
-//				kQTFileTypeGIF,
-//				kQTFileTypePNG,
-//				kQTFileTypeTIFF,
-//				kQTFileTypePDF,
-//				kQTFileTypePicture,
-//				kQTFileTypeBMP,
-//				kQTFileTypeJFIF,
-//				kQTFileTypePhotoShop,
-//				kQTFileTypeFlash,
-//				kQTFileTypeJPEG2000};*/
-//	bXMapStdPicker::import(imp_file_filter);
-//}
 
 // ---------------------------------------------------------------------------
 //

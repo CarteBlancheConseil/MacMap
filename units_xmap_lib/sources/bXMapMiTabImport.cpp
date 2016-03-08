@@ -130,7 +130,7 @@ _tm_("createIfNeeded: "+ctin);
     _prm.filErr=0;
 
 bEventLog	log(_gapp,this);
-char    path[PATH_MAX];
+char        path[PATH_MAX];
     for(long i=1;i<=paths.count();i++){
         paths.get(i,&path);
         splitPath(path,_prm.path,_prm.name);

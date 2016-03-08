@@ -28,12 +28,12 @@
 //----------------------------------------------------------------------------
 
 #import <Cocoa/Cocoa.h>
-#import <mox_intf/bGenericExt.h>
+#import <std_ext/bStdExt.h>
 
 //----------------------------------------------------------------------------
 
 @interface bStdNSAppModalWindowController : NSWindowController{
-	bGenericExt*		_ext;
+	bStdExt*            _ext;
 	long				_code;
 
 	IBOutlet NSButton*	_okbtn;	
@@ -42,7 +42,7 @@
 
 //----------------------------------------------------------------------------
 // Std 
--(id)initWithExt:(bGenericExt*)ext;
+-(id)initWithExt:(bStdExt*)ext;
 -(void)runAppModal:(long*)code;
 
 //----------------------------------------------------------------------------

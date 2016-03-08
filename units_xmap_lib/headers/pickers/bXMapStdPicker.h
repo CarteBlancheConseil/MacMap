@@ -69,7 +69,6 @@ public:
 protected:															
     virtual void choose_action				(	DataBrowserItemID item);
     virtual void draw						(	CGContextRef ctx);
-//    virtual void import						(	NavObjectFilterUPP filter);
     virtual void import						(	const char** pnsft,
                                                 int nnsft);
 

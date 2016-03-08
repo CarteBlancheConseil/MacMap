@@ -68,7 +68,9 @@
 //
 // ------------
 -(IBAction)doOptions:(id)sender{
+    [[[self view] window] setIsVisible:NO];
     _ext->editOptions();
+    [[[self view] window] setIsVisible:YES];
 }
 // ---------------------------------------------------------------------------
 //
@@ -727,7 +729,7 @@ _te_("dt.outbm==NULL");
 				continue;
 			}
 // Export Image
-			/*err=*/(void)CGBitmapContextExport(dt.outbm,"",fnam,_prm.codec,ep->r,q);
+			(void)CGBitmapContextExport(dt.outbm,"",fnam,_prm.codec,ep->r,q);
 // GéoRéférencement TFW
 			if(ep->gr){
 				c=strchr(fnam,'.');

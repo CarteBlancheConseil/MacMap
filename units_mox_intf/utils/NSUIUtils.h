@@ -80,9 +80,16 @@ void		NSPopupButtonPopulateWithConstrainedFields	(	NSPopUpButton* c,
 															bGenericType* tp, 
 															long start, 
 															long current);
-void		NSPopupButtonPopulateWithDashes				(	NSPopUpButton* c,	
+void		NSPopupButtonPopulateWithConstraints        (   NSPopUpButton* c,
+                                                            bGenericType* tp,
+                                                            int field,
+                                                            int current);
+void		NSPopupButtonPopulateWithDashes				(	NSPopUpButton* c,
 															bGenericType* tp, 
 															long current);
+void		NSPopupButtonPopulateWithCalcs				(	NSPopUpButton* c,
+                                                            bGenericMacMapApp* gapp,
+                                                            long current);			// Checked unit in [1..n]
 	
 void		NSPopupButtonMenuItemEnable					(	NSPopUpButton* c, 
 															long index);
@@ -93,6 +100,10 @@ long		NSPopupButtonMenuItemGetTag					(	NSPopUpButton* c,
 void		NSPopupButtonMenuItemSetTitle				(	NSPopUpButton* c, 
 															long index,
 															const char* title);
+void        NSPopupButtonMenuItemGetTitle               (   NSPopUpButton* c,
+                                                            long index,
+                                                            char* title,
+                                                            size_t max);
 	
 long		NSTextFieldGetValue							(	NSTextField* c, 
 															char* str, 
@@ -109,7 +120,12 @@ CGRect		NSMainSreenBounds							(	);
 CGFloat		NSMenuBarHeight								(	);
 		
 //----------------------------------------------------------------------------
-	
+
+NSString*   MMLocalizedString                           (   const char* msg_id,
+                                                            int maj);
+
+//----------------------------------------------------------------------------
+   
 #ifdef __cplusplus
 }
 #endif
