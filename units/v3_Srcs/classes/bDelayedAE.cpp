@@ -59,63 +59,6 @@ OSStatus bDelayedAE::exec(){
 	return(_status);
 }
 
-/*// ---------------------------------------------------------------------------
-// Constructeur
-// ------------
-bDelayedAEOpen	::bDelayedAEOpen(	const AppleEvent* ae,
-									bMacMapApp* zapp)
-				:bDelayedAE(ae,zapp){
-AEDescList	docList;
-long		items;
-long		actualSize;
-AEKeyword	keywd;
-DescType	returnedType;
-	
-	_status=AEGetParamDesc(ae,keyDirectObject,typeAEList,&docList);
-	if(_status!=noErr){
-		return;
-	}
-	_status=AECountItems(&docList,&items);
-	if(_status!=noErr){
-		return;
-	}
-	_status=AEGetNthPtr(&docList,1,typeFSS,&keywd,&returnedType,(Ptr)&_spec,sizeof(FSSpec),&actualSize);
-	if(_status!=noErr){
-		return;
-	}
-	_status=AEDisposeDesc(&docList);
-	if(_status!=noErr){
-		return;
-	}
-}
-
-// ---------------------------------------------------------------------------
-// Destructeur
-// -----------
-bDelayedAEOpen::~bDelayedAEOpen(){
-}
-
-// ---------------------------------------------------------------------------
-// 
-// -----------
-OSStatus bDelayedAEOpen::exec(AppleEvent* out_ae){
-	return(exec());
-}
-
-// ---------------------------------------------------------------------------
-// 
-// -----------
-OSStatus bDelayedAEOpen::exec(){
-	if(_status){
-		return(_status);
-	}
-	if(_zapp->document()){
-		_status=-1;
-		return(_status);
-	}
-	return(_zapp->open_doc(_spec));
-}*/
-
 // ---------------------------------------------------------------------------
 // Constructeur
 // ------------

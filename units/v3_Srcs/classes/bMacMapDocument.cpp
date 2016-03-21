@@ -116,9 +116,7 @@ _te_("srid alreay set to "+tsrid+" for type "+i);
 		else if(tp->fields()->h_write(1,kHDR_srid_,&srid)){
 _te_("h_write failed type "+i);
 		}
-	}
-#warning IL FAUDRAIT FORCER LE RECHARGEMENT DE LA BASE	
-		
+	}		
 	_srid=srid;
 	pref_unload();
 	return(true);

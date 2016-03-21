@@ -4,7 +4,7 @@
 // Purpose : Header file : XMap classes, raster exports (JPG, TIF, PNG)
 // Author : Benoit Ogier, benoit.ogier@macmap.com
 //
-// Copyright (C) 1997-2015 Carte Blanche Conseil.
+// Copyright (C) 1997-2016 Carte Blanche Conseil.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -25,7 +25,8 @@
 // 
 //----------------------------------------------------------------------------
 // 12/04/2007 creation.
-// 10/02/2015 Passage des fenêtres NAV en NS.
+// 10/02/2015 NAV to NS file window.
+// 15/03/2016 cocoa intf. for options window.
 //----------------------------------------------------------------------------
 // SCRIPT_COMPATIBLE
 //----------------------------------------------------------------------------
@@ -56,8 +57,13 @@ public:
     virtual bool process					(	int msg, 
                                                 void* prm);
     virtual bool edit						(	void* prm);
+    
     virtual void editOptions				(	);
+    
     virtual void putCodec                   (	UInt32 codec);
+    
+    virtual void get_param                  (	raster_export_prm* prm){*prm=_prm;};
+    virtual void set_param                  (	raster_export_prm prm){_prm=prm;};
     
 protected:
     raster_export_prm	_prm;

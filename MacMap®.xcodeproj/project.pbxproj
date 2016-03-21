@@ -197,7 +197,6 @@
 		1427E2870A3DA1F5005ECA5F /* AppSignatures.h in Headers */ = {isa = PBXBuildFile; fileRef = 1427E2830A3DA150005ECA5F /* AppSignatures.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		1429E1ED1A6FEAFA0035D66A /* XBoxCalc.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1429E1E11A6FE93C0035D66A /* XBoxCalc.bundle */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1429E1EE1A6FEAFA0035D66A /* XBoxMacro.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1429E1E21A6FE93C0035D66A /* XBoxMacro.bundle */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		1429E1EF1A6FEAFA0035D66A /* XBoxScript.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1429E1E31A6FE93C0035D66A /* XBoxScript.bundle */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1429E1F01A6FEAFA0035D66A /* XBoxVar.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1429E1E41A6FE93C0035D66A /* XBoxVar.bundle */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		142A348F18E1BD9E00841C16 /* contrastes.xml in Resources */ = {isa = PBXBuildFile; fileRef = 142A348C18E1BD9E00841C16 /* contrastes.xml */; };
 		142A349018E1BD9E00841C16 /* selection.xml in Resources */ = {isa = PBXBuildFile; fileRef = 142A348D18E1BD9E00841C16 /* selection.xml */; };
@@ -281,7 +280,6 @@
 		1449CEF909487EA200A9396A /* bGenericXMLRenderingElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 1449CEEF09487EA200A9396A /* bGenericXMLRenderingElement.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		144D61F20A5C134900865DA3 /* bXMapRedo.h in Headers */ = {isa = PBXBuildFile; fileRef = 144D61F10A5C134900865DA3 /* bXMapRedo.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		14596809199BAFC0008DE369 /* bGenericMapIntf.h in Headers */ = {isa = PBXBuildFile; fileRef = 14596808199BAFC0008DE369 /* bGenericMapIntf.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		1459E35D1A7BA906005BC5EF /* XBoxLockup.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1459E3571A7BA8A5005BC5EF /* XBoxLockup.bundle */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		145B0526195429D0002468CB /* NSOpenSavePanelWrappers.h in Headers */ = {isa = PBXBuildFile; fileRef = 145B0524195429D0002468CB /* NSOpenSavePanelWrappers.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		145B0527195429D0002468CB /* NSOpenSavePanelWrappers.mm in Sources */ = {isa = PBXBuildFile; fileRef = 145B0525195429D0002468CB /* NSOpenSavePanelWrappers.mm */; };
 		145CF5BA09C82F8F007B63E8 /* bXMapConvexHull.h in Headers */ = {isa = PBXBuildFile; fileRef = 145CF5B809C82F8F007B63E8 /* bXMapConvexHull.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -665,8 +663,8 @@
 		14A67C371ADEC5600072F81A /* GISIOImportViewNoCTIN.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14A67C2A1ADEC5600072F81A /* GISIOImportViewNoCTIN.xib */; };
 		14A67C381ADEC5600072F81A /* TypeAddAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14A67C2C1ADEC5600072F81A /* TypeAddAccessoryView.xib */; };
 		14A67C391ADEC5600072F81A /* TypeNewAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14A67C2E1ADEC5600072F81A /* TypeNewAccessoryView.xib */; };
-		14A67C3A1ADEC5600072F81A /* xmap_utils.nib in Resources */ = {isa = PBXBuildFile; fileRef = 14A67C301ADEC5600072F81A /* xmap_utils.nib */; };
 		14ADCE4B1A72872B0048A925 /* XBoxCoord.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14ADCE481A7282D10048A925 /* XBoxCoord.bundle */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		14ADF2671C98474000CEE10C /* GISIORasterExportOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14ADF2651C98474000CEE10C /* GISIORasterExportOptions.xib */; };
 		14AFCCC51BAAF72D00237A12 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1435A7211BA1825000BFFD33 /* Cocoa.framework */; };
 		14AFCCC71BAAF72D00237A12 /* MacMapSuite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 140BAB690C04499700708F1B /* MacMapSuite.framework */; };
 		14AFCCC81BAAF72D00237A12 /* mox_intf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 140DED9B12C0E4F800CB50FE /* mox_intf.framework */; };
@@ -1094,11 +1092,9 @@
 			dstSubfolderSpec = 13;
 			files = (
 				1417ACB61AD7E1AD00E38FF1 /* XBoxPresentation.bundle in CopyFiles */,
-				1459E35D1A7BA906005BC5EF /* XBoxLockup.bundle in CopyFiles */,
 				14ADCE4B1A72872B0048A925 /* XBoxCoord.bundle in CopyFiles */,
 				1429E1ED1A6FEAFA0035D66A /* XBoxCalc.bundle in CopyFiles */,
 				1429E1EE1A6FEAFA0035D66A /* XBoxMacro.bundle in CopyFiles */,
-				1429E1EF1A6FEAFA0035D66A /* XBoxScript.bundle in CopyFiles */,
 				1429E1F01A6FEAFA0035D66A /* XBoxVar.bundle in CopyFiles */,
 				147A87E119FFEA460028D417 /* AgregateIntoLine.bundle in CopyFiles */,
 				147A87E219FFEA460028D417 /* AgregateIntoPoly.bundle in CopyFiles */,
@@ -1497,7 +1493,6 @@
 		1427E2830A3DA150005ECA5F /* AppSignatures.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = AppSignatures.h; path = kernel_intf/AppSignatures.h; sourceTree = "<group>"; };
 		1429E1E11A6FE93C0035D66A /* XBoxCalc.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = XBoxCalc.bundle; sourceTree = "<group>"; };
 		1429E1E21A6FE93C0035D66A /* XBoxMacro.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = XBoxMacro.bundle; sourceTree = "<group>"; };
-		1429E1E31A6FE93C0035D66A /* XBoxScript.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = XBoxScript.bundle; sourceTree = "<group>"; };
 		1429E1E41A6FE93C0035D66A /* XBoxVar.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = XBoxVar.bundle; sourceTree = "<group>"; };
 		142A348C18E1BD9E00841C16 /* contrastes.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = contrastes.xml; path = units/rez/contrastes.xml; sourceTree = "<group>"; };
 		142A348D18E1BD9E00841C16 /* selection.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = selection.xml; path = units/rez/selection.xml; sourceTree = "<group>"; };
@@ -1766,7 +1761,6 @@
 		1449CEEF09487EA200A9396A /* bGenericXMLRenderingElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bGenericXMLRenderingElement.h; sourceTree = "<group>"; };
 		144D61F10A5C134900865DA3 /* bXMapRedo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bXMapRedo.h; sourceTree = "<group>"; };
 		14596808199BAFC0008DE369 /* bGenericMapIntf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bGenericMapIntf.h; sourceTree = "<group>"; };
-		1459E3571A7BA8A5005BC5EF /* XBoxLockup.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = XBoxLockup.bundle; sourceTree = "<group>"; };
 		145B0524195429D0002468CB /* NSOpenSavePanelWrappers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSOpenSavePanelWrappers.h; sourceTree = "<group>"; };
 		145B0525195429D0002468CB /* NSOpenSavePanelWrappers.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NSOpenSavePanelWrappers.mm; sourceTree = "<group>"; };
 		145CF5B809C82F8F007B63E8 /* bXMapConvexHull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bXMapConvexHull.h; sourceTree = "<group>"; };
@@ -1949,7 +1943,6 @@
 		14A67C2B1ADEC5600072F81A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = Rez/en.lproj/GISIOImportViewNoCTIN.xib; sourceTree = "<group>"; };
 		14A67C2D1ADEC5600072F81A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = Rez/en.lproj/TypeAddAccessoryView.xib; sourceTree = "<group>"; };
 		14A67C2F1ADEC5600072F81A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = Rez/en.lproj/TypeNewAccessoryView.xib; sourceTree = "<group>"; };
-		14A67C311ADEC5600072F81A /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = Rez/en.lproj/xmap_utils.nib; sourceTree = "<group>"; };
 		14A67C3F1ADEC58D0072F81A /* fr */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = fr; path = Rez/fr.lproj/GISIOExportRasterView.xib; sourceTree = "<group>"; };
 		14A67C401ADEC5900072F81A /* it */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = it; path = Rez/it.lproj/GISIOExportRasterView.xib; sourceTree = "<group>"; };
 		14A67C411ADEC59B0072F81A /* fr */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = fr; path = Rez/fr.lproj/GISIOExportView.xib; sourceTree = "<group>"; };
@@ -1962,9 +1955,10 @@
 		14A67C481ADEC5C40072F81A /* it */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = it; path = Rez/it.lproj/TypeAddAccessoryView.xib; sourceTree = "<group>"; };
 		14A67C491ADEC5CB0072F81A /* fr */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = fr; path = Rez/fr.lproj/TypeNewAccessoryView.xib; sourceTree = "<group>"; };
 		14A67C4A1ADEC5CE0072F81A /* it */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = it; path = Rez/it.lproj/TypeNewAccessoryView.xib; sourceTree = "<group>"; };
-		14A67C4B1ADEC5DA0072F81A /* fr */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = fr; path = Rez/fr.lproj/xmap_utils.nib; sourceTree = "<group>"; };
-		14A67C4C1ADEC5DC0072F81A /* it */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = it; path = Rez/it.lproj/xmap_utils.nib; sourceTree = "<group>"; };
 		14ADCE481A7282D10048A925 /* XBoxCoord.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = XBoxCoord.bundle; sourceTree = "<group>"; };
+		14ADF2661C98474000CEE10C /* fr */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = fr; path = units_xmap_lib/Rez/fr.lproj/GISIORasterExportOptions.xib; sourceTree = "<group>"; };
+		14ADF2681C98476700CEE10C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = units_xmap_lib/Rez/en.lproj/GISIORasterExportOptions.xib; sourceTree = "<group>"; };
+		14ADF2691C98476D00CEE10C /* it */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = it; path = units_xmap_lib/Rez/it.lproj/GISIORasterExportOptions.xib; sourceTree = "<group>"; };
 		14AFCCCE1BAAF72D00237A12 /* loader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = loader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		14AFCCD11BAAF86400237A12 /* bExtLibMgr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bExtLibMgr.cpp; sourceTree = "<group>"; };
 		14AFCCD21BAAF86400237A12 /* bExtLibMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bExtLibMgr.h; sourceTree = "<group>"; };
@@ -2065,7 +2059,7 @@
 		14C8A7740DEA939F00C8187E /* bXMapMaskSelection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bXMapMaskSelection.cpp; path = ../sources/bXMapMaskSelection.cpp; sourceTree = "<group>"; };
 		14C8A7750DEA939F00C8187E /* bXMapPaint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bXMapPaint.cpp; path = ../sources/bXMapPaint.cpp; sourceTree = "<group>"; };
 		14C8A7760DEA939F00C8187E /* bXMapPrefs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bXMapPrefs.cpp; path = ../sources/bXMapPrefs.cpp; sourceTree = "<group>"; };
-		14C8A7770DEA939F00C8187E /* bXMapRasterImport.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bXMapRasterImport.cpp; sourceTree = "<group>"; };
+		14C8A7770DEA939F00C8187E /* bXMapRasterImport.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bXMapRasterImport.cpp; path = ../sources/bXMapRasterImport.cpp; sourceTree = "<group>"; };
 		14C8A7780DEA939F00C8187E /* bXMapRedo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bXMapRedo.cpp; path = ../sources/bXMapRedo.cpp; sourceTree = "<group>"; };
 		14C8A7790DEA939F00C8187E /* bXMapReIndex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bXMapReIndex.cpp; path = ../sources/bXMapReIndex.cpp; sourceTree = "<group>"; };
 		14C8A77A0DEA939F00C8187E /* bXMapsDirect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bXMapsDirect.cpp; path = ../sources/bXMapsDirect.cpp; sourceTree = "<group>"; };
@@ -2092,7 +2086,7 @@
 		14C8A7920DEA93A000C8187E /* bXMapJoinToNearest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bXMapJoinToNearest.cpp; path = ../../sources/junction/bXMapJoinToNearest.cpp; sourceTree = "<group>"; };
 		14C8A7930DEA93A000C8187E /* bXMapNetClean.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bXMapNetClean.cpp; path = ../sources/junction/bXMapNetClean.cpp; sourceTree = "<group>"; };
 		14C8A7940DEA93A000C8187E /* bXMapNetCleanOptions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bXMapNetCleanOptions.cpp; path = ../sources/junction/bXMapNetCleanOptions.cpp; sourceTree = "<group>"; };
-		14C8A7950DEA93A000C8187E /* bXMapTopoCheck.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bXMapTopoCheck.cpp; path = ../../sources/junction/bXMapTopoCheck.cpp; sourceTree = "<group>"; };
+		14C8A7950DEA93A000C8187E /* bXMapTopoCheck.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bXMapTopoCheck.cpp; path = ../sources/junction/bXMapTopoCheck.cpp; sourceTree = "<group>"; };
 		14C8A7A10DEA93A000C8187E /* bXMapDashPicker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bXMapDashPicker.cpp; path = ../../sources/pickers/bXMapDashPicker.cpp; sourceTree = "<group>"; };
 		14C8A7A20DEA93A000C8187E /* bXMapIconPicker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bXMapIconPicker.cpp; path = ../../sources/pickers/bXMapIconPicker.cpp; sourceTree = "<group>"; };
 		14C8A7A30DEA93A000C8187E /* bXMapPatternPicker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bXMapPatternPicker.cpp; path = ../../sources/pickers/bXMapPatternPicker.cpp; sourceTree = "<group>"; };
@@ -2134,7 +2128,7 @@
 		14CDD85E0F278B2F003AC0F2 /* CWXMLTree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CWXMLTree.cpp; sourceTree = "<group>"; };
 		14CDD85F0F278B2F003AC0F2 /* CWXMLTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWXMLTree.h; sourceTree = "<group>"; };
 		14CFA1D51AC5691C00894296 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
-		14CFAA3F0B0C5E4D000DD7C3 /* bXMapTopoCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bXMapTopoCheck.h; sourceTree = "<group>"; };
+		14CFAA3F0B0C5E4D000DD7C3 /* bXMapTopoCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bXMapTopoCheck.h; path = junction/bXMapTopoCheck.h; sourceTree = "<group>"; };
 		14CFAB080B0CA04F000DD7C3 /* bXMapLine2Surf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bXMapLine2Surf.h; sourceTree = "<group>"; };
 		14CFAB8C0B0CB4D5000DD7C3 /* bXMapLineUp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bXMapLineUp.h; sourceTree = "<group>"; };
 		14D164220FD00E7500EA1042 /* bToolRedraw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bToolRedraw.h; sourceTree = "<group>"; };
@@ -2163,7 +2157,7 @@
 		14D631440B8C8E1500488854 /* bXMapsGo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bXMapsGo.h; sourceTree = "<group>"; };
 		14D722C40CD076EC0091D33F /* bXMapDataImport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bXMapDataImport.h; sourceTree = "<group>"; };
 		14D732090C4CBC92003BF571 /* bXMapGeometryShift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bXMapGeometryShift.h; sourceTree = "<group>"; };
-		14D7B1360B300B390008610B /* bXMapRasterImport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bXMapRasterImport.h; path = ../headers/bXMapRasterImport.h; sourceTree = "<group>"; };
+		14D7B1360B300B390008610B /* bXMapRasterImport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bXMapRasterImport.h; sourceTree = "<group>"; };
 		14D80BCC0C22C43C00CF0856 /* bToolTextEdition.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bToolTextEdition.cpp; sourceTree = "<group>"; };
 		14D80BCE0C22C44C00CF0856 /* bToolTextEdition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bToolTextEdition.h; sourceTree = "<group>"; };
 		14D8197F0C1ECA240021656D /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = /System/Library/Frameworks/WebKit.framework; sourceTree = "<absolute>"; };
@@ -2427,6 +2421,12 @@
 		140381AF1B871EB300405AEA /* To remove */ = {
 			isa = PBXGroup;
 			children = (
+				14D24CE40BD76A8800E09BEE /* mapcalculator */,
+				1485EEE90A2C9BDE0058E908 /* pickers */,
+				14C8A7770DEA939F00C8187E /* bXMapRasterImport.cpp */,
+				14D7B1360B300B390008610B /* bXMapRasterImport.h */,
+				14C8A7950DEA93A000C8187E /* bXMapTopoCheck.cpp */,
+				14CFAA3F0B0C5E4D000DD7C3 /* bXMapTopoCheck.h */,
 				14C8A7940DEA93A000C8187E /* bXMapNetCleanOptions.cpp */,
 				14C6B3750B01C53A00CF4CFD /* bXMapNetCleanOptions.h */,
 				14C8A7930DEA93A000C8187E /* bXMapNetClean.cpp */,
@@ -2621,8 +2621,6 @@
 				14A277A909D05B6700B74049 /* bXMapVecPublisher.h */,
 				14B2F43E0BCE6F0F00B6D13E /* bXMapsRasterPublisher.h */,
 				14C8A7820DEA939F00C8187E /* bXMapsRasterPublisher.mm */,
-				14C8A7770DEA939F00C8187E /* bXMapRasterImport.cpp */,
-				14D7B1360B300B390008610B /* bXMapRasterImport.h */,
 			);
 			name = GIS_IO;
 			path = sources;
@@ -3027,11 +3025,9 @@
 				14ADCE481A7282D10048A925 /* XBoxCoord.bundle */,
 				1447AE6B17E075F200AA6B92 /* XBoxDrawII.bundle */,
 				1447AE6D17E075F200AA6B92 /* XBoxJonction.bundle */,
-				1459E3571A7BA8A5005BC5EF /* XBoxLockup.bundle */,
 				1429E1E21A6FE93C0035D66A /* XBoxMacro.bundle */,
 				1447AE6F17E075F300AA6B92 /* XBoxOri.bundle */,
 				1417ACB51AD7E1AD00E38FF1 /* XBoxPresentation.bundle */,
-				1429E1E31A6FE93C0035D66A /* XBoxScript.bundle */,
 				1447AE7217E075F300AA6B92 /* XBoxStyleMgr.bundle */,
 				14BAE9221A6407AD0069E3C6 /* XBoxTools.bundle */,
 				1447AE7317E075F300AA6B92 /* XBoxTopology.bundle */,
@@ -3081,6 +3077,17 @@
 				14486A5715E3DA8900E83FFF /* bvDefPaletteRangeWindowController.mm */,
 			);
 			path = PaletteRangevDefs;
+			sourceTree = "<group>";
+		};
+		147BA8AD1C9971FE00FFCB17 /* ToDo */ = {
+			isa = PBXGroup;
+			children = (
+				14B3C0410920AF5800D992C8 /* transformation */,
+				144743660BCD0924000AE66D /* topology */,
+				149754EC08C37CEF0084C913 /* selector */,
+				149A3E3E0B1442BC00B39EBB /* print */,
+			);
+			name = ToDo;
 			sourceTree = "<group>";
 		};
 		148145F708BF4AC800B58017 /* units_mox_intf */ = {
@@ -3193,8 +3200,7 @@
 				14C8A7A40DEA93A000C8187E /* bXMapStdPicker.cpp */,
 				1485EEEA0A2C9BDE0058E908 /* bXMapStdPicker.h */,
 			);
-			name = pickers;
-			path = headers/pickers;
+			path = pickers;
 			sourceTree = "<group>";
 		};
 		1497544E08C37CA90084C913 /* units_tool_lib */ = {
@@ -3279,21 +3285,16 @@
 		149754B808C37CEF0084C913 /* units_xmap_lib */ = {
 			isa = PBXGroup;
 			children = (
-				140381AF1B871EB300405AEA /* To remove */,
 				14DBA80C0BD3736200131BC6 /* rez */,
+				147BA8AD1C9971FE00FFCB17 /* ToDo */,
+				140381AF1B871EB300405AEA /* To remove */,
 				142FD10819C74DA300BEC051 /* NSDataWindows */,
 				140812DA1A6E9F9D0088CA7D /* NSExtWindow */,
 				14CFAB070B0CA013000DD7C3 /* std */,
 				149754DA08C37CEF0084C913 /* junction */,
-				1485EEE90A2C9BDE0058E908 /* pickers */,
-				149754EC08C37CEF0084C913 /* selector */,
-				144743660BCD0924000AE66D /* topology */,
-				14B3C0410920AF5800D992C8 /* transformation */,
 				140CE3200F0E03A70000CAD1 /* GIS_IO */,
-				140C00410F0BC1F4000DCFB9 /* scripting */,
-				14D24CE40BD76A8800E09BEE /* mapcalculator */,
-				149A3E3E0B1442BC00B39EBB /* print */,
 				14C7157E0B12F9200060AB7A /* scrap */,
+				140C00410F0BC1F4000DCFB9 /* scripting */,
 			);
 			path = units_xmap_lib;
 			sourceTree = "<group>";
@@ -3311,8 +3312,6 @@
 				149754DE08C37CEF0084C913 /* bXMapJoinOnVertex.h */,
 				14C8A7920DEA93A000C8187E /* bXMapJoinToNearest.cpp */,
 				149754E008C37CEF0084C913 /* bXMapJoinToNearest.h */,
-				14C8A7950DEA93A000C8187E /* bXMapTopoCheck.cpp */,
-				14CFAA3F0B0C5E4D000DD7C3 /* bXMapTopoCheck.h */,
 			);
 			name = junction;
 			path = headers/junction;
@@ -3728,7 +3727,8 @@
 				14D24CE50BD76A8800E09BEE /* bXMapCalcEditor.cpp */,
 				14D24CE60BD76A8800E09BEE /* bXMapCalcEditor.h */,
 			);
-			path = mapcalculator;
+			name = mapcalculator;
+			path = ../mapcalculator;
 			sourceTree = "<group>";
 		};
 		14D27013134EFC5F00FED8F0 /* std with intf */ = {
@@ -3755,13 +3755,13 @@
 			isa = PBXGroup;
 			children = (
 				14D9BDF31ADECCD400E120DB /* xmap_lib-Info.plist */,
+				14ADF2651C98474000CEE10C /* GISIORasterExportOptions.xib */,
 				14A67C241ADEC5600072F81A /* GISIOExportRasterView.xib */,
 				14A67C261ADEC5600072F81A /* GISIOExportView.xib */,
 				14A67C281ADEC5600072F81A /* GISIOImportView.xib */,
 				14A67C2A1ADEC5600072F81A /* GISIOImportViewNoCTIN.xib */,
 				14A67C2C1ADEC5600072F81A /* TypeAddAccessoryView.xib */,
 				14A67C2E1ADEC5600072F81A /* TypeNewAccessoryView.xib */,
-				14A67C301ADEC5600072F81A /* xmap_utils.nib */,
 			);
 			name = rez;
 			path = ..;
@@ -4588,9 +4588,9 @@
 				14A67C391ADEC5600072F81A /* TypeNewAccessoryView.xib in Resources */,
 				14A67C381ADEC5600072F81A /* TypeAddAccessoryView.xib in Resources */,
 				14A67C351ADEC5600072F81A /* GISIOExportView.xib in Resources */,
-				14A67C3A1ADEC5600072F81A /* xmap_utils.nib in Resources */,
 				14A67C341ADEC5600072F81A /* GISIOExportRasterView.xib in Resources */,
 				14A67C361ADEC5600072F81A /* GISIOImportView.xib in Resources */,
+				14ADF2671C98474000CEE10C /* GISIORasterExportOptions.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5237,15 +5237,14 @@
 			path = units_xmap_lib;
 			sourceTree = "<group>";
 		};
-		14A67C301ADEC5600072F81A /* xmap_utils.nib */ = {
+		14ADF2651C98474000CEE10C /* GISIORasterExportOptions.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				14A67C311ADEC5600072F81A /* en */,
-				14A67C4B1ADEC5DA0072F81A /* fr */,
-				14A67C4C1ADEC5DC0072F81A /* it */,
+				14ADF2661C98474000CEE10C /* fr */,
+				14ADF2681C98476700CEE10C /* en */,
+				14ADF2691C98476D00CEE10C /* it */,
 			);
-			name = xmap_utils.nib;
-			path = units_xmap_lib;
+			name = GISIORasterExportOptions.xib;
 			sourceTree = "<group>";
 		};
 		14D265711BAC3C52008BA5CD /* Localizable.strings */ = {

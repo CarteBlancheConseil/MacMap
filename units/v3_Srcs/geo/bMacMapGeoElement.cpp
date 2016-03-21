@@ -433,9 +433,8 @@ bMacMapGeoElement::~bMacMapGeoElement(){
     if(_vxs){
 		ivs_free(_vxs);
 	}
-#warning NE PAS ECRIRE ETAT DANS CERTAINS CAS :
-#warning - INTERRUPTION CHARGEMENT
-	if((_save)&&(!_killed)){
+// Dont write when user stops loading objects
+    if((_save)&&(!_killed)){
 int state=0;
 		if(selected()){
 			state|=fSelect;

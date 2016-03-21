@@ -500,8 +500,6 @@ bMacMapLayerAccessContext*	ctxl=(bMacMapLayerAccessContext*)_MMAPP_->layersAcces
 			continue;
 		}			
 		style->rect(o,&r);
-
-#warning PROBLEME SUR LES RECT		
 		
 		_MMAPP_->mapIntf()->inval(r);
 	}

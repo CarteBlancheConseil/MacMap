@@ -4,7 +4,7 @@
 // Purpose : Objective C++ source file : XMap classes, raster exports (JPG, TIF, PNG)
 // Author : Benoit Ogier, benoit.ogier@macmap.com
 //
-// Copyright (C) 1997-2015 Carte Blanche Conseil.
+// Copyright (C) 1997-2016 Carte Blanche Conseil.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -25,7 +25,8 @@
 // 
 //----------------------------------------------------------------------------
 // 12/04/2007 creation.
-// 10/02/2015 Passage des fenêtres NAV en NS.
+// 10/02/2015 NAV to NS file window.
+// 15/03/2016 cocoa intf. for options window.
 //----------------------------------------------------------------------------
 
 #import "bXMapsRasterPublisher.h"
@@ -35,6 +36,9 @@
 #import <mox_intf/endian.h>
 #import <mox_intf/bitmap_utils.h>
 #import <mox_intf/NSOpenSavePanelWrappers.h>
+#import <mox_intf/NSUIUtils.h>
+
+#import <std_ext/bStdNSAppModalWindowController.h>
 
 #import <xmap_lib/bXMapsGISIOUtils.h>
 
@@ -42,6 +46,26 @@
 #import <MacMapSuite/bStdDirectory.h>
 
 #import <Cocoa/Cocoa.h>
+
+
+#pragma mark ->Scale Utils
+// ---------------------------------------------------------------------------
+//
+// -----------
+static double scm2u(bGenericMacMapApp* gapp, double d){
+bGenericUnit*	scl=gapp->scaleMgr()->get();
+bGenericUnit*	u=gapp->distMgr()->get();
+    return(d*(0.01/u->coef())*scl->coef());
+}
+
+// ---------------------------------------------------------------------------
+//
+// -----------
+static double u2scm(bGenericMacMapApp* gapp, double d){
+bGenericUnit*	scl=gapp->scaleMgr()->get();
+bGenericUnit*	u=gapp->distMgr()->get();
+    return(d/(0.01/u->coef())/scl->coef());
+}
 
 
 #pragma mark ->Cocoa class stuff for NSOpenPanel/NSSavePanel
@@ -92,6 +116,151 @@ _bTrace_("[GISIOExportViewController allocWithNibNamed owner class]",true);
 // -----------
 @end
 
+#pragma mark ->Cocoa class stuff for Options
+//----------------------------------------------------------------------------
+@interface GISIOExportRasterOptionsViewController : bStdNSAppModalWindowController{
+    IBOutlet NSTextField*   _htitxt;
+    IBOutlet NSTextField*   _vtitxt;
+    IBOutlet NSPopUpButton* _mgupop;
+    IBOutlet NSTextField*   _mrgtxt;
+
+    IBOutlet NSPopUpButton* _qltpop;
+    IBOutlet NSTextField*   _restxt;
+
+    IBOutlet NSButton*      _geochk;
+    
+    int _lastu;
+}
+//----------------------------------------------------------------------------
+-(IBAction)doChooseMarginUnit:(id)sender;
+//----------------------------------------------------------------------------
+@end
+
+// ---------------------------------------------------------------------------
+//
+// -----------
+@implementation GISIOExportRasterOptionsViewController
+// ---------------------------------------------------------------------------
+//
+// ------------
+-(id)initWithExt:(bStdExt*)ext{
+_bTrace_("[GISIOExportRasterOptionsViewController initWithExt]",true);
+    self=[self initWithWindowNibName:@"GISIORasterExportOptions"];
+    if(self){
+        _ext=ext;
+        _code=-1;
+_tm_("self ok");
+    }
+    else{
+_te_("pas de self");
+    }
+    return self;
+}
+// ---------------------------------------------------------------------------
+//
+// ------------
+-(void)awakeFromNib{
+_bTrace_("[GISIOExportRasterOptionsViewController awakeFromNib]",true);
+bXMapsRasterPublisher*  ext=(bXMapsRasterPublisher*)_ext;
+raster_export_prm       prm;
+bGenericUnit*           u=((bGenericMacMapApp*)_ext->getapp())->distMgr()->get();
+char                    unit[256];
+
+    _lastu=0;
+    u->long_name(unit);
+    ext->get_param(&prm);
+    
+    [_htitxt setIntValue:prm.nh];
+    [_vtitxt setIntValue:prm.nv];
+    [_mgupop selectItemAtIndex:_lastu];
+    NSPopupButtonMenuItemSetTitle(_mgupop,0,unit);
+    [_mrgtxt setDoubleValue:prm.mrg];
+    switch(prm.q){
+        case codecMinQuality:
+            [_qltpop selectItemAtIndex:0];
+            break;
+        case codecLowQuality:
+            [_qltpop selectItemAtIndex:1];
+            break;
+        case codecNormalQuality:
+            [_qltpop selectItemAtIndex:2];
+            break;
+        case codecHighQuality:
+            [_qltpop selectItemAtIndex:3];
+            break;
+        case codecMaxQuality:
+            [_qltpop selectItemAtIndex:4];
+            break;
+        case codecLosslessQuality:
+            [_qltpop selectItemAtIndex:5];
+            break;
+    }
+    [_restxt setDoubleValue:prm.r];
+    [_geochk setIntValue:prm.gr];
+}
+
+#pragma mark ---- Actions ----
+// ---------------------------------------------------------------------------
+//
+// -----------
+-(IBAction)validDialog:(id)sender{
+bXMapsRasterPublisher*  ext=(bXMapsRasterPublisher*)_ext;
+raster_export_prm       prm;
+    
+    prm.nh=[_htitxt intValue];
+    prm.nv=[_vtitxt intValue];
+    prm.mrg=[_mrgtxt doubleValue];
+    if([_mgupop indexOfSelectedItem]==1){
+        prm.mrg=scm2u((bGenericMacMapApp*)ext->getapp(),prm.mrg);
+    }
+    switch([_qltpop indexOfSelectedItem]){
+        case 0:
+            prm.q=codecMinQuality;
+            break;
+        case 1:
+            prm.q=codecLowQuality;
+            break;
+        case 2:
+            prm.q=codecNormalQuality;
+            break;
+        case 3:
+            prm.q=codecHighQuality;
+            break;
+        case 4:
+            prm.q=codecMaxQuality;
+            break;
+        case 5:
+            prm.q=codecLosslessQuality;
+            break;
+    }
+    prm.r=[_restxt intValue];
+    prm.gr=[_geochk intValue];
+    ext->set_param(prm);
+    
+    [super validDialog:sender];
+}
+
+// ---------------------------------------------------------------------------
+//
+// -----------
+-(IBAction)doChooseMarginUnit:(id)sender{
+double  v=[_mrgtxt doubleValue];
+    if(_lastu!=[_mgupop indexOfSelectedItem]){
+        if([_mgupop indexOfSelectedItem]==1){
+            [_mrgtxt setDoubleValue:u2scm((bGenericMacMapApp*)_ext->getapp(),v)];
+        }
+        else{
+            [_mrgtxt setDoubleValue:scm2u((bGenericMacMapApp*)_ext->getapp(),v)];
+        }
+        _lastu=[_mgupop indexOfSelectedItem];
+    }
+}
+
+// ---------------------------------------------------------------------------
+//
+// -----------
+@end
+
 
 #pragma mark ->C wrappers to Objective-C
 // ---------------------------------------------------------------------------
@@ -124,288 +293,20 @@ NSAutoreleasePool               *localPool;
     [localPool release];
 }
 
-#pragma mark ->Options stuff
 // ---------------------------------------------------------------------------
-// 
+//
 // ------------
-typedef struct userParam{
-	WindowRef			w;
-	raster_export_prm	ep;
-	bGenericMacMapApp*	gapp;
-	int					unit;
-}userParam;
-
-enum{
-	kXMapUtilsRasterExport				='RexO',
-	kXMapUtilsRasterExportNbHID			=11,
-	kXMapUtilsRasterExportNbVID			=13,
-	kXMapUtilsRasterExportUnitID		=14,
-	kXMapUtilsRasterExportUnitCmd		='Unit',
-	kXMapUtilsRasterExportMarginID		=15,
-	kXMapUtilsRasterExportQualityID		=20,
-	kXMapUtilsRasterExportResolutionID	=22,
-	kXMapUtilsRasterExportGeoInfoID		=3
-};
-
-// ---------------------------------------------------------------------------
-// 
-// -----------
-static double scm2u(bGenericMacMapApp* gapp, double d){
-bGenericUnit*	scl=gapp->scaleMgr()->get();
-bGenericUnit*	u=gapp->distMgr()->get();
-	return(d*(0.01/u->coef())*scl->coef());
-}
-
-// ---------------------------------------------------------------------------
-// 
-// -----------
-static double u2scm(bGenericMacMapApp* gapp, double d){
-bGenericUnit*	scl=gapp->scaleMgr()->get();
-bGenericUnit*	u=gapp->distMgr()->get();
-	return(d/(0.01/u->coef())/scl->coef());
-}
-
-// ---------------------------------------------------------------------------
-// 
-// -----------
-static pascal OSStatus options_evt_hdlr(EventHandlerCallRef hdlr, EventRef evt, void *up){
-OSStatus			result=eventNotHandledErr;
-HICommand			cmd;
-userParam*			prm=(userParam*)up;
-ControlRef			c;
-ControlID			cid={kXMapUtilsRasterExport,0};
-char				str[256];
-int					ibf;
-
-	if(GetEventClass(evt)==kEventClassCommand){
-		GetEventParameter(	evt,
-							kEventParamDirectObject,
-							typeHICommand,
-							NULL,
-							sizeof(HICommand),
-							NULL,
-							&cmd);
-		switch(cmd.commandID){
-			case kHICommandOK:
-				cid.id=kXMapUtilsRasterExportNbHID;
-				GetControlByID(prm->w,&cid,&c);
-				GetTextControlValue(c,str,sizeof(str)-1);
-				ibf=atoi(str);
-				if(ibf>0){
-					prm->ep.nh=ibf;
-				}
-				cid.id=kXMapUtilsRasterExportNbVID;
-				GetControlByID(prm->w,&cid,&c);
-				GetTextControlValue(c,str,sizeof(str)-1);
-				ibf=atoi(str);
-				if(ibf>0){
-					prm->ep.nv=ibf;
-				}
-				
-				cid.id=kXMapUtilsRasterExportUnitID;
-				GetControlByID(prm->w,&cid,&c);
-				ibf=GetControl32BitValue(c);
-				
-				cid.id=kXMapUtilsRasterExportMarginID;
-				GetControlByID(prm->w,&cid,&c);
-				GetTextControlValue(c,str,sizeof(str)-1);
-				prm->ep.mrg=matof(str);
-				if(ibf==2){
-					prm->ep.mrg=scm2u(prm->gapp,prm->ep.mrg);
-				}
-				
-				cid.id=kXMapUtilsRasterExportQualityID;
-				GetControlByID(prm->w,&cid,&c);
-				switch(GetControl32BitValue(c)){
-					case 1:
-						prm->ep.q=codecMinQuality;
-						break;
-					case 2:
-						prm->ep.q=codecLowQuality;
-						break;
-					case 3:
-						prm->ep.q=codecNormalQuality;
-						break;
-					case 4:
-						prm->ep.q=codecHighQuality;
-						break;
-					case 5:
-						prm->ep.q=codecMaxQuality;
-						break;
-					case 6:
-						prm->ep.q=codecLosslessQuality;
-						break;
-				}
-				
-				cid.id=kXMapUtilsRasterExportResolutionID;
-				GetControlByID(prm->w,&cid,&c);
-				GetTextControlValue(c,str,sizeof(str)-1);
-				ibf=atoi(str);
-				if(ibf>0){
-					prm->ep.r=ibf;
-				}
-
-				cid.id=kXMapUtilsRasterExportGeoInfoID;
-				if(GetControlByID(prm->w,&cid,&c)==noErr){
-					prm->ep.gr=GetControl32BitValue(c);
-				}
-				
-				QuitAppModalLoopForWindow(prm->w);
-				result=noErr;
-				break;
-				
-			case kHICommandCancel:
-				QuitAppModalLoopForWindow(prm->w);
-				result=noErr;
-				break;
-				
-			case kXMapUtilsRasterExportUnitCmd:
-				cid.id=kXMapUtilsRasterExportUnitID;
-				GetControlByID(prm->w,&cid,&c);
-				ibf=GetControl32BitValue(c);
-				
-				cid.id=kXMapUtilsRasterExportMarginID;
-				GetControlByID(prm->w,&cid,&c);
-				GetTextControlValue(c,str,sizeof(str)-1);
-				prm->ep.mrg=matof(str);
-
-				if((ibf==2)&&(prm->unit!=2)){
-					prm->ep.mrg=u2scm(prm->gapp,prm->ep.mrg);
-				}
-				else if((ibf==1)&&(prm->unit!=1)){
-					prm->ep.mrg=scm2u(prm->gapp,prm->ep.mrg);
-				}
-				prm->unit=ibf;
-				{
-					bString	str("");
-					str+prm->ep.mrg;
-					SetTextControlValue(c,str.string());
-				}
-				result=noErr;
-				break;
-				
-			default:
-				break;
-				
-		}
-	}
-	return(result);
-}
-
-// ---------------------------------------------------------------------------
-// 
-// -----------
-static void get_options(userParam* prm){
-CFBundleRef			bndl=CFBundleGetBundleWithIdentifier(CFSTR("com.cbconseil.xmap_lib.framework"));
-OSStatus			status;
-IBNibRef			nib=NULL;		
-const EventTypeSpec	kWindowEvents[]={{kEventClassCommand,kEventCommandProcess}};
-ControlRef			c;
-ControlID			cid={kXMapUtilsRasterExport,0};
-char				msg[256];
-bString				str("");
-
-	prm->w=NULL;
-	prm->unit=1;
-	
-	for(;;){
-		status=CreateNibReferenceWithCFBundle(bndl,CFSTR("xmap_utils"),&nib);
-		if(status){
-			break;
-		}
-		
-		status=CreateWindowFromNib(	nib,
-									CFSTR("RasterExport"),
-									&prm->w);
-		if(status){
-			break;
-		}
-		InstallWindowEventHandler(	prm->w,
-									options_evt_hdlr,
-									GetEventTypeCount(kWindowEvents),
-									kWindowEvents,
-									prm,
-									NULL);
-		
-		SetPortWindowPort(prm->w);
-		
-		cid.id=kXMapUtilsRasterExportNbHID;
-		GetControlByID(prm->w,&cid,&c);
-		SetTextControlFilter(c,uint_filter);
-		str+prm->ep.nh;
-		SetTextControlValue(c,str.string());
-		str.reset();
-		
-		cid.id=kXMapUtilsRasterExportNbVID;
-		GetControlByID(prm->w,&cid,&c);
-		SetTextControlFilter(c,uint_filter);
-		str+prm->ep.nv;
-		SetTextControlValue(c,str.string());
-		str.reset();
-
-		cid.id=kXMapUtilsRasterExportUnitID;
-		GetControlByID(prm->w,&cid,&c);
-		SetControl32BitValue(c,prm->unit);
-bGenericUnit*	u=prm->gapp->distMgr()->get();
-		u->long_name(msg);
-		SetPopupControlMenuItemValue(c,1,msg);
-
-		cid.id=kXMapUtilsRasterExportMarginID;
-		GetControlByID(prm->w,&cid,&c);
-		SetTextControlFilter(c,ufloat_filter);
-		str+prm->ep.mrg;
-		SetTextControlValue(c,str.string());
-		str.reset();
-		
-		cid.id=kXMapUtilsRasterExportQualityID;
-		GetControlByID(prm->w,&cid,&c);
-		switch(prm->ep.q){
-			case codecMinQuality:
-				SetControl32BitValue(c,1);
-				break;
-			case codecLowQuality:
-				SetControl32BitValue(c,2);
-				break;
-			case codecNormalQuality:
-				SetControl32BitValue(c,3);
-				break;
-			case codecHighQuality:
-				SetControl32BitValue(c,4);
-				break;
-			case codecMaxQuality:
-				SetControl32BitValue(c,5);
-				break;
-			case codecLosslessQuality:
-				SetControl32BitValue(c,6);
-				break;
-		}
-		
-		cid.id=kXMapUtilsRasterExportResolutionID;
-		GetControlByID(prm->w,&cid,&c);
-		SetTextControlFilter(c,uint_filter);
-		str+prm->ep.r;
-		SetTextControlValue(c,str.string());
-		str.reset();
-		
-		cid.id=kXMapUtilsRasterExportGeoInfoID;
-		if(GetControlByID(prm->w,&cid,&c)==noErr){
-			SetControl32BitValue(c,prm->ep.gr);
-		}
-				
-		ShowWindow(prm->w);
-		
-		status=RunAppModalLoopForWindow(prm->w);
-		if(status){
-			break;
-		}
-		break;
-	}
-	if(nib){
-		DisposeNibReference(nib);
-	}
-	if(prm->w){
-		DisposeWindow(prm->w);
-	}
+void runCocoaAppModal(bXMapsRasterPublisher* ext,
+                      long* code){
+GISIOExportRasterOptionsViewController	*controller;
+NSAutoreleasePool                       *localPool;
+    
+    localPool=[[NSAutoreleasePool alloc] init];
+    controller=[[GISIOExportRasterOptionsViewController alloc] initWithExt:ext];
+    [controller runAppModal:code];
+    [controller close];
+    [controller release];
+    [localPool release];
 }
 
 #pragma mark ->STD C++
@@ -497,13 +398,8 @@ _tm_(_prm.name);
 // ------------
 void bXMapsRasterPublisher::editOptions(/*bool needCodec*/){
 _bTrace_("bXMapsRasterPublisher::editOptions(bool)",true);
-userParam	up;
-    
-    up.w=NULL;
-    up.ep=_prm;
-    up.gapp=_gapp;
-    get_options(&up);
-    _prm=up.ep;
+long    result;
+    runCocoaAppModal(this,&result);
 }
 
 // ---------------------------------------------------------------------------
