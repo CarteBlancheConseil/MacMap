@@ -58,7 +58,6 @@
 bool readProc(bGenericXMLBaseElement* elt,
 			  void* prm,
 			  int indent){
-_bTrace_("readProc",false);
 col_p*			p=(col_p*)prm;
 char			name[_names_length_max_];
 char			value[_values_length_max_];
@@ -68,7 +67,6 @@ float			w;
 	elt->getclassname(name);
 	if(!strcmp(name,"name")){
 		elt->getvalue(p->nam);
-_tm_("col :"+p->nam);
 	}
 	else if(!strcmp(name,"int")){
 		elt->getvalue(value);
@@ -123,10 +121,10 @@ _tm_("col :"+p->nam);
 // 
 // ------------
 -(BrowserColumn*) allocator:(bArray*)lins
-						  field:(int)fld
-						   calc:(bGenericCalc*)clc
-						  start:(float)strt
-						  width:(float)w{
+                      field:(int)fld
+                       calc:(bGenericCalc*)clc
+                      start:(float)strt
+                      width:(float)w{
 BrowserColumn*	col=NULL;
 int					k;
 	

@@ -145,6 +145,8 @@ bStdDBValue* bStdCalc::solve(bGenericGeoElement* o){
 bStdDBValue*	dbval=NULL;
 bStdSolver		solver(_gapp);
 
+//_tm_("before "+bDoubleDBValue::count);
+
 	for(;;){
 		if(!_root){
 //_te_("_root==NULL");
@@ -172,6 +174,8 @@ bGenericType*	tp=_gapp->typesMgr()->get(o->getType());
 	}
 	solver.set_object(NULL);
 	solver.reset();
+
+//_tm_("after "+bDoubleDBValue::count);
 	return(dbval);
 }
 

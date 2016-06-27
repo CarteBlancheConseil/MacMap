@@ -420,7 +420,7 @@ unsigned char	c,f=true;
 
 CFStringRef	cfs=CFStringCreateWithCString(kCFAllocatorDefault,name,kCFStringEncodingMacRoman);
 	CFStringGetCString(cfs,name,_values_length_max_*3,kCFStringEncodingUTF8);
-	CFRelease(cfs);
+    CFRelease(cfs);
 }
 
 

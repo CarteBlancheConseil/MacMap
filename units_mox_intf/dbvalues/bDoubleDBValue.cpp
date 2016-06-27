@@ -31,6 +31,7 @@
 #include <MacMapSuite/bTrace.h>
 #include <MacMapSuite/C_Utils.h>
 
+
 // ---------------------------------------------------------------------------
 // Constructeur
 // ------------
@@ -41,7 +42,7 @@ bDoubleDBValue::bDoubleDBValue():bStdDBValue(){
 // ---------------------------------------------------------------------------
 // Destructeur
 // -----------
-bDoubleDBValue::~bDoubleDBValue(){	
+bDoubleDBValue::~bDoubleDBValue(){
 }
 
 // ---------------------------------------------------------------------------

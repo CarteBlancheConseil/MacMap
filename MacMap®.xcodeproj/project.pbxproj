@@ -1904,8 +1904,8 @@
 		1497A8971344DB8A003C158B /* NSUIUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSUIUtils.h; sourceTree = "<group>"; };
 		1497A8981344DB8A003C158B /* NSUIUtils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NSUIUtils.mm; sourceTree = "<group>"; };
 		1497C25309CAC0D600688F10 /* bXMapDataFillRun.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bXMapDataFillRun.h; sourceTree = "<group>"; };
-		14988F3A091F83D3006110DF /* bXMapRotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bXMapRotation.h; sourceTree = "<group>"; };
-		14988F3B091F83D3006110DF /* bXMapScale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bXMapScale.h; sourceTree = "<group>"; };
+		14988F3A091F83D3006110DF /* bXMapRotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bXMapRotation.h; path = headers/transformation/bXMapRotation.h; sourceTree = "<group>"; };
+		14988F3B091F83D3006110DF /* bXMapScale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bXMapScale.h; path = headers/transformation/bXMapScale.h; sourceTree = "<group>"; };
 		1498C8DE0754A9CB00CB4F2A /* bStdUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bStdUnit.h; sourceTree = "<group>"; };
 		1498C8DF0754A9CB00CB4F2A /* bStdUnit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bStdUnit.cpp; sourceTree = "<group>"; };
 		1498C9070754CC4000CB4F2A /* bStdUnitMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bStdUnitMgr.h; sourceTree = "<group>"; };
@@ -1972,7 +1972,7 @@
 		14AFCD0F1BAAFFCA00237A12 /* loader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = loader.h; sourceTree = "<group>"; };
 		14B2868F0A878E7400C985F9 /* bXMapUngroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bXMapUngroup.h; sourceTree = "<group>"; };
 		14B2F43E0BCE6F0F00B6D13E /* bXMapsRasterPublisher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bXMapsRasterPublisher.h; path = ../headers/bXMapsRasterPublisher.h; sourceTree = "<group>"; };
-		14B3C03E0920AF3000D992C8 /* bXMapShake.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bXMapShake.h; sourceTree = "<group>"; };
+		14B3C03E0920AF3000D992C8 /* bXMapShake.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bXMapShake.h; path = headers/transformation/bXMapShake.h; sourceTree = "<group>"; };
 		14B3C1E70920C83C00D992C8 /* bXMapPaint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bXMapPaint.h; sourceTree = "<group>"; };
 		14B932271BA9786E00C5D95A /* loader.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = loader.framework; path = build/Release/loader.framework; sourceTree = "<group>"; };
 		14BAE9221A6407AD0069E3C6 /* XBoxTools.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = XBoxTools.bundle; sourceTree = "<group>"; };
@@ -2097,29 +2097,29 @@
 		14C8A7AA0DEA93A000C8187E /* bXMapIntersection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bXMapIntersection.cpp; path = ../../sources/topology/bXMapIntersection.cpp; sourceTree = "<group>"; };
 		14C8A7AC0DEA93A000C8187E /* bXMapAgregateIntoLine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bXMapAgregateIntoLine.cpp; path = ../../sources/transformation/bXMapAgregateIntoLine.cpp; sourceTree = "<group>"; };
 		14C8A7AD0DEA93A000C8187E /* bXMapAgregateIntoPoly.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bXMapAgregateIntoPoly.cpp; path = ../../sources/transformation/bXMapAgregateIntoPoly.cpp; sourceTree = "<group>"; };
-		14C8A7AE0DEA93A000C8187E /* bXMapAssociation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bXMapAssociation.cpp; path = ../../sources/transformation/bXMapAssociation.cpp; sourceTree = "<group>"; };
-		14C8A7AF0DEA93A000C8187E /* bXMapAssociationWithField.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bXMapAssociationWithField.cpp; path = ../../sources/transformation/bXMapAssociationWithField.cpp; sourceTree = "<group>"; };
+		14C8A7AE0DEA93A000C8187E /* bXMapAssociation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bXMapAssociation.cpp; path = ../sources/transformation/bXMapAssociation.cpp; sourceTree = "<group>"; };
+		14C8A7AF0DEA93A000C8187E /* bXMapAssociationWithField.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bXMapAssociationWithField.cpp; path = sources/transformation/bXMapAssociationWithField.cpp; sourceTree = "<group>"; };
 		14C8A7B00DEA93A000C8187E /* bXMapConvexHull.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bXMapConvexHull.cpp; path = ../../sources/transformation/bXMapConvexHull.cpp; sourceTree = "<group>"; };
-		14C8A7B10DEA93A000C8187E /* bXMapGeometryShift.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bXMapGeometryShift.cpp; path = ../../sources/transformation/bXMapGeometryShift.cpp; sourceTree = "<group>"; };
-		14C8A7B20DEA93A000C8187E /* bXMapLine2Surf.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bXMapLine2Surf.cpp; path = ../../sources/transformation/bXMapLine2Surf.cpp; sourceTree = "<group>"; };
-		14C8A7B30DEA93A000C8187E /* bXMapLineUp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bXMapLineUp.cpp; path = ../../sources/transformation/bXMapLineUp.cpp; sourceTree = "<group>"; };
-		14C8A7B40DEA93A000C8187E /* bXMapMakePoly.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bXMapMakePoly.cpp; path = ../../sources/transformation/bXMapMakePoly.cpp; sourceTree = "<group>"; };
-		14C8A7B50DEA93A000C8187E /* bXMapMakeRect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bXMapMakeRect.cpp; path = ../../sources/transformation/bXMapMakeRect.cpp; sourceTree = "<group>"; };
-		14C8A7B60DEA93A000C8187E /* bXMapMakeSquaring.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bXMapMakeSquaring.cpp; path = ../../sources/transformation/bXMapMakeSquaring.cpp; sourceTree = "<group>"; };
+		14C8A7B10DEA93A000C8187E /* bXMapGeometryShift.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bXMapGeometryShift.cpp; path = sources/transformation/bXMapGeometryShift.cpp; sourceTree = "<group>"; };
+		14C8A7B20DEA93A000C8187E /* bXMapLine2Surf.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bXMapLine2Surf.cpp; path = sources/transformation/bXMapLine2Surf.cpp; sourceTree = "<group>"; };
+		14C8A7B30DEA93A000C8187E /* bXMapLineUp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bXMapLineUp.cpp; path = sources/transformation/bXMapLineUp.cpp; sourceTree = "<group>"; };
+		14C8A7B40DEA93A000C8187E /* bXMapMakePoly.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bXMapMakePoly.cpp; path = sources/transformation/bXMapMakePoly.cpp; sourceTree = "<group>"; };
+		14C8A7B50DEA93A000C8187E /* bXMapMakeRect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bXMapMakeRect.cpp; path = sources/transformation/bXMapMakeRect.cpp; sourceTree = "<group>"; };
+		14C8A7B60DEA93A000C8187E /* bXMapMakeSquaring.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bXMapMakeSquaring.cpp; path = sources/transformation/bXMapMakeSquaring.cpp; sourceTree = "<group>"; };
 		14C8A7B70DEA93A000C8187E /* bXMapPolygonalPath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bXMapPolygonalPath.cpp; path = ../../sources/transformation/bXMapPolygonalPath.cpp; sourceTree = "<group>"; };
 		14C8A7B80DEA93A000C8187E /* bXMapReverse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bXMapReverse.cpp; path = ../../sources/transformation/bXMapReverse.cpp; sourceTree = "<group>"; };
-		14C8A7B90DEA93A000C8187E /* bXMapRotation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bXMapRotation.cpp; path = ../../sources/transformation/bXMapRotation.cpp; sourceTree = "<group>"; };
-		14C8A7BA0DEA93A000C8187E /* bXMapScale.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bXMapScale.cpp; path = ../../sources/transformation/bXMapScale.cpp; sourceTree = "<group>"; };
-		14C8A7BB0DEA93A000C8187E /* bXMapShake.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bXMapShake.cpp; path = ../../sources/transformation/bXMapShake.cpp; sourceTree = "<group>"; };
-		14C8A7BC0DEA93A000C8187E /* bXMapSimplify.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bXMapSimplify.cpp; path = ../../sources/transformation/bXMapSimplify.cpp; sourceTree = "<group>"; };
+		14C8A7B90DEA93A000C8187E /* bXMapRotation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bXMapRotation.cpp; path = sources/transformation/bXMapRotation.cpp; sourceTree = "<group>"; };
+		14C8A7BA0DEA93A000C8187E /* bXMapScale.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bXMapScale.cpp; path = sources/transformation/bXMapScale.cpp; sourceTree = "<group>"; };
+		14C8A7BB0DEA93A000C8187E /* bXMapShake.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bXMapShake.cpp; path = sources/transformation/bXMapShake.cpp; sourceTree = "<group>"; };
+		14C8A7BC0DEA93A000C8187E /* bXMapSimplify.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bXMapSimplify.cpp; path = sources/transformation/bXMapSimplify.cpp; sourceTree = "<group>"; };
 		14C8A7BD0DEA93A000C8187E /* bXMapSplitToPoints.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bXMapSplitToPoints.cpp; path = ../../sources/transformation/bXMapSplitToPoints.cpp; sourceTree = "<group>"; };
-		14C8A7BE0DEA93A000C8187E /* bXMapTranslation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bXMapTranslation.cpp; path = ../../sources/transformation/bXMapTranslation.cpp; sourceTree = "<group>"; };
+		14C8A7BE0DEA93A000C8187E /* bXMapTranslation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bXMapTranslation.cpp; path = sources/transformation/bXMapTranslation.cpp; sourceTree = "<group>"; };
 		14C8A7BF0DEA93A000C8187E /* bXMapUngroup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bXMapUngroup.cpp; path = ../../sources/transformation/bXMapUngroup.cpp; sourceTree = "<group>"; };
 		14CA0F1C0981300A0025E041 /* bXMapReIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bXMapReIndex.h; sourceTree = "<group>"; };
 		14CA0F240EEE8696005536E3 /* bXMapGroup.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = bXMapGroup.h; sourceTree = "<group>"; };
 		14CA0F260EEE86A8005536E3 /* bXMapGroup.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = bXMapGroup.cpp; path = ../../sources/transformation/bXMapGroup.cpp; sourceTree = "<group>"; };
-		14CA175009C8713700879E0A /* bXMapMakePoly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bXMapMakePoly.h; sourceTree = "<group>"; };
-		14CA175109C8713700879E0A /* bXMapMakeRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bXMapMakeRect.h; sourceTree = "<group>"; };
+		14CA175009C8713700879E0A /* bXMapMakePoly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bXMapMakePoly.h; path = headers/transformation/bXMapMakePoly.h; sourceTree = "<group>"; };
+		14CA175109C8713700879E0A /* bXMapMakeRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bXMapMakeRect.h; path = headers/transformation/bXMapMakeRect.h; sourceTree = "<group>"; };
 		14CA890D0935B6B1002076CF /* bXMapIGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bXMapIGrid.h; sourceTree = "<group>"; };
 		14CBBC53093B1BE300CF6FA9 /* Type_Utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Type_Utils.cpp; sourceTree = "<group>"; };
 		14CBBC54093B1BE300CF6FA9 /* Type_Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Type_Utils.h; sourceTree = "<group>"; };
@@ -2129,11 +2129,11 @@
 		14CDD85F0F278B2F003AC0F2 /* CWXMLTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWXMLTree.h; sourceTree = "<group>"; };
 		14CFA1D51AC5691C00894296 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		14CFAA3F0B0C5E4D000DD7C3 /* bXMapTopoCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bXMapTopoCheck.h; path = junction/bXMapTopoCheck.h; sourceTree = "<group>"; };
-		14CFAB080B0CA04F000DD7C3 /* bXMapLine2Surf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bXMapLine2Surf.h; sourceTree = "<group>"; };
-		14CFAB8C0B0CB4D5000DD7C3 /* bXMapLineUp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bXMapLineUp.h; sourceTree = "<group>"; };
+		14CFAB080B0CA04F000DD7C3 /* bXMapLine2Surf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bXMapLine2Surf.h; path = headers/transformation/bXMapLine2Surf.h; sourceTree = "<group>"; };
+		14CFAB8C0B0CB4D5000DD7C3 /* bXMapLineUp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bXMapLineUp.h; path = headers/transformation/bXMapLineUp.h; sourceTree = "<group>"; };
 		14D164220FD00E7500EA1042 /* bToolRedraw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bToolRedraw.h; sourceTree = "<group>"; };
 		14D164240FD00E8100EA1042 /* bToolRedraw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bToolRedraw.cpp; sourceTree = "<group>"; };
-		14D177C7095AA6FA00DE9F37 /* bXMapAssociationWithField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bXMapAssociationWithField.h; sourceTree = "<group>"; };
+		14D177C7095AA6FA00DE9F37 /* bXMapAssociationWithField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bXMapAssociationWithField.h; path = headers/transformation/bXMapAssociationWithField.h; sourceTree = "<group>"; };
 		14D190570FCEC21800DEDC94 /* bXMapStringProcessing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bXMapStringProcessing.h; sourceTree = "<group>"; };
 		14D190590FCEC22800DEDC94 /* bXMapStringProcessing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bXMapStringProcessing.cpp; path = units_xmap_lib/sources/bXMapStringProcessing.cpp; sourceTree = SOURCE_ROOT; };
 		14D235DC09D13A78009AFA1C /* bGenericPrintMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bGenericPrintMgr.h; sourceTree = "<group>"; };
@@ -2149,14 +2149,14 @@
 		14D2657A1BAC3C85008BA5CD /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/menubar.nib; sourceTree = "<group>"; };
 		14D4B5AF0BEB1ECB008248DA /* bStdVar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bStdVar.cpp; sourceTree = "<group>"; };
 		14D4B5B10BEB1EE1008248DA /* bStdVar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bStdVar.h; sourceTree = "<group>"; };
-		14D580E209061767009AB4EA /* bXMapTranslation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bXMapTranslation.h; sourceTree = "<group>"; };
+		14D580E209061767009AB4EA /* bXMapTranslation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bXMapTranslation.h; path = headers/transformation/bXMapTranslation.h; sourceTree = "<group>"; };
 		14D622C10BEA2E7900BC1924 /* bVarMgr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bVarMgr.cpp; sourceTree = "<group>"; };
 		14D622C20BEA2E7900BC1924 /* bVarMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bVarMgr.h; sourceTree = "<group>"; };
 		14D622C90BEA30DC00BC1924 /* bStdUserVar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bStdUserVar.h; sourceTree = "<group>"; };
 		14D622CB0BEA30F900BC1924 /* bStdUserVar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bStdUserVar.cpp; sourceTree = "<group>"; };
 		14D631440B8C8E1500488854 /* bXMapsGo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bXMapsGo.h; sourceTree = "<group>"; };
 		14D722C40CD076EC0091D33F /* bXMapDataImport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bXMapDataImport.h; sourceTree = "<group>"; };
-		14D732090C4CBC92003BF571 /* bXMapGeometryShift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bXMapGeometryShift.h; sourceTree = "<group>"; };
+		14D732090C4CBC92003BF571 /* bXMapGeometryShift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bXMapGeometryShift.h; path = headers/transformation/bXMapGeometryShift.h; sourceTree = "<group>"; };
 		14D7B1360B300B390008610B /* bXMapRasterImport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bXMapRasterImport.h; sourceTree = "<group>"; };
 		14D80BCC0C22C43C00CF0856 /* bToolTextEdition.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bToolTextEdition.cpp; sourceTree = "<group>"; };
 		14D80BCE0C22C44C00CF0856 /* bToolTextEdition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bToolTextEdition.h; sourceTree = "<group>"; };
@@ -2173,7 +2173,7 @@
 		14D9BDF11ADECCB100E120DB /* vdef_lib-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "vdef_lib-Info.plist"; sourceTree = SOURCE_ROOT; };
 		14D9BDF31ADECCD400E120DB /* xmap_lib-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "xmap_lib-Info.plist"; sourceTree = SOURCE_ROOT; };
 		14DA6B1E0A5B8ED3007378F9 /* bXMapUndo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bXMapUndo.h; sourceTree = "<group>"; };
-		14DBAAA70C2A4CF200DC5040 /* bXMapMakeSquaring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bXMapMakeSquaring.h; sourceTree = "<group>"; };
+		14DBAAA70C2A4CF200DC5040 /* bXMapMakeSquaring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bXMapMakeSquaring.h; path = headers/transformation/bXMapMakeSquaring.h; sourceTree = "<group>"; };
 		14DBABD30C2AA1FA00DC5040 /* bXMapCloneDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bXMapCloneDetector.h; sourceTree = "<group>"; };
 		14E1E65709A0A3A9008A4B1A /* ext_utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ext_utils.h; sourceTree = "<group>"; };
 		14E1E65809A0A3A9008A4B1A /* ext_utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ext_utils.cpp; sourceTree = "<group>"; };
@@ -2196,12 +2196,12 @@
 		14EDCE8B1BA860E3004455AD /* bDummyCompLib.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bDummyCompLib.cpp; sourceTree = "<group>"; };
 		14EDCE8C1BA860E3004455AD /* bDummyCompLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bDummyCompLib.h; sourceTree = "<group>"; };
 		14EE93DF0952F885003C0C2B /* bXMapReverse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bXMapReverse.h; sourceTree = "<group>"; };
-		14EE93FF0953142A003C0C2B /* bXMapAssociation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bXMapAssociation.h; sourceTree = "<group>"; };
+		14EE93FF0953142A003C0C2B /* bXMapAssociation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bXMapAssociation.h; path = transformation/bXMapAssociation.h; sourceTree = "<group>"; };
 		14EE9A3809078B1D006D505E /* bXMapTransType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bXMapTransType.h; sourceTree = "<group>"; };
 		14F1500D0E62F83A0002E65F /* MacMapRoute.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MacMapRoute.framework; path = /Library/Frameworks/MacMapRoute.framework; sourceTree = "<absolute>"; };
 		14F1640C09E68FA8003435AE /* bToolContiguous.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bToolContiguous.h; sourceTree = "<group>"; };
 		14F1640E09E69036003435AE /* bToolContiguous.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bToolContiguous.cpp; sourceTree = "<group>"; };
-		14F85DB40CFEF1C600D4E91B /* bXMapSimplify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bXMapSimplify.h; sourceTree = "<group>"; };
+		14F85DB40CFEF1C600D4E91B /* bXMapSimplify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bXMapSimplify.h; path = headers/transformation/bXMapSimplify.h; sourceTree = "<group>"; };
 		14F8D04D1209BECC007BA637 /* bitmap_utils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = bitmap_utils.mm; sourceTree = "<group>"; };
 		14F8D04E1209BECC007BA637 /* bitmap_utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bitmap_utils.h; sourceTree = "<group>"; };
 		14F9DABE1BB2DD8D00273D8C /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
@@ -2421,6 +2421,8 @@
 		140381AF1B871EB300405AEA /* To remove */ = {
 			isa = PBXGroup;
 			children = (
+				14C8A7AE0DEA93A000C8187E /* bXMapAssociation.cpp */,
+				14EE93FF0953142A003C0C2B /* bXMapAssociation.h */,
 				14D24CE40BD76A8800E09BEE /* mapcalculator */,
 				1485EEE90A2C9BDE0058E908 /* pickers */,
 				14C8A7770DEA939F00C8187E /* bXMapRasterImport.cpp */,
@@ -3082,7 +3084,30 @@
 		147BA8AD1C9971FE00FFCB17 /* ToDo */ = {
 			isa = PBXGroup;
 			children = (
-				14B3C0410920AF5800D992C8 /* transformation */,
+				14C8A7AF0DEA93A000C8187E /* bXMapAssociationWithField.cpp */,
+				14D177C7095AA6FA00DE9F37 /* bXMapAssociationWithField.h */,
+				14C8A7B10DEA93A000C8187E /* bXMapGeometryShift.cpp */,
+				14D732090C4CBC92003BF571 /* bXMapGeometryShift.h */,
+				14C8A7B20DEA93A000C8187E /* bXMapLine2Surf.cpp */,
+				14CFAB080B0CA04F000DD7C3 /* bXMapLine2Surf.h */,
+				14C8A7B30DEA93A000C8187E /* bXMapLineUp.cpp */,
+				14CFAB8C0B0CB4D5000DD7C3 /* bXMapLineUp.h */,
+				14C8A7B40DEA93A000C8187E /* bXMapMakePoly.cpp */,
+				14CA175009C8713700879E0A /* bXMapMakePoly.h */,
+				14C8A7B50DEA93A000C8187E /* bXMapMakeRect.cpp */,
+				14CA175109C8713700879E0A /* bXMapMakeRect.h */,
+				14C8A7B60DEA93A000C8187E /* bXMapMakeSquaring.cpp */,
+				14DBAAA70C2A4CF200DC5040 /* bXMapMakeSquaring.h */,
+				14C8A7B90DEA93A000C8187E /* bXMapRotation.cpp */,
+				14988F3A091F83D3006110DF /* bXMapRotation.h */,
+				14C8A7BA0DEA93A000C8187E /* bXMapScale.cpp */,
+				14988F3B091F83D3006110DF /* bXMapScale.h */,
+				14C8A7BB0DEA93A000C8187E /* bXMapShake.cpp */,
+				14B3C03E0920AF3000D992C8 /* bXMapShake.h */,
+				14C8A7BC0DEA93A000C8187E /* bXMapSimplify.cpp */,
+				14F85DB40CFEF1C600D4E91B /* bXMapSimplify.h */,
+				14C8A7BE0DEA93A000C8187E /* bXMapTranslation.cpp */,
+				14D580E209061767009AB4EA /* bXMapTranslation.h */,
 				144743660BCD0924000AE66D /* topology */,
 				149754EC08C37CEF0084C913 /* selector */,
 				149A3E3E0B1442BC00B39EBB /* print */,
@@ -3295,6 +3320,7 @@
 				140CE3200F0E03A70000CAD1 /* GIS_IO */,
 				14C7157E0B12F9200060AB7A /* scrap */,
 				140C00410F0BC1F4000DCFB9 /* scripting */,
+				14B3C0410920AF5800D992C8 /* transformation */,
 			);
 			path = units_xmap_lib;
 			sourceTree = "<group>";
@@ -3457,32 +3483,6 @@
 				14C6CCD509CEA0C20019442D /* bXMapSplitToPoints.h */,
 				14C8A7BF0DEA93A000C8187E /* bXMapUngroup.cpp */,
 				14B2868F0A878E7400C985F9 /* bXMapUngroup.h */,
-				14C8A7AE0DEA93A000C8187E /* bXMapAssociation.cpp */,
-				14EE93FF0953142A003C0C2B /* bXMapAssociation.h */,
-				14C8A7AF0DEA93A000C8187E /* bXMapAssociationWithField.cpp */,
-				14D177C7095AA6FA00DE9F37 /* bXMapAssociationWithField.h */,
-				14C8A7B10DEA93A000C8187E /* bXMapGeometryShift.cpp */,
-				14D732090C4CBC92003BF571 /* bXMapGeometryShift.h */,
-				14C8A7B20DEA93A000C8187E /* bXMapLine2Surf.cpp */,
-				14CFAB080B0CA04F000DD7C3 /* bXMapLine2Surf.h */,
-				14C8A7B30DEA93A000C8187E /* bXMapLineUp.cpp */,
-				14CFAB8C0B0CB4D5000DD7C3 /* bXMapLineUp.h */,
-				14C8A7B40DEA93A000C8187E /* bXMapMakePoly.cpp */,
-				14CA175009C8713700879E0A /* bXMapMakePoly.h */,
-				14C8A7B50DEA93A000C8187E /* bXMapMakeRect.cpp */,
-				14CA175109C8713700879E0A /* bXMapMakeRect.h */,
-				14C8A7B60DEA93A000C8187E /* bXMapMakeSquaring.cpp */,
-				14DBAAA70C2A4CF200DC5040 /* bXMapMakeSquaring.h */,
-				14C8A7B90DEA93A000C8187E /* bXMapRotation.cpp */,
-				14988F3A091F83D3006110DF /* bXMapRotation.h */,
-				14C8A7BA0DEA93A000C8187E /* bXMapScale.cpp */,
-				14988F3B091F83D3006110DF /* bXMapScale.h */,
-				14C8A7BB0DEA93A000C8187E /* bXMapShake.cpp */,
-				14B3C03E0920AF3000D992C8 /* bXMapShake.h */,
-				14C8A7BC0DEA93A000C8187E /* bXMapSimplify.cpp */,
-				14F85DB40CFEF1C600D4E91B /* bXMapSimplify.h */,
-				14C8A7BE0DEA93A000C8187E /* bXMapTranslation.cpp */,
-				14D580E209061767009AB4EA /* bXMapTranslation.h */,
 			);
 			name = transformation;
 			path = headers/transformation;

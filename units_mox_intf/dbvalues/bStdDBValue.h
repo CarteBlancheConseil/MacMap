@@ -72,6 +72,8 @@ class bStdDBValue{
 		virtual bStdDBValue*			operator *	(bStdDBValue&);
 		virtual bStdDBValue*			operator /	(bStdDBValue&);
 				
+//static int count;
+    
 	protected:
 		
 	private:

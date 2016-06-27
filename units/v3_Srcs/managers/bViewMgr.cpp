@@ -84,7 +84,8 @@ char			name[FILENAME_MAX];
 		doc->getParamName(_dirname,i,name);
 		if(strstr(name,".xml")==NULL){
 			continue;
-		}		v=new bViewContainer(name);
+		}
+        v=new bViewContainer(name);
 		if(v->status()){
 			delete v;
 			continue;

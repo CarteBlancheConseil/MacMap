@@ -34,6 +34,7 @@
 #include "bVirtualStyle.h"
 #include <mox_intf/xmldesc_utils.h>
 #include <MacMapSuite/bTrace.h>
+#include <iostream>
 
 // ---------------------------------------------------------------------------
 // 
@@ -86,7 +87,7 @@ containPrm	p;
 // 
 // -----------
 static bool debugDump(bGenericXMLBaseElement *elt, void *prm, int indent){
-char		clssname[_names_length_max_];
+char    clssname[_names_length_max_];
 	elt->getclassname(clssname);
 fprintf(stderr,"%s\n",clssname);
 	return(true);
@@ -116,8 +117,7 @@ bMacMapLayerAccessContext::~bMacMapLayerAccessContext(){
 int bMacMapLayerAccessContext::load(){
 _bTrace_("bMacMapLayerAccessContext::load",true);
 
-long	margin=0;
-
+long                    margin=0;
 bGenericXMLBaseElement	*root,*elt;
 	if(map_doc->readTree(&root,0,"drawsearch")){
 _tm_("found drawsearch.xml");
@@ -136,10 +136,8 @@ _tw_("no margin");
 			margin=0;
 		}
 	}
-
 	
 	_curview=viewmgr->get_root();
-	
     if(!_curview){
 _te_("no _curview == NULL");
 		return(-1);
@@ -436,7 +434,7 @@ bStyle*			style;
 		return(false);
 	}
 	
-bArray			arr(sizeof(xmlelt));
+bArray  arr(sizeof(xmlelt));
 
 	if(tp){
 		add_cdesc(arr,0,"layer","");
@@ -547,7 +545,6 @@ _te_("NULL style element");
 	elt->setvalue(name);
 	style->setlayer(root);	
 	parse(idx);
-	//	map_wd->inval();
 	_MMAPP_->mapIntf()->inval();
 	check_on_screen();
 	return(true);

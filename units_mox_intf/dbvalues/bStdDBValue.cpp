@@ -28,17 +28,26 @@
 //----------------------------------------------------------------------------
 
 #include "bStdDBValue.h"
+#include <MacMapSuite/bTrace.h>
+
+//int bStdDBValue::count=0;
 
 // ---------------------------------------------------------------------------
 // Constructeur
 // ------------
 bStdDBValue::bStdDBValue(){
+//_bTrace_("bStdDBValue::bStdDBValue",false);
+//    count++;
+//_tm_((void*)this+" "+count);
 }
 
 // ---------------------------------------------------------------------------
 // Destructeur
 // -----------
 bStdDBValue::~bStdDBValue(){	
+//_bTrace_("bStdDBValue::~bStdDBValue",false);
+//    count--;
+//_tm_((void*)this+" "+count);
 }
 
 // ---------------------------------------------------------------------------

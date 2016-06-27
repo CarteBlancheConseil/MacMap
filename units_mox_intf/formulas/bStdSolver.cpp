@@ -96,6 +96,7 @@ bStdDBValue* elt;
 // 
 // -----------
 void bStdSolver::reset(){
+// Il ne faut pas supprimer les dbvalues elles appartiennent aux calcs
 /*bStdDBValue*	val;
 	for(int i=1;i<=_elts.count();i++){
 		_elts.get(i,&val);

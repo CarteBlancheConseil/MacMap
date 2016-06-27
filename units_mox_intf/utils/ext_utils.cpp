@@ -412,9 +412,16 @@ OSType	t=GetImageKind(name);
 	}
 void*	data;
 int		sz;
-	if(!tp->fields()->get_param("icons",name,&data,&sz)){
-		return(NULL);
-	}
+    
+    if(tp){
+        if(!tp->fields()->get_param("icons",name,&data,&sz)){
+            return(NULL);
+        }
+    }
+    else{
+        gapp->document()->readParam(&data,&sz,"icons",name);
+    }
+    
 CGPDFDocumentRef	pdf=PDFCreate(data,sz);
 //	free(data); // Pas de libération ?
 // le free ne pose pas de problème sous 10.6, et plante sous 10.5
@@ -433,9 +440,15 @@ CGImageRef GetImageIcon(bGenericMacMapApp* gapp,
 OSType	t=GetImageKind(name);
 void*	data;
 int		sz;
-	if(!tp->fields()->get_param("icons",name,&data,&sz)){
-		return(NULL);
-	}
+    if(tp){
+        if(!tp->fields()->get_param("icons",name,&data,&sz)){
+            return(NULL);
+        }
+    }
+    else{
+        gapp->document()->readParam(&data,&sz,"icons",name);
+    }
+
 CGImageRef	img=CGImageCreateFromData(data,sz,t);
 	free(data);
 	return(img);

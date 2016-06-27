@@ -71,7 +71,7 @@ class bDoubleDBValue : public bStdDBValue{
 		virtual bStdDBValue*			operator -	(bStdDBValue&);
 		virtual bStdDBValue*			operator *	(bStdDBValue&);
 		virtual bStdDBValue*			operator /	(bStdDBValue&);
-		
+		    
 	protected:
 		
 	private:

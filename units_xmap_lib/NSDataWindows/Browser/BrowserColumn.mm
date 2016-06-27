@@ -1217,7 +1217,8 @@ user_ext_data p;
 // 
 // -----------
 -(void)name:(char*)buffer{
-	sprintf(buffer,"%s",_name);
+//	sprintf(buffer,"%s",_name);
+    strcpy(buffer,_name);
 }
 
 // ---------------------------------------------------------------------------

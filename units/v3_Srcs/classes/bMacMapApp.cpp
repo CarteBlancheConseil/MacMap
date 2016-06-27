@@ -878,6 +878,11 @@ _tm_("opening in progress");
 _tm_("ext <"+(unsigned int*)&cmd+"> can't be applied");
 		return(false);
 	}
+    
+char name[256];
+    ext->getclassname(name);
+_tm_(name);
+    
 	return(ext->edit(NULL));
 }
 

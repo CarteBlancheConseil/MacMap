@@ -35,6 +35,8 @@
 // ------------
 bStdXMLFormulaElement	::bStdXMLFormulaElement(bGenericXMLBaseElement* elt, bGenericMacMapApp* gapp, CFBundleRef bndl) 
 						: bStdXMLBaseElement(elt,gapp,bndl){
+//_bTrace_("bStdXMLFormulaElement::bStdXMLFormulaElement",false);
+//_tm_(this);
 	_dbval=NULL;
 	_clss=kXMLClassFormula;
 	_subclss=kXMLSubClassFormula;
@@ -44,6 +46,8 @@ bStdXMLFormulaElement	::bStdXMLFormulaElement(bGenericXMLBaseElement* elt, bGene
 // Destructeur
 // -----------
 bStdXMLFormulaElement::~bStdXMLFormulaElement(){
+//_bTrace_("bStdXMLFormulaElement::~bStdXMLFormulaElement",false);
+//_tm_(this+":"+_cfname);
 	if(_dbval){
 		delete _dbval;
 	}
