@@ -709,7 +709,7 @@ IBNibRef bMacMapApp::appnibs(){
 OSStatus bMacMapApp::appEvtHandler(	EventHandlerCallRef hdlr, 
 									EventRef evt, 
 									void *up){
-_bTrace_("bMacMapApp::appEvtHandler",false);
+_bTrace_("bMacMapApp::appEvtHandler",true);
 OSStatus	status=eventNotHandledErr;
 UInt32		clss;
 HICommand	cmd;
@@ -721,7 +721,7 @@ bMacMapApp*	app=(bMacMapApp*)up;
 		status=noErr;
 	}
 	else if(clss==kEventClassCommand){
-//_tm_("kEventClassCommand");
+_tm_("kEventClassCommand");
 		GetEventParameter(evt,kEventParamDirectObject,typeHICommand,NULL,sizeof(HICommand),NULL,&cmd);
 		switch(cmd.commandID){
 			case kHICommandAbout:
@@ -841,7 +841,7 @@ bDelayedAE*		dae;
 // 
 // -----------
 bool bMacMapApp::dispatch_cmd(UInt32 cmd){
-_bTrace_("bMacMapApp::dispatch_cmd",false);
+_bTrace_("bMacMapApp::dispatch_cmd",true);
 bGenericExt* ext=_xmapmgr->find(cmd);
 	if(!ext){
 		ext=_calcmgr->find(cmd);

@@ -438,7 +438,7 @@
                 <string name="title">Format d’impression…</string>
                 <string name="keyEquivalent">P</string>
                 <boolean name="updateSingleItem">TRUE</boolean>
-                <ostype name="command">page</ostype>
+                <ostype name="command">pagX</ostype>
               </object>
               <object class="IBCarbonMenuItem" id="1843">
                 <string name="title">Imprimer…</string>

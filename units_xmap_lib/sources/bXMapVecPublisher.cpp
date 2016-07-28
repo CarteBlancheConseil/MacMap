@@ -104,6 +104,9 @@ char    ext[64];
     else if(_gc==kKMLGraphicContext){
         strcpy(ext,"kml");
     }
+    else if(_gc==kSVGGraphicContext){
+        strcpy(ext,"svg");
+    }
     else{
         strcpy(ext,"pdf");
     }

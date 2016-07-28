@@ -105,7 +105,7 @@ _te_("write failed");
 // ---------------------------------------------------------------------------
 // 
 // -----------
-OSStatus bPrintMgr::get_page_format(PMPageFormat* pf, char* name){
+OSStatus bPrintMgr::get_page_format(PMPageFormat* pf, const char* name){
 	*pf=kPMNoPageFormat;
 OSStatus		status;
 char			path[PATH_MAX];
@@ -140,7 +140,8 @@ CFDataRef		dt=CFDataCreate(kCFAllocatorDefault,(UInt8*)buf,sz);
 	if(!dt){
 		return(-1);
 	}
-	status=PMUnflattenPageFormatWithCFData(dt,pf);
+    
+    status=PMPageFormatCreateWithDataRepresentation(dt,pf);
 	CFRelease(dt);
 	if(status){
 		*pf=kPMNoPageFormat;
@@ -152,7 +153,7 @@ CFDataRef		dt=CFDataCreate(kCFAllocatorDefault,(UInt8*)buf,sz);
 // ---------------------------------------------------------------------------
 // 
 // -----------
-OSStatus bPrintMgr::set_page_format(PMPageFormat pf, char* name){
+OSStatus bPrintMgr::set_page_format(PMPageFormat pf, const char* name){
 OSStatus		status;
 char			path[PATH_MAX];
 	map_doc->location(path);
@@ -175,8 +176,9 @@ bStdFile		f(name,"w");
 	if(f.status()){
 		return(f.status());
 	}
+    
 CFDataRef	dt;
-	status=PMFlattenPageFormatToCFData(pf,&dt);
+    status=PMPageFormatCreateDataRepresentation(pf,&dt,kPMDataFormatXMLDefault);
 	if(status){
 		return(status);
 	}

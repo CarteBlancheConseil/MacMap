@@ -79,7 +79,8 @@ enum{
 	kBitMapGraphicContext	='BMP_',
 	kKMLGraphicContext		='KML_',
 	kCtxGraphicContext		='Ctx_',
-	kCGGraphicContext		=kCtxGraphicContext
+    kCGGraphicContext		=kCtxGraphicContext,
+    kSVGGraphicContext		='SVG_'
 };
 
 //----------------------------------------------------------------------------

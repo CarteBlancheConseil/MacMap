@@ -29,6 +29,7 @@
 
 #import "NSUIUtils.h"
 #import "mm_messages.h"
+#import <MacMapSuite/bTrace.h>
 
 // ---------------------------------------------------------------------------
 // 

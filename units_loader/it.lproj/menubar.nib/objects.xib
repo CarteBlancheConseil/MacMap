@@ -109,7 +109,7 @@
       <string name="title">Formato di stampa…</string>
       <string name="keyEquivalent">P</string>
       <boolean name="updateSingleItem">TRUE</boolean>
-      <ostype name="command">page</ostype>
+      <ostype name="command">pagX</ostype>
     </object>
     <object class="IBCarbonMenu" id="1327">
       <string name="title">Dati</string>

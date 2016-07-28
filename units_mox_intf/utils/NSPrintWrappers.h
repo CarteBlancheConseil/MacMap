@@ -1,10 +1,10 @@
 //----------------------------------------------------------------------------
-// File : bPrintMgr.h
+// File : NSPrintWrappers.h
 // Project : MacMap
-// Purpose : Header file : Print utility class
+// Purpose : Header file : C wrappers around Printing
 // Author : Benoit Ogier, benoit.ogier@macmap.com
 //
-// Copyright (C) 1997-2015 Carte Blanche Conseil.
+// Copyright (C) 2016 Carte Blanche Conseil.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -22,45 +22,33 @@
 // See the LICENSE.txt file for more information.
 //
 //----------------------------------------------------------------------------
-// 
+//
 //----------------------------------------------------------------------------
-// 22/03/2006 creation.
-//----------------------------------------------------------------------------
-
-#ifndef __bPrintMgr__
-#define __bPrintMgr__
-
+// 26/07/2016 creation.
 //----------------------------------------------------------------------------
 
-#include <mox_intf/bGenericPrintMgr.h>
+
+#include <MacMapSuite/bArray.h>
 
 //----------------------------------------------------------------------------
 
-class bPrintMgr : public bGenericPrintMgr{
-	public:		
-		bPrintMgr								(	);
-		virtual ~bPrintMgr						(	);
-		virtual int load						(	);
-		virtual int unload						(	);		
-		virtual ivx_rect* get_print_area		(	);
-		virtual void set_print_area				(	ivx_rect* area);
-		virtual OSStatus get_page_format		(	PMPageFormat* pf, 
-													const char* name);
-		virtual OSStatus set_page_format		(	PMPageFormat pf, 
-													const char* name);
-		virtual void set_print_context			(	CGContextRef ctx);
-		virtual CGContextRef get_print_context	(	);
-
-	protected:
-		virtual bool read					();
-		virtual bool write					();
-		
-	private:
-		ivx_rect		_area;
-		CGContextRef	_ctx;
-};
-
-
-//----------------------------------------------------------------------------
-
+#ifdef __cplusplus
+extern "C" {
 #endif
+
+//----------------------------------------------------------------------------
+
+long            NSRunPageLayout     (   PMPageFormat pf);
+void            NSCopyPageFormat    (   PMPageFormat pf);
+long            NSRunPrintPanel     (   PMPrintSettings pt);
+void            NSCopyPrintSettings (   PMPrintSettings pt);
+PMPrintSession  NSGetPrintSession   (   );
+
+//----------------------------------------------------------------------------
+
+#ifdef __cplusplus
+}
+#endif
+
+//----------------------------------------------------------------------------
+

@@ -35,7 +35,7 @@
       <string name="title">Page Setup...</string>
       <string name="keyEquivalent">P</string>
       <boolean name="updateSingleItem">TRUE</boolean>
-      <ostype name="command">page</ostype>
+      <ostype name="command">pagX</ostype>
       <string name="helpTagText"></string>
       <string name="extendedHelpTagText"></string>
     </object>

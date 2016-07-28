@@ -52,9 +52,7 @@ public:
 protected:
 
 private:
-    static pascal void sheet_done			(	PMPrintSession ps, 
-                                                WindowRef wd, 
-                                                Boolean acc);
+
 };
 
 //----------------------------------------------------------------------------

@@ -49,9 +49,9 @@ class bGenericPrintMgr : public virtual bGenericMgr{
 		virtual ivx_rect* get_print_area		(	)=0;
 		virtual void set_print_area				(	ivx_rect* area)=0;
 		virtual OSStatus get_page_format		(	PMPageFormat* pf, 
-													char* name)=0;
+													const char* name)=0;
 		virtual OSStatus set_page_format		(	PMPageFormat pf, 
-													char* name)=0;
+													const char* name)=0;
 		virtual void set_print_context			(	CGContextRef ctx)=0;
 		virtual CGContextRef get_print_context	(	)=0;
 		

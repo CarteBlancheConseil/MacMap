@@ -337,5 +337,3 @@ NSString*   nsstr=[paths objectAtIndex:0];
     [localPool release];
     return ret;
 }
-
-

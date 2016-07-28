@@ -170,13 +170,14 @@ _lm_("_ctx set to "+&sgn);
 	if(data){
 		switch(sgn){
 			case kPDFGraphicContext:
-			case kKMLGraphicContext:{
-				VectorData*	dt=(VectorData*)data;
+			case kKMLGraphicContext:
+            case kSVGGraphicContext:{
+VectorData*	dt=(VectorData*)data;
 				_ctx->set_path(dt->path);
 				_ctx->set_box(dt->bounds);
 				}break;
 			case kBitMapGraphicContext:{
-				BitmapData*	dt=(BitmapData*)data;
+BitmapData*	dt=(BitmapData*)data;
 				_ctx->set_bitmap_info(dt->data,
 									  dt->width,
 									  dt->height,
@@ -223,7 +224,6 @@ _le_("NULL style "+i);
 //_lm_("style reset "+i+"/"+style->getname());
 		style->flushscreen();
 	}
-	
 	
 // Init des styles	
 _lm_("styles init");
