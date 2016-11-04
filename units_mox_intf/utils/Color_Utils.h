@@ -37,7 +37,7 @@ extern "C" {
 #endif
 
 //----------------------------------------------------------------------------
-// Code pour carbon	
+// Code pour carbon	A VIRER
 OSStatus	PickRGBColor				(	float* r, 
 											float* g, 
 											float* b);

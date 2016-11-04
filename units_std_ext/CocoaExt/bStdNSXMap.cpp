@@ -48,12 +48,6 @@ bStdNSXMap	::bStdNSXMap(bGenericXMLBaseElement* elt, bGenericMacMapApp* gapp, CF
 	_controller=NULL;
 	_sign=GetSignature(this);
     _wd_open=false;
-			
-//char	name[FILENAME_MAX];
-//char	title[FILENAME_MAX];
-//	GetName(this,name);
-//	sprintf(title,"(XMap):%s",name);
-//	(void)_gapp->menuMgr()->add_item(kMenuMgrMenuPalettesID,title,_sign);
 }
 
 // ---------------------------------------------------------------------------

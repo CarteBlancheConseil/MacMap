@@ -54,10 +54,10 @@ int	cquad	(	int oldQ,
 // ---------------------------------------------------------------------------
 //
 // ------------
-void CGPoint2PointWithRect(Rect* inRect, CGPoint* cgp, Point* p){
+/*void CGPoint2PointWithRect(Rect* inRect, CGPoint* cgp, Point* p){
 	p->h=round(cgp->x);
 	p->v=inRect->bottom-round(cgp->y);
-}
+}*/
 
 // ---------------------------------------------------------------------------
 //
@@ -71,12 +71,12 @@ float dy=b->y-a->y;
 // ---------------------------------------------------------------------------
 //
 // ------------
-void XYFloat2RectWithRect(Rect*	inRect, float xmin, float ymin, float xmax, float ymax, Rect* r){
+/*void XYFloat2RectWithRect(Rect*	inRect, float xmin, float ymin, float xmax, float ymax, Rect* r){
 	r->left=round(xmin);
 	r->bottom=inRect->bottom-round(ymin);
 	r->right=round(xmax);
 	r->top=inRect->bottom-round(ymax);
-}
+}*/
 
 // ---------------------------------------------------------------------------
 //

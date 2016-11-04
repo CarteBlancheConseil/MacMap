@@ -50,10 +50,7 @@ bStdNSXBox	::bStdNSXBox(bGenericXMLBaseElement* elt, bGenericMacMapApp* gapp, CF
 	_sign=GetSignature(this);
     _wd_open=false;
     if(elt==NULL){
-char	name[FILENAME_MAX];
-        GetName(this,name);
-//    strcat(name," [Cocoa]");
-        (void)_gapp->menuMgr()->add_item(kMenuMgrMenuPalettesID,name,_sign);
+        AddToPalettesMenu(gapp,this);
     }
 }
 

@@ -29,6 +29,7 @@
 
 #import "NSUIUtils.h"
 #import "mm_messages.h"
+#import <mox_intf/bGenericGeog.h>
 #import <MacMapSuite/bTrace.h>
 
 // ---------------------------------------------------------------------------
@@ -171,6 +172,31 @@ NSMenuItem*		item;
 }
 
 // ---------------------------------------------------------------------------
+//
+// ------------
+void NSPopupButtonPopulateWithGeogs(NSPopUpButton* c, bGenericMacMapApp* gapp, long kind, long current){
+char			str[256];
+bGenericGeog*	geog;
+NSMenuItem*		item;
+    
+    for(long i=1;i<=gapp->geogMgr()->count();i++){
+        gapp->geogMgr()->ext_name(i,str);
+        NSPopupButtonAddMenuItemValue(c,str);
+        geog=(bGenericGeog*)(void*)gapp->geogMgr()->get(i);
+        if((kind!=kBaseNoKind)&&(geog->test(&kind))){
+            item=[c itemAtIndex:[c numberOfItems]-1];
+            [item setEnabled:NO];
+        }
+    }
+    if([c pullsDown]==YES){
+        [c selectItemAtIndex:(current)];
+    }
+    else{
+        [c selectItemAtIndex:(current-1)];
+    }
+}
+
+// ---------------------------------------------------------------------------
 // 
 // ------------
 void NSPopupButtonPopulateWithScales(NSPopUpButton* c, bGenericMacMapApp* gapp, long current){	
@@ -234,7 +260,24 @@ char	str[256];
         gapp->calcMgr()->ext_name(i,str);
         NSPopupButtonAddMenuItemValue(c,str);
     }
+    if([c pullsDown]==YES){
+        [c selectItemAtIndex:(current)];
+    }
+    else{
+        [c selectItemAtIndex:(current-1)];
+    }
+}
+
+// ---------------------------------------------------------------------------
+//
+// ------------
+void NSPopupButtonPopulateWithMacros(NSPopUpButton* c, bGenericMacMapApp* gapp, long current){
+char	str[256];
     
+    for(long i=1;i<=gapp->macroMgr()->count();i++){
+        gapp->macroMgr()->ext_name(i,str);
+        NSPopupButtonAddMenuItemValue(c,str);
+    }
     if([c pullsDown]==YES){
         [c selectItemAtIndex:(current)];
     }

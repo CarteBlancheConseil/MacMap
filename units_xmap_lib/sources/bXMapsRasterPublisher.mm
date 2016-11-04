@@ -32,7 +32,9 @@
 #import "bXMapsRasterPublisher.h"
 #import <mox_intf/ext_utils.h>
 #import <mox_intf/Carb_Utils.h>
+#import <mox_intf/bStdAlert.h>
 #import <mox_intf/mm_messages.h>
+#import <mox_intf/mm_errors.h>
 #import <mox_intf/endian.h>
 #import <mox_intf/bitmap_utils.h>
 #import <mox_intf/NSOpenSavePanelWrappers.h>
@@ -374,8 +376,12 @@ char    ext[64];
             strcpy(ext,"png");
             break;
         default:
-            strcpy(ext,"jpg");
-            break;
+char        buf[__MESSAGE_STRING_LENGTH_MAX__],msg[__MESSAGE_STRING_LENGTH_MAX__];
+            sprintf(ext,"%.4s",&(_prm.codec));
+            error_string(error_num(_bStdDivErr_,_bStdDivUnsupportedCodec_),buf);
+            sprintf(msg,"",ext);
+bAlertStop	alrt(msg,buf,false);
+            return true;
     }
 
 void* ctrlr=GISIORasterExport_getAccessoryView(this);

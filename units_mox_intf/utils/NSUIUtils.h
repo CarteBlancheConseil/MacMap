@@ -56,7 +56,7 @@ void		NSPopupButtonRemoveAllItems					(	NSPopUpButton* c);
 void		NSPopupButtonRemoveItemsFrom				(	NSPopUpButton* c, 
 															NSInteger from);
 long		NSPopupButtonGetMenuItemValue				(	NSPopUpButton* c, 
-															long idx,
+															long idx,               // in [1..n]
 															char* str, 
 															size_t max);
 void		NSPopupButtonAddMenuItemValue				(	NSPopUpButton* c, 
@@ -70,6 +70,11 @@ void		NSPopupButtonPopulateWithTypes				(	NSPopUpButton* c,
 															bGenericMacMapApp* gapp,
 															long kind,				// Type kind
 															long current);			// Checked type in [1..n]
+    
+void        NSPopupButtonPopulateWithGeogs              (   NSPopUpButton* c,
+                                                            bGenericMacMapApp* gapp,
+                                                            long kind,
+                                                            long current);
 void		NSPopupButtonPopulateWithScales				(	NSPopUpButton* c, 
 															bGenericMacMapApp* gapp,
 															long current);			// Checked scale in [1..n]
@@ -90,13 +95,16 @@ void		NSPopupButtonPopulateWithDashes				(	NSPopUpButton* c,
 void		NSPopupButtonPopulateWithCalcs				(	NSPopUpButton* c,
                                                             bGenericMacMapApp* gapp,
                                                             long current);			// Checked unit in [1..n]
-	
+void		NSPopupButtonPopulateWithMacros				(   NSPopUpButton* c,
+                                                            bGenericMacMapApp* gapp,
+                                                            long current);			// Checked unit in [1..n]
+    
 void		NSPopupButtonMenuItemEnable					(	NSPopUpButton* c, 
 															long index);
 void		NSPopupButtonMenuItemDisable				(	NSPopUpButton* c, 
 															long index);
 long		NSPopupButtonMenuItemGetTag					(	NSPopUpButton* c, 
-															long index);
+															long index);            // in [0..n-1]
 void		NSPopupButtonMenuItemSetTitle				(	NSPopUpButton* c, 
 															long index,
 															const char* title);

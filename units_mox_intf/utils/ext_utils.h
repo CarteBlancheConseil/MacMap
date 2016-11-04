@@ -50,7 +50,8 @@ bGenericType*		NthTypeOfKind						(	bGenericMacMapApp* gapp,
 															int idx,
 															int kind);
 	
-void				PopulatePopupControlWithScales		(	bGenericMacMapApp* gapp, 
+/* A VIRER */
+void				PopulatePopupControlWithScales		(	bGenericMacMapApp* gapp,
 															ControlRef c, 
 															int current);
 void				PopulatePopupControlWithDistUnits	(	bGenericMacMapApp* gapp, 
@@ -74,6 +75,8 @@ void				PopulatePopupControlWithConstraints	(	bGenericType* tp,
 void				PopulatePopupControlWithOperators	(	bGenericMacMapApp* gapp, 
 															ControlRef c, 
 															int current);
+/**/
+    
 float*				GetDash								(	bGenericMacMapApp* gapp,
 															bGenericType* tp,
 															const char* name,
@@ -205,6 +208,16 @@ bool				GetAProj							(	int* srid,
 // Getting a proj name from srid
 bool				GetProjName							(	int srid, 
 															char* name);
+
+//----------------------------------------------------------------------------
+//
+//----------------------------------------------------------------------------
+// Adding ext to palette menu
+void				AddToPalettesMenu                   (	bGenericMacMapApp*	gapp,
+                                                            bGenericExt* ext);
+char*				CopyXMLTreeData                     (	bGenericXMLBaseElement* root);
+void                DumpXMLTreeData                     (   bGenericXMLBaseElement* root,
+                                                            FILE* f);
 
 //----------------------------------------------------------------------------
 								

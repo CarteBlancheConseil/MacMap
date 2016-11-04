@@ -49,7 +49,7 @@ extern "C" {
 void	PopulatePopupControlWithType	(	bGenericMacMapApp* gapp, 
 											ControlRef c, 
 											int kind,
-											int cur);
+											int cur);// A VIRER
 
 // Returns 0 if selection is not mono type
 // Returns type index if selection is mono type

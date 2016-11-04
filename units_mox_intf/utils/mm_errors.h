@@ -54,6 +54,12 @@ void b_error_string	(int error_num, char* string, CFBundleRef bndl);
 
 //----------------------------------------------------------------------------
 
+#define _bStdDivErr_		1000
+enum{
+    _bStdDivNoErr_,
+    _bStdDivUnsupportedCodec_
+};
+
 #define _bStdExtLibRootErr_		10000
 enum{
 	_bStdExtLibNoErr_,

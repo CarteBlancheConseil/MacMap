@@ -884,12 +884,7 @@ int GetXMLParamFromBuffer(	bGenericMacMapApp* gapp,
 							bGenericXMLBaseElement** root,
 							void* buffer,
 							int bsz){
-//CFDataRef	xmlData=CFDataCreate(kCFAllocatorDefault,(UInt8*)buffer,bsz);
-//	if(!xmlData){
-//		return(0);
-//	}
 	(*root)=gapp->classMgr()->ParseXMLData(buffer,bsz);
-//	CFRelease(xmlData);
 	return((*root)!=NULL);
 }
 
@@ -918,15 +913,9 @@ bStdFile	stl(path,"r");
 		return(NULL);
 	}
 	stl.mount((char**)&buffer,&sz);
-//CFDataRef	xmlData=CFDataCreate(kCFAllocatorDefault,(UInt8*)buffer,sz);
-//	free(buffer);
-//	if(!xmlData){
-//		return(NULL);
-//	}
 bGenericXMLBaseElement*	root=gapp->classMgr()->ParseXMLData(buffer,sz);
     free(buffer);
-//	CFRelease(xmlData);
-	return(root);	
+	return(root);
 }
 
 // ---------------------------------------------------------------------------
@@ -978,7 +967,7 @@ long			mrg;
 // ---------------------------------------------------------------------------
 // 
 // ------------
-Boolean db_file_filter(	AEDesc* item, 
+/*Boolean db_file_filter(	AEDesc* item,
 						void* xinfo, 
 						void* cba, 
 						NavFilterModes mode){
@@ -1009,7 +998,7 @@ char					ext[FILENAME_MAX];
 		}
 	}
 	return(false);
-}
+}*/
 
 // ---------------------------------------------------------------------------
 // 
@@ -1161,7 +1150,7 @@ typedef struct ynrecaskforval{
 // ---------------------------------------------------------------------------
 // 
 // -----------
-static OSStatus ynaskforval_evt_hdlr(EventHandlerCallRef hdlr, 
+static OSStatus ynaskforval_evt_hdlr(EventHandlerCallRef hdlr,
 									 EventRef evt, 
 									 void *up){
 OSStatus		result=eventNotHandledErr;
@@ -1591,4 +1580,56 @@ _tm_(lname);
 	wtbl_free(tbl);
 	return(false);
 }
+
+#pragma mark -
+#pragma mark =>NEW
+// ---------------------------------------------------------------------------
+//
+// ------------
+void AddToPalettesMenu(bGenericMacMapApp* gapp,
+                       bGenericExt* ext){
+char	name[FILENAME_MAX];
+    GetName(ext,name);
+    (void)gapp->menuMgr()->add_item(kMenuMgrMenuPalettesID,name,GetSignature(ext));
+}
+
+// ---------------------------------------------------------------------------
+//
+// ------------
+char* CopyXMLTreeData(bGenericXMLBaseElement* root){
+_bTrace_("ext_utils::CopyXMLTreeData",false);
+    if(!root){
+_te_("root == NULL");
+        return NULL;
+    }
+bMemFile	f;
+char*		bf=NULL;
+int			sz;
+    
+    root->encode(0,&f);
+    if(f.status()==0){
+        f.mount(&bf,&sz);
+        bf=(char*)realloc(bf,sz+1);
+        bf[sz]=0;
+        sz=sz+1;
+    }
+    return bf;
+}
+
+// ---------------------------------------------------------------------------
+//
+// ------------
+void DumpXMLTreeData(bGenericXMLBaseElement* root,
+                     FILE* f){
+_bTrace_("ext_utils::DumpXMLTreeData",false);
+char*   bf=CopyXMLTreeData(root);
+    if(bf){
+        fprintf(f,"%s\n",bf);
+        free(bf);
+    }
+    else{
+_te_("NULL data");
+    }
+}
+
 

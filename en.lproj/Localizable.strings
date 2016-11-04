@@ -123,6 +123,8 @@
 /*ERRORS*/
 "unknown_err"		= "Unknown error code";
 
+"-1001"             = "Unsuported \"%s\" codec";
+
 "-10001"			= "Cannot find library family";
 "-10002"			= "Cannot find library creator";
 "-10003"			= "Cannot find library version";

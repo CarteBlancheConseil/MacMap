@@ -35,8 +35,7 @@
 // Constructeur
 // ------------
 bStdUserDummy	::bStdUserDummy(bGenericMacMapApp* gapp, const char* name) 
-				: /*bStdExt(NULL,gapp,CFBundleGetMainBundle())
-				,*/ bStdUserExt(NULL,gapp,CFBundleGetMainBundle()){
+				: bStdUserExt(NULL,gapp,CFBundleGetMainBundle()){
 	_name=strdup(name);
 }
 
@@ -44,8 +43,7 @@ bStdUserDummy	::bStdUserDummy(bGenericMacMapApp* gapp, const char* name)
 // Constructeur
 // ------------
 bStdUserDummy	::bStdUserDummy(bGenericMacMapApp* gapp, UInt32 sign) 
-				: /*bStdExt(NULL,gapp,CFBundleGetMainBundle())
-				,*/ bStdUserExt(NULL,gapp,CFBundleGetMainBundle()){
+				: bStdUserExt(NULL,gapp,CFBundleGetMainBundle()){
 
 	_usign=sign;
 }

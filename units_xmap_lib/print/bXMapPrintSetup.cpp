@@ -25,6 +25,7 @@
 // 
 //----------------------------------------------------------------------------
 // 22/11/2006 creation.
+// 26/07/2016 cocoa intf.
 //----------------------------------------------------------------------------
 
 #include "bXMapPrintSetup.h"
@@ -81,7 +82,7 @@ OSStatus    status=noErr;
 // Constructeur
 // ------------
 bXMapPrintSetup	::bXMapPrintSetup(bGenericXMLBaseElement* elt, bGenericMacMapApp* gapp, CFBundleRef bndl)
-:bStdXMap(elt,gapp,bndl){
+                :bStdXMap(elt,gapp,bndl){
     setclassname("printsetup");
 }
 
@@ -141,105 +142,4 @@ bool bXMapPrintSetup::test(void* prm){
 bool bXMapPrintSetup::edit(void* prm){
     return(process(kExtProcessCallFromIntf,prm));
 }
-
-
-/*
-// ---------------------------------------------------------------------------
-//
-// ------------
-static OSStatus DoPageSetupDialog(PMPrintSession ps, PMPageFormat* pf, WindowRef wd){
-    OSStatus		status=noErr;
-    Boolean			acc;
-    
-    if(*pf==kPMNoPageFormat){
-        status=PMCreatePageFormat(pf);
-        if((status==noErr)&&(*pf!=kPMNoPageFormat)){
-            status=PMSessionDefaultPageFormat(ps,*pf);
-        }
-    }
-    else{
-        status=PMSessionValidatePageFormat(ps,*pf,kPMDontWantBoolean);
-    }
-//    if(wd){
-//PMSheetDoneUPP	upp=NewPMSheetDoneUPP(sheet_done);
-//         PMSessionUseSheets(ps,wd,upp);
-//         DisposePMSheetDoneUPP(upp);
-//    }
-    if(status==noErr){
-        status=PMSessionPageSetupDialog(ps,*pf,&acc);
-        if((status==noErr)&&(!acc)){
-            status=kPMCancel;
-        }
-    }
-    return(status);
-}
-
-
-// ---------------------------------------------------------------------------
-// Constructeur
-// ------------
-bXMapPrintSetup	::bXMapPrintSetup(bGenericXMLBaseElement* elt, bGenericMacMapApp* gapp, CFBundleRef bndl)
-:bStdXMap(elt,gapp,bndl){
-    setclassname("printsetup");
-}
-
-// ---------------------------------------------------------------------------
-// Destructeur
-// -----------
-bXMapPrintSetup::~bXMapPrintSetup(){
-}
-
-// ---------------------------------------------------------------------------
-// Constructeur
-// ------------
-bGenericXMLBaseElement* bXMapPrintSetup::create(bGenericXMLBaseElement* elt){
-    return(new bXMapPrintSetup(elt,_gapp,elt->getbundle()));
-}
-
-// ---------------------------------------------------------------------------
-//
-// ------------
-bool bXMapPrintSetup::process(int msg, void* prm){
-    _bTrace_("bXMapPrintSetup::process",true);
-    PMPrintSession	ps=NULL;
-    PMPageFormat	pf=kPMNoPageFormat;
-    OSStatus		status=PMCreateSession(&ps);
-    
-    _gapp->printMgr()->get_page_format(&pf,kMapPageFormatName);
-    for(;;){
-        if(status!=noErr){
-            break;
-        }
-        status=DoPageSetupDialog(ps,&pf,NULL);
-        if(status!=noErr){
-            break;
-        }
-        break;
-    }
-    if(pf!=kPMNoPageFormat){
-        _gapp->printMgr()->set_page_format(pf,kMapPageFormatName);
-        (void)PMRelease(pf);
-    }
-    if(ps){
-        (void)PMRelease(ps);
-    }
-    return(true);
-}
-
-// ---------------------------------------------------------------------------
-//
-// ------------
-bool bXMapPrintSetup::test(void* prm){
-    return(ivr_ok(_gapp->printMgr()->get_print_area()));
-}
-
-// ---------------------------------------------------------------------------
-// 
-// ------------
-bool bXMapPrintSetup::edit(void* prm){
-    return(process(kExtProcessCallFromIntf,prm));
-}*/
-
-
-
 

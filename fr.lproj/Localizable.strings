@@ -123,6 +123,8 @@
 /*ERRORS*/
 "unknown_err"		= "Code d'erreur inconnu";
 
+"-1001"             = "Codec \"%s\" non supporté";
+
 "-10001"			= "Famille de la librairie introuvable";
 "-10002"			= "Createur de la librairie introuvable";
 "-10003"			= "Version de la librairie introuvable";
@@ -150,3 +152,5 @@
 "-110004"			= "Erreur à la supression d'un champ";
 "-110005"			= "Erreur à la modification d'un champ";
 "-110006"			= "Erreur à l'affectation de la valeur par défaut";
+
+

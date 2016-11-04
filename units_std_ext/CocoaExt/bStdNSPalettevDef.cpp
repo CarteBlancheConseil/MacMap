@@ -41,11 +41,23 @@
 
 #define _DEB_BNDS_	100,100,0,0
 
+char * const nsvdef_op_list[]={	(char*)"",
+                                (char*)"equal",
+                                (char*)"notequal",
+                                (char*)"lower",
+                                (char*)"lowerorequal",
+                                (char*)"higher",
+                                (char*)"higherorequal",
+                                (char*)"contain",
+                                (char*)"beginwith",
+                                (char*)"endwith"};
+
 // ---------------------------------------------------------------------------
 // Constructeur
 // ------------
 bStdNSPalettevDef	::bStdNSPalettevDef(bGenericXMLBaseElement* elt, bGenericMacMapApp* gapp, CFBundleRef bndl) 
-					:bStdvDef(elt,gapp,bndl)
+					: bStdExt(elt,gapp,bndl)
+                    //:bStdvDef(elt,gapp,bndl)
 					,_styles(sizeof(bvDefPaletteQuickStyle*)){
 //_bTrace_("bStdNSPalettevDef::bStdNSPalettevDef",true);
 	_openit=false;
@@ -77,7 +89,8 @@ bGenericXMLBaseElement* bStdNSPalettevDef::create(bGenericXMLBaseElement* elt){
 void bStdNSPalettevDef::open(int* flags){
 //_bTrace_("bStdNSPalettevDef::open",true);
 //_tm_(_cfname);
-	bStdvDef::open(flags);
+//    bStdvDef::open(flags);
+    bStdExt::open(flags);
 	_openit=false;
 	_wd_open=false;
 	_bnds=CGRectMake(_DEB_BNDS_);
@@ -123,7 +136,8 @@ void bStdNSPalettevDef::close(){
 	else{
 		write_p();
 	}
-	bStdvDef::close();
+//    bStdvDef::close();
+    bStdExt::close();
 }
 
 // ---------------------------------------------------------------------------

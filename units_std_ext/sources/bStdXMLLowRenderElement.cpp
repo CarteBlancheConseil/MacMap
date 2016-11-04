@@ -67,6 +67,7 @@ bStdXMLValueElement*	elt;
 // 
 // -----------
 bool bStdXMLLowRenderElement::action(bGenericGraphicContext *ctx){
+//_bTrace_("bStdXMLLowRenderElement::action",true);
 bGenericGeoElement*			geo=ctx->getCurElement();
 	if(geo){
 bStdXMLValueElement*	elt;			
@@ -101,6 +102,7 @@ bool bStdXMLLowRenderElement::actionval(bGenericGraphicContext* ctx,
 // 
 // -----------
 bool bStdXMLLowRenderElement::applyforscale(bGenericGraphicContext *ctx){
+//_bTrace_("bStdXMLLowRenderElement::applyforscale",true);
 	if(!scalecompliant()){
 		return(true);
 	}
@@ -111,6 +113,7 @@ bool bStdXMLLowRenderElement::applyforscale(bGenericGraphicContext *ctx){
 // 
 // -----------
 bool bStdXMLLowRenderElement::applyforclass(bGenericGraphicContext *ctx){
+//_bTrace_("bStdXMLLowRenderElement::applyforclass",true);
 	if(!classcompliant()){
 		return(true);
 	}
@@ -121,6 +124,7 @@ bool bStdXMLLowRenderElement::applyforclass(bGenericGraphicContext *ctx){
 // 
 // -----------
 bool bStdXMLLowRenderElement::applyforobject(bGenericGraphicContext *ctx){
+//_bTrace_("bStdXMLLowRenderElement::applyforobject",true);
 	if(!objectcompliant()){
 		return(true);
 	}

@@ -34,8 +34,6 @@
 // ------------
 bStdExt	::bStdExt(bGenericXMLBaseElement* elt, bGenericMacMapApp* gapp, CFBundleRef bndl) 
 		: bStdXMLBaseElement(elt,gapp,bndl){	
-//	_libfork=CFBundleOpenBundleResourceMap(bndl);
-//	_curfork=-1;
 	_subclss=kXMLSubClassExt;
 }
 
@@ -43,9 +41,6 @@ bStdExt	::bStdExt(bGenericXMLBaseElement* elt, bGenericMacMapApp* gapp, CFBundle
 // Destructeur
 // -----------
 bStdExt::~bStdExt(){
-//	if(_libfork!=-1){
-//		CFBundleCloseBundleResourceMap(getbundle(),_libfork);
-//	}
 }
 
 // ---------------------------------------------------------------------------
@@ -101,24 +96,5 @@ bool bStdExt::test(void* prm){
 bool bStdExt::edit(void* prm){
     return(_gapp->document()!=NULL);
 }
-
-// ---------------------------------------------------------------------------
-// 
-// -----------
-//void bStdExt::use_fork(){
-//	_curfork=CurResFile();
-//	UseResFile(_libfork);
-//}
-
-// ---------------------------------------------------------------------------
-// 
-// -----------
-//void bStdExt::restore_fork(){
-//	if(_curfork!=-1){
-//		UseResFile(_curfork);
-//		_curfork=-1;
-//	}
-//}
-
 
 

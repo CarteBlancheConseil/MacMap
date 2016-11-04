@@ -25,6 +25,7 @@
 // 
 //----------------------------------------------------------------------------
 // 14/12/2004 creation.
+// 01/11/2016 remove carbon call (edit(windowref,*rect), hide and show)
 //----------------------------------------------------------------------------
 
 #ifndef __bGenericGeog__
@@ -39,12 +40,11 @@
 
 class bGenericGeog : public virtual bGenericExt {
 public:		
-	virtual bool edit						(	WindowRef wd, 
-												Rect* r)=0;// rect à virer
-	virtual void end_edit					(	)=0;
-	virtual void hide						(	)=0;
-	virtual void show						(	)=0;
-	virtual void get_params					(	bArray* arr, 
+
+    virtual bool edit						(	void* nsview)=0;
+    virtual void end_edit					(	)=0;
+    
+    virtual void get_params					(	bArray* arr,
 												int indent)=0;
 	virtual void put_params					(	bGenericXMLBaseElement* root)=0;
 	virtual bGenericXMLFormulaElement* root	(	)=0;

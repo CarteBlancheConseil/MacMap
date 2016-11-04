@@ -4,7 +4,7 @@
 // Purpose : Header file : MacMap config defines
 // Author : Benoit Ogier, benoit.ogier@macmap.com
 //
-// Copyright (C) 1997-2015 Carte Blanche Conseil.
+// Copyright (C) 2003 Carte Blanche Conseil.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -33,7 +33,7 @@
 //----------------------------------------------------------------------------
 
 #define kMainNibFileName    "main"
-#define	_DEVELOPMENT_VERS_  1
+#define	_DEVELOPMENT_VERS_  0
 
 //----------------------------------------------------------------------------
 

@@ -159,6 +159,8 @@
 /*ERRORS*/
 "unknown_err"		= "Codice d'errore sconosciuto";
 
+"-1001"             = "Non supportato \"%s\" codec";
+
 "-10001"			= "Non trovo la famiglia della libreria";
 "-10002"			= "Non trovo il creatore della libreria";
 "-10003"			= "Non trovo la versione della libreria";

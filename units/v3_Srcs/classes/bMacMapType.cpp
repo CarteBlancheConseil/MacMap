@@ -290,7 +290,7 @@ _tm_("creating type ttype="+ttype);
 	_bounds.bottom=__BOUNDS_MAX__;
 	_bounds.right=__BOUNDS_MAX__;
 //	snprintf(_name,256,hname);
-_tm_("avant strncpy");
+//_tm_("avant strncpy");
 	strncpy(_name,hname,sizeof(_name)-1);
 
 bGenericUnit*	u=map_doc->dist_resolution_unit();
@@ -303,14 +303,14 @@ bGenericUnit*	u=map_doc->dist_resolution_unit();
 	_nsel=0;
 	_ncnt=0;
 
-_tm_("avant _bse.create");
+//_tm_("avant _bse.create");
 	*status=_bse.create(hpath,xtype,_srid,_precs,_unit2m,_name,data,_kind);
 	if(*status){
 _te_("status = "+(*status)+" at _bse.create");
 		return;
 	}
 		
-_tm_("avant make_style");
+//_tm_("avant make_style");
 	if(!make_style()){
 		(*status)=-1;
 _te_("make_style == false");
@@ -350,7 +350,7 @@ _te_("status = "+(*status)+" at _bse.h_read kHDR_srid_");
 		return;
 	}
 
-_tm_("bounds are ("+_bounds.top+";"+_bounds.left+";"+_bounds.bottom+";"+_bounds.right+")");
+_tm_("bounds are ("+_trrect_(_bounds));
 
 gi_init_p gp={&_bounds,status,SetFlag,GetFlag,GetBounds,ObjIDComp};
 	_iter=(bGenericGeoIterator*)(extmgr->get_component(kComponentGeoIterator)->i_allocate(xtype,_MMAPP_,&gp));

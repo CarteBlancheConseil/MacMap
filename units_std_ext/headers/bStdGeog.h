@@ -25,6 +25,7 @@
 // 
 //----------------------------------------------------------------------------
 // 28/01/2005 creation.
+// 01/11/2016 remove carbon call (edit(windowref,*rect), hide and show)
 //----------------------------------------------------------------------------
 
 #ifndef __bStdGeog__
@@ -57,13 +58,11 @@ public:
 	virtual bool process					(	int msg, 
 												void* prm);
 	virtual bool test						(	void* prm);
-	virtual bool edit						(	void* prm);
-	virtual bool edit						(	WindowRef wd, 
-												Rect* r);
-	virtual void end_edit					(	);
-	virtual void hide						(	);
-	virtual void show						(	);
-	virtual void get_params					(	bArray* arr, 
+    
+	virtual bool edit						(	void* nsview);
+    virtual void end_edit					(	);
+
+    virtual void get_params					(	bArray* arr,
 												int indent);
 	virtual void put_params					(	bGenericXMLBaseElement* root);
 	virtual bGenericXMLFormulaElement* root	(	);

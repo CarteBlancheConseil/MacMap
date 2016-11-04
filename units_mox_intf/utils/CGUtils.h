@@ -52,19 +52,19 @@ extern "C" {
 
 //----------------------------------------------------------------------------
 
-void CGPoint2PointWithRect						(	Rect *inRect,
+/*void CGPoint2PointWithRect						(	Rect *inRect,
 													CGPoint *cgp, 
-													Point *p);//CC
+													Point *p);//CC*/
 
 float CGPointsDist								(	CGPoint *a, 
 													CGPoint *b);
 
-void XYFloat2RectWithRect						(	Rect *inRect,	
+/*void XYFloat2RectWithRect						(	Rect *inRect,
 													float xmin, 
 													float ymin, 
 													float xmax, 
 													float ymax, 
-													Rect *r);
+													Rect *r);*/
 void XYFloat2RectWithCGRect						(	CGRect*	inRect, 
 													float xmin, 
 													float ymin, 

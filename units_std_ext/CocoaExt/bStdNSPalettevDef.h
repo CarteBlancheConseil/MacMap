@@ -32,7 +32,8 @@
 
 //----------------------------------------------------------------------------
 
-#include <std_ext/bStdvDef.h>
+#include <std_ext/bStdExt.h>
+#include <mox_intf/bGenericvDef.h>
 
 //----------------------------------------------------------------------------
 
@@ -42,110 +43,117 @@
 #define kvDefSignature				'vDef'
 #endif
 
+#define	kNSvDefConfigSign	'vdef'
+#define nsvdef_op_max	9
+extern char * const nsvdef_op_list[];
+
 //----------------------------------------------------------------------------
 
-class bStdNSPalettevDef : public bStdvDef{
-	public:		
-		bStdNSPalettevDef						(	bGenericXMLBaseElement* elt, 
-													bGenericMacMapApp* gapp, 
-													CFBundleRef bndl);
-		virtual ~bStdNSPalettevDef				(	);
-		virtual bGenericXMLBaseElement* create	(	bGenericXMLBaseElement* elt);
-		
-		virtual void open						(	int* flags);
-		virtual void close						(	);
-		virtual bool event						(	EventRef evt);
-		virtual void idle						(	void* prm);
-		virtual bool edit						(	void* prm);
-		virtual bool process					(	int msg, 
-													void* prm);
-		virtual bool test						(	void* prm);
+class bStdNSPalettevDef : public virtual bGenericvDef, public bStdExt/*public bStdvDef*/{
+public:
+    bStdNSPalettevDef						(	bGenericXMLBaseElement* elt, 
+                                                bGenericMacMapApp* gapp, 
+                                                CFBundleRef bndl);
+    virtual ~bStdNSPalettevDef				(	);
+    virtual bGenericXMLBaseElement* create	(	bGenericXMLBaseElement* elt);
+    
+    virtual void open						(	int* flags);
+    virtual void close						(	);
+    virtual bool event						(	EventRef evt);
+    virtual void idle						(	void* prm);
+    virtual bool edit						(	void* prm);
+    virtual bool process					(	int msg, 
+                                                void* prm);
+    virtual bool test						(	void* prm);
 
 
-		virtual bool test						(	bGenericType* tp);
-		virtual bool edit						(	bGenericXMLBaseElement** root, 
-													bGenericType* tp);
+    virtual bool test						(	bGenericType* tp);
+    virtual bool edit						(	bGenericXMLBaseElement** root, 
+                                                bGenericType* tp);
 
-		virtual void set_bounds					(	CGRect* bnds);//
-		virtual void get_bounds					(	CGRect* bnds);//
-		virtual void wd_close					(	);
+    virtual void set_bounds					(	CGRect* bnds);//
+    virtual void get_bounds					(	CGRect* bnds);//
+    virtual void wd_close					(	);
 
-		virtual bool update						(	);
+    virtual bool update						(	);
 
 // Accessors
-		virtual bArray&	runs					(	){return(_styles);};
-		virtual bGenericType* type_get			(	){return(_tp);};
-	
-		virtual int fld_get						(	){return(_fld);};
-		virtual void fld_put					(	int fld){_fld=fld;stl_free();stl_alloc();};
+    virtual bArray&	runs					(	){return(_styles);};
+    virtual bGenericType* type_get			(	){return(_tp);};
 
-		virtual int pssmax_get					(	){return(_pssmax);};
-		virtual void pssmax_put					(	int pssmax){_pssmax=pssmax;};
+    virtual int fld_get						(	){return(_fld);};
+    virtual void fld_put					(	int fld){_fld=fld;stl_free();stl_alloc();};
 
-		virtual int sort_get					(	){return(_sort);};
-		virtual void sort_put					(	int sort){_sort=sort;};
-	
-		virtual double sref_get					(	){return(_sref);};
-		virtual void sref_put					(	double sref){_sref=sref;};
-	
-		virtual double coef_get					(	){return(_coef);};
-		virtual void coef_put					(	double coef){_coef=coef;};
-	
-		virtual int cfld_get					(	){return(_cfld);};
-		virtual void cfld_put					(	int cfld){_cfld=cfld;};
-	
-		virtual int cop_get						(	){return(_cop);};
-		virtual void cop_put					(	int cop){_cop=cop;};
-	
-		virtual void cval_get					(	char* cval){strcpy(cval,_cval);};
-		virtual void cval_put					(	char* cval){strcpy(_cval,cval);};
-	
-		virtual bool cmyk_get					(	){return(_cmyk);};
-		virtual void cmyk_put					(	bool cmyk){_cmyk=cmyk;};
-		
-	protected:
+    virtual int pssmax_get					(	){return(_pssmax);};
+    virtual void pssmax_put					(	int pssmax){_pssmax=pssmax;};
 
-		virtual void make						(	){};
-		virtual bool read						(	){return(false);};
-		virtual bool write						(	){return(false);};
-		virtual void stl_alloc					(	){};
-		virtual void stl_free					(	){};
-	
-		virtual void read_p						(	);
-		virtual void write_p					(	);
-		virtual bGenericXMLBaseElement* make_p	(	);
-		
-		virtual void* ccinit					(	);
-		
-		void*		_controller;
-		bool		_openit;
-		bool		_wd_open;
-		CGRect		_bnds;
-	
-	
-		char		_stylename[256];		
-		char		_vers[256];
-		UInt32		_sign;
-		
-		char		_name[256];
+    virtual int sort_get					(	){return(_sort);};
+    virtual void sort_put					(	int sort){_sort=sort;};
 
-		int			_fld;		//<->
-		int			_pssmax;	//<->
-		int			_sort;		//<->
-		
-		double		_sref;		//<->
-		double		_coef;		//<->
-		
-		int			_cfld;		//<->
-		int			_cop;		//<->
-		char		_cval[256];	//<->
-		bool		_cmyk;		//<->
-		
-		bArray		_styles;
-		
-		int			_style_idx;
-	
-	private:		
+    virtual double sref_get					(	){return(_sref);};
+    virtual void sref_put					(	double sref){_sref=sref;};
+
+    virtual double coef_get					(	){return(_coef);};
+    virtual void coef_put					(	double coef){_coef=coef;};
+
+    virtual int cfld_get					(	){return(_cfld);};
+    virtual void cfld_put					(	int cfld){_cfld=cfld;};
+
+    virtual int cop_get						(	){return(_cop);};
+    virtual void cop_put					(	int cop){_cop=cop;};
+
+    virtual void cval_get					(	char* cval){strcpy(cval,_cval);};
+    virtual void cval_put					(	char* cval){strcpy(_cval,cval);};
+
+    virtual bool cmyk_get					(	){return(_cmyk);};
+    virtual void cmyk_put					(	bool cmyk){_cmyk=cmyk;};
+    
+protected:
+
+    virtual void make						(	){};
+    virtual bool read						(	){return(false);};
+    virtual bool write						(	){return(false);};
+    virtual void stl_alloc					(	){};
+    virtual void stl_free					(	){};
+
+    virtual void read_p						(	);
+    virtual void write_p					(	);
+    virtual bGenericXMLBaseElement* make_p	(	);
+    
+    virtual void* ccinit					(	);
+    
+    void*           _controller;
+    bool            _openit;
+    bool            _wd_open;
+    CGRect          _bnds;
+
+
+    char            _stylename[256];
+    char            _vers[256];
+    UInt32          _sign;
+    
+    char            _name[256];
+
+    int             _fld;		//<->
+    int             _pssmax;	//<->
+    int             _sort;		//<->
+    
+    double          _sref;		//<->
+    double          _coef;		//<->
+    
+    int             _cfld;		//<->
+    int             _cop;		//<->
+    char            _cval[256];	//<->
+    bool            _cmyk;		//<->
+    
+    bArray          _styles;
+    
+    int             _style_idx;
+
+    bGenericType*           _tp;
+    bGenericXMLBaseElement* _root;
+
+private:		
 		
 };
 
