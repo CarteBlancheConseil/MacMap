@@ -31,6 +31,7 @@
 #define __bStdWait__
 
 //----------------------------------------------------------------------------
+// A reprendre en Cocoa
 
 class bStdWait{
 	public:

@@ -200,7 +200,7 @@ CGContextRef	cgctx=(CGContextRef)data;
 // ---------------------------------------------------------------------------
 // 
 // -----------
-void bLayersMgr::DrawLayers(void* wd/*, CGrafPtr port*/, ivx_rect* bounds){
+void bLayersMgr::DrawLayers(void* wd, ivx_rect* bounds){
 _lbTrace_("bLayersMgr::drawLayers",true);
 long						i;
 bStyle*						style;
@@ -208,8 +208,6 @@ bMacMapLayerAccessContext*	ctxl=(bMacMapLayerAccessContext*)_MMAPP_->layersAcces
 		
 	_breaked=false;
 	
-//	_ctx->set_window((WindowRef)wd);// Doit pouvoir être viré, y compris le set_window du ctx
-
 double	d=scalemgr->get()->coef();
 	_ctx->setScale(d);
 

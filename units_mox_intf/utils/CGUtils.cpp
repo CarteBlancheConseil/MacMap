@@ -54,29 +54,11 @@ int	cquad	(	int oldQ,
 // ---------------------------------------------------------------------------
 //
 // ------------
-/*void CGPoint2PointWithRect(Rect* inRect, CGPoint* cgp, Point* p){
-	p->h=round(cgp->x);
-	p->v=inRect->bottom-round(cgp->y);
-}*/
-
-// ---------------------------------------------------------------------------
-//
-// ------------
 float CGPointsDist(CGPoint* a, CGPoint* b){
 float dx=b->x-a->x;
 float dy=b->y-a->y;
 	return(sqrt(dx*dx+dy*dy));
 }
-
-// ---------------------------------------------------------------------------
-//
-// ------------
-/*void XYFloat2RectWithRect(Rect*	inRect, float xmin, float ymin, float xmax, float ymax, Rect* r){
-	r->left=round(xmin);
-	r->bottom=inRect->bottom-round(ymin);
-	r->right=round(xmax);
-	r->top=inRect->bottom-round(ymax);
-}*/
 
 // ---------------------------------------------------------------------------
 //
@@ -298,10 +280,8 @@ double	dx,dy;
 	if(XYInClosedPath(dx,dy,xpts,ypts,npts,1)){
 		*x=dx;
 		*y=dy;
-//fprintf(stderr,"CentroidizeClosedPath : in\n");
 		return;
 	}
-//fprintf(stderr,"CentroidizeClosedPath : out\n");
 
 	dx=0;
 	dy=0;
@@ -927,29 +907,6 @@ _te_("CGBitmapContextGetOutputData failed");
 // ---------------------------------------------------------------------------
 // 
 // ------------
-//void BevelButtonReplaceResourceByPng(ControlRef c, CFBundleRef bndl){
-//ControlButtonContentInfo	info;
-//		
-//	info.contentType=kControlContentCGImageRef;
-//	GetBevelButtonContentInfo(c,&info);
-//	if(	(info.contentType==kControlContentCIconRes)		||
-//		(info.contentType==kControlContentPictRes)		||
-//		(info.contentType==kControlContentICONRes)		||
-//		(info.contentType==kControlContentIconSuiteRes)	){
-//CFStringRef	cfs=CFStringCreateWithFormat(kCFAllocatorDefault,NULL,CFSTR("%d.png"),info.u.resID);
-//CGImageRef	img=LoadPNGImageFromBundle(bndl,cfs);
-//		CFRelease(cfs);
-//		if(!img){
-//			return;
-//		}
-//		BevelButtonSetImageRef(c,img);
-//		CGImageRelease(img);
-//	}
-//}
-
-// ---------------------------------------------------------------------------
-// 
-// ------------
 void CGContextAddRoundedRect(CGContextRef c,
 							 CGRect rect,
 							 float radius){
@@ -1050,158 +1007,3 @@ CGRect	shape=CGRectInset(rect,1,1);
 	
 	CGContextRestoreGState(c);
 }
-
-
-
-
-// ---------------------------------------------------------------------------
-//
-// ------------
-//CGImageRef CGImageCreateFromData(void* data,
-//                                 int sz,
-//                                 OSType imgtype){
-//OSErr					err;
-//GraphicsImportComponent imp;
-//Handle					h=NULL;
-//CGImageRef				image;
-//     
-//    if((err=OpenADefaultComponent(GraphicsImporterComponentType,imgtype,&imp))){
-//fprintf(stderr,"CGUtils::CGImageCreateFromData::OpenADefaultComponent error %d\n",err);
-//fflush(stderr);
-//        return(NULL);
-//    }
-//    h=NewHandle(sz);
-//    if(!h){
-//fprintf(stderr,"CGUtils::CGImageCreateFromData::NewHandle returns NULL\n");
-//fflush(stderr);
-//        CloseComponent(imp);
-//        return(NULL);
-//    }
-//    memmove(*h,data,sz);
-//    if(err=GraphicsImportSetDataHandle(imp,h)){
-//fprintf(stderr,"CGUtils::CGImageCreateFromData::GraphicsImportSetDataHandle error %d\n",err);
-//fflush(stderr);
-//        CloseComponent(imp);
-//        DisposeHandle(h);
-//        return(NULL);
-//    }
-//    if((err=GraphicsImportCreateCGImage(imp,&image,kGraphicsImportCreateCGImageUsingCurrentSettings))){
-//fprintf(stderr,"CGUtils::CGImageCreateFromData::GraphicsImportCreateCGImage error %d\n",err);
-//fflush(stderr);
-//        CloseComponent(imp);
-//        DisposeHandle(h);
-//        return(NULL);
-//    }
-//    CloseComponent(imp);
-//    DisposeHandle(h);
-//    return(image);
-//}
-
-// ---------------------------------------------------------------------------
-//
-// ------------
-//OSStatus GetImageInfoFromData(	void* data,
-//                              int sz,
-//                              OSType imgtype,
-//                              int* hsz,
-//                              int* vsz,
-//                              double* hr,
-//                              double* vr){
-//OSStatus				status;
-//GraphicsImportComponent imp;
-//ImageDescriptionHandle	imageDescH=NULL;
-//Handle					h=NULL;
-//
-//	if((status=OpenADefaultComponent(GraphicsImporterComponentType,imgtype,&imp))){
-//fprintf(stderr,"CGUtils::GetImageInfoFromData::OpenADefaultComponent error %ld\n",status);
-//fflush(stderr);
-//		return(-1);
-//	}
-//	h=NewHandle(sz);
-//	if(!h){
-//fprintf(stderr,"CGUtils::GetImageInfoFromData::NewHandle returns NULL\n");
-//fflush(stderr);
-//		CloseComponent(imp);
-//		return(-1);
-//	}
-//	memmove(*h,data,sz);
-//	if((status=GraphicsImportSetDataHandle(imp,h))){
-//fprintf(stderr,"CGUtils::GetImageInfoFromData::GraphicsImportSetDataHandle error %ld\n",status);
-//fflush(stderr);
-//		CloseComponent(imp);
-//		DisposeHandle(h);
-//		return(status);
-//	}
-//	if((status=GraphicsImportGetImageDescription(imp,&imageDescH))){
-//fprintf(stderr,"CGUtils::GetImageInfoFromData::GraphicsImportGetImageDescription error %ld\n",status);
-//fflush(stderr);
-//		CloseComponent(imp);
-//		DisposeHandle(h);
-//		return(status);
-//	}
-//	if(imageDescH==NULL){
-//fprintf(stderr,"CGUtils::GetImageInfoFromData::imageDescH==NULL\n");
-//fflush(stderr);
-//		CloseComponent(imp);
-//		DisposeHandle(h);
-//		return(-2);
-//	}
-//	*hsz=(**imageDescH).width;
-//	*vsz=(**imageDescH).height;
-//	*hr=Fix2X((**imageDescH).hRes);
-//	*vr=Fix2X((**imageDescH).vRes);
-//	CloseComponent(imp);	
-//	DisposeHandle((Handle)imageDescH);
-//	DisposeHandle(h);
-//    return(noErr);
-//}
-
-// ---------------------------------------------------------------------------
-//
-// ------------
-//OSStatus PDFConvert2(void* data, int sz, UInt32 codec, void** outdata, int* outsz){
-//CGRect					cgr;
-//OSStatus				err=-1;
-//GraphicsExportComponent	exporter=NULL;
-//Handle					h;
-//unsigned long			asw;
-//CGPDFDocumentRef		pdf=PDFCreate(data,sz);
-//CGPDFPageRef            pg=NULL;
-//CGContextRef            context=NULL;
-//    
-//    if(!pdf){
-//fprintf(stderr,"PDFConvert::PDFCreate failed (%ld)\n",err);
-//        return err;
-//    }
-//    
-//    pg=CGPDFDocumentGetPage(pdf,1);
-//    cgr=CGPDFPageGetBoxRect(pg,kCGPDFCropBox);
-//    context=CreateBitmapContextWithSize(cgr.size.width,cgr.size.height);
-//
-//    CGContextBeginPage(context,&cgr);
-//    CGContextDrawPDFPage(context,pg);
-//    CGContextEndPage(context);
-//
-//	err=OpenADefaultComponent(GraphicsExporterComponentType,codec,&exporter);
-//	if(err==noErr){
-//		h=NewHandle(0);
-//		(void)GraphicsExportSetInputCGBitmapContext(exporter,context);
-//		(void)GraphicsExportSetOutputHandle(exporter,h);
-//		(void)GraphicsExportDoExport(exporter,&asw);
-//		*outsz=GetHandleSize(h);
-//		*outdata=malloc(*outsz);
-//		HLock(h);
-//		memmove(*outdata,*h,*outsz);
-//		HUnlock(h);
-//		DisposeHandle(h);
-//		CloseComponent(exporter);
-//	}
-//	else{
-//fprintf(stderr,"PDFConvert::OpenADefaultComponent failed (%ld)\n",err);
-//	}
-//
-//    CGPDFDocumentRelease(pdf);
-//    CGContextRelease(context);
-//    
-//    return(noErr);
-//}

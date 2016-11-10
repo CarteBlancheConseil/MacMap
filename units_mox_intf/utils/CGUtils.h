@@ -217,9 +217,6 @@ OSStatus PDFConvert								(	void* data,
 													void** outdata, 
 													int* outsz);
 
-//void BevelButtonReplaceResourceByPng			(	ControlRef c, 
-//													CFBundleRef bndl);
-
 void CGContextAddRoundedRect					(	CGContextRef c,
 													CGRect rect,
 													float radius);

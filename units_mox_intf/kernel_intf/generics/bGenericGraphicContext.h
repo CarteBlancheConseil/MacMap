@@ -272,7 +272,6 @@ class bGenericGraphicContext : public bGenericContext{
 		virtual CGRect get_box						(	)=0;
 
 		virtual void set_context					(	CGContextRef ctx)=0;
-		virtual void set_window						(	WindowRef wd)=0;//CC
 		virtual void set_path						(	const char* path)=0;
 		virtual void set_bitmap_info				(	void *data, 
 														size_t width, 

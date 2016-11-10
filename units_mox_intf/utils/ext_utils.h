@@ -54,27 +54,6 @@ bGenericType*		NthTypeOfKind						(	bGenericMacMapApp* gapp,
 void				PopulatePopupControlWithScales		(	bGenericMacMapApp* gapp,
 															ControlRef c, 
 															int current);
-void				PopulatePopupControlWithDistUnits	(	bGenericMacMapApp* gapp, 
-															ControlRef c, 
-															int current);
-void				PopulatePopupControlWithFields		(	bGenericType* tp, 
-															ControlRef c, 
-															int start, 
-															int current);
-void				PopulatePopupControlWithTypedFields	(	bGenericType* tp, 
-															ControlRef c, 
-															int start, 
-															int current,
-															int* types,
-															int n);
-void				PopulatePopupControlWithConstraints	(	bGenericType* tp, 
-															int field,
-															ControlRef c, 
-															int current);
-
-void				PopulatePopupControlWithOperators	(	bGenericMacMapApp* gapp, 
-															ControlRef c, 
-															int current);
 /**/
     
 float*				GetDash								(	bGenericMacMapApp* gapp,
@@ -167,16 +146,12 @@ int					RestoreCurrentMargins				(	bGenericMacMapApp* gapp,
 	
 void				IdleApp								(	);
 
-/*Boolean				db_file_filter						(	AEDesc* item,
-															void* xinfo, 
-															void* cba, 
-															NavFilterModes mode);*/
-
 long				GetBestScaleIndexForValue			(	bGenericMacMapApp* gapp,
 															double val);
 
 void				GetBasePath							(	bGenericMacMapApp* gapp,
 															char* path);
+    
 //----------------------------------------------------------------------------
 // CGRect/ivx_rect conversion
 //----------------------------------------------------------------------------
@@ -184,7 +159,6 @@ CGRect				ivr2cgr								(	bGenericMacMapApp* gapp,
 															ivx_rect ivr);
 ivx_rect			cgr2ivr								(	bGenericMacMapApp* gapp, 
 															CGRect cgr);
-
 		
 //----------------------------------------------------------------------------
 // 

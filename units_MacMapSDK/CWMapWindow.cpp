@@ -51,10 +51,10 @@ bGenericMapIntf*	wind=(bGenericMapIntf*)mapwd;
 // ---------------------------------------------------------------------------
 // 
 // ------------
-WindowRef CWMapWindow_GetWindowRef(CWMapWindow mapwd){
-bGenericMapIntf*	wind=(bGenericMapIntf*)mapwd;
-	return((WindowRef)wind->ref());
-}
+//WindowRef CWMapWindow_GetWindowRef(CWMapWindow mapwd){
+//bGenericMapIntf*	wind=(bGenericMapIntf*)mapwd;
+//	return((WindowRef)wind->ref());
+//}
 
 // ---------------------------------------------------------------------------
 // 

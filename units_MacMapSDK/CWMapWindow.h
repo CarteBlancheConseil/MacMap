@@ -56,7 +56,7 @@ void		CWMapWindow_SetScreenCenter			(	CWMapWindow mapwd,		// -> MapWindow target
 
 // Getting the WindowRef
 // Returns the main WindowRef
-WindowRef	CWMapWindow_GetWindowRef			(	CWMapWindow mapwd);		// -> MapWindow target
+//WindowRef	CWMapWindow_GetWindowRef			(	CWMapWindow mapwd);		// -> MapWindow target
 
 // Refreshing the main window
 void		CWMapWindow_Inval					(	CWMapWindow mapwd);		// -> MapWindow target

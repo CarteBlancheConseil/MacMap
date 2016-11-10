@@ -57,10 +57,11 @@ long	popUpContextMenuWithCGPointAndNSWindow	(	CGPoint locationInWindow,
 													void* window,
 													menuitem_desc* desc,
 													long n);
+    
 long	popUpContextMenuWithCGPointAndWindowRef	(	CGPoint locationInWindow,
 													WindowRef window,
 													menuitem_desc* desc,
-													long n);
+													long n);// A VIRER
 	
 //----------------------------------------------------------------------------
 

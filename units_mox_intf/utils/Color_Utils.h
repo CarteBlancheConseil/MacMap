@@ -37,46 +37,8 @@ extern "C" {
 #endif
 
 //----------------------------------------------------------------------------
-// Code pour carbon	A VIRER
-OSStatus	PickRGBColor				(	float* r, 
-											float* g, 
-											float* b);
 
-OSStatus	PickCMYKColor				(	float* c, 
-											float* m, 
-											float* y,
-											float* k);
-
-//----------------------------------------------------------------------------
-// 32 bits
-void		RGB2CMYK					(	float r, 
-											float g, 
-											float b,
-											float* c, 
-											float* m, 
-											float* y,
-											float* k);
-void		CMYK2RGB					(	float c, 
-											float m, 
-											float y,
-											float k,
-											float* r, 
-											float* g, 
-											float* b);		
-void		compRGB2CMYK				(	float* components);
-void		compCMYK2RGB				(	float* components);
-void		MMCGContextSetFillColor		(	CGContextRef c, 
-											float* components, 
-											bool cmyk);
-void		MMCGContextSetStrokeColor	(	CGContextRef c, 
-											float* components, 
-											bool cmyk);
-	
-
-
-//----------------------------------------------------------------------------
-// 64 bits
-void		RGB2CMYK64					(	double r, 
+void		RGB2CMYK64					(	double r,
 											double g, 
 											double b,
 											double* c, 
@@ -92,7 +54,7 @@ void		CMYK2RGB64					(	double c,
 											double* b);
 void		compRGB2CMYK64				(	double* components);
 void		compCMYK2RGB64				(	double* components);
-void		MMCGContextSetFillColor64	(	CGContextRef c, 
+void		MMCGContextSetFillColor64	(	CGContextRef c,
 											double* components, 
 											bool cmyk);
 void		MMCGContextSetStrokeColor64	(	CGContextRef c, 

@@ -28,8 +28,6 @@
 //----------------------------------------------------------------------------
 
 #include "ext_utils.h"
-#include <mox_intf/bGenericMacMapApp.h>
-#include <mox_intf/bGenericExtLib.h>
 #include <mox_intf/bGenericCalc.h>
 #include <mox_intf/bGenericGeog.h>
 #include <mox_intf/CGUtils.h>
@@ -38,10 +36,6 @@
 #include <mox_intf/mm_messages.h>
 #include <std_ext/bStdUserMacro.h>
 #include <std_ext/bStdUserScript.h>
-#include <QuickTime/Movies.h>
-#include <MacMapSuite/wtable.h>
-#include <MacMapSuite/wproj.h>
-#include <MacMapSuite/C_Utils.h>
 #include <MacMapSuite/bTrace.h>
 #include <MacMapSuite/valconv.h>
 
@@ -141,85 +135,7 @@ ControlKind			k;
 // ---------------------------------------------------------------------------
 // 
 // -----------
-void PopulatePopupControlWithDistUnits(bGenericMacMapApp* gapp, ControlRef c, int current){
-MenuRef				m=GetPopupControlMenu(c);
-char				cname[256];
-bGenericUnitMgr*	mgr=gapp->distMgr();	
-bGenericUnit*		u;	
-ControlKind			k;
-
-	for(int i=1;i<=mgr->count();i++){
-		u=mgr->get(i);
-		u->long_name(cname);
-		if(strlen(cname)==0){
-			u->short_name(cname);
-		}
-		if(strlen(cname)==0){
-			sprintf(cname,"%.0f",u->coef());;
-		}
-		AddMenuItemValue(m,cname);
-	}
-	GetControlKind(c,&k);
-	if(k.kind==kControlKindPopupButton){
-		SetControl32BitMaximum(c,CountMenuItems(m));
-		SetControl32BitValue(c,current);	
-	}
-}
-
-// ---------------------------------------------------------------------------
-// 
-// -----------
-void PopulatePopupControlWithFields(bGenericType* tp, ControlRef c, int start, int cur){
-char		cname[256];
-ControlKind	k;
-
-	for(int i=start;i<=tp->fields()->count();i++){
-		tp->fields()->get_name(i,cname);
-		AddPopupControlMenuItemValue(c,cname);
-	}
-	GetControlKind(c,&k);
-	if(k.kind==kControlKindPopupButton){
-		SetControl32BitValue(c,cur);	
-	}
-	else if(k.kind==kControlKindBevelButton){
-		SetBevelButtonMenuValue(c,cur);	
-	}
-}
-
-// ---------------------------------------------------------------------------
-// 
-// -----------
-void PopulatePopupControlWithTypedFields(bGenericType* tp, ControlRef c, int start, int cur, int* types, int n){
-char		cname[256];
-ControlKind	k;
-int			i,j,fieldk;
-	
-	for(i=start;i<=tp->fields()->count();i++){
-		tp->fields()->get_name(i,cname);
-		AddPopupControlMenuItemValue(c,cname);
-		tp->fields()->get_kind(i,&fieldk);
-		for(j=0;j<n;j++){
-			if(fieldk==types[j]){
-				break;
-			}
-		}
-		if(j==n){
-			DisablePopupControlMenuItem(c,i);
-		}
-	}
-	GetControlKind(c,&k);
-	if(k.kind==kControlKindPopupButton){
-		SetControl32BitValue(c,cur);	
-	}
-	else if(k.kind==kControlKindBevelButton){
-		SetBevelButtonMenuValue(c,cur);	
-	}
-}
-
-// ---------------------------------------------------------------------------
-// 
-// -----------
-void PopulatePopupControlWithConstraints(bGenericType* tp, int field, ControlRef c, int cur){
+static void PopulatePopupControlWithConstraints(bGenericType* tp, int field, ControlRef c, int cur){
 MenuRef		m=GetPopupControlMenu(c);
 ControlKind	k;
 int			n=tp->fields()->count_constraints(field);
@@ -281,35 +197,6 @@ double	dval;
 // ---------------------------------------------------------------------------
 // 
 // -----------
-void PopulatePopupControlWithOperators(bGenericMacMapApp* gapp, ControlRef c, int current){
-MenuRef				m=GetPopupControlMenu(c);
-char				cname[256];
-bGenericExtLibMgr*	mgr=gapp->extMgr();	
-bGenericExtLib*		e;
-bGenericExt*		x;
-bArray				arr(sizeof(bGenericExtLib*));
-ControlKind			k;
-	
-	mgr->getlibs(arr,kXMLSubClassExt);	
-	for(int i=1;i<=arr.count();i++){
-		arr.get(i,&e);
-		x=e->inst();
-		if(x->getsubclass()!=kXMLSubClassOperator){
-			continue;
-		}
-		e->name(cname);
-		AddMenuItemValue(m,cname);
-	}
-	GetControlKind(c,&k);
-	if(k.kind==kControlKindPopupButton){
-		SetControl32BitMaximum(c,CountMenuItems(m));
-		SetControl32BitValue(c,current);	
-	}
-}
-
-// ---------------------------------------------------------------------------
-// 
-// -----------
 float* GetDash(	bGenericMacMapApp* gapp,
 				bGenericType* tp,
 				const char* name,
@@ -325,19 +212,12 @@ int		sz;
 	if(!tp->fields()->get_param("dashes",name,&data,&sz)){
 		return(NULL);
 	}
-
-//CFDataRef	xmlData=CFDataCreate(kCFAllocatorDefault,(const UInt8*)data,sz);
-//	free(data);
-//	if(!xmlData){
-//		return(NULL);
-//	}
 	
 bGenericXMLBaseElement*	root=gapp->classMgr()->ParseXMLData(data,sz);
 	free(data);
     if(!root){
 		return(NULL);
 	}
-//	CFRelease(xmlData);
 	
 int	n=root->countelements();
 	if(n==0){
@@ -364,8 +244,8 @@ float*					dsh=new float[n];
 OSType GetImageKind(const char* name){
 OSType	t;
 Str255	s;
-//	c2pstrcpy(s,name);
-	memcpy(s+1,name,strlen(name));
+
+    memcpy(s+1,name,strlen(name));
 	s[0]=strlen(name);
 	if(QTGetFileNameExtension(s,0,&t)){
 		t=0;
@@ -791,11 +671,9 @@ double	d=styl->getclassbound(styl->get_curclass());
 // 
 // ------------
 static bool dta_search(bGenericXMLBaseElement* elt, void* prm, int indent){
-//_bTrace_("dta_search",false);
 char	bf[_values_length_max_];
 char*	fld=(char*)prm;
 	elt->getclassname(bf);
-//_tm_(bf);
 	if(	(!strcmp(bf,"classfield"))		||
 		(!strcmp(bf,"subclassfield"))	||
 		(!strcmp(bf,"field"))			||
@@ -803,9 +681,7 @@ char*	fld=(char*)prm;
 		(!strcmp(bf,"colorfield16m"))	||
 		(!strcmp(bf,"dbfield"))			){
 		elt->getvalue(bf);
-//_tm_(bf+"->"+fld);
 		if(!strcmp(bf,fld)){
-//_tm_("YEAHAAAAAAAA!!!!");
 			return(false);
 		}
 	}
@@ -825,8 +701,6 @@ void IdleApp(	){
 int FieldInView(	bGenericMacMapApp* gapp,
 					bGenericType* tp,
 					int field){
-//_bTrace_("FieldInView",true);
-
 	if(field==kOBJ_Vertices_){
 		return(1);
 	}
@@ -966,42 +840,6 @@ long			mrg;
 
 // ---------------------------------------------------------------------------
 // 
-// ------------
-/*Boolean db_file_filter(	AEDesc* item,
-						void* xinfo, 
-						void* cba, 
-						NavFilterModes mode){
-NavFileOrFolderInfo*	info=(NavFileOrFolderInfo*)xinfo;
-OSErr					err;
-FSRef					ref;
-CFURLRef				url;
-CFStringRef				cfs;
-char					ext[FILENAME_MAX];
-
-	if(item->descriptorType==typeFSRef) {
-		if(!info->isFolder){
-			if((err=AEGetDescData(item,&ref,sizeof(FSRef)))){
-				return(false);
-			}
-			url=CFURLCreateFromFSRef(kCFAllocatorDefault,&ref);
-			cfs=CFURLCopyPathExtension(url);
-			CFRelease(url);
-			if(!cfs){
-				return(false);
-			}
-			CFStringGetCString(cfs,ext,FILENAME_MAX,kCFStringEncodingUTF8);
-			CFRelease(cfs);
-			return(ext2sign(ext)!=0);
-		}
-		else{
-			return(true);
-		}
-	}
-	return(false);
-}*/
-
-// ---------------------------------------------------------------------------
-// 
 // -----------
 long GetBestScaleIndexForValue(bGenericMacMapApp* gapp,
 							   double val){
@@ -1026,9 +864,7 @@ bGenericUnit*		u;
 // -----------
 void GetBasePath(bGenericMacMapApp* gapp, 
 				 char* path){
-//_bTrace_("GetBasePath",true);
 	gapp->document()->location(path);
-//_tm_("base path :"+path);
 	if(path[strlen(path)-1]=='/'){
 		path[strlen(path)-1]=0;
 	}
@@ -1036,7 +872,6 @@ char*	c=strrchr(path,'/');
 	if(c){
 		c[0]=0;
 	}
-//_tm_("base path :"+path);
 }
 
 // ---------------------------------------------------------------------------
@@ -1069,6 +904,40 @@ i2dvertex	vxa,vxb;
 ivx_rect ivr;
 	ivrset(&ivr,vxa.h,vxa.v,vxb.h,vxb.v);
 	return(ivr);
+}
+
+
+#pragma mark -
+#pragma mark =>GetAName/GetAValue
+#pragma mark A reprendre en Cocoa
+// ---------------------------------------------------------------------------
+//
+// -----------
+static OSStatus yn_evt_hdlr(EventHandlerCallRef hdlr,
+                            EventRef evt,
+                            void *up){
+OSStatus				result=eventNotHandledErr;
+HICommand				cmd;
+ynrec*					x=(ynrec*)up;
+    
+    if(GetEventClass(evt)==kEventClassCommand){
+        GetEventParameter(evt,kEventParamDirectObject,typeHICommand,NULL,sizeof(HICommand),NULL,&cmd);
+        switch(cmd.commandID){
+            case kHICommandOK:
+//				HideWindow(x->wd);
+                QuitAppModalLoopForWindow(x->wd);
+                x->ok=true;
+                result=noErr;
+                break;
+            case kHICommandCancel:
+//				HideWindow(x->wd);
+                QuitAppModalLoopForWindow(x->wd);
+                x->ok=false;
+                result=noErr;
+                break;
+        }
+    }
+    return(result);
 }
 
 // ---------------------------------------------------------------------------
@@ -1273,6 +1142,7 @@ CFBundleRef			bndl=CFBundleGetMainBundle();
 
 #pragma mark -
 #pragma mark =>Proj Stuff
+#pragma mark A reprendre en Cocoa
 // ---------------------------------------------------------------------------
 // 
 // -----------

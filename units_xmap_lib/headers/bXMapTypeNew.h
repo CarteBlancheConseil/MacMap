@@ -71,16 +71,17 @@ private:
                                                 int* kind, 
                                                 int* tbl,
                                                 bool* atv);
-
+/**/
     bool get_conn_prm						(	char* data);
     static OSStatus conn_evt				(	EventHandlerCallRef hdlr, 
                                                 EventRef evt, 
                                                 void *up);
+/* A passer en cocoa */
     bool get_string							(	int cid, 
                                                 char* str);
     void set_focus							(	int cid);
 
-    WindowRef	_wd;
+    WindowRef	_wd;// CC
 };
 
 //----------------------------------------------------------------------------

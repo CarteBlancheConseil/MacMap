@@ -49,7 +49,7 @@ extern char * const nsvdef_op_list[];
 
 //----------------------------------------------------------------------------
 
-class bStdNSPalettevDef : public virtual bGenericvDef, public bStdExt/*public bStdvDef*/{
+class bStdNSPalettevDef : public virtual bGenericvDef, public bStdExt{
 public:
     bStdNSPalettevDef						(	bGenericXMLBaseElement* elt, 
                                                 bGenericMacMapApp* gapp, 

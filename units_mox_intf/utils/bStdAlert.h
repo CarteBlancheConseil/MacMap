@@ -31,6 +31,7 @@
 #define __bStdAlert__
 
 //----------------------------------------------------------------------------
+// A reprendre en Cocoa
 
 class bStdAlert{
 	public:		
