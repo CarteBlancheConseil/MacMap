@@ -75,7 +75,7 @@ _bTrace_("[MMCreateDocViewController awakeFromNib]",true);
 //
 // ------------
 -(IBAction)setResolution:(id)sender{
-_bTrace_("[MMCreateDocViewController test]",true);
+_bTrace_("[MMCreateDocViewController setResolution]",true);
     _val=[_res_txt doubleValue];
 _tm_("reso :"+_val);
     [_res_txt setStringValue:[NSString stringWithFormat:@"%f",_val]];
@@ -105,6 +105,20 @@ MMCreateDocViewController* ctrlr=[[loadClass alloc] initWithNibName:nibNamed
                                                              bundle:[NSBundle mainBundle]];
     return ctrlr;
 }
+
+// ---------------------------------------------------------------------------
+//
+// ------------
+-(void)controlTextDidChange:(NSNotification*)notification{
+//_bTrace_("[MMCreateDocViewController controlTextDidChange]",true);
+//    _val=[_res_txt doubleValue];
+//_tm_(_val);
+//    if(_val<=0){
+//        _val=1;
+//    }
+//_tm_(_val);
+}
+
 // ---------------------------------------------------------------------------
 //
 // -----------
@@ -167,7 +181,7 @@ MMCreateDocViewController   *controller=(MMCreateDocViewController*)ctrlr;
 NSAutoreleasePool           *localPool;
     
     localPool=[[NSAutoreleasePool alloc] init];
-    [controller release];
+//    [controller release]; // Crash : pourquoi ?
     [localPool release];
 }
 

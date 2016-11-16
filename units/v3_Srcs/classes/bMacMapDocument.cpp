@@ -211,28 +211,28 @@ _te_("mkdir \""+name+"\" failed");
 	UTF82MacRoman(name,FILENAME_MAX);// bStdFile/bStdDirectory MacRoman File System
 bStdDirectory base(name);	
 	if(!make_package()){
-		_te_("make_package failed");
+_te_("make_package failed");
 		return(false);
 	}
 	if(!pref_unload()){
-		_te_("pref_unload failed");
+_te_("pref_unload failed");
 		return(false);
 	}
 	if(!distmgr->make()){
-		_te_("distmgr->make failed");
+_te_("distmgr->make failed");
 		return(false);
 	}
 	distmgr->set_current(_reso_idx);
 	if(!scalemgr->make()){
-		_te_("scalemgr->make failed");
+_te_("scalemgr->make failed");
 		return(false);
 	}
 	if(!typesmgr->make()){
-		_te_("typemgr->make failed");
+_te_("typemgr->make failed");
 		return(false);
 	}
 	if(!viewmgr->make()){
-		_te_("viewmgr->make failed");
+_te_("viewmgr->make failed");
 		return(false);
 	}
 	return(true);

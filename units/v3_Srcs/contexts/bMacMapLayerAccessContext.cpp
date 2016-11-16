@@ -479,7 +479,6 @@ bGenericXMLBaseElement	*root=clssmgr->ParseXMLDescriptors(&arr);
 	style->setlayer(root);
 	_array->addelement(root);
 	parse(_elts->count());
-	//	map_wd->inval();
 	_MMAPP_->mapIntf()->inval();
 	return(true);
 }
