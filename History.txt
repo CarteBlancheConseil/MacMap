@@ -1,12 +1,21 @@
 ---------------------------------------------------------------------------------------------------------------------------
 VERSIONS EN COURS
 ---------------------------------------------------------------------------------------------------------------------------
+v3.8.0.3
+o Corrections bugs création de document (résolution non prise en compte et crash à la fermeture de la fenêtre NAV)
+o Corrections bug Jonction dans la direction
+o Corrections bugs au doRemove dans XMapSelector (dans les xib) XMapDBStructure et XMapDataFill
+
+v3.8.0.2
+o Corrections localisation it
+
+v3.8.0.1
+o Correction des affichages de symboles PDF avec origine ≠ (0;0)
+o Corrections localisation it et en
+
 v3.8.0
 o Toutes les XMap et XMapBox sont Cocoa
 o Background pour les icones
-o Zones de chargement
-o Export SVG
-o SetPrintArea via script
 o Login/Password dans la vDef WMS, amélioration de la gestion des projections
 o and/or dans la sélection
 
@@ -211,7 +220,7 @@ o Style virtuel client WMS
 o XMap Publication multiple
 
 v3.3.0.0 béta
-o Meilleure gestion des fenêtres de wait permettant un gain de temps significatif (toutes t‰ches gérant des wait)
+o Meilleure gestion des fenêtres de wait permettant un gain de temps significatif (toutes tâches gérant des wait)
 o Correction d'un bug sur l'export pour les tableurs (cas des colonnes présentent plusieurs fois)
 o Correction d'un bug sur les représentations avec patterns qui n'étaient pas exportés en PDF ni imprimés
 o Requètes avec questions ouvertes
@@ -224,7 +233,7 @@ o Possibilité de fixer une projection en import dans "Grille d'import"
 o Possibilité d'incruster le champ Géométrie en utilisant le format MMT dans "Importer les données", intégrant la possibilité de re-projection à l'import
 o Possibilité de reprojeter à l'export en SHP, Mif-Mid et MMT
 o Possibilité de reprojeter à l'import en SHP, Mif-Mid et MMT
-o Bo”te coordonnées avec indication Longitude/Latitude WGS84
+o Boîte coordonnées avec indication Longitude/Latitude WGS84
 o Pack d'externes nouvelles et adaptation des externes standard pour Scripts
 o XMap Décalage de géométrie
 o XMap Associer par un champ (scriptable)

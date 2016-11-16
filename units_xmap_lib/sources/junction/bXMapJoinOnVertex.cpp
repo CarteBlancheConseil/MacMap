@@ -84,11 +84,8 @@ long                toofar=0,alreadyjoined=0;
 
 	arr->get(1,&gref);
     gref->getVertices(&prm1.ref);
-
-bEventLog	log(_gapp,
-                getbundle(),
-                kXMapJoinOnVertexMessageID,
-                GetSignature(this));
+    
+bEventLog	log(_gapp,this);
     
     for(long i=2;i<=arr->count();i++){
         arr->get(i,&geo);

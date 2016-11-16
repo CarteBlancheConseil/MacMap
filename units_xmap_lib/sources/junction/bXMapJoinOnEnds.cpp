@@ -85,10 +85,7 @@ long                toofar=0,alreadyjoined=0;
 	arr->get(1,&gref);
     gref->getVertices(&prm1.ref);
 
-bEventLog	log(_gapp,
-                getbundle(),
-                kXMapJoinOnEndsMessageID,
-                GetSignature(this));
+bEventLog	log(_gapp,this);
 
     for(long i=2;i<=arr->count();i++){
         arr->get(i,&geo);
@@ -162,29 +159,3 @@ double	l2=Measure_i2d(_gapp,ivx2_dist(vx,&ref->vx.vx2[ref->nv-1]));
 	return(false);
 }
 
-// ---------------------------------------------------------------------------
-// 
-// ------------
-/*pascal	static	Boolean	DoJoncExtr(const	BigPoint	*theBP,LongSegsHdl	ref,long	max,BigPoint	*bp,long	*curSeg,double	*d)
-{
-	double	l1,l2;
-
-	l1=DistBigPoint(*theBP,(**(ref)).bigPts[0]);
-	l2=DistBigPoint(*theBP,(**(ref)).bigPts[(**(ref)).nbPts-1]);
-	if ((l1<=max)&&(l1<=l2))
-	{
-		(*bp)=(**(ref)).bigPts[0];
-		(*curSeg)=1;
-		(*d)=l1;
-		return(true);
-	}
-	else if (l2<=max)
-	{
-		(*bp)=(**(ref)).bigPts[(**(ref)).nbPts-1];
-		(*curSeg)=(**(ref)).nbPts-1;
-		(*d)=l2;
-		return(true);
-	}
-	else
-		return(false);
-}*/

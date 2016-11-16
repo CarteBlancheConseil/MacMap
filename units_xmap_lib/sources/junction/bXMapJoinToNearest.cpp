@@ -85,10 +85,7 @@ long                toofar=0,alreadyjoined=0;
 	arr->get(1,&gref);
     gref->getVertices(&prm1.ref);
 
-bEventLog	log(_gapp,
-                getbundle(),
-                kXMapJoinToNearestMessageID,
-                GetSignature(this));
+bEventLog	log(_gapp,this);
     
     for(long i=2;i<=arr->count();i++){
         arr->get(i,&geo);
@@ -154,37 +151,3 @@ i2dvertex	vr;
 	}
 	return(false);
 }
-
-// ---------------------------------------------------------------------------
-// 
-// ------------
-/*pascal static	Boolean	DoJoncShort(const	BigPoint	*theBP,
-							LongSegsHdl	ref,
-							long	max,
-							BigPoint	*bp,
-							long	*curSeg,
-							double	*d)
-{
-	long		i;
-	BigPoint	a, b;
-	double		d1, r;
-	BigPoint	bp1;
-
-	(*d)=0x7FFFFFFF;
-	(*d) *= 2;
-	b=(**(ref)).bigPts[0];
-	for(i=2;i<=(**(ref)).nbPts;i++)
-	{
-		a=b;
-		b=(**ref).bigPts[i-1];
-		bp1=ProjBigPointOnSeg(*theBP,a,b,&r,&d1);
-		if(d1<(*d))
-		{
-			(*d)=d1;
-			(*bp)=bp1;
-			(*curSeg)=i-1;
-		}
-	}
-	return((*d)<=max);
-}
-*/

@@ -34,6 +34,18 @@
 #include <mox_intf/bEventLog.h>
 
 // ---------------------------------------------------------------------------
+//
+// ------------
+static int ivx_on_seg(i2dvertex* vx,
+                      i2dvertex* a,
+                      i2dvertex* b){
+    return( (   ((a->h<=vx->h)&&(vx->h<=b->h))	||
+                ((a->h>=vx->h)&&(vx->h>=b->h))	)&&
+            (	((a->v<=vx->v)&&(vx->v<=b->v))	||
+                ((a->v>=vx->v)&&(vx->v>=b->v))	));
+}
+
+// ---------------------------------------------------------------------------
 // Constructeur
 // ------------
 bXMapJoinOnDir	::bXMapJoinOnDir(bGenericXMLBaseElement* elt, bGenericMacMapApp* gapp, CFBundleRef bndl) 
@@ -75,23 +87,20 @@ join_prm*	j=(join_prm*)prm;
 // 
 // ------------
 bool bXMapJoinOnDir::edit(void* prm){
-bArray*				arr=_gapp->selMgr()->elements();
+bArray				arr(*(_gapp->selMgr()->elements()));
 join_prm			prm1,prm2;
 bGenericGeoElement	*gref,*geo;
 ivertices			*vx;
 bool                b1,b2;
 long                toofar=0,alreadyjoined=0;
 
-	arr->get(1,&gref);
+	arr.get(1,&gref);
     gref->getVertices(&prm1.ref);
 	
-bEventLog	log(_gapp,
-                getbundle(),
-                kXMapJoinOnDirMessageID,
-                GetSignature(this));
+bEventLog	log(_gapp,this);
    
-    for(long i=2;i<=arr->count();i++){
-        arr->get(i,&geo);
+    for(long i=2;i<=arr.count();i++){
+        arr.get(i,&geo);
         geo->getVertices(&vx);
         geo->inval(kOBJ_Vertices_);
         
@@ -116,10 +125,10 @@ bEventLog	log(_gapp,
         geo->inval(kOBJ_Vertices_);
         if(b1&&b2){
             if(prm1.d<=prm2.d){
-                vx->vx.vx2[0]=prm1.res;
+                vx->vx.vx2[vx->nv-1]=prm1.res;
             }
             else{
-                vx->vx.vx2[vx->nv-1]=prm2.res;
+                vx->vx.vx2[0]=prm2.res;
             }
         }
         else if(b2&&!b1){
@@ -145,40 +154,20 @@ bool bXMapJoinOnDir::join(	i2dvertex* vx,
 							i2dvertex* res,
 							int* cur,
 							double*	d){
-//_bTrace_("bXMapJoinOnDir::join",true);
 i2dvertex	tmp;
-double		l=((double)0x7FFFFFFF)*2.0;
-bool		found=false;
-
-//_tm_("%d - %d",vx->h,pvx->h);
-//_tm_("%d - %d",vx->v,pvx->v);
+double		l=LONG_MAX;
 
 	(*d)=l;
-	for(int i=1;i<ref->nv;i++){
-//_tm_("%d : sect = %d, on seg = %d",
-//		i,
-//		ivx_sect(vx,pvx,&ref->vx.vx2[i-1],&ref->vx.vx2[i],&tmp),
-//		ivx_on_seg(&tmp,&ref->vx.vx2[i-1],&ref->vx.vx2[i]));	
-
-//_tm_("%d - %d - %d",ref->vx.vx2[i-1].h,tmp.h,ref->vx.vx2[i].h);
-//_tm_("%d - %d - %d",ref->vx.vx2[i-1].v,tmp.v,ref->vx.vx2[i].v);
-
-
-// -> METHODE KLIK
-/*		if(	ivx_sect(vx,pvx,&ref->vx.vx2[i-1],&ref->vx.vx2[i],&tmp)	&&
-			ivx_on_seg(&tmp,&ref->vx.vx2[i-1],&ref->vx.vx2[i])		){*/
-// -> METHODE CBC
-		if(	ivx2_sect(vx,pvx,&ref->vx.vx2[i-1],&ref->vx.vx2[i])){
-			ivx2_get_sect(vx,pvx,&ref->vx.vx2[i-1],&ref->vx.vx2[i],&tmp);
-			l=Measure_i2d(_gapp,ivx2_dist(vx,&tmp));
-			if((l<=dmax)&&((!found)||(l<(*d)))){
-				found=true;
-				(*d)=l;
-				(*res)=tmp;
-				(*cur)=i;
-//_tm_("ok : dist=%f, cur=%d res=(%d;%d)",*d,*cur,tmp.h,tmp.v);	
-			}
-		}
-	}
-	return(found);
+	for(int i=0;i<ref->nv-1;i++){
+        ivx2_get_sect(pvx,vx,&ref->vx.vx2[i],&ref->vx.vx2[i+1],&tmp);
+        if(ivx_on_seg(&tmp,&ref->vx.vx2[i],&ref->vx.vx2[i+1])){
+            l=Measure_i2d(_gapp,ivx2_dist(vx,&tmp));
+            if(l<(*d)){
+                (*d)=l;
+                (*res)=tmp;
+                (*cur)=i+1;
+            }
+        }
+    }
+    return((*d)<dmax);
 }
