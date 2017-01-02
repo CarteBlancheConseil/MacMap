@@ -475,7 +475,7 @@ NSMutableIndexSet*	set;
 // 
 // -----------
 -(NSInteger)getPopupValueForField:(NSPopUpButton*)popup{
-	NSInteger		r=[popup indexOfSelectedItem];
+NSInteger   r=[popup indexOfSelectedItem];
 	if(r==0){
 		return(0);
 	}

@@ -48,8 +48,7 @@ bXBoxMgr::~bXBoxMgr(){
 // -----------
 bool bXBoxMgr::event(EventRef evt){
 //_bTrace_("bXBoxMgr::event(EventRef)",true);
-	bStdExtMgr::event(evt);
-	return(false);
+    return bStdExtMgr::event(evt);
 }
 
 // ---------------------------------------------------------------------------
@@ -57,6 +56,5 @@ bool bXBoxMgr::event(EventRef evt){
 // -----------
 bool bXBoxMgr::event(void* nsevt){
 //_bTrace_("bXBoxMgr::event(void*)",true);
-	bStdExtMgr::event(nsevt);
-	return(false);
+	return bStdExtMgr::event(nsevt);
 }

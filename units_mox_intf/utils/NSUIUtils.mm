@@ -147,12 +147,46 @@ char	str[256];
 }
 
 // ---------------------------------------------------------------------------
+//
+// ------------
+void NSPopupButtonPopulateWithEditableFields(NSPopUpButton* c, bGenericType* tp, long start, long current){
+long    nb=[c numberOfItems];
+
+    [c setAutoenablesItems:NO];
+    NSPopupButtonPopulateWithFields(c,tp,start,current);
+    for(long i=start;i<=tp->fields()->count();i++){
+        if(tp->fields()->is_writeprotected(i)   ||
+           tp->fields()->is_hidden(i)           ||
+           tp->fields()->is_dyn(i)              ){
+            NSPopupButtonMenuItemDisable(c,i-start+nb);
+        }
+    }
+}
+
+// ---------------------------------------------------------------------------
+//
+// ------------
+void NSPopupButtonPopulateWithConstrainedFields(NSPopUpButton* c, bGenericType* tp, long start, long current){
+long    nb=[c numberOfItems];
+    
+    [c setAutoenablesItems:NO];
+    NSPopupButtonPopulateWithFields(c,tp,start,current);
+    for(long i=start;i<=tp->fields()->count();i++){
+        if(tp->fields()->count_constraints(i)==0){
+            NSPopupButtonMenuItemDisable(c,i-start+nb);
+        }
+    }
+}
+
+// ---------------------------------------------------------------------------
 // 
 // ------------
 void NSPopupButtonPopulateWithTypes(NSPopUpButton* c, bGenericMacMapApp* gapp, long kind, long current){
 char			str[256];
 bGenericType*	tp;
 NSMenuItem*		item;
+ 
+    [c setAutoenablesItems:NO];
 	
 	for(long i=1;i<=gapp->typesMgr()->count();i++){
 		tp=gapp->typesMgr()->get(i);
@@ -179,13 +213,14 @@ char			str[256];
 bGenericGeog*	geog;
 NSMenuItem*		item;
     
+    [c setAutoenablesItems:NO];
     for(long i=1;i<=gapp->geogMgr()->count();i++){
         gapp->geogMgr()->ext_name(i,str);
         NSPopupButtonAddMenuItemValue(c,str);
         geog=(bGenericGeog*)(void*)gapp->geogMgr()->get(i);
-        if((kind!=kBaseNoKind)&&(geog->test(&kind))){
+        if(kind!=kBaseNoKind){
             item=[c itemAtIndex:[c numberOfItems]-1];
-            [item setEnabled:NO];
+            [item setEnabled:geog->test(&kind)];
         }
     }
     if([c pullsDown]==YES){
@@ -284,18 +319,6 @@ char	str[256];
     else{
         [c selectItemAtIndex:(current-1)];
     }
-}
-
-// ---------------------------------------------------------------------------
-// 
-// ------------
-void NSPopupButtonPopulateWithConstrainedFields(NSPopUpButton* c, bGenericType* tp, long start, long current){	
-NSPopupButtonPopulateWithFields(c,tp,start,current);
-	for(long i=start;i<=tp->fields()->count();i++){
-		if(tp->fields()->count_constraints(i)==0){
-			NSPopupButtonMenuItemDisable(c,i-start);
-		}
-	}
 }
 
 // ---------------------------------------------------------------------------

@@ -34,6 +34,7 @@
 //----------------------------------------------------------------------------
 
 #include <mox_intf/bGenericMacMapApp.h>
+#include <std_ext/bXMapStdIntf.h>
 
 //----------------------------------------------------------------------------
 
@@ -43,15 +44,21 @@ extern "C" {
 
 //----------------------------------------------------------------------------
 
-void*   GISIOImport_getAccessoryViewController      (   bool hideCreateIfNeeded);
-void*   GISIOImport_getAccessoryViewFromController  (   void* ctrlr);
-bool    GISIOImport_getCreateIfNeededFromController (   void* ctrlr);
-void    GISIOImport_releaseController               (   void* ctrlr);
+void*           GISIOImport_getAccessoryViewController      (   bool hideCreateIfNeeded);
+void*           GISIOImport_getAccessoryViewFromController  (   void* ctrlr);
+bool            GISIOImport_getCreateIfNeededFromController (   void* ctrlr);
+void            GISIOImport_releaseController               (   void* ctrlr);
 
-void*   GISIOExport_getAccessoryViewController      (   );
-void*   GISIOExport_getAccessoryViewFromController  (   void* ctrlr);
-void    GISIOExport_releaseController               (   void* ctrlr);
+void*           GISIOExport_getAccessoryViewController      (   );
+void*           GISIOExport_getAccessoryViewFromController  (   void* ctrlr);
+void            GISIOExport_releaseController               (   void* ctrlr);
 
+//----------------------------------------------------------------------------
+
+bGenericType*   GISIOImport_getImportType                   (   bGenericMacMapApp* gapp,
+                                                                int typeKind,
+                                                                import_prm prm);
+    
 //----------------------------------------------------------------------------
 
 #ifdef __cplusplus

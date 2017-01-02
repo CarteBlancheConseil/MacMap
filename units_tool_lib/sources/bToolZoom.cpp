@@ -130,6 +130,7 @@ i2dvertex	vx;
 // 
 // -----------
 void bToolZoom::clic(CGPoint pt, int count){
+//_bTrace_("bToolZoom::clic(CGPoint, int)",true);
 	bStdToolNav::clic(pt,count);
 i2dvertex	vx;
 	get_clic(&vx);

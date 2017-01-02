@@ -38,6 +38,8 @@
 #include <mox_intf/xmldesc_utils.h>
 #include <mox_intf/NSCursorWrappers.h>
 
+#include <MacMapSuite/bTrace.h>
+
 //----------------------------------------------------------------------------
 
 #ifdef __LITTLE_ENDIAN__
@@ -201,7 +203,10 @@ public:
 	virtual void clearTempPathContext		(	bool utrc);
 	virtual void validTempPathContext		(	);
 	virtual void set_use_trace				(	char val){_use_trace=val;};
-	virtual void setCursorLock				(	bool val){_curs_lock=val;};
+    virtual void setCursorLock				(	bool val){_curs_lock=val;
+                                                            /*_bTrace_("bStdTool::setCursorLock",false);
+                                                            _tm_(val);*/
+                                                            };
 
 protected:
 
@@ -246,7 +251,7 @@ private:
 	EventMouseButton	_btn;	//CC
 	
 	char				_use_trace;
-	bool				_curs_lock;
+	static bool			_curs_lock;
 
 protected:
 	bGraphicParams*		_gprm;

@@ -246,8 +246,9 @@ _te_("mmt table err "+status);
 	}
 	tbl_kind=status;
 
-bGenericType*		tp=NULL;
-	switch(tbl_kind){
+bGenericType*   tp=GISIOImport_getImportType(_gapp,tbl_kind,_prm);
+
+/*	switch(tbl_kind){
 		case kBaseKindPoint:
 			tp=_gapp->typesMgr()->get(_gapp->typesMgr()->index(_prm.grid.t_point));
 			break;
@@ -265,7 +266,7 @@ bGenericType*		tp=NULL;
 			break;
 	}
 
-/*new*/	
+//new
 	if((tp==NULL)&&(prm->ctin)){
 		tp=_gapp->typesMgr()->get(_gapp->typesMgr()->index(prm->name));
 		if(tp==NULL){
@@ -280,7 +281,7 @@ _te_("_gapp->typesMgr()->add failed");
 			}
 		}
 	}
-/*new*/	
+//new*/
 	
 	if(tp==NULL){
 		wtbl_free(mmt);

@@ -49,9 +49,7 @@ static void NSMakeMapKeyWindow(bGenericMacMapApp* gapp){
     if([[NSApplication sharedApplication] modalWindow]==nil){
 NSWindow*   ref=(NSWindow*)gapp->mapIntf()->ref();
         [ref makeKeyWindow];
-    }
-    
-    
+    }    
     //[[NSApplication sharedApplication] mainWindow];
     //    - (void)makeKeyWindow;
     //    - (void)makeMainWindow;
@@ -141,6 +139,8 @@ int		r=0;
 //	return(gapp->xboxMgr()->find('MpWd'));
 //}
 
+bool bStdTool::_curs_lock=false;
+
 // ---------------------------------------------------------------------------
 // Constructeur
 // ------------
@@ -174,7 +174,7 @@ bStdTool::bStdTool(bGenericXMLBaseElement* elt, bGenericMacMapApp* gapp, CFBundl
 	
 	_use_trace=false;
 	_gprm=NULL;
-	_curs_lock=false;
+//	_curs_lock=false;
 }
 
 // ---------------------------------------------------------------------------
@@ -220,7 +220,7 @@ void bStdTool::open(int* flags){
 	
 //	_use_trace=false;// Non, c'est fixé par le tool
 	_gprm=NULL;
-	_curs_lock=false;
+//	_curs_lock=false;
 	
 	(void)load();
 }
@@ -250,12 +250,16 @@ void bStdTool::close(){
 // 
 // -----------
 bool bStdTool::event(EventRef evt){
-_bTrace_("bStdTool::event(void*)",false);	
+_bTrace_("bStdTool::event(void*)",false);
 _tw_("DEPRECATED : carbon tool event handler");
 bool		b=false;
 UInt32		clss,kind,count,mod;	
 char		code;
 CGPoint		cgp;
+
+    if(_curs_lock){
+        return false;
+    }
 
 //	SetPortWindowPort((WindowRef)(WindowRef)_gapp->mapwd()->ref());
 	
@@ -438,69 +442,63 @@ CGPoint		cgp;
 // 
 // -----------
 bool bStdTool::nsevent(void* nsevt){
-_bTrace_("bStdTool::nsevent(void*)",false);	
+_bTrace_("bStdTool::nsevent(void*)",false);
 long etype=NSEvent_type(nsevt);
-//bool b=false;
 	
+    if(_curs_lock){
+        return false;
+    }
+    
 	switch(etype){
 		case NSEvent_typeLeftMouseDown://_tm_("event type:NSEvent_typeLeftMouseDown");
-			set_modifiers(convertModifier(nsevt));
-			clic(NSEvent_locationInWindow(nsevt),NSEvent_clickCount(nsevt));
-//			b=true;
+            set_modifiers(convertModifier(nsevt));
+            clic(NSEvent_locationInWindow(nsevt),NSEvent_clickCount(nsevt));
 			break;
 		case NSEvent_typeLeftMouseUp://_tm_("event type:NSEvent_typeLeftMouseUp");
-			end_clic();
-//			b=true;
+            end_clic();
 			break;
 		case NSEvent_typeRightMouseDown://_tm_("event type:NSEvent_typeRightMouseDown");
-			set_modifiers(convertModifier(nsevt));
-			pop_tools(NSEvent_locationInWindow(nsevt),NSEvent_windowAsWindowRef(nsevt));
-//			b=true;
+            set_modifiers(convertModifier(nsevt));
+            pop_tools(NSEvent_locationInWindow(nsevt),NSEvent_windowAsWindowRef(nsevt));
 			break;
 		case NSEvent_typeRightMouseUp://_tm_("event type:NSEvent_typeRightMouseUp");
-//			b=true;
 			break;
 		case NSEvent_typeMouseMoved://_tm_("event type:NSEvent_typeMouseMoved");
 			{
-			set_modifiers(convertModifier(nsevt));
-CGPoint		loc=NSEvent_locationInWindow(nsevt);
-			idle(&loc);
+            set_modifiers(convertModifier(nsevt));
+CGPoint     loc=NSEvent_locationInWindow(nsevt);
+            idle(&loc);
 			}
-//			b=true;
 			break;
 		case NSEvent_typeLeftMouseDragged://_tm_("event type:NSEvent_typeLeftMouseDragged");
-			set_modifiers(convertModifier(nsevt));
-			drag(NSEvent_locationInWindow(nsevt));
-//			b=true;
-			break;
+            set_modifiers(convertModifier(nsevt));
+            drag(NSEvent_locationInWindow(nsevt));
+            break;
 		case NSEvent_typeRightMouseDragged://_tm_("event type:NSEvent_typeRightMouseDragged");
-//			b=true;
 			break;
 		case NSEvent_typeMouseEntered://_tm_("event type:NSEvent_typeMouseEntered");
-			set_modifiers(convertModifier(nsevt));
-			activate();
-//			b=true;
+            set_modifiers(convertModifier(nsevt));
+            activate();
 			break;
 		case NSEvent_typeMouseExited://_tm_("event type:NSEvent_typeMouseExited");
-			set_modifiers(convertModifier(nsevt));
-			deactivate();
-//			b=true;
+            set_modifiers(convertModifier(nsevt));
+            deactivate();
 			break;
 		case NSEvent_typeKeyDown://_tm_("event type:NSEvent_typeKeyDown");
 			set_modifiers(convertModifier(nsevt));
 //kVK_Tab kVK_Space kVK_LeftArrow kVK_RightArrow kVK_DownArrow kVK_UpArrow
             switch(NSEvent_keyCode(nsevt)){
                 case kVK_Return:
-                    /*b=*/(void)set_key(kEnterCharCode);
+                    (void)set_key(kEnterCharCode);
                     break;
                 case kVK_Delete:
-                    /*b=*/(void)set_key(kBackspaceCharCode);
+                    (void)set_key(kBackspaceCharCode);
                     break;
                 case kVK_Escape:
-                    /*b=*/(void)set_key(kEscapeCharCode);
+                    (void)set_key(kEscapeCharCode);
                     break;
                 case kVK_ANSI_KeypadEnter:
-                    /*b=*/(void)set_key(kReturnCharCode);
+                    (void)set_key(kReturnCharCode);
                     break;
                 default:
                     set_key(NSEvent_charactersIgnoringModifiers(nsevt));
@@ -512,27 +510,20 @@ CGPoint		loc=NSEvent_locationInWindow(nsevt);
 			break;
 		case NSEvent_typeKeyUp://_tm_("event type:NSEvent_typeKeyUp");
 			set_key(0);
-			//b=true;
 			break;
 		case NSEvent_typeFlagsChanged://_tm_("event type:NSEvent_typeFlagsChanged");
 			set_modifiers(convertModifier(nsevt));
-			//b=true;
 			break;
 			
 		case NSEvent_typeCursorUpdate://_tm_("event type:NSEvent_typeCursorUpdate");
-//			b=true;
 			break;
 		case NSEvent_typeScrollWheel://_tm_("event type:NSEvent_typeScrollWheel");
-//			b=true;
 			break;
 		case NSEvent_typeOtherMouseDown://_tm_("event type:NSEvent_typeOtherMouseDown");
-//			b=true;
 			break;
 		case NSEvent_typeOtherMouseUp://_tm_("event type:NSEvent_typeOtherMouseUp");
-//			b=true;
 			break;
 		case NSEvent_typeOtherMouseDragged://_tm_("event type:NSEvent_typeOtherMouseDragged");
-//			b=true;
 			break;
 	}
 	
@@ -543,7 +534,12 @@ CGPoint		loc=NSEvent_locationInWindow(nsevt);
 // 
 // -----------
 void bStdTool::idle(void* prm){
-//_bTrace_("bStdTool::idle(void*)",true);	
+//_bTrace_("bStdTool::idle(void*)",true);
+    
+    if(_curs_lock){
+        return;
+    }
+
 	if(_on_edit){
 //_tm_("on edit");
 		return;
@@ -618,12 +614,14 @@ CGImageRef bStdTool::symb(){
 // 
 // -----------
 void bStdTool::activate(){
-//_bTrace_("bStdTool::activate",true);
+_bTrace_("bStdTool::activate",true);
 	if(_on_edit){
 		//return;
 	}
     else{
-        NSMakeMapKeyWindow(_gapp);
+        if(!_curs_lock){
+            NSMakeMapKeyWindow(_gapp);
+        }
     }
 	set_curs();
 	_on=true;
@@ -633,7 +631,7 @@ void bStdTool::activate(){
 // 
 // -----------
 void bStdTool::deactivate(){
-//_bTrace_("bStdTool::deactivate",true);
+_bTrace_("bStdTool::deactivate",true);
 	if(_on_edit){
 		return;
 	}
@@ -658,6 +656,7 @@ void bStdTool::deactivate(){
 // 
 // -----------
 void bStdTool::clic(i2dvertex loc, int count){
+//_bTrace_("bStdTool::clic(i2dvertex, int)",true);
 i2dvertex	vx;
 	
 	push();
@@ -695,6 +694,7 @@ i2dvertex	vx;
 // 
 // -----------
 void bStdTool::clic(CGPoint loc, int count){
+//_bTrace_("bStdTool::clic(CGPoint, int)",true);
 i2dvertex	vx;
 	Convert(&vx,&loc);
 	clic(vx,count);
@@ -846,6 +846,7 @@ CGRect	cgr=getTempPathContextRect();
 // 
 // -----------
 void bStdTool::end_clic(){
+//_bTrace_("bStdTool::end_clic()",true);
 	_on_drag=false;
 }
 
@@ -982,7 +983,9 @@ CursorRef	crs=CreateCocoaCursor(img,hsx,hsy);
 // 
 // -----------
 void bStdTool::set_curs(CursorRef curs){
+//_bTrace_("bStdTool::set_curs(CursorRef)",false);
 	if(curs){
+//_tm_("set cursor");
 		_ccurs=curs;
 		SetCocoaCursor(_ccurs);
 	}
@@ -992,7 +995,9 @@ void bStdTool::set_curs(CursorRef curs){
 // 
 // -----------
 void bStdTool::set_curs(){
+//_bTrace_("bStdTool::set_curs()",false);
 	if(!_curs_lock){
+//_tm_("ok, set cursor");
 		SetCocoaCursor(_curs);
 	}
 }

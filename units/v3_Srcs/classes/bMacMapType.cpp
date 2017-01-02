@@ -606,13 +606,13 @@ int					status;
 bMacMapGeoElement*	obj=new bMacMapGeoElement(this,&status);
 	if(status<0){
 _te_("status = "+status);
-		_nbalive++;// DŽcrŽmentŽ dans kill object
+//		_nbalive++;// DŽcrŽmentŽ dans kill object
 		kill_object(obj);
 		delete obj;
 		(*f)=NULL;
 		return(false);
 	}
-	_nbalive++;
+//	_nbalive++;
 	(*f)=obj;
 	return(true);
 }
@@ -630,13 +630,13 @@ int					status;
 bMacMapGeoElement*	obj=new bMacMapGeoElement((bMacMapGeoElement*)fin,&status);
 	if(status<0){
 _te_("status = "+status);
-		_nbalive++;// DŽcrŽmentŽ dans kill object
-		kill_object(obj);
+//		_nbalive++;// DŽcrŽmentŽ dans kill object
+//		kill_object(obj);
 		delete obj;
 		(*fout)=NULL;
 		return(false);
 	}
-	_nbalive++;
+//	_nbalive++;
 	(*fout)=obj;
 	return(true);
 }
@@ -656,6 +656,10 @@ int	id=0;
 	if(_bse.write(k+1,kOBJ_ID_,&id)!=0){		
 		return(-1);
 	}
+    /**/
+    _nbalive++;
+    (void)_bse.h_write(1,kHDR_alive_,&_nbalive);
+    /**/
 	return(k+1);
 }
 
@@ -672,6 +676,8 @@ _tm_("object lock");
 	if(f->killed()){
 		_nbalive--;
 		_nbkilled++;
+        (void)_bse.h_write(1,kHDR_alive_,&_nbalive);
+        (void)_bse.h_write(1,kHDR_killed_,&_nbkilled);
 	}
 	return(true);
 }
@@ -684,6 +690,8 @@ bool bMacMapType::unkill_object(bGenericGeoElement *f){
 	if(!f->killed()){
 		_nbalive++;
 		_nbkilled--;
+        (void)_bse.h_write(1,kHDR_alive_,&_nbalive);
+        (void)_bse.h_write(1,kHDR_killed_,&_nbkilled);
 	}
 	return(true);
 }

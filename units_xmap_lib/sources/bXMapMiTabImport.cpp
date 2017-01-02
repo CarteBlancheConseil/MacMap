@@ -261,79 +261,25 @@ _te_("mitab table err "+status);
 		return(false);
 	}
 	
-bGenericType*		tp[5];
-	tp[kBaseKindPoint-1]=_gapp->typesMgr()->get(_gapp->typesMgr()->index(_prm.grid.t_point));
-	tp[kBaseKindPolyline-1]=_gapp->typesMgr()->get(_gapp->typesMgr()->index(_prm.grid.t_line));
-	tp[kBaseKindText-1]=_gapp->typesMgr()->get(_gapp->typesMgr()->index(_prm.grid.t_text));
-	tp[kBaseKindPolygon-1]=_gapp->typesMgr()->get(_gapp->typesMgr()->index(_prm.grid.t_poly));
-	tp[kBaseKindRaster-1]=_gapp->typesMgr()->get(_gapp->typesMgr()->index(_prm.grid.t_raster));
-	
-/*new*/
-	if(	(prm->ctin)			&&
-		(	(tp[0]==NULL)	&&
-			(tp[1]==NULL)	&&
-			(tp[2]==NULL)	&&
-			(tp[3]==NULL)	)){
-			
-		tp[0]=_gapp->typesMgr()->get(_gapp->typesMgr()->index(prm->name));
-		if(tp[0]==NULL){
-			sprintf(name,"%s_pt",prm->name);
-			UTF82MacRoman(name,FILENAME_MAX);			
-			if(_gapp->typesMgr()->add(name,"",NULL,kBaseLocalDBID,kBaseKindPoint)!=noErr){
-_te_("_gapp->typesMgr()->add failed");
-			}
-			else{
-				tp[0]=_gapp->typesMgr()->get(_gapp->typesMgr()->count());
-				_gapp->layersAccessCtx()->add(_gapp->typesMgr()->count(),1);
-			}
-		}
-		
-		tp[1]=_gapp->typesMgr()->get(_gapp->typesMgr()->index(prm->name));
-		if(tp[1]==NULL){
-			sprintf(name,"%s_pl",prm->name);
-			UTF82MacRoman(name,FILENAME_MAX);			
-			if(_gapp->typesMgr()->add(name,"",NULL,kBaseLocalDBID,kBaseKindPolyline)!=noErr){
-_te_("_gapp->typesMgr()->add failed");
-			}
-			else{
-				tp[1]=_gapp->typesMgr()->get(_gapp->typesMgr()->count());
-				_gapp->layersAccessCtx()->add(_gapp->typesMgr()->count(),1);
-			}
-		}
+bGenericType*	tp[5];
+char            tname[FILENAME_MAX];
+    strcpy(tname,_prm.name);
+    
+    sprintf(_prm.name,"%s_pt",tname);
+    tp[kBaseKindPoint-1]=GISIOImport_getImportType(_gapp,kBaseKindPoint,_prm);
+    sprintf(_prm.name,"%s_pl",tname);
+    tp[kBaseKindPolyline-1]=GISIOImport_getImportType(_gapp,kBaseKindPolyline,_prm);
+    sprintf(_prm.name,"%s_tx",tname);
+    tp[kBaseKindText-1]=GISIOImport_getImportType(_gapp,kBaseKindText,_prm);
+    sprintf(_prm.name,"%s_pg",tname);
+    tp[kBaseKindPolygon-1]=GISIOImport_getImportType(_gapp,kBaseKindPolygon,_prm);
 
-		tp[2]=_gapp->typesMgr()->get(_gapp->typesMgr()->index(prm->name));
-		if(tp[2]==NULL){
-			sprintf(name,"%s_tx",prm->name);
-			UTF82MacRoman(name,FILENAME_MAX);			
-			if(_gapp->typesMgr()->add(name,"",NULL,kBaseLocalDBID,kBaseKindText)!=noErr){
-_te_("_gapp->typesMgr()->add failed");
-			}
-			else{
-				tp[2]=_gapp->typesMgr()->get(_gapp->typesMgr()->count());
-				_gapp->layersAccessCtx()->add(_gapp->typesMgr()->count(),1);
-			}
-		}
-		
-		tp[3]=_gapp->typesMgr()->get(_gapp->typesMgr()->index(prm->name));
-		if(tp[3]==NULL){
-			sprintf(name,"%s_pg",prm->name);
-			UTF82MacRoman(name,FILENAME_MAX);			
-			if(_gapp->typesMgr()->add(name,"",NULL,kBaseLocalDBID,kBaseKindPolygon)!=noErr){
-_te_("_gapp->typesMgr()->add failed");
-			}
-			else{
-				tp[3]=_gapp->typesMgr()->get(_gapp->typesMgr()->count());
-				_gapp->layersAccessCtx()->add(_gapp->typesMgr()->count(),1);
-			}
-		}
-	}
-/*new*/
+    strcpy(_prm.name,tname);
 	
 	if(	(tp[0]==NULL)	&&
 		(tp[1]==NULL)	&&
 		(tp[2]==NULL)	&&
-		(tp[3]==NULL)	&&
-		(tp[4]==NULL)	){
+		(tp[3]==NULL)	){
 		wtbl_free(MiTab);
 		b_message_string(kXMapMiTabImportInvalidGridErrorID,msg,getbundle(),1);
 		b_message_string(kXMapMiTabImportExplCreateErrorID,exp,getbundle(),1);
@@ -344,8 +290,8 @@ _te_("no type for kind "+status);
 	}
 	
 ivx_rect			bnds={-(__BOUNDS_MAX__-1),-(__BOUNDS_MAX__-1),(__BOUNDS_MAX__-1),(__BOUNDS_MAX__-1)};
-bArray*				a[5];//(sizeof(fieldindex));
-	for(int i=0;i<5;i++){
+bArray*				a[4];//(sizeof(fieldindex));
+	for(int i=0;i<4;i++){
 		if(tp[i]){
 			tp[i]->iterator()->set_bounds(&bnds);
 			a[i]=new bArray(sizeof(fieldindex));
@@ -418,7 +364,7 @@ _te_("setValue failure for "+i+";"+j);
 	}
 	_gapp->layersMgr()->SetObjInvalidation(true);
 
-	for(int j=0;j<5;j++){
+	for(int j=0;j<4;j++){
 		if(tp[j]==NULL){
 			continue;
 		}
@@ -457,7 +403,7 @@ char				exp[__MESSAGE_STRING_LENGTH_MAX__];
 	b_message_string(kXMapMiTabImportFieldCreateMessageID,msg,getbundle(),1);
 bProgressWait wt("",msg,true,false,MiTab->CountFields()*5);
 
-	for(int j=0;j<5;j++){
+	for(int j=0;j<4;j++){
 		if(tp[j]==NULL){
 			continue;
 		}

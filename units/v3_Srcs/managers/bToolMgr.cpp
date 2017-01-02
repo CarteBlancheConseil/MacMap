@@ -113,24 +113,12 @@ bGenericTool*	ext;
 }
 
 // ---------------------------------------------------------------------------
-// Certains tools peuvent gérer une trace, même désactivé
+//
 // -----------
 bool bToolMgr::event(void* nsevt){
 	if(_closed){
 		return(false);
 	}
-//	if((GetEventClass(evt)==kEventClassWindow)		&&
-//	   (GetEventKind(evt)==kEventWindowDrawContent)	){
-//bGenericTool*	ext;
-//		for(int i=1;i<=count();i++){
-//			ext=(bGenericTool*)(void*)get(i);
-//			if(ext){
-//				(void)ext->event(evt);
-//			}
-//		}
-//		return(true);
-//	}A traiter
-	
 	return(bStdExtMgr::event(nsevt));
 }
 

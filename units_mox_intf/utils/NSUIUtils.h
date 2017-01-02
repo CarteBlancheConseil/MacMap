@@ -66,7 +66,11 @@ void		NSPopupButtonPopulateWithFields				(	NSPopUpButton* c,
                                                             bGenericType* tp,
 															long start,				// First field index
 															long current);			// Checked field in [1..n]
-void		NSPopupButtonPopulateWithTypes				(	NSPopUpButton* c, 
+void		NSPopupButtonPopulateWithEditableFields		(	NSPopUpButton* c,
+                                                            bGenericType* tp,
+                                                            long start,				// First field index
+                                                            long current);			// Checked field in [1..n]
+void		NSPopupButtonPopulateWithTypes				(	NSPopUpButton* c,
 															bGenericMacMapApp* gapp,
 															long kind,				// Type kind
 															long current);			// Checked type in [1..n]

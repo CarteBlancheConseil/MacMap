@@ -244,8 +244,10 @@ _te_("shape table err "+status);
         prm->typErr++;
 		return(false);
 	}
-bGenericType*		tp;
-	switch(status){
+    
+bGenericType*	tp=GISIOImport_getImportType(_gapp,status,_prm);
+
+/*    switch(status){
 		case kBaseKindPoint:
 			tp=_gapp->typesMgr()->get(_gapp->typesMgr()->index(_prm.grid.t_point));
 			break;
@@ -266,7 +268,7 @@ bGenericType*		tp;
 			break;
 	}
 
-/*new*/	
+//new
 	if((tp==NULL)&&(prm->ctin)){
 		tp=_gapp->typesMgr()->get(_gapp->typesMgr()->index(prm->name));
 		if(tp==NULL){
@@ -281,7 +283,8 @@ _te_("_gapp->typesMgr()->add failed");
 			}
 		}
 	}
-/*new*/	
+//new
+	*/
 	
 	if(tp==NULL){
 		wtbl_free(shp);
