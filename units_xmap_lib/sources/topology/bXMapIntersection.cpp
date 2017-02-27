@@ -99,7 +99,7 @@ bool bXMapIntersection::test(void* prm){
 	}
 bGenericType*	tp;
 int k=-1;
-	for(int i=1;i<=_gapp->typesMgr()->count();i++){
+	for(long i=1;i<=_gapp->typesMgr()->count();i++){
 		tp=_gapp->typesMgr()->get(i);
 		if(tp->nb_sel()>0){
 			if(	(tp->kind()==kBaseKindPoint)	||
@@ -149,10 +149,7 @@ bGenericType*	tp=(bGenericType*)CurType(_gapp);
 	if(!tp){
 		return;
 	}
-bEventLog	log(_gapp,
-				getbundle(),
-				kXMapIntersectionMessageID,
-				GetSignature(this));
+bEventLog	log(_gapp,this);
 	intersect(tp);
 	log.close();
 }

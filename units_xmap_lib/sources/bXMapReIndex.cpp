@@ -52,6 +52,14 @@ bGenericXMLBaseElement* bXMapReIndex::create(bGenericXMLBaseElement* elt){
 }
 
 // ---------------------------------------------------------------------------
+//
+// ------------
+void bXMapReIndex::open(int* flags){
+    bStdXMap::open(flags);
+    process(kExtProcessCallFromIntf,NULL);
+}
+
+// ---------------------------------------------------------------------------
 // 
 // ------------
 bool bXMapReIndex::process(int msg, void* prm){

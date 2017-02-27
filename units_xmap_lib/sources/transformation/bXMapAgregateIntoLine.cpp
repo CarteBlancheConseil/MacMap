@@ -125,10 +125,7 @@ bGenericType* tp=(bGenericType*)CurType(_gapp);
 		return;
 	}
 	
-bEventLog	log(_gapp,
-				getbundle(),
-				kXMapAgregateIntoLineMessageID,
-				GetSignature(this));
+bEventLog	log(_gapp,this);
 	make(tp);
 	log.close();
 }

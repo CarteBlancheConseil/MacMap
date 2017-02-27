@@ -717,7 +717,7 @@ bXMapTIFFPublisher::~bXMapTIFFPublisher(){
 // Constructeur
 // ------------
 bGenericXMLBaseElement* bXMapTIFFPublisher::create(bGenericXMLBaseElement* elt){
-	return(new bXMapJPGPublisher(elt,_gapp,elt->getbundle()));
+	return(new bXMapTIFFPublisher(elt,_gapp,elt->getbundle()));
 }
 
 #pragma mark ->PNG
@@ -740,6 +740,6 @@ bXMapPNGPublisher::~bXMapPNGPublisher(){
 // Constructeur
 // ------------
 bGenericXMLBaseElement* bXMapPNGPublisher::create(bGenericXMLBaseElement* elt){
-	return(new bXMapJPGPublisher(elt,_gapp,elt->getbundle()));
+	return(new bXMapPNGPublisher(elt,_gapp,elt->getbundle()));
 }
 

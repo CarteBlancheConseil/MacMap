@@ -93,7 +93,10 @@ public:
 	virtual bool get_use_drag				(	);
 	
 	virtual bool get_on_drag				(	);
-	virtual bool get_on_edit				(	);
+    
+    virtual bool get_on_edit				(	){return _on_edit;};
+    virtual void set_on_edit				(	bool on_edit){_on_edit=on_edit;};
+    
 	virtual bool get_active					(	);
 
 	virtual void set_mnu_cmd				(	int cmd);

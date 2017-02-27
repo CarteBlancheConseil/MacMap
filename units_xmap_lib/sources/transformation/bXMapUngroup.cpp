@@ -114,10 +114,7 @@ bool bXMapUngroup::edit(void* prm){
 // 
 // ------------
 bool bXMapUngroup::ungroup(){
-bEventLog	log(_gapp,
-				getbundle(),
-				kXMapUngroupMessageID,
-				GetSignature(this));
+bEventLog	log(_gapp,this);
 	_gapp->layersMgr()->SetObjInvalidation(false);
 	ungroup(true,false);
 	_gapp->layersMgr()->SetObjInvalidation(true);
@@ -160,13 +157,23 @@ bool bXMapUngroup::ungroup(bGenericGeoElement* o, bool silent){
 bGenericGeoElement* no;
 ivertices*			vxs;
 ivertices*			nvxs;
-i2dvertex*			part;
-int					n;
+//i2dvertex*			part;
+//int					n;
 bGenericType*		tp;
 
 	o->getVertices(&vxs);
-	for(int i=0;i<ivs_n_parts(vxs);i++){
-		part=ivs2_part(vxs,i,&n);
+    tp=_gapp->typesMgr()->get(o->getType());
+	for(long i=0;i<ivs_n_parts(vxs);i++){
+        nvxs=nth_ivs(vxs,i);
+        if(nvxs!=NULL){
+            if(tp->clone_object(o,&no)&&(no!=NULL)){
+                o->setVertices(nvxs);
+                o=no;
+            }
+            ivs_free(nvxs);
+        }
+        
+		/*part=ivs2_part(vxs,i,&n);
 		if(n>0){
 			tp=_gapp->typesMgr()->get(o->getType());
 			tp->clone_object(o,&no);
@@ -175,7 +182,7 @@ bGenericType*		tp;
 			no->setVertices(nvxs);
 			ivs_free(nvxs);
 			o=no;
-		}
+		}*/
 	}
 	return(true);
 }

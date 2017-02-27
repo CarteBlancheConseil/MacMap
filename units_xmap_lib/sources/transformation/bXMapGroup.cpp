@@ -115,10 +115,7 @@ bool bXMapGroup::edit(void* prm){
 // 
 // ------------
 bool bXMapGroup::group(){
-bEventLog	log(_gapp,
-				getbundle(),
-				kXMapGroupMessageID,
-				GetSignature(this));
+bEventLog	log(_gapp,this);
 	group(true,false);
 	log.close();
 	return(true);

@@ -350,6 +350,8 @@ bGenericStyle*	stl;
 		if((stl->gettype()==tp)&&(strcmp(stlname,stl->getname())==0)){
 			_gapp->layersAccessCtx()->set_current(i);
 			_gapp->layersAccessCtx()->setvisible(false);
+            
+            _gapp->layersMgr()->StopDraw();
 		}
 	}
 	
@@ -409,6 +411,8 @@ bGenericStyle*	stl;
 		if((stl->gettype()==tp)&&(strcmp(stlname,stl->getname())==0)){
 			_gapp->layersAccessCtx()->set_current(i);
 			_gapp->layersAccessCtx()->setvisible(true);
+            
+            _gapp->layersMgr()->StopDraw();
 		}
 	}
 	

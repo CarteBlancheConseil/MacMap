@@ -1,6 +1,18 @@
 ---------------------------------------------------------------------------------------------------------------------------
 VERSIONS EN COURS
 ---------------------------------------------------------------------------------------------------------------------------
+v3.8.3
+o Correction bug XMapViewMgr (dupliquer)
+
+v3.8.2
+o Importer des données : ré-ajout de "Tout ignorer" car opas pris en compte dans v3.8.1
+o Correction bug Intersection en limite commune : agrégation des lines en polylines
+o Correction bugs Format d’export : Problèmes dans la gestion des champs dans la liste de droite, et impossibilité de fixer le format d’export par script.
+o Correction bug Fiche : décalage vers la droite des champs existants lors de la création de nouveaux champs.
+
+v3.8.1
+o Importer des données : ajout de "Tout ignorer"
+
 v3.8.0.3
 o Corrections bugs création de document (résolution non prise en compte et crash à la fermeture de la fenêtre NAV)
 o Corrections bug Jonction dans la direction

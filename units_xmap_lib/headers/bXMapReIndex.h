@@ -39,22 +39,23 @@
 //----------------------------------------------------------------------------
 
 class bXMapReIndex : public bStdXMap{
-	public:		
-		bXMapReIndex							(	bGenericXMLBaseElement* elt, 
-													bGenericMacMapApp* gapp, 
-													CFBundleRef bndl);
-		virtual ~bXMapReIndex					(	);
-		virtual bGenericXMLBaseElement* create	(	bGenericXMLBaseElement* elt);
+public:
+    bXMapReIndex							(	bGenericXMLBaseElement* elt, 
+                                                bGenericMacMapApp* gapp, 
+                                                CFBundleRef bndl);
+    virtual ~bXMapReIndex					(	);
+    virtual bGenericXMLBaseElement* create	(	bGenericXMLBaseElement* elt);
 		
-		virtual bool process					(	int msg, 
-													void* prm);
-		virtual bool edit						(	void* prm);
-		
-	protected:
-		static int get_rect						(	void *o, 
-													void *prm);
+    virtual void open						(	int* flags);
+    virtual bool process					(	int msg,
+                                                void* prm);
+    virtual bool edit						(	void* prm);
+    
+protected:
+    static int get_rect						(	void *o, 
+                                                void *prm);
 
-	private:
+private:
 };
 
 //----------------------------------------------------------------------------

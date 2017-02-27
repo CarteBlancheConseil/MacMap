@@ -25,11 +25,13 @@
 // 
 //----------------------------------------------------------------------------
 // 15/06/2011 creation.
+// 31/01/2017 tool modal window.
 //----------------------------------------------------------------------------
 
 #import "bStdNSAppModalWindowController.h"
 #import "bStdNSAppModalCocoaStuff.h" 
 #import <MacMapSuite/bTrace.h>
+#import <mox_intf/ext_utils.h>
 
 // ---------------------------------------------------------------------------
 // 
@@ -112,5 +114,29 @@ _bTrace_("[bStdNSAppModalWindowController runAppModal]",true);
 
 // ---------------------------------------------------------------------------
 // 
+// ------------
+@end
+
+// ---------------------------------------------------------------------------
+//
+// ------------
+@implementation bStdNSAppToolModalWindowController
+
+// ---------------------------------------------------------------------------
+//
+// ------------
+-(id)initWithExt:(bStdExt*)ext{
+_bTrace_("[bStdNSAppToolModalWindowController initWithExt]",true);
+    self=[super initWithExt:ext];
+    if(self){
+char	name[256];
+        GetName(_ext,name);
+        [[self window] setTitle:[NSString stringWithCString:name encoding:NSMacOSRomanStringEncoding]];
+    }
+    return self;
+}
+
+// ---------------------------------------------------------------------------
+//
 // ------------
 @end
