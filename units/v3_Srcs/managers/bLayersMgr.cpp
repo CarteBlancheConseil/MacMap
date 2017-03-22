@@ -44,6 +44,7 @@
 #include <mox_intf/ext_utils.h>
 #include <mox_intf/Carb_Utils.h>
 #include <mox_intf/bStdWait.h>
+#include <mox_intf/endian.h>
 #include <MacMapSuite/bTrace.h>
 #include <MacMapSuite/C_Utils.h>
 
@@ -166,7 +167,19 @@ bGenericGraphicContext*	ctx;
 		}
 	}
 UInt32	sgn=_ctx->signature();
-_lm_("_ctx set to "+&sgn);
+
+char    csgn[8];
+#ifdef __LITTLE_ENDIAN__
+    LBSwapWord(&sgn,sizeof(UInt32));
+#endif
+    strncpy(csgn,(char*)&sgn,4);
+    csgn[4]=0;
+#ifdef __LITTLE_ENDIAN__
+    LBSwapWord(&sgn,sizeof(UInt32));
+#endif
+
+_lm_("_ctx set to "+csgn);
+    
 	if(data){
 		switch(sgn){
 			case kPDFGraphicContext:

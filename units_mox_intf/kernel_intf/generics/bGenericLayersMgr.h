@@ -91,6 +91,9 @@ public:
     virtual bGenericGraphicContext*
         CurrentGraphicContext               (   )=0;
 
+    virtual bool breaked					(	)=0;
+    virtual bool drawing					(	)=0;
+
 };
 
 //----------------------------------------------------------------------------

@@ -209,6 +209,7 @@ char                    unit[256];
 bXMapsRasterPublisher*  ext=(bXMapsRasterPublisher*)_ext;
 raster_export_prm       prm;
     
+    ext->get_param(&prm);
     prm.nh=[_htitxt intValue];
     prm.nv=[_vtitxt intValue];
     prm.mrg=[_mrgtxt doubleValue];
@@ -364,6 +365,7 @@ bool bXMapsRasterPublisher::process(int msg, void* prm){
 // ------------
 bool bXMapsRasterPublisher::edit(void* prm){
 _bTrace_("bXMapsRasterPublisher::edit",true);
+    _tm_("codec:"+(void*)&_prm.codec);
 char    ext[64];
     switch(_prm.codec){
         case kQTFileTypeJPEG:

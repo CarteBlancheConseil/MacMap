@@ -41,50 +41,50 @@
 
 class bLayersMgr : public bGenericLayersMgr{
 public:
-	bLayersMgr 								(	);
-	virtual ~bLayersMgr  					(	);
+	bLayersMgr                      (	);
+	virtual ~bLayersMgr             (	);
 	
-	virtual int load						(	);
-	virtual int unload						(	);
-	virtual int unload						(	bool save);
+	virtual int load                (	);
+	virtual int unload              (	);
+	virtual int unload              (	bool save);
 
-	virtual void AddContext					(	bGenericGraphicContext* ctx);
-	virtual void SwitchContext				(	int symbolicName,
-												void* data);
+	virtual void AddContext         (	bGenericGraphicContext* ctx);
+	virtual void SwitchContext      (	int symbolicName,
+                                        void* data);
 
-	virtual void DrawLayers					(	void* wd,
-												ivx_rect* bounds);
+	virtual void DrawLayers         (	void* wd,
+                                        ivx_rect* bounds);
 
-	virtual void StopDraw					(	);
-	virtual void UpdateLayers				(	);//av
+	virtual void StopDraw           (	);
+	virtual void UpdateLayers       (	);//av
 		
-	virtual void DrawSelection				(	CGContextRef ctx,
-												bGenericGeoElement* o);
-	virtual void DrawContrastes				(	CGContextRef ctx,
-												bGenericGeoElement* o);
+	virtual void DrawSelection      (	CGContextRef ctx,
+                                        bGenericGeoElement* o);
+	virtual void DrawContrastes     (	CGContextRef ctx,
+                                        bGenericGeoElement* o);
 	
-	virtual void InvalElement				(	bGenericGeoElement* o);
+	virtual void InvalElement       (	bGenericGeoElement* o);
 
-	virtual void ViewChanged				(	);
-	virtual void SetObjInvalidation			(	bool b);
-	virtual void BackgroundChanged			(	);
+	virtual void ViewChanged        (	);
+	virtual void SetObjInvalidation (	bool b);
+	virtual void BackgroundChanged  (	);
     virtual bGenericGraphicContext*
-        CurrentGraphicContext               (   ){return _ctx;};
+        CurrentGraphicContext       (   ){return _ctx;};
 
-    virtual bool breaked					(	){return !_drawing;};
-    virtual bool drawing					(	){return _drawing;};
+    virtual bool breaked            (	){return !_drawing;};
+    virtual bool drawing            (	){return _drawing;};
 
 protected:
-	virtual void GetBackground				(	float* color, 
-												int* spc);
+	virtual void GetBackground      (	float* color,
+                                        int* spc);
 
-	bGenericGraphicContext*		_ctx;
-	bool						_breaked;
-	bool						_drawing;
-	bArray						_ctxs;	
+	bGenericGraphicContext* _ctx;
+	bool                    _breaked;
+	bool                    _drawing;
+	bArray                  _ctxs;
 	
-	bGraphicParams*				_selg;
-	bGraphicParams*				_cntg;
+	bGraphicParams*         _selg;
+	bGraphicParams*         _cntg;
 	
 private:	
 

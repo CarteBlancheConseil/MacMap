@@ -30,6 +30,7 @@
 #include "bXMapsScripting.h"
 #include <mox_intf/ext_utils.h>
 #include <std_ext/bStdUserMacro.h>
+#include <MacMapSuite/bTrace.h>
 
 #pragma mark -> bXMapScriptingDictionary
 // ---------------------------------------------------------------------------
@@ -44,7 +45,8 @@ bXMapScriptingDictionary::bXMapScriptingDictionary(bGenericXMLBaseElement* elt, 
 	_child[3]=new bXMapCloseLog(this,gapp,bndl);
 	_child[4]=new bXMapSetLog(this,gapp,bndl);
 	_child[5]=new bXMapHideStyle(this,gapp,bndl);
-	_child[6]=new bXMapShowStyle(this,gapp,bndl);
+    _child[6]=new bXMapShowStyle(this,gapp,bndl);
+    _child[7]=new bXMapLockScreen(this,gapp,bndl);
 	for(int i=0;i<kNbScriptDictionaryChilCount;i++){
 		gapp->classMgr()->AddXMLClass(_child[i]);
 	}	
@@ -115,12 +117,13 @@ bool bXMapExecMacro::process(int msg, void* prm){
 char					name[_values_length_max_];
 bGenericXMLBaseElement*	elt;
 	elt=getelement(1);
-	if(!elt){
-		return(false);
+	if(elt){
+        elt->getvalue(name);
 	}
-	elt->getvalue(name);
-	exec(name);
-	return(true);
+    else{
+        getvalue(name);
+    }
+    return exec(name);
 }
 
 // ---------------------------------------------------------------------------
@@ -133,14 +136,16 @@ bool bXMapExecMacro::test(void* prm){
 // ---------------------------------------------------------------------------
 // 
 // ------------
-void bXMapExecMacro::exec(char* name){
+bool bXMapExecMacro::exec(char* name){
 int idx=RecoverMacro(_gapp,name);
 	if(idx){
 bStdUserMacro*	ext=(bStdUserMacro*)(void*)_gapp->macroMgr()->get(idx);
 		if(ext){
 			ext->process(kExtProcessCallFromIntf,NULL);
+            return true;
 		}
 	}
+    return false;
 }
 
 // ---------------------------------------------------------------------------
@@ -151,7 +156,7 @@ bStdUserMacro*	ext=(bStdUserMacro*)(void*)_gapp->macroMgr()->get(idx);
 // Constructeur
 // ------------
 bXMapRefreshScreen	::bXMapRefreshScreen(bGenericXMLBaseElement* elt, bGenericMacMapApp* gapp, CFBundleRef bndl) 
-				:bStdXMap(elt,gapp,bndl){
+                    :bStdXMap(elt,gapp,bndl){
 	setclassname("refreshscreen");
 }
 
@@ -212,6 +217,9 @@ char					mess[_values_length_max_]="script";
 	if(elt){
 		elt->getvalue(mess);
 	}
+    else{
+        getvalue(mess);
+    }
 	_gapp->eventMgr()->init_log(_kNULLSign_,mess);
 	return(true);
 }
@@ -283,11 +291,14 @@ bool bXMapSetLog::process(int msg, void* prm){
 	}	
 char					val[_values_length_max_];
 bGenericXMLBaseElement*	elt;
-	elt=getelement(1);
-	if(!elt){
-		return(false);
-	}
-	elt->getvalue(val);
+    
+    elt=getelement(1);
+    if(!elt){
+        getvalue(val);
+    }
+    else{
+        elt->getvalue(val);
+    }
 	if(atoi(val)){
 		_gapp->eventMgr()->enable();
 	}
@@ -305,7 +316,7 @@ bGenericXMLBaseElement*	elt;
 // Constructeur
 // ------------
 bXMapHideStyle	::bXMapHideStyle(bGenericXMLBaseElement* elt, bGenericMacMapApp* gapp, CFBundleRef bndl) 
-	:bStdXMap(elt,gapp,bndl){
+                :bStdXMap(elt,gapp,bndl){
 	setclassname("hidestyle");
 }
 
@@ -350,11 +361,9 @@ bGenericStyle*	stl;
 		if((stl->gettype()==tp)&&(strcmp(stlname,stl->getname())==0)){
 			_gapp->layersAccessCtx()->set_current(i);
 			_gapp->layersAccessCtx()->setvisible(false);
-            
-            _gapp->layersMgr()->StopDraw();
 		}
 	}
-	
+
 	return(true);
 }
 
@@ -366,7 +375,7 @@ bGenericStyle*	stl;
 // Constructeur
 // ------------
 bXMapShowStyle	::bXMapShowStyle(bGenericXMLBaseElement* elt, bGenericMacMapApp* gapp, CFBundleRef bndl) 
-:bStdXMap(elt,gapp,bndl){
+                :bStdXMap(elt,gapp,bndl){
 	setclassname("showstyle");
 }
 
@@ -387,7 +396,7 @@ bGenericXMLBaseElement* bXMapShowStyle::create(bGenericXMLBaseElement* elt){
 // 
 // ------------
 bool bXMapShowStyle::process(int msg, void* prm){
-	if(msg!=kExtProcessCallWithXMLTree){
+    if(msg!=kExtProcessCallWithXMLTree){
 		return(false);
 	}	
 char					tpname[_values_length_max_];
@@ -403,7 +412,7 @@ bGenericXMLBaseElement*	elt;
 		return(false);
 	}
 	elt->getvalue(stlname);
-	
+    
 bGenericType*	tp=_gapp->typesMgr()->get(_gapp->typesMgr()->index(tpname));
 bGenericStyle*	stl;
 	for(long i=1;i<=_gapp->layersAccessCtx()->count();i++){
@@ -411,11 +420,56 @@ bGenericStyle*	stl;
 		if((stl->gettype()==tp)&&(strcmp(stlname,stl->getname())==0)){
 			_gapp->layersAccessCtx()->set_current(i);
 			_gapp->layersAccessCtx()->setvisible(true);
-            
-            _gapp->layersMgr()->StopDraw();
 		}
 	}
-	
+
 	return(true);
+}
+
+// ---------------------------------------------------------------------------
+//
+// ------------
+#pragma mark -> bXMapLockScreen
+// ---------------------------------------------------------------------------
+// Constructeur
+// ------------
+bXMapLockScreen	::bXMapLockScreen(bGenericXMLBaseElement* elt, bGenericMacMapApp* gapp, CFBundleRef bndl)
+                :bStdXMap(elt,gapp,bndl){
+    setclassname("lockscreen");
+}
+
+// ---------------------------------------------------------------------------
+// Destructeur
+// -----------
+bXMapLockScreen::~bXMapLockScreen(){
+}
+
+// ---------------------------------------------------------------------------
+// Constructeur
+// ------------
+bGenericXMLBaseElement* bXMapLockScreen::create(bGenericXMLBaseElement* elt){
+    return(new bXMapLockScreen(elt,_gapp,elt->getbundle()));
+}
+
+// ---------------------------------------------------------------------------
+//
+// ------------
+bool bXMapLockScreen::process(int msg, void* prm){
+    if(msg!=kExtProcessCallWithXMLTree){
+        return(false);
+    }
+char                    val[_values_length_max_];
+bGenericXMLBaseElement*	elt;
+    elt=getelement(1);
+    if(!elt){
+        getvalue(val);
+    }
+    else{
+        elt->getvalue(val);
+    }
+    
+    _gapp->layersMgr()->SetObjInvalidation(!atoi(val));
+    
+    return(true);
 }
 

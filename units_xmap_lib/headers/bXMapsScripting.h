@@ -38,7 +38,7 @@
 
 //----------------------------------------------------------------------------
 
-#define kNbScriptDictionaryChilCount	7
+#define kNbScriptDictionaryChilCount	8
 
 //----------------------------------------------------------------------------
 
@@ -74,7 +74,7 @@ public:
 	virtual bool test						(	void* prm);
 	
 protected:
-	virtual void exec						(	char* name);
+	virtual bool exec						(	char* name);
 	
 private:
 };
@@ -184,6 +184,24 @@ public:
 	
 protected:
 	
+private:
+};
+
+//----------------------------------------------------------------------------
+
+class bXMapLockScreen : public bStdXMap{
+public:
+    bXMapLockScreen							(	bGenericXMLBaseElement* elt,
+                                                bGenericMacMapApp* gapp,
+                                                CFBundleRef bndl);
+    virtual ~bXMapLockScreen                (	);
+    virtual bGenericXMLBaseElement* create	(	bGenericXMLBaseElement* elt);
+    
+    virtual bool process					(	int msg,
+                                                void* prm);
+    
+protected:
+    
 private:
 };
 

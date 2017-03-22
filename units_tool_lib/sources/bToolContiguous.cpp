@@ -160,7 +160,7 @@ ControlID	cid={kContiguousEditSign,0};
 }
 
 // ---------------------------------------------------------------------------
-// 
+// attention : crash quand la base ne contient pas de type linéaire
 // -----------
 void bToolContiguous::edit_init(WindowRef wd){
 ControlRef		c;

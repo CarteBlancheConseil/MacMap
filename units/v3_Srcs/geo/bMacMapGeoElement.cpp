@@ -176,7 +176,7 @@ _te_("bad _vxs for "+_offset+" (unknown)");
     if((*status)==0){
         (*status)=ivs_integrity(typ->kind(),_vxs);
         if((*status)){
-_tw_("vxs_integrity returns "+(*status));
+_tw_("ivs_integrity returns "+(*status));
         }
         (*status)=0;
     }

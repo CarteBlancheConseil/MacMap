@@ -35,6 +35,7 @@
 #include "bStyleRun.h"
 #include "bClassesMgr.h"
 #include "bMacMapApp.h"
+#include "bMacMapGeoElement.h"
 #include "bLayersMgr.h"
 
 #include <mox_intf/bGenericXMLRenderingElement.h>
@@ -437,18 +438,16 @@ void bStyle::setname(const char *name){
 // ------------
 void bStyle::setvisible(bool vis){
 	_vis=vis;
-	_MMAPP_->mapIntf()->inval();
+    if(bMacMapGeoElement::get_inval()){
+        _MMAPP_->mapIntf()->inval();
+    }
 }
 
 // ---------------------------------------------------------------------------
 // 
 // ------------
 void bStyle::setselectable(bool sel){
-//	layersmgr->DrawSelection(NULL);
-//	layersmgr->DrawContrastes(NULL);
 	_sel=sel;
-//	layersmgr->DrawSelection(NULL);
-//	layersmgr->DrawContrastes(NULL);
 }
 
 // ---------------------------------------------------------------------------
