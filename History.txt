@@ -1,8 +1,11 @@
 ---------------------------------------------------------------------------------------------------------------------------
 VERSIONS EN COURS
 ---------------------------------------------------------------------------------------------------------------------------
+v3.8.4
+
 v3.8.3
 o Correction bug XMapViewMgr (dupliquer)
+o Correction bug Pubications raster (script et options)
 
 v3.8.2
 o Importer des données : ré-ajout de "Tout ignorer" car opas pris en compte dans v3.8.1

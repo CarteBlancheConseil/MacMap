@@ -65,7 +65,9 @@ public:
 			
 	virtual void open						(	int* flags);
 	virtual void close						(	);
+/*> A supprimer */
 	virtual bool event						(	EventRef evt);//CC
+/*< A supprimer */
 	virtual bool nsevent					(	void* nsevt);
 	virtual void idle						(	void* prm);
 	virtual bool process					(	int msg, 
@@ -79,7 +81,6 @@ public:
 
 	
 	virtual bool edit						(	void* prm);
-//	virtual void pop						(	const Rect* r);//CC
 	virtual void pop						(	cocoaMenuPrm prm);
 	virtual void clic						(	i2dvertex loc, 
 												int count);
@@ -175,9 +176,11 @@ public:
 	virtual void track_join					(	);
 	virtual void action						(	int count);
 
+/*> A supprimer */
 	virtual bool edit_event					(	EventRef evt,		//CC
 												WindowRef wd);		//CC
 	virtual void edit_init					(	WindowRef wd);		//CC
+/*< A supprimer */
 	
 	virtual bGenericXMLBaseElement* load	(	);
 	virtual void save						(	);
@@ -206,21 +209,23 @@ public:
 	virtual void clearTempPathContext		(	bool utrc);
 	virtual void validTempPathContext		(	);
 	virtual void set_use_trace				(	char val){_use_trace=val;};
-    virtual void setCursorLock				(	bool val){_curs_lock=val;
-                                                            /*_bTrace_("bStdTool::setCursorLock",false);
-                                                            _tm_(val);*/
-                                                            };
+    virtual void setCursorLock				(	bool val){_curs_lock=val;};
 
 protected:
 
+/*> A supprimer */
 	pascal static OSStatus edit_evt_hdlr	(	EventHandlerCallRef hdlr, //CC
 												EventRef evt, 
 												void *up);
+/*< A supprimer */
+
 private:
 	CursorRef			_ccurs;		
 	CursorRef			_curs;
 
+/*> A supprimer */
 	WindowRef			_edit_wd;	//CC
+/*< A supprimer */
 	
 	int					_clic_count;
 	

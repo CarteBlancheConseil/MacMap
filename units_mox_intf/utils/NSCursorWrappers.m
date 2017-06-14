@@ -57,14 +57,14 @@ CGContextRef	imageContext=(CGContextRef) [[NSGraphicsContext currentContext] gra
 CursorRef CreateCocoaCursor(CGImageRef cgImageRef, 
 							float hotSpotX, 
 							float hotSpotY){
-static BOOL	firstTime=YES;
+//static BOOL	firstTime=YES;
 	
-	if(firstTime){
+//	if(firstTime){
 // Must first call [[[NSWindow alloc] init] release] to get the NSWindow 
 // machinery set up so that NSCursor can use a window to cache the cursor image
-		[[[NSWindow alloc] init] release];
-		firstTime=NO;
-	}
+//		[[[NSWindow alloc] init] release];
+//		firstTime=NO;
+//	}
 	
 NSImage		*nsImage=CreateNSImageFromCGImage(cgImageRef);
 NSCursor	*cursor=[[NSCursor alloc] initWithImage:nsImage hotSpot:NSMakePoint(hotSpotX,hotSpotY)];

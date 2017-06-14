@@ -1,10 +1,10 @@
 //----------------------------------------------------------------------------
-// File : bMacMapEvent.h
+// File : bToolNSGeomWithJoinWindowController.h
 // Project : MacMap
-// Purpose : Header file : MacMap event management class
+// Purpose : Header file : Tool Create window controller
 // Author : Benoit Ogier, benoit.ogier@macmap.com
 //
-// Copyright (C) 1997-2015 Carte Blanche Conseil.
+// Copyright (C) 2017 Carte Blanche Conseil.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -22,62 +22,29 @@
 // See the LICENSE.txt file for more information.
 //
 //----------------------------------------------------------------------------
-// 
+//
 //----------------------------------------------------------------------------
-// 17/08/2005 creation.
-//----------------------------------------------------------------------------
-
-#ifndef __bMacMapEvent__
-#define __bMacMapEvent__
-
+// 28/03/2017 creation.
 //----------------------------------------------------------------------------
 
-#include <mox_intf/bGenericEvent.h>
-#include <mox_intf/bGenericGeoElement.h>
-#include <mox_intf/bGenericType.h>
-#include <MacMapSuite/bArray.h>
+#import <std_ext/bStdNSAppModalWindowController.h>
 
 //----------------------------------------------------------------------------
+@interface bToolNSGeomWithJoinWindowController : bStdNSAppToolModalWindowController{
+    IBOutlet NSButton*      _nea_chk;
+    IBOutlet NSTextField*   _nea_txt;
+    IBOutlet NSButton*      _dir_chk;
+    IBOutlet NSTextField*   _dir_txt;
+    IBOutlet NSButton*      _ang_chk;
+    IBOutlet NSTextField*   _ang_txt;
+    IBOutlet NSButton*      _ext_chk;
+    IBOutlet NSTextField*   _ext_txt;
 
-class bMacMapEvent : public bGenericEvent{
-public:
-    bMacMapEvent				(	char* msg,
-                                    int crt, // BigEndian coded
-                                    int knd,
-                                    int act,
-                                    int esz);
-    virtual ~bMacMapEvent		(	);
-
-// ext intf
-    virtual int eid             (	){return (int)this;};
-    virtual int kind			(	);
-    virtual int action			(	);
-    virtual int creator			(	); // BigEndian coded
-    virtual char* message		(	);
-    
-    virtual bool is_undo		(	);
-    virtual bool is_redo		(	);
-
-    virtual bool add			(	void* elt);
-    virtual bool add			(	void* elt,
-                                    int prm);
-    virtual int find			(	void* elt);
-    
-    virtual void close			(	);
-
-    virtual bArray* elements	(	);
-        
-protected:
-    
-    bool		_closed;
-    bArray		_elts;
-    
-private:
-    int			_creator;
-    int			_kind;
-    int			_action;
-};
+    IBOutlet NSTableView*	_typ_viw;
+}
 
 //----------------------------------------------------------------------------
 
-#endif
+@end
+
+//----------------------------------------------------------------------------

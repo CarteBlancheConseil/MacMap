@@ -57,7 +57,7 @@ void bStdExt::close(){
 }
 
 // ---------------------------------------------------------------------------
-// 
+// A supprimer
 // -----------
 bool bStdExt::event(EventRef evt){
 	return(false);

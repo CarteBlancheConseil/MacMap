@@ -157,13 +157,13 @@ VectorData	dt;
 	dt.bounds.size.height=r.size.height;
 	
 ivx_rect			back;
-
+    
 	_gapp->mapIntf()->screenBounds(&back);
 	_gapp->locConverter()->reset(&vxr);
-	_gapp->layersMgr()->SwitchContext(_gc,&dt);
+    _gapp->layersMgr()->SwitchContext(_gc,&dt);
 	_gapp->layersMgr()->DrawLayers(NULL,&vxr);
 	_gapp->layersMgr()->SwitchContext(kCGGraphicContext,NULL);
-	_gapp->locConverter()->reset(&back);
+    _gapp->locConverter()->reset(&back);
 }
 
 // ---------------------------------------------------------------------------

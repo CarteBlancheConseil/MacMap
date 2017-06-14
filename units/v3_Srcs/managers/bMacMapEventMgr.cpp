@@ -35,6 +35,9 @@
 #include "bMacMapApp.h"
 #include <MacMapSuite/bTrace.h>
 
+
+#include "bMacMapModifiedGeoElement.h"
+
 // ---------------------------------------------------------------------------
 // Constructeur
 // ------------
@@ -65,21 +68,33 @@ void bMacMapEventMgr::enable(){
 // 
 // -----------
 void bMacMapEventMgr::disable(){
-	if((_enabled)&&(_evt)){
-		if(_evt){
-			delete _evt;
-		}
-		for(int i=1;i<=_tmp.count();i++){
-			_tmp.get(i,&_evt);
-			delete _evt;
-		}
-		_tmp.reset();
-		_evt=NULL;
-	}
-	_enabled=false;
-	_logged=false;
-	_sign=_kNULLSign_;
-	_msg[0]=0;
+_bTrace_("bMacMapEventMgr::disable",true);
+    if(_enabled){
+_tm_("enabled");
+        if(_evt){
+_tm_("delete current event");
+            delete _evt;
+        }
+_tm_("delete temp events array :"+_tmp.count());
+        for(long i=1;i<=_tmp.count();i++){
+            _tmp.get(i,&_evt);
+            delete _evt;
+        }
+        _tmp.reset();
+_tm_("delete events array :"+_evts.count());
+        for(long i=1;i<=_evts.count();i++){
+            _evts.get(i,&_evt);
+            delete _evt;
+        }
+        _evts.reset();
+        _evt=NULL;
+    }
+    
+    _evt=NULL;
+    _enabled=false;
+    _logged=false;
+    _sign=_kNULLSign_;
+    _msg[0]=0;
 }
 
 // ---------------------------------------------------------------------------
@@ -93,24 +108,20 @@ bool bMacMapEventMgr::state(){
 // 
 // -----------
 int bMacMapEventMgr::init_log(int creator, const char* msg){
-_bTrace_("bMacMapEventMgr::init_log",false);
+_bTrace_("bMacMapEventMgr::init_log",true);
 _tm_("logged by "+msg+" ("+(UInt32*)&creator+")");
 	if(!_enabled){
-//_tm_("event manager disabled");
+_tm_("event manager disabled");
 		return(-1);
 	}
 	if(_logged){
-//_te_("log \"%s\" in process, \"%s\" rejected",_msg,msg);
+_tm_("event manager already logged");
 		return(-2);
 	}
-	/*for(int i=1;i<=_evts.count();i++){
-		_evts.get(i,&_evt);
-		if(_evt){
-			delete _evt;
-		}
-//_tm_("%d",i);
-	}
-	_evts.reset();*/
+    
+// On ne reset l'existant qu'au close
+// => permet de conserver les évènements en cas de session avortée
+    
 	_logged=true;
 	_evt=NULL;
 	_sign=creator;
@@ -122,8 +133,7 @@ _tm_("logged by "+msg+" ("+(UInt32*)&creator+")");
 // 
 // -----------
 int bMacMapEventMgr::close_log(){
-_bTrace_("bMacMapEventMgr::close_log",false);
-_tm_("");
+_bTrace_("bMacMapEventMgr::close_log",true);
 	if(!_enabled){
 		return(-1);
 	}
@@ -135,15 +145,14 @@ _tm_("");
 	}
 	_logged=false;
 
+_tm_("reset "+_evts.count()+" events");
 bMacMapEvent*	evt;
-	for(int i=1;i<=_evts.count();i++){
+	for(long i=1;i<=_evts.count();i++){
 		_evts.get(i,&evt);
-		if(evt){
-			delete evt;
-		}
-//_tm_(i);
+        delete evt;
 	}
 	_evts.reset();
+    
 bool	b=_evts+_tmp;
 #pragma unused(b)
 	_tmp.reset();
@@ -151,7 +160,8 @@ bool	b=_evts+_tmp;
 	if(_evts.count()>0){
 		send();
 	}
-//	_logged=false;
+    
+_tm_("now "+_evts.count()+" events");
 	return(0);
 }
 
@@ -159,8 +169,7 @@ bool	b=_evts+_tmp;
 // 
 // -----------
 void bMacMapEventMgr::reset_log(){
-_bTrace_("bMacMapEventMgr::reset_log",false);
-_tm_("");
+_bTrace_("bMacMapEventMgr::reset_log",true);
 	if(!_enabled){
 		return;
 	}
@@ -172,7 +181,7 @@ _tm_("");
 		return;
 	}
 	std_close();
-	for(int i=1;i<=_tmp.count();i++){
+	for(long i=1;i<=_tmp.count();i++){
 		_tmp.get(i,&_evt);
 		delete _evt;
 	}
@@ -400,22 +409,14 @@ void bMacMapEventMgr::modify(bGenericGeoElement* o, int field){
 	if(!_logged){
 		return;
 	}
-	/*if((_evt)&&(_evt->kind()==kEventKindGeoElement)&&(_evt->action()==kEventActionCreate)){
-//		if(_evt->find(o)){
-// C'est un objet que l'on vient de créer,
-// pas la peine de générer un bloc supplémentaire			
-//			return;
-//		}
-	}
-	else */if((_evt)&&(!std_test(kEventKindGeoElement,kEventActionModify))){
+	if((_evt)&&(!std_test(kEventKindGeoElement,kEventActionModify))){
 //_tm_("closing event");
 		std_close();
 	}
 	if(!_evt){
-		_evt=new bObjectModifyEvent(_msg,_sign);
+        _evt=new bObjectModifyEvent(_msg,_sign);
 	}
-	_evt->add(&o,field);
-}
+	_evt->add(&o,field);}
 
 // ---------------------------------------------------------------------------
 // 
@@ -462,18 +463,16 @@ void bMacMapEventMgr::modify(bGenericExt* e){
 // -----------
 void bMacMapEventMgr::send(){
 EventRef	evt;
-//OSStatus	status;
 	
 // Création d'un EventRef MacMap
-	/*status=*/(void)CreateEvent(	kCFAllocatorDefault,
+	(void)CreateEvent(	kCFAllocatorDefault,
 						kEventClassMacMap,
 						kEventMacMapDataBase,
-						//TicksToEventTime(TickCount()),
                         GetCurrentEventTime(),
 						kEventAttributeUserEvent,
 						&evt);
 // Envoi de l'EventRef à l'appli
-	/*status=*/(void)SendEventToApplication(evt);
+	(void)SendEventToApplication(evt);
 	ReleaseEvent(evt);
 // Pour forcer la fenêtre carto à activer le mécanisme undo/redo
 	_MMAPP_->mapIntf()->registerAction();
@@ -500,414 +499,3 @@ void bMacMapEventMgr::std_close(){
 	_evt=NULL;
 }
 
-/*
-// ---------------------------------------------------------------------------
-// Constructeur
-// ------------
-bMacMapEventMgr	::bMacMapEventMgr()
-				:_evts(sizeof(bGenericEvent*))
-				,_tmp(sizeof(bGenericEvent*)){
-	_enabled=false;
-	_evt=NULL;
-	_sign=_kNULLSign_;
-	_msg[0]=0;
-}
-
-// ---------------------------------------------------------------------------
-// Destructeur
-// -----------
-bMacMapEventMgr::~bMacMapEventMgr(){
-}
-
-// ---------------------------------------------------------------------------
-// 
-// -----------
-void bMacMapEventMgr::enable(){
-	_enabled=true;
-}
-
-// ---------------------------------------------------------------------------
-// 
-// -----------
-void bMacMapEventMgr::disable(){
-	if((_enabled)&&(_evt)){
-		if(_evt){
-			delete _evt;
-		}
-		for(int i=1;i<=_evts.count();i++){
-			_evts.get(i,&_evt);
-			delete _evt;
-		}
-		_evts.reset();
-		_evt=NULL;
-		
-	}
-	_enabled=false;
-	_sign=_kNULLSign_;
-	_msg[0]=0;
-}
-
-// ---------------------------------------------------------------------------
-// 
-// -----------
-bool bMacMapEventMgr::state(){
-	return(_enabled);
-}
-
-// ---------------------------------------------------------------------------
-// 
-// -----------
-int bMacMapEventMgr::init_log(int creator, char* msg){
-_bTrace_("bMacMapEventMgr::init_log",false);
-_tm_("logged by %s (%.4s)",msg,&creator);
-	if(!_enabled){
-_tm_("event manager disabled");
-		return(-1);
-	}
-	if(_evt){
-_te_("log \"%s\" in process, \"%s\" rejected",_msg,msg);
-		return(-2);
-	}
-	for(int i=1;i<=_evts.count();i++){
-		_evts.get(i,&_evt);
-		if(_evt){
-			delete _evt;
-		}
-//_tm_("%d",i);
-	}
-	_evts.reset();
-	_evt=NULL;
-	_sign=creator;
-	sprintf(_msg,msg);
-	return(0);
-}
-
-// ---------------------------------------------------------------------------
-// 
-// -----------
-int bMacMapEventMgr::close_log(){
-_bTrace_("bMacMapEventMgr::close_log",false);
-_tm_("");
-	if(!_enabled){
-		return(-1);
-	}
-	if(_evt){
-		std_close();
-	}
-	send();
-	return(0);
-}
-
-// ---------------------------------------------------------------------------
-// 
-// -----------
-void bMacMapEventMgr::reset_log(){
-_bTrace_("bMacMapEventMgr::reset_log",false);
-_tm_("");
-	if(!_enabled){
-		return;
-	}
-	if(!_evt){
-		return;
-	}
-	std_close();
-	for(int i=1;i<=_evts.count();i++){
-		_evts.get(i,&_evt);
-		delete _evt;
-	}
-	_evt=NULL;
-}
-
-// ---------------------------------------------------------------------------
-// 
-// -----------
-bArray* bMacMapEventMgr::events(){
-	return(&_evts);
-}
-
-// ---------------------------------------------------------------------------
-// 
-// -----------
-void bMacMapEventMgr::create(bGenericType* t, int fid){
-_bTrace_("MacMapEventMgr::create(bGenericType* t, int fid)",false);
-	if(!_enabled){
-		return;
-	}
-field_info	fi;
-	if((_evt)&&(!std_test(kEventKindDataStruct,kEventActionCreate))){
-		std_close();
-	}
-	if((_evt)&&(_evt->elements()->count()>1)){
-		_evt->elements()->get(1,&fi);
-		if(fi.tp!=t){
-			std_close();
-		}
-	}
-	if(!_evt){
-		_evt=new bFieldCreateEvent(_msg,_sign);
-	}
-	_evt->add(&fi);
-}
-
-// ---------------------------------------------------------------------------
-// 
-// -----------
-void bMacMapEventMgr::create(bGenericGeoElement* o){
-_bTrace_("MacMapEventMgr::create(bGenericGeoElement* o)",false);
-	if(!_enabled){
-		return;
-	}
-	if((_evt)&&(!std_test(kEventKindGeoElement,kEventActionCreate))){
-		std_close();
-	}
-	if(!_evt){
-		_evt=new bObjectCreateEvent(_msg,_sign);
-	}
-	_evt->add(&o);
-}
-
-// ---------------------------------------------------------------------------
-// 
-// -----------
-void bMacMapEventMgr::create(bGenericType* t){
-_bTrace_("MacMapEventMgr::create(bGenericType* t)",false);
-	if(!_enabled){
-		return;
-	}
-	if((_evt)&&(!std_test(kEventKindTypeElement,kEventActionCreate))){
-		std_close();
-	}
-	if(!_evt){
-		_evt=new bTypeCreateEvent(_msg,_sign);
-	}
-	_evt->add(&t);
-}
-
-// ---------------------------------------------------------------------------
-// 
-// -----------
-void bMacMapEventMgr::create(bGenericExt* e){
-_bTrace_("MacMapEventMgr::create(bGenericExt* e)",false);
-	if(!_enabled){
-		return;
-	}
-	if((_evt)&&(!std_test(kEventKindUserExt,kEventActionCreate))){
-		std_close();
-	}
-	if(!_evt){
-		_evt=new bUserExtCreateEvent(_msg,_sign);
-	}
-	_evt->add(&e);
-}
-
-// ---------------------------------------------------------------------------
-// 
-// -----------
-void bMacMapEventMgr::kill(bGenericType* t, int fid){
-_bTrace_("MacMapEventMgr::kill(bGenericType* t, int fid)",false);
-	if(!_enabled){
-		return;
-	}
-field_info	fi;
-	if((_evt)&&(!std_test(kEventKindDataStruct,kEventActionDestroy))){
-		std_close();
-	}
-	if((_evt)&&(_evt->elements()->count()>1)){
-		_evt->elements()->get(1,&fi);
-		if(fi.tp!=t){
-			std_close();
-		}
-	}
-	if(!_evt){
-		_evt=new bFieldDeleteEvent(_msg,_sign);
-	}
-	_evt->add(&fi);
-}
-
-// ---------------------------------------------------------------------------
-// 
-// -----------
-void bMacMapEventMgr::kill(bGenericGeoElement* o){
-_bTrace_("MacMapEventMgr::kill(bGenericGeoElement* o)",false);
-	if(!_enabled){
-		return;
-	}
-	if((_evt)&&(!std_test(kEventKindGeoElement,kEventActionDestroy))){
-		std_close();
-	}
-	if(!_evt){
-		_evt=new bObjectDeleteEvent(_msg,_sign);
-	}
-	_evt->add(&o);
-}
-
-// ---------------------------------------------------------------------------
-// 
-// -----------
-void bMacMapEventMgr::kill(bGenericType* t){
-_bTrace_("MacMapEventMgr::kill(bGenericType* t)",false);
-	if(!_enabled){
-		return;
-	}
-	if((_evt)&&(!std_test(kEventKindTypeElement,kEventActionDestroy))){
-		std_close();
-	}
-	if(!_evt){
-		_evt=new bTypeDeleteEvent(_msg,_sign);
-	}
-	_evt->add(&t);
-}
-
-// ---------------------------------------------------------------------------
-// 
-// -----------
-void bMacMapEventMgr::kill(bGenericExt* e){
-_bTrace_("MacMapEventMgr::kill(bGenericExt* e)",false);
-	if(!_enabled){
-		return;
-	}
-	*//*if((_evt)&&(!std_test(kEventKindTypeElement,kEventActionDestroy))){
-		std_close();
-	}
-	if(!_evt){
-		_evt=new bTypeDeleteEvent(_msg,_sign);
-	}
-	_evt->add(&t);*//*
-}
-
-// ---------------------------------------------------------------------------
-// 
-// -----------
-void bMacMapEventMgr::modify(bGenericType* t, int fid){
-_bTrace_("MacMapEventMgr::modify(bGenericType* t, int fid)",false);
-	if(!_enabled){
-		return;
-	}
-field_info	fi;
-	if((_evt)&&(!std_test(kEventKindDataStruct,kEventActionModify))){
-		std_close();
-	}
-	if((_evt)&&(_evt->elements()->count()>1)){
-		_evt->elements()->get(1,&fi);
-		if(fi.tp!=t){
-			std_close();
-		}
-	}
-	if(!_evt){
-		_evt=new bFieldModifyEvent(_msg,_sign);
-	}
-	_evt->add(&fi);
-}
-
-// ---------------------------------------------------------------------------
-// 
-// -----------
-void bMacMapEventMgr::modify(bGenericGeoElement* o){
-_bTrace_("MacMapEventMgr::modify(bGenericGeoElement* o)",false);
-	if(!_enabled){
-		return;
-	}
-	if((_evt)&&(_evt->kind()==kEventKindGeoElement)&&(_evt->action()==kEventActionCreate)){
-		if(_evt->find(o)){
-// C'est un objet que l'on vient de créer,
-// pas la peine de générer un bloc supplémentaire			
-			return;
-		}
-	}
-	else if((_evt)&&(!std_test(kEventKindGeoElement,kEventActionModify))){
-		std_close();
-	}
-	if(!_evt){
-		_evt=new bObjectModifyEvent(_msg,_sign);
-	}
-	_evt->add(&o);
-}
-
-// ---------------------------------------------------------------------------
-// 
-// -----------
-void bMacMapEventMgr::modify(bGenericType* t){
-_bTrace_("MacMapEventMgr::modify(bGenericType* t)",false);
-	if(!_enabled){
-		return;
-	}
-	if((_evt)&&(!std_test(kEventKindTypeElement,kEventActionModify))){
-		std_close();
-	}
-	if(!_evt){
-		_evt=new bTypeModifyEvent(_msg,_sign);
-	}
-	_evt->add(&t);
-}
-
-// ---------------------------------------------------------------------------
-// 
-// -----------
-void bMacMapEventMgr::modify(bGenericExt* e){
-_bTrace_("MacMapEventMgr::modify(bGenericExt* e)",false);
-	if(!_enabled){
-		return;
-	}
-*//*	if((_evt)&&(!std_test(kEventKindTypeElement,kEventActionModify))){
-		std_close();
-	}
-	if(!_evt){
-		_evt=new bTypeModifyEvent(_msg,_sign);
-	}
-	_evt->add(&t);*//*
-}
-
-// ---------------------------------------------------------------------------
-// 
-// -----------
-void bMacMapEventMgr::send(){
-_bTrace_("bMacMapEventMgr::send",false);
-
-EventRef	evt;
-OSStatus	status;
-	
-	status=CreateEvent(	kCFAllocatorDefault,
-						kEventClassMacMap,
-						kEventMacMapDataBase,
-						TicksToEventTime(TickCount()),
-						kEventAttributeUserEvent,
-						&evt);
-if(status){
-_te_("CreateEvent = %d",status);
-}
-	*//*status=SetEventParameter(	evt,
-								kEventParamDirectObject,
-								typeHICommand,
-								sizeof(HICommand),
-								&cmd);
-if(status){
-_te_("SetEventParameter = %d",status);
-}*//*
-	status=SendEventToApplication(evt);
-if(status){
-_te_("SendEventToApplication = %d",status);
-}
-	ReleaseEvent(evt);
-}
-
-// ---------------------------------------------------------------------------
-// 
-// -----------
-bool bMacMapEventMgr::std_test(int kind, int action){
-	if(_evt==NULL){
-		return(false);
-	}
-	return((_evt->action()==action)&&(_evt->kind()==kind));
-}
-
-// ---------------------------------------------------------------------------
-// 
-// -----------
-void bMacMapEventMgr::std_close(){
-	_evt->close();
-	if(!_evts.add(&_evt)){
-		return;
-	}
-	_evt=NULL;
-}
-*/

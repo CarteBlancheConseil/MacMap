@@ -48,16 +48,13 @@ bTypeEvent	::bTypeEvent(	char* msg,
 // Destructeur
 // -----------
 bTypeEvent::~bTypeEvent(){
+    _elts.reset();
 }
 
 // ---------------------------------------------------------------------------
 // 
 // -----------
 bool bTypeEvent::add(void* elt){
-//bGenericType* ti=(*((bGenericType**)elt));
-/*	if(find(ti)){
-		return(true);
-	}*/
 	return(bMacMapEvent::add(elt));
 }
 
@@ -72,7 +69,7 @@ int bTypeEvent::find(void* elt){
 // 
 // -----------
 int bTypeEvent::find(bGenericType* t){
-	return(_elts.search(&t,compare));
+    return(_elts.search(&t,compare));
 }
 
 // ---------------------------------------------------------------------------

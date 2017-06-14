@@ -455,6 +455,7 @@ bGenericXMLBaseElement* bXMapLockScreen::create(bGenericXMLBaseElement* elt){
 //
 // ------------
 bool bXMapLockScreen::process(int msg, void* prm){
+//_bTrace_("bXMapLockScreen::process",true);
     if(msg!=kExtProcessCallWithXMLTree){
         return(false);
     }
@@ -468,6 +469,7 @@ bGenericXMLBaseElement*	elt;
         elt->getvalue(val);
     }
     
+//_tm_("valeur:"+val);
     _gapp->layersMgr()->SetObjInvalidation(!atoi(val));
     
     return(true);

@@ -248,7 +248,24 @@ bGenericType* GISIOImport_getImportType(bGenericMacMapApp* gapp,
                                         import_prm prm){
 _bTrace_("GISIOImport_getImportType",false);
 bGenericType*   tp=NULL;
-    if(prm.ctin){
+    switch(typeKind){
+        case kBaseKindPoint:
+            tp=gapp->typesMgr()->get(gapp->typesMgr()->index(prm.grid.t_point));
+            break;
+        case kBaseKindPolyline:
+            tp=gapp->typesMgr()->get(gapp->typesMgr()->index(prm.grid.t_line));
+            break;
+        case kBaseKindText:
+            tp=gapp->typesMgr()->get(gapp->typesMgr()->index(prm.grid.t_text));
+            break;
+        case kBaseKindPolygon:
+            tp=gapp->typesMgr()->get(gapp->typesMgr()->index(prm.grid.t_poly));
+            break;
+        case kBaseKindRaster:
+            tp=gapp->typesMgr()->get(gapp->typesMgr()->index(prm.grid.t_raster));
+            break;
+    }
+    if((tp==NULL)&&(prm.ctin)){
 char    name[FILENAME_MAX];
         strcpy(name,prm.name);
         UTF82MacRoman(name,FILENAME_MAX);
@@ -263,26 +280,43 @@ _te_("_gapp->typesMgr()->add failed");
             }
         }
     }
-    else{
-        switch(typeKind){
-            case kBaseKindPoint:
-                tp=gapp->typesMgr()->get(gapp->typesMgr()->index(prm.grid.t_point));
-                break;
-            case kBaseKindPolyline:
-                tp=gapp->typesMgr()->get(gapp->typesMgr()->index(prm.grid.t_line));
-                break;
-            case kBaseKindText:
-                tp=gapp->typesMgr()->get(gapp->typesMgr()->index(prm.grid.t_text));
-                break;
-            case kBaseKindPolygon:
-                tp=gapp->typesMgr()->get(gapp->typesMgr()->index(prm.grid.t_poly));
-                break;
-            case kBaseKindRaster:
-                tp=gapp->typesMgr()->get(gapp->typesMgr()->index(prm.grid.t_raster));
-                break;
-        }
-    }
     return tp;
 }
+
+/*    if(prm.ctin){
+ char    name[FILENAME_MAX];
+ strcpy(name,prm.name);
+ UTF82MacRoman(name,FILENAME_MAX);
+ tp=gapp->typesMgr()->get(gapp->typesMgr()->index(name));
+ if(tp==NULL){
+ if(gapp->typesMgr()->add(name,"",NULL,kBaseLocalDBID,typeKind)!=noErr){
+ _te_("_gapp->typesMgr()->add failed");
+ }
+ else{
+ tp=gapp->typesMgr()->get(gapp->typesMgr()->count());
+ gapp->layersAccessCtx()->add(gapp->typesMgr()->count(),1);
+ }
+ }
+ }
+ else{
+ switch(typeKind){
+ case kBaseKindPoint:
+ tp=gapp->typesMgr()->get(gapp->typesMgr()->index(prm.grid.t_point));
+ break;
+ case kBaseKindPolyline:
+ tp=gapp->typesMgr()->get(gapp->typesMgr()->index(prm.grid.t_line));
+ break;
+ case kBaseKindText:
+ tp=gapp->typesMgr()->get(gapp->typesMgr()->index(prm.grid.t_text));
+ break;
+ case kBaseKindPolygon:
+ tp=gapp->typesMgr()->get(gapp->typesMgr()->index(prm.grid.t_poly));
+ break;
+ case kBaseKindRaster:
+ tp=gapp->typesMgr()->get(gapp->typesMgr()->index(prm.grid.t_raster));
+ break;
+ }
+ }
+ */
 
 

@@ -46,7 +46,9 @@ public:
 			
 	virtual void open		(	int* flags);
 	virtual void close		(	);
+/*> A supprimer */
 	virtual bool event		(	EventRef evt);
+/*< A supprimer */
 	virtual bool nsevent	(	void* nsevt);
 	virtual void idle		(	void* prm);
 	virtual bool process	(	int msg,

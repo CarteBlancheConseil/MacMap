@@ -118,7 +118,7 @@ UInt32	sign=_sign;
 		_limits.get(i,&e);
 		_limits.get(i+1,&e2);
 		add_ddesc(arr,3,"classbound",e,15);
-		sprintf(lg,"[%.*f-%.*f[",d,e,d,e2);
+		sprintf(lg,"[%.*f-%.*f%c",d,e,d,e2,(i==_limits.count()-1?']':'['));
 		add_cdesc(arr,3,"classname",lg);
 	}
 	_limits.get(_limits.count(),&e);
@@ -324,7 +324,7 @@ UInt32	sign=_sign;
 		_limits.get(i,&e);
 		_limits.get(i+1,&e2);
 		add_ddesc(arr,3,"classbound",e,15);
-		sprintf(lg,"[%.*f-%.*f[",d,e,d,e2);
+		sprintf(lg,"[%.*f-%.*f%c",d,e,d,e2,(i==_limits.count()-1?']':'['));
 		add_cdesc(arr,3,"classname",lg);
 	}
 	_limits.get(_limits.count(),&e);

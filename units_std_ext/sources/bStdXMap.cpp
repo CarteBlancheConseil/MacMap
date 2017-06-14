@@ -58,7 +58,7 @@ void bStdXMap::close(){
 }
 
 // ---------------------------------------------------------------------------
-// 
+// A supprimer
 // -----------
 bool bStdXMap::event(EventRef evt){	
 	return(false);

@@ -442,6 +442,10 @@
 		14A67C371ADEC5600072F81A /* GISIOImportViewNoCTIN.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14A67C2A1ADEC5600072F81A /* GISIOImportViewNoCTIN.xib */; };
 		14A67C381ADEC5600072F81A /* TypeAddAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14A67C2C1ADEC5600072F81A /* TypeAddAccessoryView.xib */; };
 		14A67C391ADEC5600072F81A /* TypeNewAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14A67C2E1ADEC5600072F81A /* TypeNewAccessoryView.xib */; };
+		14ABC7241E8A8A7200BCE855 /* bToolNSGeomWithJoin.h in Headers */ = {isa = PBXBuildFile; fileRef = 14ABC7231E8A8A7200BCE855 /* bToolNSGeomWithJoin.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		14ABC7261E8A8A7B00BCE855 /* bToolNSGeomWithJoin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14ABC7251E8A8A7B00BCE855 /* bToolNSGeomWithJoin.cpp */; };
+		14ABC7291E8A918800BCE855 /* bToolNSGeomWithJoinWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 14ABC7271E8A918800BCE855 /* bToolNSGeomWithJoinWindowController.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		14ABC72A1E8A918800BCE855 /* bToolNSGeomWithJoinWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14ABC7281E8A918800BCE855 /* bToolNSGeomWithJoinWindowController.mm */; };
 		14ADF2671C98474000CEE10C /* GISIORasterExportOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14ADF2651C98474000CEE10C /* GISIORasterExportOptions.xib */; };
 		14AFCCC51BAAF72D00237A12 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1435A7211BA1825000BFFD33 /* Cocoa.framework */; };
 		14AFCCC71BAAF72D00237A12 /* MacMapSuite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 140BAB690C04499700708F1B /* MacMapSuite.framework */; };
@@ -1750,28 +1754,28 @@
 		1496864A09DBAEAE007AE5F0 /* bFieldEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bFieldEvent.h; sourceTree = "<group>"; };
 		1496869009DBBBFF007AE5F0 /* bUserExtEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bUserExtEvent.cpp; sourceTree = "<group>"; };
 		1496869109DBBBFF007AE5F0 /* bUserExtEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bUserExtEvent.h; sourceTree = "<group>"; };
-		1497082109D1500D0060E3AF /* bToolPrintArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bToolPrintArea.h; sourceTree = "<group>"; };
-		1497082309D150240060E3AF /* bToolPrintArea.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bToolPrintArea.cpp; sourceTree = "<group>"; };
-		149727A60AEDE647008EB70F /* bToolCut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bToolCut.h; sourceTree = "<group>"; };
-		149727A80AEDE669008EB70F /* bToolCut.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bToolCut.cpp; sourceTree = "<group>"; };
+		1497082109D1500D0060E3AF /* bToolPrintArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bToolPrintArea.h; path = headers/bToolPrintArea.h; sourceTree = "<group>"; };
+		1497082309D150240060E3AF /* bToolPrintArea.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bToolPrintArea.cpp; path = sources/bToolPrintArea.cpp; sourceTree = "<group>"; };
+		149727A60AEDE647008EB70F /* bToolCut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bToolCut.h; path = headers/bToolCut.h; sourceTree = "<group>"; };
+		149727A80AEDE669008EB70F /* bToolCut.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bToolCut.cpp; path = sources/bToolCut.cpp; sourceTree = "<group>"; };
 		149751A508C378B30084C913 /* tool_lib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = tool_lib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		149751B008C378B40084C913 /* tool_lib-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "tool_lib-Info.plist"; path = "../tool_lib-Info.plist"; sourceTree = "<group>"; };
 		149751C408C378CF0084C913 /* vdef_lib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = vdef_lib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		149751E308C378EE0084C913 /* xmap_lib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = xmap_lib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1497545008C37CA90084C913 /* bToolCreate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bToolCreate.h; sourceTree = "<group>"; };
-		1497545108C37CA90084C913 /* bToolInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bToolInfo.h; sourceTree = "<group>"; };
+		1497545008C37CA90084C913 /* bToolCreate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bToolCreate.h; path = headers/bToolCreate.h; sourceTree = "<group>"; };
+		1497545108C37CA90084C913 /* bToolInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bToolInfo.h; path = headers/bToolInfo.h; sourceTree = "<group>"; };
 		1497545208C37CA90084C913 /* bToolLength.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bToolLength.h; sourceTree = "<group>"; };
 		1497545308C37CA90084C913 /* bToolMove.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bToolMove.h; sourceTree = "<group>"; };
 		1497545408C37CA90084C913 /* bToolScroll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bToolScroll.h; sourceTree = "<group>"; };
-		1497545508C37CA90084C913 /* bToolSelect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bToolSelect.h; sourceTree = "<group>"; };
-		1497545608C37CA90084C913 /* bToolZoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bToolZoom.h; sourceTree = "<group>"; };
-		1497545808C37CA90084C913 /* bToolCreate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bToolCreate.cpp; sourceTree = "<group>"; };
-		1497545908C37CA90084C913 /* bToolInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bToolInfo.cpp; sourceTree = "<group>"; };
+		1497545508C37CA90084C913 /* bToolSelect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bToolSelect.h; path = headers/bToolSelect.h; sourceTree = "<group>"; };
+		1497545608C37CA90084C913 /* bToolZoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bToolZoom.h; path = headers/bToolZoom.h; sourceTree = "<group>"; };
+		1497545808C37CA90084C913 /* bToolCreate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bToolCreate.cpp; path = sources/bToolCreate.cpp; sourceTree = "<group>"; };
+		1497545908C37CA90084C913 /* bToolInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bToolInfo.cpp; path = sources/bToolInfo.cpp; sourceTree = "<group>"; };
 		1497545A08C37CA90084C913 /* bToolLength.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bToolLength.cpp; sourceTree = "<group>"; };
 		1497545B08C37CA90084C913 /* bToolMove.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bToolMove.cpp; sourceTree = "<group>"; };
 		1497545C08C37CA90084C913 /* bToolScroll.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bToolScroll.cpp; sourceTree = "<group>"; };
-		1497545D08C37CAA0084C913 /* bToolSelect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bToolSelect.cpp; sourceTree = "<group>"; };
-		1497545E08C37CAA0084C913 /* bToolZoom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bToolZoom.cpp; sourceTree = "<group>"; };
+		1497545D08C37CAA0084C913 /* bToolSelect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bToolSelect.cpp; path = sources/bToolSelect.cpp; sourceTree = "<group>"; };
+		1497545E08C37CAA0084C913 /* bToolZoom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bToolZoom.cpp; path = sources/bToolZoom.cpp; sourceTree = "<group>"; };
 		149754BA08C37CEF0084C913 /* bXMapCenterNext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bXMapCenterNext.h; sourceTree = "<group>"; };
 		149754BB08C37CEF0084C913 /* bXMapCenterPrev.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bXMapCenterPrev.h; sourceTree = "<group>"; };
 		149754BC08C37CEF0084C913 /* bXMapContrastSelection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bXMapContrastSelection.h; sourceTree = "<group>"; };
@@ -1849,6 +1853,10 @@
 		14A67C481ADEC5C40072F81A /* it */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = it; path = Rez/it.lproj/TypeAddAccessoryView.xib; sourceTree = "<group>"; };
 		14A67C491ADEC5CB0072F81A /* fr */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = fr; path = Rez/fr.lproj/TypeNewAccessoryView.xib; sourceTree = "<group>"; };
 		14A67C4A1ADEC5CE0072F81A /* it */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = it; path = Rez/it.lproj/TypeNewAccessoryView.xib; sourceTree = "<group>"; };
+		14ABC7231E8A8A7200BCE855 /* bToolNSGeomWithJoin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bToolNSGeomWithJoin.h; sourceTree = "<group>"; };
+		14ABC7251E8A8A7B00BCE855 /* bToolNSGeomWithJoin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bToolNSGeomWithJoin.cpp; sourceTree = "<group>"; };
+		14ABC7271E8A918800BCE855 /* bToolNSGeomWithJoinWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bToolNSGeomWithJoinWindowController.h; sourceTree = "<group>"; };
+		14ABC7281E8A918800BCE855 /* bToolNSGeomWithJoinWindowController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = bToolNSGeomWithJoinWindowController.mm; sourceTree = "<group>"; };
 		14ADCE481A7282D10048A925 /* XBoxCoord.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = XBoxCoord.bundle; sourceTree = "<group>"; };
 		14ADF2661C98474000CEE10C /* fr */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = fr; path = units_xmap_lib/Rez/fr.lproj/GISIORasterExportOptions.xib; sourceTree = "<group>"; };
 		14ADF2681C98476700CEE10C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = units_xmap_lib/Rez/en.lproj/GISIORasterExportOptions.xib; sourceTree = "<group>"; };
@@ -1889,8 +1897,8 @@
 		14C716600B1333C00060AB7A /* bXMapCut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bXMapCut.h; sourceTree = "<group>"; };
 		14C716610B1333C00060AB7A /* bXMapPaste.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bXMapPaste.cpp; sourceTree = "<group>"; };
 		14C716620B1333C00060AB7A /* bXMapPaste.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bXMapPaste.h; sourceTree = "<group>"; };
-		14C725AC09DD76BA006E42ED /* bToolGeomWithJoin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bToolGeomWithJoin.h; sourceTree = "<group>"; };
-		14C725AE09DD76CD006E42ED /* bToolGeomWithJoin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bToolGeomWithJoin.cpp; sourceTree = "<group>"; };
+		14C725AC09DD76BA006E42ED /* bToolGeomWithJoin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bToolGeomWithJoin.h; path = headers/bToolGeomWithJoin.h; sourceTree = "<group>"; };
+		14C725AE09DD76CD006E42ED /* bToolGeomWithJoin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bToolGeomWithJoin.cpp; path = sources/bToolGeomWithJoin.cpp; sourceTree = "<group>"; };
 		14C745A6093DB5BB007C0263 /* bBoolDBValue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bBoolDBValue.cpp; sourceTree = "<group>"; };
 		14C745A7093DB5BB007C0263 /* bBoolDBValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bBoolDBValue.h; sourceTree = "<group>"; };
 		14C745A8093DB5BB007C0263 /* bCharDBValue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bCharDBValue.cpp; sourceTree = "<group>"; };
@@ -1976,8 +1984,8 @@
 		14CDD85E0F278B2F003AC0F2 /* CWXMLTree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CWXMLTree.cpp; sourceTree = "<group>"; };
 		14CDD85F0F278B2F003AC0F2 /* CWXMLTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWXMLTree.h; sourceTree = "<group>"; };
 		14CFA1D51AC5691C00894296 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
-		14D164220FD00E7500EA1042 /* bToolRedraw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bToolRedraw.h; sourceTree = "<group>"; };
-		14D164240FD00E8100EA1042 /* bToolRedraw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bToolRedraw.cpp; sourceTree = "<group>"; };
+		14D164220FD00E7500EA1042 /* bToolRedraw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bToolRedraw.h; path = headers/bToolRedraw.h; sourceTree = "<group>"; };
+		14D164240FD00E8100EA1042 /* bToolRedraw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bToolRedraw.cpp; path = sources/bToolRedraw.cpp; sourceTree = "<group>"; };
 		14D235DC09D13A78009AFA1C /* bGenericPrintMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bGenericPrintMgr.h; sourceTree = "<group>"; };
 		14D2360A09D13CA3009AFA1C /* bPrintMgr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bPrintMgr.cpp; sourceTree = "<group>"; };
 		14D2360B09D13CA3009AFA1C /* bPrintMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bPrintMgr.h; sourceTree = "<group>"; };
@@ -2010,10 +2018,10 @@
 		14E1E65809A0A3A9008A4B1A /* ext_utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ext_utils.cpp; sourceTree = "<group>"; };
 		14E2410709DBCBF5002527E3 /* bEventLog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bEventLog.cpp; sourceTree = "<group>"; };
 		14E2410809DBCBF5002527E3 /* bEventLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bEventLog.h; sourceTree = "<group>"; };
-		14E241FF09DC141A002527E3 /* bToolAlter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bToolAlter.h; sourceTree = "<group>"; };
-		14E2420109DC1437002527E3 /* bToolAlter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bToolAlter.cpp; sourceTree = "<group>"; };
-		14E34C860C26B6FD00ADD60C /* bToolShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bToolShape.h; sourceTree = "<group>"; };
-		14E34C880C26B70900ADD60C /* bToolShape.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bToolShape.cpp; sourceTree = "<group>"; };
+		14E241FF09DC141A002527E3 /* bToolAlter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bToolAlter.h; path = headers/bToolAlter.h; sourceTree = "<group>"; };
+		14E2420109DC1437002527E3 /* bToolAlter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bToolAlter.cpp; path = sources/bToolAlter.cpp; sourceTree = "<group>"; };
+		14E34C860C26B6FD00ADD60C /* bToolShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bToolShape.h; path = headers/bToolShape.h; sourceTree = "<group>"; };
+		14E34C880C26B70900ADD60C /* bToolShape.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bToolShape.cpp; path = sources/bToolShape.cpp; sourceTree = "<group>"; };
 		14E3588C0CE9845F00EDAE08 /* bToolGeomShift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bToolGeomShift.h; sourceTree = "<group>"; };
 		14E3588E0CE9846A00EDAE08 /* bToolGeomShift.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bToolGeomShift.cpp; sourceTree = "<group>"; };
 		14E7503D0BC24B4800F77E4F /* vdef_utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vdef_utils.cpp; sourceTree = "<group>"; };
@@ -2025,17 +2033,17 @@
 		14EDCE8C1BA860E3004455AD /* bDummyCompLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bDummyCompLib.h; sourceTree = "<group>"; };
 		14EE93DF0952F885003C0C2B /* bXMapReverse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bXMapReverse.h; sourceTree = "<group>"; };
 		14F1500D0E62F83A0002E65F /* MacMapRoute.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MacMapRoute.framework; path = /Library/Frameworks/MacMapRoute.framework; sourceTree = "<absolute>"; };
-		14F1640C09E68FA8003435AE /* bToolContiguous.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bToolContiguous.h; sourceTree = "<group>"; };
-		14F1640E09E69036003435AE /* bToolContiguous.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bToolContiguous.cpp; sourceTree = "<group>"; };
+		14F1640C09E68FA8003435AE /* bToolContiguous.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bToolContiguous.h; path = headers/bToolContiguous.h; sourceTree = "<group>"; };
+		14F1640E09E69036003435AE /* bToolContiguous.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bToolContiguous.cpp; path = sources/bToolContiguous.cpp; sourceTree = "<group>"; };
 		14F8D04D1209BECC007BA637 /* bitmap_utils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = bitmap_utils.mm; sourceTree = "<group>"; };
 		14F8D04E1209BECC007BA637 /* bitmap_utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bitmap_utils.h; sourceTree = "<group>"; };
 		14F9DABE1BB2DD8D00273D8C /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		14FAD64718DB20A300A679AD /* bGraphicParams.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bGraphicParams.cpp; sourceTree = "<group>"; };
 		14FAD64818DB20A300A679AD /* bGraphicParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bGraphicParams.h; sourceTree = "<group>"; };
-		14FEFAB60C20140300263CC6 /* bToolSymbRotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bToolSymbRotation.h; sourceTree = "<group>"; };
-		14FEFAB80C20141000263CC6 /* bToolSymbRotation.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = bToolSymbRotation.cpp; sourceTree = "<group>"; };
-		14FEFC450C203FA200263CC6 /* bToolJustification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bToolJustification.h; sourceTree = "<group>"; };
-		14FEFC470C203FB000263CC6 /* bToolJustification.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bToolJustification.cpp; sourceTree = "<group>"; };
+		14FEFAB60C20140300263CC6 /* bToolSymbRotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bToolSymbRotation.h; path = headers/bToolSymbRotation.h; sourceTree = "<group>"; };
+		14FEFAB80C20141000263CC6 /* bToolSymbRotation.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = bToolSymbRotation.cpp; path = sources/bToolSymbRotation.cpp; sourceTree = "<group>"; };
+		14FEFC450C203FA200263CC6 /* bToolJustification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bToolJustification.h; path = headers/bToolJustification.h; sourceTree = "<group>"; };
+		14FEFC470C203FB000263CC6 /* bToolJustification.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bToolJustification.cpp; path = sources/bToolJustification.cpp; sourceTree = "<group>"; };
 		6B1E6721079CEEB00027B81D /* bXMapMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bXMapMgr.h; sourceTree = "<group>"; };
 		6B1E6722079CEEB00027B81D /* bXMapMgr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bXMapMgr.cpp; sourceTree = "<group>"; };
 		6B1EB09407B7E8CB0078607C /* bStyleMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bStyleMgr.h; sourceTree = "<group>"; };
@@ -2950,7 +2958,10 @@
 		1497544E08C37CA90084C913 /* units_tool_lib */ = {
 			isa = PBXGroup;
 			children = (
+				14ABC7071E8A6E9E00BCE855 /* To remove */,
 				1437D34713AF6CB400DB6B2E /* rez */,
+				14ABC7271E8A918800BCE855 /* bToolNSGeomWithJoinWindowController.h */,
+				14ABC7281E8A918800BCE855 /* bToolNSGeomWithJoinWindowController.mm */,
 				1497544F08C37CA90084C913 /* headers */,
 				1497545708C37CA90084C913 /* sources */,
 			);
@@ -2960,26 +2971,14 @@
 		1497544F08C37CA90084C913 /* headers */ = {
 			isa = PBXGroup;
 			children = (
-				14C725AC09DD76BA006E42ED /* bToolGeomWithJoin.h */,
-				1497545508C37CA90084C913 /* bToolSelect.h */,
+				14ABC7231E8A8A7200BCE855 /* bToolNSGeomWithJoin.h */,
 				1497545408C37CA90084C913 /* bToolScroll.h */,
-				1497545608C37CA90084C913 /* bToolZoom.h */,
-				14F1640C09E68FA8003435AE /* bToolContiguous.h */,
 				1497545208C37CA90084C913 /* bToolLength.h */,
-				1497545108C37CA90084C913 /* bToolInfo.h */,
-				1497545008C37CA90084C913 /* bToolCreate.h */,
-				14E241FF09DC141A002527E3 /* bToolAlter.h */,
-				14D164220FD00E7500EA1042 /* bToolRedraw.h */,
-				149727A60AEDE647008EB70F /* bToolCut.h */,
-				14E34C860C26B6FD00ADD60C /* bToolShape.h */,
 				1497545308C37CA90084C913 /* bToolMove.h */,
 				14E3588C0CE9845F00EDAE08 /* bToolGeomShift.h */,
 				149760430B1DA4B9008170CA /* bToolOffset.h */,
-				14FEFC450C203FA200263CC6 /* bToolJustification.h */,
 				14D83DDD0C2803E50070BA94 /* bToolLineShift.h */,
-				14FEFAB60C20140300263CC6 /* bToolSymbRotation.h */,
 				14D80BCE0C22C44C00CF0856 /* bToolTextEdition.h */,
-				1497082109D1500D0060E3AF /* bToolPrintArea.h */,
 			);
 			path = headers;
 			sourceTree = "<group>";
@@ -2987,26 +2986,14 @@
 		1497545708C37CA90084C913 /* sources */ = {
 			isa = PBXGroup;
 			children = (
-				14C725AE09DD76CD006E42ED /* bToolGeomWithJoin.cpp */,
-				1497545D08C37CAA0084C913 /* bToolSelect.cpp */,
+				14ABC7251E8A8A7B00BCE855 /* bToolNSGeomWithJoin.cpp */,
 				1497545C08C37CA90084C913 /* bToolScroll.cpp */,
-				1497545E08C37CAA0084C913 /* bToolZoom.cpp */,
-				14F1640E09E69036003435AE /* bToolContiguous.cpp */,
 				1497545A08C37CA90084C913 /* bToolLength.cpp */,
-				1497545908C37CA90084C913 /* bToolInfo.cpp */,
-				1497545808C37CA90084C913 /* bToolCreate.cpp */,
-				14E2420109DC1437002527E3 /* bToolAlter.cpp */,
-				14D164240FD00E8100EA1042 /* bToolRedraw.cpp */,
-				149727A80AEDE669008EB70F /* bToolCut.cpp */,
-				14E34C880C26B70900ADD60C /* bToolShape.cpp */,
 				1497545B08C37CA90084C913 /* bToolMove.cpp */,
 				14E3588E0CE9846A00EDAE08 /* bToolGeomShift.cpp */,
 				149760410B1DA49E008170CA /* bToolOffset.cpp */,
-				14FEFC470C203FB000263CC6 /* bToolJustification.cpp */,
 				14D83DDF0C2803F00070BA94 /* bToolLineShift.cpp */,
-				14FEFAB80C20141000263CC6 /* bToolSymbRotation.cpp */,
 				14D80BCC0C22C43C00CF0856 /* bToolTextEdition.cpp */,
-				1497082309D150240060E3AF /* bToolPrintArea.cpp */,
 			);
 			path = sources;
 			sourceTree = "<group>";
@@ -3065,28 +3052,28 @@
 		1497648008C2DCCE0004CA97 /* rez */ = {
 			isa = PBXGroup;
 			children = (
+				149764D708C2E13B0004CA97 /* Info.plist */,
+				140B53291ADEB0A800E19DE6 /* InfoPlist.strings */,
+				140B532B1ADEB0A800E19DE6 /* Localizable.strings */,
+				140B532F1ADEB0A800E19DE6 /* main.nib */,
+				140B53641ADEB6C500E19DE6 /* MMCreateDocAccessoryView.xib */,
+				149C4E141A8BAFEF001E19FF /* scales.xml */,
 				149C4E121A8BAFEF001E19FF /* angle_units.xml */,
+				149C4E131A8BAFEF001E19FF /* dist_units.xml */,
+				149C4E151A8BAFEF001E19FF /* time_units.xml */,
 				142A348C18E1BD9E00841C16 /* contrastes.xml */,
+				142A348D18E1BD9E00841C16 /* selection.xml */,
+				142A348E18E1BD9E00841C16 /* tooltrace.xml */,
 				140B531F1ADEB0A800E19DE6 /* default_line_style.xml */,
 				140B53211ADEB0A800E19DE6 /* default_point_style.xml */,
 				140B53231ADEB0A800E19DE6 /* default_raster_style.xml */,
 				140B53251ADEB0A800E19DE6 /* default_surf_style.xml */,
 				140B53271ADEB0A800E19DE6 /* default_text_style.xml */,
-				149C4E131A8BAFEF001E19FF /* dist_units.xml */,
-				149764D708C2E13B0004CA97 /* Info.plist */,
-				140B53291ADEB0A800E19DE6 /* InfoPlist.strings */,
-				140B532B1ADEB0A800E19DE6 /* Localizable.strings */,
 				140B532D1ADEB0A800E19DE6 /* MacMap Help */,
-				140B532F1ADEB0A800E19DE6 /* main.nib */,
-				140B53641ADEB6C500E19DE6 /* MMCreateDocAccessoryView.xib */,
 				1497648708C2DD0A0004CA97 /* MoXApp.icns */,
 				1497648808C2DD0A0004CA97 /* MoXProject.icns */,
 				1497648908C2DD0A0004CA97 /* MoXType.icns */,
-				149C4E141A8BAFEF001E19FF /* scales.xml */,
-				142A348D18E1BD9E00841C16 /* selection.xml */,
 				1498D755095C0D66008AA673 /* terminology.r */,
-				149C4E151A8BAFEF001E19FF /* time_units.xml */,
-				142A348E18E1BD9E00841C16 /* tooltrace.xml */,
 			);
 			name = rez;
 			path = ..;
@@ -3148,6 +3135,39 @@
 			name = units_macmap;
 			path = units;
 			sourceTree = SOURCE_ROOT;
+		};
+		14ABC7071E8A6E9E00BCE855 /* To remove */ = {
+			isa = PBXGroup;
+			children = (
+				14E2420109DC1437002527E3 /* bToolAlter.cpp */,
+				14E241FF09DC141A002527E3 /* bToolAlter.h */,
+				14F1640E09E69036003435AE /* bToolContiguous.cpp */,
+				14F1640C09E68FA8003435AE /* bToolContiguous.h */,
+				1497545808C37CA90084C913 /* bToolCreate.cpp */,
+				1497545008C37CA90084C913 /* bToolCreate.h */,
+				149727A80AEDE669008EB70F /* bToolCut.cpp */,
+				149727A60AEDE647008EB70F /* bToolCut.h */,
+				14C725AE09DD76CD006E42ED /* bToolGeomWithJoin.cpp */,
+				14C725AC09DD76BA006E42ED /* bToolGeomWithJoin.h */,
+				1497545908C37CA90084C913 /* bToolInfo.cpp */,
+				1497545108C37CA90084C913 /* bToolInfo.h */,
+				14FEFC470C203FB000263CC6 /* bToolJustification.cpp */,
+				14FEFC450C203FA200263CC6 /* bToolJustification.h */,
+				1497082309D150240060E3AF /* bToolPrintArea.cpp */,
+				1497082109D1500D0060E3AF /* bToolPrintArea.h */,
+				14D164240FD00E8100EA1042 /* bToolRedraw.cpp */,
+				14D164220FD00E7500EA1042 /* bToolRedraw.h */,
+				1497545D08C37CAA0084C913 /* bToolSelect.cpp */,
+				1497545508C37CA90084C913 /* bToolSelect.h */,
+				14E34C880C26B70900ADD60C /* bToolShape.cpp */,
+				14E34C860C26B6FD00ADD60C /* bToolShape.h */,
+				14FEFAB80C20141000263CC6 /* bToolSymbRotation.cpp */,
+				14FEFAB60C20140300263CC6 /* bToolSymbRotation.h */,
+				1497545E08C37CAA0084C913 /* bToolZoom.cpp */,
+				1497545608C37CA90084C913 /* bToolZoom.h */,
+			);
+			name = "To remove";
+			sourceTree = "<group>";
 		};
 		14AFCCD01BAAF86400237A12 /* units_loader */ = {
 			isa = PBXGroup;
@@ -3843,6 +3863,7 @@
 				1497546208C37CAA0084C913 /* bToolMove.h in Headers */,
 				1497546308C37CAA0084C913 /* bToolScroll.h in Headers */,
 				1497546408C37CAA0084C913 /* bToolSelect.h in Headers */,
+				14ABC7241E8A8A7200BCE855 /* bToolNSGeomWithJoin.h in Headers */,
 				1497546508C37CAA0084C913 /* bToolZoom.h in Headers */,
 				1497082209D1500D0060E3AF /* bToolPrintArea.h in Headers */,
 				14E2420009DC141A002527E3 /* bToolAlter.h in Headers */,
@@ -3855,6 +3876,7 @@
 				14D80BCF0C22C44C00CF0856 /* bToolTextEdition.h in Headers */,
 				14E34C870C26B6FD00ADD60C /* bToolShape.h in Headers */,
 				14D83DDE0C2803E50070BA94 /* bToolLineShift.h in Headers */,
+				14ABC7291E8A918800BCE855 /* bToolNSGeomWithJoinWindowController.h in Headers */,
 				14E3588D0CE9845F00EDAE08 /* bToolGeomShift.h in Headers */,
 				14D164230FD00E7500EA1042 /* bToolRedraw.h in Headers */,
 			);
@@ -4458,6 +4480,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1497546608C37CAA0084C913 /* bToolCreate.cpp in Sources */,
+				14ABC7261E8A8A7B00BCE855 /* bToolNSGeomWithJoin.cpp in Sources */,
 				1497546708C37CAA0084C913 /* bToolInfo.cpp in Sources */,
 				1497546808C37CAA0084C913 /* bToolLength.cpp in Sources */,
 				1497546908C37CAA0084C913 /* bToolMove.cpp in Sources */,
@@ -4474,6 +4497,7 @@
 				14FEFC480C203FB000263CC6 /* bToolJustification.cpp in Sources */,
 				14D80BCD0C22C43C00CF0856 /* bToolTextEdition.cpp in Sources */,
 				14E34C890C26B70900ADD60C /* bToolShape.cpp in Sources */,
+				14ABC72A1E8A918800BCE855 /* bToolNSGeomWithJoinWindowController.mm in Sources */,
 				14D83DE00C2803F00070BA94 /* bToolLineShift.cpp in Sources */,
 				14E3588F0CE9846A00EDAE08 /* bToolGeomShift.cpp in Sources */,
 				14D164250FD00E8100EA1042 /* bToolRedraw.cpp in Sources */,

@@ -247,7 +247,7 @@ void bStdTool::close(){
 }
 
 // ---------------------------------------------------------------------------
-// 
+// A supprimer
 // -----------
 bool bStdTool::event(EventRef evt){
 _bTrace_("bStdTool::event(void*)",false);
@@ -614,7 +614,7 @@ CGImageRef bStdTool::symb(){
 // 
 // -----------
 void bStdTool::activate(){
-_bTrace_("bStdTool::activate",true);
+//_bTrace_("bStdTool::activate",true);
 	if(_on_edit){
 		//return;
 	}
@@ -631,7 +631,7 @@ _bTrace_("bStdTool::activate",true);
 // 
 // -----------
 void bStdTool::deactivate(){
-_bTrace_("bStdTool::deactivate",true);
+//_bTrace_("bStdTool::deactivate",true);
 	if(_on_edit){
 		return;
 	}
@@ -1538,14 +1538,14 @@ void bStdTool::action(int count){
 }
 
 // ---------------------------------------------------------------------------
-// 
+// A supprimer
 // -----------
 bool bStdTool::edit_event(EventRef evt, WindowRef wd){
 	return(false);
 }
 
 // ---------------------------------------------------------------------------
-// 
+// A supprimer
 // -----------
 void bStdTool::edit_init(WindowRef wd){
 }
@@ -1706,7 +1706,7 @@ void bStdTool::hilite_cross(CGContextRef ctx, CGPoint pt){
 }
 
 // ---------------------------------------------------------------------------
-// 
+// A supprimer
 // -----------
 pascal OSStatus bStdTool::edit_evt_hdlr(EventHandlerCallRef hdlr, EventRef evt, void *up){
 OSStatus	result=eventNotHandledErr;

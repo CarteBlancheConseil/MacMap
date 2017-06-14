@@ -48,16 +48,13 @@ bUserExtEvent	::bUserExtEvent(	char* msg,
 // Destructeur
 // -----------
 bUserExtEvent::~bUserExtEvent(){
+    _elts.reset();
 }
 
 // ---------------------------------------------------------------------------
 // 
 // -----------
 bool bUserExtEvent::add(void* elt){
-/*bGenericExt* ti=(*((bGenericExt**)elt));
-	if(find(ti)){
-		return(true);
-	}*/
 	return(bMacMapEvent::add(elt));
 }
 
@@ -72,7 +69,7 @@ int bUserExtEvent::find(void* elt){
 // 
 // -----------
 int bUserExtEvent::find(bGenericExt* t){
-	return(_elts.search(&t,compare));
+    return(_elts.search(&t,compare));
 }
 
 // ---------------------------------------------------------------------------

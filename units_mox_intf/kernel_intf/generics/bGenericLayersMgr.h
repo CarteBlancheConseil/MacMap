@@ -94,6 +94,8 @@ public:
     virtual bool breaked					(	)=0;
     virtual bool drawing					(	)=0;
 
+    /*virtual bGenericLayersMgr* clone        (   )=0;
+    virtual void cloneDelete                (   bGenericLayersMgr* mgr)=0;*/
 };
 
 //----------------------------------------------------------------------------

@@ -39,50 +39,52 @@
 //----------------------------------------------------------------------------
 
 class bMacMapEventMgr : public bGenericEventMgr{
-	public:
-		bMacMapEventMgr					(	);
-		virtual ~bMacMapEventMgr		(	);
-		
-		virtual void enable				(	);
-		virtual void disable			(	);
-		virtual bool state				(	);
+public:
+    bMacMapEventMgr					(	);
+    virtual ~bMacMapEventMgr		(	);
+    
+    virtual void enable				(	);
+    virtual void disable			(	);
+    virtual bool state				(	);
 
-		virtual int init_log			(	int creator, // BigEndian coded
-											const char* msg);
-		virtual int close_log			(	);
-		virtual void reset_log			(	);
+    virtual int init_log			(	int creator, // BigEndian coded
+                                        const char* msg);
+    virtual int close_log			(	);
+    virtual void reset_log			(	);
 
-		virtual bArray* events			(	);
+    virtual bArray* events			(	);
 
-		virtual void create				(	field_info*	fi);
-		virtual void create				(	bGenericGeoElement* o);
-		virtual void create				(	bGenericType* t);
-		virtual void create				(	bGenericExt* e);
-		virtual void kill				(	field_info*	fi);
-		virtual void kill				(	bGenericGeoElement* o);
-		virtual void kill				(	bGenericType* t);
-		virtual void kill				(	bGenericExt* e);
-		virtual void modify				(	field_info*	fi);
-		virtual void modify				(	bGenericGeoElement* o,
-											int field);
-		virtual void modify				(	bGenericType* t);
-		virtual void modify				(	bGenericExt* e);
-		
-	protected:
-		void send						(	);
-		bool std_test					(	int kind, 
-											int action);
-		void std_close					(	);
-		
-	private:
-		bool			_enabled;
-		bool			_logged;
-		bMacMapEvent*	_evt;
-		bArray			_evts;
-		bArray			_tmp;
-		
-		int				_sign;
-		char			_msg[256];
+    virtual void create				(	field_info*	fi);
+    virtual void create				(	bGenericGeoElement* o);
+    virtual void create				(	bGenericType* t);
+    virtual void create				(	bGenericExt* e);
+    virtual void kill				(	field_info*	fi);
+    virtual void kill				(	bGenericGeoElement* o);
+    virtual void kill				(	bGenericType* t);
+    virtual void kill				(	bGenericExt* e);
+    virtual void modify				(	field_info*	fi);
+    virtual void modify				(	bGenericGeoElement* o,
+                                        int field);
+    virtual void modify				(	bGenericType* t);
+    virtual void modify				(	bGenericExt* e);
+    
+    char* message                   (   ){return _msg;};
+    
+protected:
+    void send						(	);
+    bool std_test					(	int kind, 
+                                        int action);
+    void std_close					(	);
+    
+private:
+    bool			_enabled;
+    bool			_logged;
+    bMacMapEvent*	_evt;
+    bArray			_evts;
+    bArray			_tmp;
+    
+    int				_sign;
+    char			_msg[256];
 };
 
 //----------------------------------------------------------------------------

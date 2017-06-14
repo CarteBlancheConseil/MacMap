@@ -47,6 +47,7 @@ bFieldEvent	::bFieldEvent(	char* msg,
 // Destructeur
 // -----------
 bFieldEvent::~bFieldEvent(){
+    _elts.reset();
 }
 
 // ---------------------------------------------------------------------------
