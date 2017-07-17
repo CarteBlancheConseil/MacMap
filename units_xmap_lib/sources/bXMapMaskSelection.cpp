@@ -73,9 +73,10 @@ bool				b=(sel.count()<30);
 		if(!b){
 			_gapp->mapIntf()->inval();
 		}
-		return(true);
+//		return(true);
 	}
-	return(false);
+//	return(false);
+    return(true);
 }
 
 // ---------------------------------------------------------------------------

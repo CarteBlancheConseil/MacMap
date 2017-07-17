@@ -62,9 +62,10 @@ bool bXMapSelectContrast::process(int msg, void* prm){
 	if(_gapp->cntMgr()->count()>0){
 		FlushSelection(_gapp);
 		_gapp->selMgr()->add(_gapp->cntMgr()->elements());
-		return(true);
+//		return(true);
 	}
-	return(false);
+//	return(false);
+    return(true);
 }
 
 // ---------------------------------------------------------------------------

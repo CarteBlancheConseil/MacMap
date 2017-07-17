@@ -61,9 +61,10 @@ bool bXMapFlushContrast::process(int msg, void* prm){
 	}
 	if(_gapp->cntMgr()->count()>0){
 		FlushContrasts(_gapp);
-		return(true);
+//		return(true);
 	}
-	return(false);
+//	return(false);
+    return(true);
 }
 
 // ---------------------------------------------------------------------------
