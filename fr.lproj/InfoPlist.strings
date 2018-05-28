@@ -1,4 +1,8 @@
 /* Localized versions of Info.plist keys */
 
+<<<<<<< HEAD
 CFBundleGetInfoString = "MacMap® version 3.9.1, Copyright 2018 Carte Blanche Conseil.";
+=======
+CFBundleGetInfoString = "MacMap® version 3.8.5, Copyright 2017 Carte Blanche Conseil.";
+>>>>>>> origin/master
 CFBundleHelpBookName = "Aide MacMap®";

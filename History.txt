@@ -1,6 +1,7 @@
 ---------------------------------------------------------------------------------------------------------------------------
 VERSIONS EN COURS
 ---------------------------------------------------------------------------------------------------------------------------
+<<<<<<< HEAD
 v3.9.0.0
 o Boucle d'init du draw simplifiée (appel find supprimé = 1 lecture disque en moins pour tous les objets)
 o Suppression sur layeraccesscontext (reporté dans le layermgr)
@@ -9,6 +10,9 @@ o Clonage du layermgr pour les publications, de façon à dissocier les boucles 
 v3.8.4
 o Modification Grille d'import/Créer le type
 o Amélioration gestionnaire d'annulation
+=======
+v3.8.4
+>>>>>>> origin/master
 
 v3.8.3
 o Correction bug XMapViewMgr (dupliquer)
