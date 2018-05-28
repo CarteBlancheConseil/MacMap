@@ -4,7 +4,7 @@
 // Purpose : C++ source file : Styles management class
 // Author : Benoit Ogier, benoit.ogier@macmap.com
 //
-// Copyright (C) 1997-2015 Carte Blanche Conseil.
+// Copyright (C) 2005 Carte Blanche Conseil.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -146,12 +146,12 @@ _te_("set_name failed");
 	}
 // MAJ de la vue
 bGenericStyle*		stl=NULL;
-	for(int i=1;i<=_MMAPP_->layersAccessCtx()->count();i++){
-		stl=_MMAPP_->layersAccessCtx()->get(i);
-		if(!strcmp(bknm,stl->getname())){
-			_MMAPP_->layersAccessCtx()->change(i,idx);
-		}
-	}
+    for(int i=1;i<=_MMAPP_->layersMgr()->count();i++){
+        stl=_MMAPP_->layersMgr()->get(i);
+        if(!strcmp(bknm,stl->getname())){
+            _MMAPP_->layersMgr()->change(i,idx);
+        }
+    }
 	return(true);
 }
 
@@ -210,13 +210,12 @@ bGenericXMLBaseElement*		bk=c->root();
 	c->set_root(root);
 	if(c->on_screen()){
 bGenericStyle*	stl=NULL;		
-		for(int i=1;i<=_MMAPP_->layersAccessCtx()->count();i++){
-			stl=_MMAPP_->layersAccessCtx()->get(i);
-			if(stl->root()==bk){
-				_MMAPP_->layersAccessCtx()->change(i,idx);
-			}
-		}
-		//map_wd->inval();
+        for(int i=1;i<=_MMAPP_->layersMgr()->count();i++){
+            stl=_MMAPP_->layersMgr()->get(i);
+            if(stl->root()==bk){
+                _MMAPP_->layersMgr()->change(i,idx);
+            }
+        }
 		_MMAPP_->mapIntf()->inval();
 	}
 }

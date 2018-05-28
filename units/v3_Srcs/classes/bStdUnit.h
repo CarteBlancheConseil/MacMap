@@ -4,7 +4,7 @@
 // Purpose : Header file : Standard class for units
 // Author : Benoit Ogier, benoit.ogier@macmap.com
 //
-// Copyright (C) 1997-2015 Carte Blanche Conseil.
+// Copyright (C) 2004 Carte Blanche Conseil.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -37,27 +37,27 @@
 //----------------------------------------------------------------------------
 
 class bStdUnit : public bGenericUnit{
-	public:		
-		bStdUnit					(	);
-		virtual~bStdUnit			(	);
-		
-		virtual void name_id		(	char* name);
-		virtual void long_name		(	char* name);
-		virtual void short_name		(	char* name);
-		virtual double coef			(	);
-		virtual double conv			(	);
-		
-		virtual void set			(	const char* name, 
-										double coef);
-			
-	protected:
-		char*	_id;
-		char*	_shrt_name;
-		char*	_long_name;
-		double	_coef;
-		double	_conv;
+public:
+    bStdUnit                (	);
+    virtual~bStdUnit        (	);
+    
+    virtual void name_id    (	char* name);
+    virtual void long_name  (	char* name);
+    virtual void short_name (	char* name);
+    virtual double coef     (	);
+    virtual double conv     (	);
+    
+    virtual void set        (	const char* name,
+                                double coef);
+        
+protected:
+    char*	_id;
+    char*	_shrt_name;
+    char*	_long_name;
+    double	_coef;
+    double	_conv;
 
-	private:
+private:
 };
 
 //----------------------------------------------------------------------------

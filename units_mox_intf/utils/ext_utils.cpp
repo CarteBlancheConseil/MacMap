@@ -655,7 +655,9 @@ bGenericUnit*		lu;
 int InitWithStyle(	bGenericMacMapApp* gapp,
 					int style_index,
 					bGenericGeoElement*	o){
-bGenericStyle*	styl=gapp->layersAccessCtx()->get(style_index);
+_bTrace_("InitWithStyle",false);
+_tm_("");
+bGenericStyle*	styl=gapp->layersMgr()->get(style_index);
 	if(!styl){
 		return(0);
 	}
@@ -709,8 +711,8 @@ bGenericXMLBaseElement*	root;
 char					f[256];
 
 	tp->fields()->get_name(field,f);
-	for(int i=1;i<=gapp->layersAccessCtx()->count();i++){
-		styl=gapp->layersAccessCtx()->get(i);
+    for(int i=1;i<=gapp->layersMgr()->count();i++){
+        styl=gapp->layersMgr()->get(i);
 		if(styl->gettype()!=tp){
 			continue;
 		}
@@ -800,8 +802,8 @@ void SetMarginToCurview(bGenericMacMapApp* gapp,
 bGenericStyle*	stl;
 long			margin=Measure_d2i(gapp,d);
 	
-	for(long i=1;i<=gapp->layersAccessCtx()->count();i++){
-		stl=gapp->layersAccessCtx()->get(i);
+    for(long i=1;i<=gapp->layersMgr()->count();i++){
+        stl=gapp->layersMgr()->get(i);
 		stl->setmargin(margin);
 	}
 }
@@ -814,8 +816,8 @@ void SaveCurrentMargins(bGenericMacMapApp* gapp,
 bGenericStyle*	stl;
 long			mrg;
 	(*margins)=new bArray(sizeof(long));
-	for(long i=1;i<=gapp->layersAccessCtx()->count();i++){
-		stl=gapp->layersAccessCtx()->get(i);
+    for(long i=1;i<=gapp->layersMgr()->count();i++){
+        stl=gapp->layersMgr()->get(i);
 		mrg=stl->getmargin();
 		(*margins)->add(&mrg);
 	}
@@ -828,11 +830,11 @@ int RestoreCurrentMargins(bGenericMacMapApp* gapp,
 						  bArray* margins){
 bGenericStyle*	stl;
 long			mrg;
-	for(long i=1;i<=gapp->layersAccessCtx()->count();i++){
+    for(long i=1;i<=gapp->layersMgr()->count();i++){
 		if(margins->get(i,&mrg)==false){
 			return(-1);
 		}
-		stl=gapp->layersAccessCtx()->get(i);
+        stl=gapp->layersMgr()->get(i);
 		stl->setmargin(mrg);
 	}
 	return(0);	

@@ -428,7 +428,7 @@ double				dbf;
 bGenericGeoElement*	geo;
 	
 	message_string(kMsgProgress,bf,0);
-bProgressWait wt("",bf,true,true,[_hdr lines]->count()*([[_hdr columns] count]-1));
+bProgressWait wt("",bf,true,[_hdr lines]->count()*([[_hdr columns] count]-1));
 	GetName([_hdr ext],bf);
 bEventLog	log([_hdr app],
 				[_hdr ext]->getbundle(),

@@ -4,7 +4,7 @@
 // Purpose : C++ source file : Layers management class
 // Author : Benoit Ogier, benoit.ogier@macmap.com
 //
-// Copyright (C) 1997-2015 Carte Blanche Conseil.
+// Copyright (C) 2003 Carte Blanche Conseil.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -25,7 +25,8 @@
 // 
 //----------------------------------------------------------------------------
 // 30/05/2003 creation.
-// 29/08/2014 suppression QD, mapwd safe.
+// 29/08/2014 remove QD, mapwd safe.
+// 13/04/2017 merged with LayerAccessContext (removed).
 //----------------------------------------------------------------------------
 
 #include "bLayersMgr.h"
@@ -36,15 +37,18 @@
 #include "bSelectionMgr.h"
 #include "bContrastesMgr.h"
 #include "bStyle.h"
+#include "bVirtualStyle.h"
 #include "bScreenObj.h"
 #include "bMacMapGeoElement.h"
-#include "bMacMapLayerAccessContext.h"
+
 #include <mox_intf/bGenericXMLBaseElement.h>
 #include <mox_intf/CGUtils.h>
 #include <mox_intf/ext_utils.h>
 #include <mox_intf/Carb_Utils.h>
 #include <mox_intf/bStdWait.h>
 #include <mox_intf/endian.h>
+#include <mox_intf/xmldesc_utils.h>
+
 #include <MacMapSuite/bTrace.h>
 #include <MacMapSuite/C_Utils.h>
 
@@ -65,6 +69,63 @@
 #endif
 
 // ---------------------------------------------------------------------------
+//
+// -----------
+typedef struct containPrm{
+    int						idx;
+    int						n;
+    bGenericXMLBaseElement* elt;
+}containPrm;
+
+// ---------------------------------------------------------------------------
+//
+// -----------
+static bool _getIndElementContainingLayer(bGenericXMLBaseElement *elt, void *prm, int indent){
+    containPrm	*p=(containPrm*)prm;
+    char		clssname[_names_length_max_];
+    
+    elt->getclassname(clssname);
+    if(!strcmp("layer",clssname)){
+        p->n++;
+        if(p->n==p->idx){
+            p->elt=elt;
+            return(false);
+        }
+    }
+    else if(!strcmp("virtuallayer",clssname)){
+        p->n++;
+        if(p->n==p->idx){
+            p->elt=elt;
+            return(false);
+        }
+    }
+    return(true);
+}
+
+// ---------------------------------------------------------------------------
+//
+// -----------
+static bGenericXMLBaseElement* GetIndlayer(bGenericXMLBaseElement* root, int idx){
+    containPrm	p;
+    
+    p.idx=idx;
+    p.n=0;
+    p.elt=NULL;
+    (void)root->dotoall(&p,0,_getIndElementContainingLayer);
+    return(p.elt);
+}
+
+// ---------------------------------------------------------------------------
+//
+// -----------
+static bool debugDump(bGenericXMLBaseElement *elt, void *prm, int indent){
+    char    clssname[_names_length_max_];
+    elt->getclassname(clssname);
+    fprintf(stderr,"%s\n",clssname);
+    return(true);
+}
+
+// ---------------------------------------------------------------------------
 // Constructeur
 // ------------
 bLayersMgr	::bLayersMgr()
@@ -73,6 +134,11 @@ bLayersMgr	::bLayersMgr()
 	_selg=NULL;
 	_cntg=NULL;
 	_drawing=false;
+                
+                
+    _cursor=0;
+    _elts=new bArray(sizeof(bStyle*));
+
 }
 
 // ---------------------------------------------------------------------------
@@ -85,10 +151,15 @@ bGenericGraphicContext*	ctx;
 		extmgr->get_component(kComponentGraphics)->i_free(ctx);
 	}
 	_ctx=NULL;
+    
+    if(_elts){
+        flush();
+        delete _elts;
+    }
 }
 
 // ---------------------------------------------------------------------------
-// Chargement classes XML externes
+// Chargement
 // -----------
 int bLayersMgr::load(){
 _lbTrace_("bLayersMgr::load",true);
@@ -106,15 +177,73 @@ int						spc;
 		ctx->set_background(clr,spc);
 	}
 	
-bMacMapLayerAccessContext	*ctxl=(bMacMapLayerAccessContext*)_MMAPP_->layersAccessCtx();
-	if(ctxl->load()!=noErr){
-_le_("ctxl->load()!=noErr");
-		return(-1);
-	}
-	
-	_selg=new bGraphicParams(kStdGraphicParamsSelectionName,_MMAPP_);
-	_cntg=new bGraphicParams(kStdGraphicParamsContrastesName,_MMAPP_);
+    if(curview_load()!=noErr){
+        return -1;
+    }
+    
+    _selg=new bGraphicParams(kStdGraphicParamsSelectionName,_MMAPP_);
+    _cntg=new bGraphicParams(kStdGraphicParamsContrastesName,_MMAPP_);
+  
 	return(noErr);
+}
+
+// ---------------------------------------------------------------------------
+// Chargement
+// -----------
+int bLayersMgr::curview_load(){
+_lbTrace_("bLayersMgr::curview_load",true);
+long                    margin=0;
+bGenericXMLBaseElement	*root,*elt;
+    
+    if(map_doc->readTree(&root,0,"drawsearch")){
+_lm_("found drawsearch.xml");
+char	val[_values_length_max_];
+        elt=clssmgr->NthElement(root,1,"int");
+        if(elt){
+            elt->getvalue(val);
+            margin=atoi(val);
+_lm_("margin="+(int)margin);
+        }
+        else{
+_lw_("no margin");
+        }
+        clssmgr->ReleaseXMLInstance(root);
+        if(margin<0){
+            margin=0;
+        }
+    }
+    
+    _curview=viewmgr->get_root();
+    if(!_curview){
+_le_("no _curview == NULL");
+        return(-1);
+    }
+    _curview->init(this);
+bStyle*	style;
+    for(int i=1;i<=_elts->count();i++){
+        if(!_elts->get(i,&style)){
+_le_("_elts->get("+i+",&style)");
+            return(-1);
+        }
+        if(	(style->gettype()==NULL)	&&
+            (!style->is_virtual())		){
+_le_("type not found for style "+i);
+            remove(i);
+            i--;
+            continue;
+        }
+_lm_("* parsing "+i);
+        if(!parse(i)){
+        }
+        style->setmargin(margin);
+    }
+    
+    if(count()>0){
+        set_current(1);
+    }
+
+    return(noErr);
+
 }
 
 // ---------------------------------------------------------------------------
@@ -129,20 +258,30 @@ int bLayersMgr::unload(){
 // -----------
 int bLayersMgr::unload(bool save){
 _lbTrace_("bLayersMgr::unload(bool)",true);
-bMacMapLayerAccessContext*	ctxl=(bMacMapLayerAccessContext*)_MMAPP_->layersAccessCtx();
 	if(save){
-		ctxl->unload();
+bStyle*	style;
+        
+        for(int i=1;i<=_elts->count();i++){
+            if(!_elts->get(i,&style)){
+                continue;
+            }
+            style->report();
+        }
+_tm_("* report ok");
+        flush();
+_tm_("* flush ok");
+
 	}
 	else{
-		ctxl->flush();
+        flush();
 	}
 	
 	delete _selg;
 	delete _cntg;
 	_selg=NULL;
 	_cntg=NULL;
-	
-	return(noErr);
+
+    return(noErr);
 }
 
 // ---------------------------------------------------------------------------
@@ -215,35 +354,38 @@ CGContextRef	cgctx=(CGContextRef)data;
 // -----------
 void bLayersMgr::DrawLayers(void* wd, ivx_rect* bounds){
 _lbTrace_("bLayersMgr::drawLayers",true);
-long						i;
-bStyle*						style;
-bMacMapLayerAccessContext*	ctxl=(bMacMapLayerAccessContext*)_MMAPP_->layersAccessCtx();
+long    i;
+bStyle* style;
 		
 	_breaked=false;
 	
 double	d=scalemgr->get()->coef();
 	_ctx->setScale(d);
 
+clock_t  t;
 // Reset des éléments à l'écran
 _lm_("styles reset");
-	for(i=1;i<=ctxl->count();i++){
-		style=(bStyle*)ctxl->get(i);
+	for(i=1;i<=count();i++){
+t=clock();
+		style=(bStyle*)get(i);
 		if(!style){
 _le_("NULL style "+i);
 			continue;
 		}
 //_lm_("style reset "+i+"/"+style->getname());
 		style->flushscreen();
+_lm_("Reset "+i+" : "+(int)(clock()-t));
 	}
 	
 // Init des styles	
 _lm_("styles init");
-	for(i=1;i<=ctxl->count();i++){
+	for(i=1;i<=count();i++){
+t=clock();
 		if(_breaked){
 _lm_("_breaked");
 			break;
 		}
-		style=(bStyle*)ctxl->get(i);
+		style=(bStyle*)get(i);
 		if(!style){
 _le_("NULL style");
 			continue;
@@ -251,6 +393,7 @@ _le_("NULL style");
 //_lm_("style init "+i+"/"+style->getname());
 		style->setcontext(_ctx);
 		style->setbounds(bounds);
+_lm_("Init "+i+" : "+(int)(clock()-t));
 	}
 
 	_drawing=true;
@@ -260,12 +403,13 @@ bCursWait	wt(true);
 // Dessin des styles	
 _lm_("styles draw :");
 	_ctx->beginDraw();
-	for(i=1;i<=ctxl->count();i++){
+	for(i=1;i<=count();i++){
+t=clock();
 		if(_breaked){
 _lm_("_breaked");
 			break;
 		}
-		style=(bStyle*)ctxl->get(i);
+		style=(bStyle*)get(i);
 		if(!style){
 _le_("NULL style");
 			continue;
@@ -273,6 +417,7 @@ _le_("NULL style");
 _lm_("draw "+i+"/"+style->getname());
 		style->draw(wt);
 		_ctx->flush();
+_lm_("Draw "+i+" : "+(int)(clock()-t));
 	}
 	_ctx->endDraw();
 	
@@ -288,7 +433,6 @@ _lbTrace_("bLayersMgr::stopDraw",true);
 	if(_drawing){
 _lm_("Drawing process stopped");
 		_drawing=false;
-//		_ctx->flush();
 		_ctx->endDraw();
 	}
 }
@@ -311,17 +455,16 @@ void bLayersMgr::DrawSelection(CGContextRef ctx, bGenericGeoElement* o){
 		return;
 	}
 	
-int							i,j,k,l,n;
-float						xmin,ymin,xmax,ymax;
-bStyle*						style;
-bMacMapLayerAccessContext	*ctxl=(bMacMapLayerAccessContext*)_MMAPP_->layersAccessCtx();
-bScreenObj*					scr;
+int         i,j,k,l,n;
+float       xmin,ymin,xmax,ymax;
+bStyle*     style;
+bScreenObj* scr;
 	
 	CGContextSaveGState(ctx);
 	_selg->apply(ctx);
 	if(o){
-		for(i=1;i<=ctxl->count();i++){
-			style=(bStyle*)ctxl->get(i);
+		for(i=1;i<=count();i++){
+			style=(bStyle*)get(i);
 			if(!style){
 				continue;
 			}
@@ -362,8 +505,8 @@ bScreenObj*					scr;
 		}
 	}
 	else{
-		for(i=1;i<=ctxl->count();i++){
-			style=(bStyle*)ctxl->get(i);
+		for(i=1;i<=count();i++){
+			style=(bStyle*)get(i);
 			if(!style){
 				continue;
 			}
@@ -401,17 +544,16 @@ void bLayersMgr::DrawContrastes(CGContextRef ctx, bGenericGeoElement* o){
 		return;
 	}
 	
-int							i,j,k,l,n;
-float						xmin,ymin,xmax,ymax;
-bStyle*						style;
-bMacMapLayerAccessContext	*ctxl=(bMacMapLayerAccessContext*)_MMAPP_->layersAccessCtx();
-bScreenObj*					scr;
+int         i,j,k,l,n;
+float       xmin,ymin,xmax,ymax;
+bStyle*     style;
+bScreenObj* scr;
 	
 	CGContextSaveGState(ctx);
 	_cntg->apply(ctx);
 	if(o){
-		for(i=1;i<=ctxl->count();i++){
-			style=(bStyle*)ctxl->get(i);
+		for(i=1;i<=count();i++){
+			style=(bStyle*)get(i);
 			if(!style){
 				continue;
 			}
@@ -452,8 +594,8 @@ bScreenObj*					scr;
 		}
 	}
 	else{		
-		for(i=1;i<=ctxl->count();i++){
-			style=(bStyle*)ctxl->get(i);
+		for(i=1;i<=count();i++){
+			style=(bStyle*)get(i);
 			if(!style){
 				continue;
 			}
@@ -487,13 +629,12 @@ void bLayersMgr::InvalElement(bGenericGeoElement* o){
 	if(!o->atscreen()){
 		return;
 	}
-int							l;
-CGRect						r;
-bStyle*						style;
-bMacMapLayerAccessContext*	ctxl=(bMacMapLayerAccessContext*)_MMAPP_->layersAccessCtx();
+int     l;
+CGRect  r;
+bStyle* style;
 		
-	for(int i=1;i<=ctxl->count();i++){
-		style=(bStyle*)ctxl->get(i);
+	for(int i=1;i<=count();i++){
+		style=(bStyle*)get(i);
 		if(!style){
 			continue;
 		}
@@ -529,7 +670,9 @@ void bLayersMgr::ViewChanged(){
 // 
 // -----------
 void bLayersMgr::SetObjInvalidation(bool b){
-	bMacMapGeoElement::set_inval(b);
+_bTrace_("bLayersMgr::SetObjInvalidation",true);
+_tm_("set to "+b);
+    bMacMapGeoElement::set_inval(b);
 	if(b){
 		_MMAPP_->mapIntf()->inval();
 	}
@@ -580,3 +723,433 @@ char	val[_values_length_max_];
 	}
 	clssmgr->ReleaseXMLInstance(root);
 }
+
+// ---------------------------------------------------------------------------
+//
+// -----------
+bGenericLayersMgr*  bLayersMgr::clone(){
+bLayersMgr* mgr=new bLayersMgr();
+
+bGenericGraphicContext*	ctx;
+    for(int i=1;i<=_ctxs.count();i++){
+        _ctxs.get(i,&ctx);
+        mgr->_ctxs.add(&ctx);
+    }
+    
+    mgr->_ctx=_ctx;
+    
+    if(mgr->curview_load()!=noErr){
+    }
+
+    mgr->_selg=new bGraphicParams(kStdGraphicParamsSelectionName,_MMAPP_);
+    mgr->_cntg=new bGraphicParams(kStdGraphicParamsContrastesName,_MMAPP_);
+
+    return mgr;
+}
+
+// ---------------------------------------------------------------------------
+//
+// -----------
+void bLayersMgr::cloneDelete(bGenericLayersMgr* mgr){
+bLayersMgr* lmgr=(bLayersMgr*)mgr;
+    
+    lmgr->_ctxs.reset();
+    lmgr->_ctx=NULL;
+    
+    delete lmgr;
+}
+
+
+// ---------------------------------------------------------------------------
+//
+// ------------
+bool bLayersMgr::addlayer(void* elt){
+_bTrace_("bLayersMgr::addlayer",true);
+_tm_("addlayer");
+bStyle*	style=new bStyle(this);
+    if(!style){
+        return(false);
+    }
+    if(!_elts->add(&style)){
+        return(false);
+    }
+    style->setlayer(elt);
+    _cursor=count();
+    return(true);
+}
+
+// ---------------------------------------------------------------------------
+//
+// ------------
+bool bLayersMgr::addvirtuallayer(void* elt){
+_bTrace_("bLayersMgr::addvirtuallayer",true);
+_tm_("addlayer");
+bStyle*	style=new bVirtualStyle(this);
+    if(!style){
+        return(false);
+    }
+    if(!_elts->add(&style)){
+        return(false);
+    }
+    style->setlayer(elt);
+    _cursor=count();
+    return(true);
+}
+
+// ---------------------------------------------------------------------------
+//
+// ------------
+void bLayersMgr::settype(const char *name){
+_bTrace_("bLayersMgr::settype",true);
+bGenericStyle*	style;
+    if(!_elts->get(_cursor,&style)){
+        return;
+    }
+    style->settype(name);
+}
+
+// ---------------------------------------------------------------------------
+//
+// ------------
+void bLayersMgr::setstyle(const char *name){
+bStyle*	style;
+    if(!_elts->get(_cursor,&style)){
+        return;
+    }
+    style->setname(name);
+}
+
+// ---------------------------------------------------------------------------
+//
+// ------------
+void bLayersMgr::setvisible(bool vis){
+bStyle*	style;
+    if(!_elts->get(_cursor,&style)){
+        return;
+    }
+    style->setvisible(vis);
+bGenericXMLBaseElement	*elt=clssmgr->NthElement(_array,_cursor,"visible");
+    if(elt){
+        elt->setvalue(vis?(char*)"1":(char*)"0");
+    }
+}
+
+// ---------------------------------------------------------------------------
+//
+// ------------
+void bLayersMgr::setselectable(bool sel){
+bStyle*	style;
+    if(!_elts->get(_cursor,&style)){
+        return;
+    }
+    style->setselectable(sel);
+bGenericXMLBaseElement	*elt=clssmgr->NthElement(_array,_cursor,"selectable");
+    if(elt){
+        elt->setvalue(sel?(char*)"1":(char*)"0");
+    }
+}
+
+// ---------------------------------------------------------------------------
+//
+// ------------
+void bLayersMgr::setroot(void* elt){
+bStyle*	style;
+    if(!_elts->get(_cursor,&style)){
+        return;
+    }
+    style->setroot(elt);
+}
+
+// ---------------------------------------------------------------------------
+//
+// ------------
+void bLayersMgr::setarray(void* elt){
+_bTrace_("bLayersMgr::setarray",true);
+_array=(bGenericXMLBaseElement*)elt;
+_tm_("-> done");
+}
+
+// ---------------------------------------------------------------------------
+//
+// ------------
+void bLayersMgr::setidentification(void* elt){
+_bTrace_("bLayersMgr::setidentification",true);
+    _identifier=(bGenericXMLBaseElement*)elt;
+_tm_("-> done");
+}
+
+// ---------------------------------------------------------------------------
+//
+// ------------
+void bLayersMgr::flush(){
+bStyle*	style;
+    
+    for(int i=1;i<=_elts->count();i++){
+        if(_elts->get(i,&style)){
+            delete style;
+        }
+    }
+    _elts->reset();
+}
+
+// ---------------------------------------------------------------------------
+//
+// ------------
+bool bLayersMgr::parse(int idx){
+bStyle*	style;
+    if(_elts->get(idx,&style)){
+        return(style->load());
+    }
+    return(false);
+}
+
+// ---------------------------------------------------------------------------
+//
+// ------------
+int bLayersMgr::count(){
+    return(_elts->count());
+}
+
+// ---------------------------------------------------------------------------
+//
+// ------------
+bGenericStyle* bLayersMgr::get(int idx){
+bGenericStyle*	style;
+    if(!_elts->get(idx,&style)){
+        return(NULL);
+    }
+    return(style);
+}
+
+// ---------------------------------------------------------------------------
+//
+// ------------
+bool bLayersMgr::set_current(int idx){
+    if((idx<1)||(idx>count())){
+        return(false);
+    }
+    _cursor=idx;
+    return(true);
+}
+
+// ---------------------------------------------------------------------------
+//
+// ------------
+int bLayersMgr::get_current(){
+    return(_cursor);
+}
+
+// ---------------------------------------------------------------------------
+//
+// ------------
+bool bLayersMgr::move(int idx, int offset){
+_bTrace_("bLayersMgr::move",true);
+    if(!_elts->push(idx,offset)){
+        return(false);
+    }
+    _array->pushelement(idx,offset);
+    if(idx==_cursor){
+        _cursor+=offset;
+    }
+    _MMAPP_->mapIntf()->inval();
+    return(true);
+}
+
+// ---------------------------------------------------------------------------
+//
+// ------------
+bool bLayersMgr::remove(int idx){
+_bTrace_("bLayersMgr::remove",true);
+bStyle*	style;
+    if(!_elts->get(idx,&style)){
+        return(false);
+    }
+    delete style;
+    if(!_elts->rmv(idx)){
+        return(false);
+    }
+bGenericXMLBaseElement*	elt=_array->getelement(idx);
+    _array->rmvelement(idx);
+    if(elt){
+        bGenericXMLBaseElement*	k=elt->instance();
+        k->kill(elt);
+    }
+    if((idx==_cursor)&&(idx==count()+1)){
+        _cursor=count();
+    }
+    _MMAPP_->mapIntf()->inval();
+    return(true);
+}
+
+// ---------------------------------------------------------------------------
+//
+// ------------
+bool bLayersMgr::add(int tidx, int sidx){
+_bTrace_("bLayersMgr::add",true);
+bGenericType*	tp=typesmgr->get(tidx);
+bStyle*			style;
+    
+    if(tp){
+        style=new bStyle(this);
+    }
+    else{
+        style=new bVirtualStyle(this);
+    }
+    
+    if(!style){
+        return(false);
+    }
+    if(!_elts->add(&style)){
+        delete style;
+        return(false);
+    }
+    
+bArray  arr(sizeof(xmlelt));
+    if(tp){
+        add_cdesc(arr,0,"layer","");
+    }
+    else{
+        add_cdesc(arr,0,"virtuallayer","");
+    }
+    
+char name[256];
+    if(tp){
+        tp->name(name);
+    }
+    else{
+        message_string(kMsgVirtual,name,1);
+    }
+    style->settype(name);
+    if(tp){
+        add_cdesc(arr,1,"type",name);
+    }
+    
+    if(tp){
+        tp->styles()->get_name(sidx,name);
+    }
+    else{
+        map_doc->styles()->get_name(sidx,name);
+    }
+    style->setname(name);
+    add_cdesc(arr,1,"style",name);
+    style->setvisible(true);
+    add_idesc(arr,1,"visible",1);
+    style->setselectable(true);
+    add_idesc(arr,1,"selectable",(tp!=0));
+    
+bGenericXMLBaseElement	*root=clssmgr->ParseXMLDescriptors(&arr);
+    free_descs(arr);
+    if(!root){
+        delete style;
+        _elts->rmv(_elts->count());
+        return(false);
+    }
+    style->setlayer(root);
+    _array->addelement(root);
+    parse(_elts->count());
+    _MMAPP_->mapIntf()->inval();
+    return(true);
+}
+
+// ---------------------------------------------------------------------------
+//
+// ------------
+bool bLayersMgr::change(int idx, int sidx){
+_bTrace_("bLayersMgr::change",true);
+bStyle*	style;
+    if(!_elts->get(idx,&style)){
+_te_("_elts->get failed for "+idx);
+        return(false);
+    }
+bool					v=style->visible();
+bool					s=style->selectable();
+bGenericXMLBaseElement*	root;
+char					name[256];
+    
+    if(style->is_virtual()){
+        delete style;
+        style=new bVirtualStyle(this);
+        if(!_elts->put(idx,&style)){
+_te_("_elts->put failed for virtualstyle "+idx);
+            return(false);
+        }
+        map_doc->styles()->get_name(sidx,name);
+_tm_("changing "+name+" (virtual)");
+    }
+    else{
+bGenericType*			tp=style->gettype();
+        if(tp==NULL){
+_te_("NULL type");
+            return(false);
+        }
+        delete style;
+        style=new bStyle(this);
+        if(!_elts->put(idx,&style)){
+_te_("_elts->put failed for style "+idx);
+            return(false);
+        }
+        tp->name(name);
+        style->settype(name);
+        tp->styles()->get_name(sidx,name);
+_tm_("changing "+name);
+    }
+    
+    style->setname(name);
+    style->setvisible(v);
+    style->setselectable(s);
+    root=GetIndlayer(_array,idx);
+    if(root==NULL){
+_te_("NULL root");
+        return(false);
+    }
+    
+bGenericXMLBaseElement*	elt=clssmgr->NthElement(root,1,"style");
+    if(elt==NULL){
+_te_("NULL style element");
+        _array->dotoall(NULL,0,debugDump);		
+        return(false);
+    }
+    elt->setvalue(name);
+    style->setlayer(root);	
+    parse(idx);
+    _MMAPP_->mapIntf()->inval();
+    check_on_screen();
+    return(true);
+}
+
+// ---------------------------------------------------------------------------
+// 
+// ------------
+void bLayersMgr::check_on_screen(){
+_bTrace_("bLayersMgr::check_on_screen",true);
+bStyle*					style;
+int						sidx;
+bGenericXMLBaseElement*	root;
+bGenericType*			tp;
+    
+    for(int i=1;i<=_elts->count();i++){
+        if(!_elts->get(i,&style)){
+        }
+        root=style->root();
+        if(!root){
+            continue;
+        }
+        tp=style->gettype();
+        if(tp){
+            sidx=tp->styles()->index(root);
+            if(sidx==0){
+                continue;
+            }
+            tp->styles()->set_on_screen(sidx,true);
+        }
+        else{
+            sidx=map_doc->styles()->index(root);
+            if(sidx==0){
+                continue;
+            }
+            map_doc->styles()->set_on_screen(sidx,true);
+        }
+    }
+}
+
+

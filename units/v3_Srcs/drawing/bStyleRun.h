@@ -4,7 +4,7 @@
 // Purpose : Header file : Style param set for a class of object
 // Author : Benoit Ogier, benoit.ogier@macmap.com
 //
-// Copyright (C) 1997-2015 Carte Blanche Conseil.
+// Copyright (C) 2004 Carte Blanche Conseil.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -39,47 +39,46 @@
 //----------------------------------------------------------------------------
 
 class bStyleRun : public bGenericElement{
-	public:
-		bStyleRun							(	); 
-		virtual ~bStyleRun   				(	);
-		
-		virtual void setroot				(	void* elt);
-		virtual void setvalidity			(	void* elt);
-		virtual void setrender				(	void* elt);
-		virtual void setgeometry			(	void* elt);
-		
-		virtual void setscalemin			(	double d);
-		virtual void setscalemax			(	double d);
-		virtual void setclassmin			(	int idx);
-		virtual void setclassmax			(	int idx);
-		virtual void setpass				(	int idx);
-		
-		virtual bool good					(	double scale, 
-												int clss, 
-												int pass);
-		
-		virtual bool applyforclass			(	bGenericGraphicContext* ctx);
-		virtual bool applyforobject			(	bGenericGraphicContext* ctx);
-		virtual bool applygeometryforclass	(	bGenericGraphicContext* ctx);
-		virtual bool applygeometryforobject	(	bGenericGraphicContext* ctx);
-		
-		virtual bGenericXMLBaseElement* root(	);
-		
-	protected:
+public:
+    bStyleRun							(	); 
+    virtual ~bStyleRun   				(	);
+    
+    virtual void setroot				(	void* elt);
+    virtual void setvalidity			(	void* elt);
+    virtual void setrender				(	void* elt);
+    virtual void setgeometry			(	void* elt);
+    
+    virtual void setscalemin			(	double d);
+    virtual void setscalemax			(	double d);
+    virtual void setclassmin			(	int idx);
+    virtual void setclassmax			(	int idx);
+    virtual void setpass				(	int idx);
+    
+    virtual bool good					(	double scale, 
+                                            int clss, 
+                                            int pass);
+    
+    virtual bool applyforclass			(	bGenericGraphicContext* ctx);
+    virtual bool applyforobject			(	bGenericGraphicContext* ctx);
+    virtual bool applygeometryforclass	(	bGenericGraphicContext* ctx);
+    virtual bool applygeometryforobject	(	bGenericGraphicContext* ctx);
+    
+    virtual bGenericXMLBaseElement* root(	);
+    
+protected:
 
-		
-	private:
-		bGenericXMLRenderingElement*		_root;
-		bGenericXMLRenderingElement*		_validity;
-		bGenericXMLRenderingElement*		_render;
-		bGenericXMLRenderingElement*		_geometry;
-		
-		double								_scalemin;
-		double								_scalemax;
-		int									_classmin;
-		int									_classmax;
-		int									_pass;
-		
+    
+private:
+    bGenericXMLRenderingElement*    _root;
+    bGenericXMLRenderingElement*    _validity;
+    bGenericXMLRenderingElement*    _render;
+    bGenericXMLRenderingElement*    _geometry;
+    
+    double                          _scalemin;
+    double                          _scalemax;
+    int                             _classmin;
+    int                             _classmax;
+    int                             _pass;
 };
 
 //----------------------------------------------------------------------------

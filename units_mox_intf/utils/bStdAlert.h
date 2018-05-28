@@ -4,7 +4,7 @@
 // Purpose : Header file : Alert windows utility classes
 // Author : Benoit Ogier, benoit.ogier@macmap.com
 //
-// Copyright (C) 1997-2015 Carte Blanche Conseil.
+// Copyright (C) 1997-2018 Carte Blanche Conseil.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -25,6 +25,7 @@
 // 
 //----------------------------------------------------------------------------
 // 24/01/2005 creation.
+// 02/01/2018 Cocoa porting.
 //----------------------------------------------------------------------------
 
 #ifndef __bStdAlert__
@@ -34,106 +35,128 @@
 // A reprendre en Cocoa
 
 class bStdAlert{
-	public:		
-		bStdAlert				(	int kind, 
-									int def_btn, 
-									bool has_cancel, 
-									const char* error_string, 
-									const char* explanation_string);
-		bStdAlert				(	int kind, 
-									int def_btn, 
-									bool has_cancel, 
-									const char* error_string, 
-									const char* explanation_string,
-									bool silent);
-		bStdAlert				(	int kind, 
-									int def_btn, 
-									bool has_cancel, 
-									const char* error_string, 
-									const char* explanation_string,
-									bool silent,
-									UInt32 delay);
-		bStdAlert				(	int kind, 
-									int def_btn, 
-									bool has_cancel, 
-									const char* error_string, 
-									const char* explanation_string,
-									bool silent,
-									UInt32 delay,
-									const char* btn1, 
-									const char* btn2,
-									const char* btn3);	
-	
-		virtual~bStdAlert		(	);
-		
-		virtual bool result		(	);
-		virtual int hit_button	(	){return _hit;};
-		
-	protected:
-	
-	private:
-		bool				_res;
-		DialogItemIndex		_hit;
+public:
+    bStdAlert				(	int kind, 
+                                int def_btn, 
+                                bool use_cancel, 
+                                const char* error_string, 
+                                const char* explanation_string);
+    bStdAlert				(	int kind, 
+                                int def_btn, 
+                                bool use_cancel, 
+                                const char* error_string, 
+                                const char* explanation_string,
+                                bool silent);
+    bStdAlert				(	int kind, 
+                                int def_btn, 
+                                bool use_cancel, 
+                                const char* error_string, 
+                                const char* explanation_string,
+                                bool silent,
+                                UInt32 delay);
+    bStdAlert				(	int kind, 
+                                int def_btn, 
+                                bool use_cancel, 
+                                const char* error_string, 
+                                const char* explanation_string,
+                                bool silent,
+                                UInt32 delay,
+                                const char* btn1, 
+                                const char* btn2,
+                                const char* btn3);	
+
+    virtual~bStdAlert		(	);
+    
+    virtual bool result		(	);
+    virtual int hit_button	(	){return _hit;};
+    
+protected:
+
+private:
+    bool	_res;
+    int		_hit;
 
 };
 
 //----------------------------------------------------------------------------
 
 class bAlertWarningYes : public bStdAlert{
-	public:		
-		bAlertWarningYes			(	const char* error_string, 
-										const char* explanation_string);
-		bAlertWarningYes			(	const char* error_string, 
-										const char* explanation_string,
-										bool silent);
-		bAlertWarningYes			(	const char* error_string, 
-										const char* explanation_string,
-										bool silent,
-										UInt32 delay,
-										const char* btn1, 
-										const char* btn2,
-										const char* btn3);
-	virtual ~bAlertWarningYes	(	);
-		
-	protected:
-	
-	private:
+public:
+    bAlertWarningYes			(	const char* error_string, 
+                                    const char* explanation_string);
+    bAlertWarningYes			(	const char* error_string, 
+                                    const char* explanation_string,
+                                    bool silent);
+    bAlertWarningYes			(	const char* error_string,
+                                    const char* explanation_string,
+                                    bool silent,
+                                    UInt32 delay);
+    bAlertWarningYes			(	const char* error_string,
+                                    const char* explanation_string,
+                                    bool silent,
+                                    UInt32 delay,
+                                    const char* btn1, 
+                                    const char* btn2,
+                                    const char* btn3);
+    virtual ~bAlertWarningYes	(	);
+    
+protected:
+
+private:
 };
 
 //----------------------------------------------------------------------------
 
 class bAlertWarningNo : public bStdAlert{
-	public:		
-		bAlertWarningNo				(	const char* error_string, 
-										const char* explanation_string);
-		bAlertWarningNo				(	const char* error_string, 
-										const char* explanation_string,
-										bool silent);
-		virtual ~bAlertWarningNo	(	);
+public:
+    bAlertWarningNo             (   const char* error_string,
+                                    const char* explanation_string);
+    bAlertWarningNo             (	const char* error_string,
+                                    const char* explanation_string,
+                                    bool silent);
+    bAlertWarningNo             (	const char* error_string,
+                                    const char* explanation_string,
+                                    bool silent,
+                                    UInt32 delay);
+    bAlertWarningNo             (	const char* error_string,
+                                    const char* explanation_string,
+                                    bool silent,
+                                    UInt32 delay,
+                                    const char* btn1,
+                                    const char* btn2,
+                                    const char* btn3);
+    virtual ~bAlertWarningNo    (	);
 		
-	protected:
+protected:
 	
-	private:
+private:
 };
 
 //----------------------------------------------------------------------------
 
 class bAlertStop : public bStdAlert{
-	public:		
-		bAlertStop			(	const char* error_string, 
-								const char* explanation_string);
-		bAlertStop			(	const char* error_string, 
-								const char* explanation_string,
-								bool silent);
-		bAlertStop			(	const char* error_string, 
-								const char* explanation_string,
-								bool silent,
-								UInt32 delay);
-		virtual ~bAlertStop	(	);
+public:
+    bAlertStop			(	const char* error_string,
+                            const char* explanation_string);
+    bAlertStop			(	const char* error_string, 
+                            const char* explanation_string,
+                            bool silent);
+    bAlertStop			(	const char* error_string, 
+                            const char* explanation_string,
+                            bool silent,
+                            UInt32 delay);
+    bAlertStop          (	const char* error_string,
+                            const char* explanation_string,
+                            bool silent,
+                            UInt32 delay,
+                            const char* btn1,
+                            const char* btn2,
+                            const char* btn3);
+    virtual ~bAlertStop	(	);
 		
-	protected:
+protected:
 	
-	private:
+private:
 };
 
 //----------------------------------------------------------------------------

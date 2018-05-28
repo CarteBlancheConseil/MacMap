@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>French</string>
+	<key>CFBundleExecutable</key>
+	<string>ToolInfo</string>
+	<key>CFBundleIconFile</key>
+	<string></string>
+	<key>CFBundleIdentifier</key>
+	<string>com.cbconseil.toolinfo</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundlePackageType</key>
+	<string>Tool</string>
+	<key>CFBundleSignature</key>
+	<string>MaMo</string>
+	<key>CFBundleVersion</key>
+	<string>1.2</string>
+	<key>CSResourcesFileMapped</key>
+	<true/>
+	<key>MacMapHigh</key>
+	<string>-1</string>
+	<key>MacMapLibSign</key>
+	<string>t004</string>
+	<key>MacMapLow</key>
+	<string>-1</string>
+	<key>MacMapMinVers</key>
+	<string>3.0.0</string>
+</dict>
+</plist>

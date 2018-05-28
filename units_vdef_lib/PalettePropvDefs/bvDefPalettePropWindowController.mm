@@ -141,7 +141,9 @@ _bTrace_("[bvDefPalettePropWindowController awakeFromNib]",true);
 char str[256];
 	_ext->type_get()->name(str);
 	[_tnm_fld setCharValue:str];
-	[_prvw installController:self];
+    [_tab selectTabViewItemAtIndex:0];
+
+    [_prvw installController:self];
 
 // Proportionnalité
 	NSPopupButtonRemoveAllItems(_fld_pop);

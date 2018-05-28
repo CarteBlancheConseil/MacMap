@@ -1,0 +1,74 @@
+body {
+font-family: verdana,Arial,Helvetica,sans-serif; font-size: 11px; color: black; text-decoration: none;
+}
+
+td,div{ 
+font-family: verdana,Arial,Helvetica,sans-serif; font-size: 11px; color: #FFFFFF; text-decoration: none; 
+}
+
+p{
+font-family: verdana,Arial,Helvetica,sans-serif; font-size: 11px; color: #000000; text-decoration: none; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 10; 
+}
+
+a{
+font-family: verdana,Arial,Helvetica,sans-serif; font-size: 11px; color: #1111FF; text-decoration: none;
+}
+
+.title0{ 
+font-family: verdana,Arial,Helvetica,sans-serif; font-size: 24px; color:#000000; text-decoration: none; 
+}
+
+.title1{ 
+font-family: verdana,Arial,Helvetica,sans-serif; font-size: 16px; color:#000000; text-decoration: none; 
+}
+
+.switch{ 
+font-family: verdana,Arial,Helvetica,sans-serif; 
+font-size: 11px; 
+text-decoration: none; 
+background-color:#EEEEEE; 
+}
+
+.item{ 
+font-family: verdana-bold,Arial-bold,Helvetica-bold,sans-serif-bold; 
+font-size: 11px; 
+color: #000000;
+background-color: #EEEEFF;
+valign: center;
+}
+
+.gigaitem{ 
+font-family: verdana-bold,Arial-bold,Helvetica-bold,sans-serif-bold; 
+font-size: 11px; 
+color: #000000;
+background-color: #AAAAFF;
+valign: center;
+}
+
+.item2{ 
+font-family: verdana,Arial,Helvetica,sans-serif; 
+font-size: 11px; 
+color: #000000;
+background-color: #EEEEFF;
+valign: center;
+}
+
+.scripttitle{ 
+font-family: verdana-bold,Arial-bold,Helvetica-bold,sans-serif-bold; 
+font-size: 10px; 
+color: #FFFFFF;
+background-color: #666666;
+valign: center;
+}
+
+.scriptitem{ 
+font-family: verdana,Arial,Helvetica,sans-serif; 
+font-size: 10px; 
+color: #FFFFFF;
+background-color: #888888;
+valign: center;
+}
+
+.varitem{ 
+color: #000099;
+}

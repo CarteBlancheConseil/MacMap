@@ -4,7 +4,7 @@
 // Purpose : Header file : Application main class
 // Author : Benoit Ogier, benoit.ogier@macmap.com
 //
-// Copyright (C) 1997-2015 Carte Blanche Conseil.
+// Copyright (C) 2003 Carte Blanche Conseil.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -25,6 +25,7 @@
 // 
 //----------------------------------------------------------------------------
 // 20/11/2003 creation.
+// 13/04/2017 LayerAccessContext removed.
 //----------------------------------------------------------------------------
 
 #ifndef __bMacMapApp__
@@ -76,9 +77,7 @@ public:
 	
 	virtual bGenericObjListMgr* selMgr						(	);
 	virtual bGenericObjListMgr* cntMgr						(	);
-	
-	virtual bGenericLayerAccessContext* layersAccessCtx		(	);
-	
+		
 	virtual bGenericLocConverter* locConverter				(	);
 					
 	virtual bGenericDocument* document						(	);
@@ -172,9 +171,7 @@ protected:
 
 	bGenericObjListMgr*				_selmgr;
 	bGenericObjListMgr*				_cntmgr;
-	
-	bGenericLayerAccessContext*		_layersaccessctx;
-	
+		
 	bGenericLocConverter*			_locConverter;
 	
 	bGenericMapIntf*				_map_intf;

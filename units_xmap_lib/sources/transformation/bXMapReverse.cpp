@@ -112,7 +112,7 @@ bGenericGeoElement*	o;
 bArray				sel(*(_gapp->selMgr()->elements()));
 char				mess[__MESSAGE_STRING_LENGTH_MAX__];
 	message_string(kMsgProgress,mess,1);
-bProgressWait		wt("",mess,true,false,sel.count());
+bProgressWait		wt("",mess,false,sel.count());
 
 	_gapp->layersMgr()->SetObjInvalidation(false);
 	for(int i=1;i<=sel.count();i++){

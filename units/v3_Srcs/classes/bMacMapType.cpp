@@ -4,7 +4,7 @@
 // Purpose : C++ source file : MacMap type class
 // Author : Benoit Ogier, benoit.ogier@macmap.com
 //
-// Copyright (C) 1997-2015 Carte Blanche Conseil.
+// Copyright (C) 2004 Carte Blanche Conseil.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -192,10 +192,6 @@ _te_("status = "+(*status)+" at _bse.h_read kHDR_kind_");
 		return;
 	}
 	
-	/*if((*status)=_bse.h_read(1,kHDR_bounds_,&_bounds)){
-_te_("status = "+(*status)+" at _bse.h_read kHDR_bounds_");
-		return;
-	}*/
 	_bounds.top=1-__BOUNDS_MAX__;
 	_bounds.left=1-__BOUNDS_MAX__;
 	_bounds.bottom=1+__BOUNDS_MAX__;
@@ -218,13 +214,11 @@ _te_("status = "+(*status)+" at _bse.h_read kHDR_srid_");
 		return;
 	}
 	
-//	snprintf(_name,256,tname);
 	strncpy(_name,tname,sizeof(_name)-1);
 				
 	read_name(path,tname);
 	if((strlen(tname)>0)&&(strcmp(_name,tname))){
 _tw_("replacing type name \""+_name+"\" to \""+tname+"\"");
-//		snprintf(_name,256,tname);
 		strncpy(_name,tname,sizeof(_name)-1);
 		if(((*status)=_bse.h_write(1,kHDR_name_,tname))){
 _te_("status = "+(*status)+" at _bse.h_write kHDR_name_");
@@ -278,7 +272,6 @@ int	xtype=get_sign(ttype);
 _tm_("creating type with "+(UInt32*)&xtype+" storage");
 _tm_("creating type hname="+hname);
 _tm_("creating type hpath="+hpath);
-//_tm_("creating type data="+data);
 _tm_("creating type hkind="+hkind);
 _tm_("creating type ttype="+ttype);
 	
@@ -289,8 +282,6 @@ _tm_("creating type ttype="+ttype);
 	_bounds.left=-__BOUNDS_MAX__;
 	_bounds.bottom=__BOUNDS_MAX__;
 	_bounds.right=__BOUNDS_MAX__;
-//	snprintf(_name,256,hname);
-//_tm_("avant strncpy");
 	strncpy(_name,hname,sizeof(_name)-1);
 
 bGenericUnit*	u=map_doc->dist_resolution_unit();
@@ -303,14 +294,12 @@ bGenericUnit*	u=map_doc->dist_resolution_unit();
 	_nsel=0;
 	_ncnt=0;
 
-//_tm_("avant _bse.create");
 	*status=_bse.create(hpath,xtype,_srid,_precs,_unit2m,_name,data,_kind);
 	if(*status){
 _te_("status = "+(*status)+" at _bse.create");
 		return;
 	}
 		
-//_tm_("avant make_style");
 	if(!make_style()){
 		(*status)=-1;
 _te_("make_style == false");
@@ -373,7 +362,6 @@ _te_("status = "+(*status)+" at new bStyleMgr");
 // -----------
 bMacMapType::~bMacMapType(){
 _bTrace_("bMacMapType::~bMacMapType",true);
-
 _tm_("deleting "+_idx+" "+_name);
 
 	if(_iter){
@@ -382,7 +370,7 @@ bArray				arr(sizeof(bMacMapGeoElement*));
 char				cftitle[__MESSAGE_STRING_LENGTH_MAX__];
 char				cfprompt[__MESSAGE_STRING_LENGTH_MAX__];
 		message_string(kMsgClose,cftitle,true);
-		strcpy(cfprompt,_name);
+		strcpy(cfprompt,_name);         
 
 _tm_("iterate");
 		_iter->iterate(&arr,add_to_array);
@@ -390,9 +378,8 @@ _tm_("flush iterator");
 		_iter->flush();
 _tm_((int)arr.count()+" objects to delete");
 
-bProgressWait	wait(cftitle,cfprompt,true,false,arr.count());
+bProgressWait	wait(cftitle,cfprompt,false,arr.count());
 		for(long i=1;i<=arr.count();i++){
-//_tm_(i);
 			wait.set_progress(i);
 			if(arr.get(i,&geo)){
 				delete geo;
@@ -415,9 +402,9 @@ _tm_("deleting _styles");
 // -----------
 bool bMacMapType::load(){
 _bTrace_("bMacMapType::load",true);
-bool		k,b;
-long		i,n;
-char		cftitle[__MESSAGE_STRING_LENGTH_MAX__],cfprompt[__MESSAGE_STRING_LENGTH_MAX__];
+bool    k,b;
+long    i,n;
+char    cftitle[__MESSAGE_STRING_LENGTH_MAX__],cfprompt[__MESSAGE_STRING_LENGTH_MAX__];
 	
 _tm_(_idx+" "+_name);
 
@@ -427,7 +414,7 @@ _tm_(_idx+" "+_name);
 	k=true;
 	n=_bse.count_records();
 
-bProgressWait	wait(cftitle,cfprompt,true,true,n);
+bProgressWait	wait(cftitle,cfprompt,true,n);
 	
 	for(i=1;i<=n;i++){
 		if(!wait.set_progress(i)){
@@ -483,7 +470,7 @@ _bTrace_("bMacMapType::save",true);
 }
 
 // ---------------------------------------------------------------------------
-// 
+// Inutile
 // -----------
 void bMacMapType::pack(){
 	if(is_lock()){
@@ -656,10 +643,8 @@ int	id=0;
 	if(_bse.write(k+1,kOBJ_ID_,&id)!=0){		
 		return(-1);
 	}
-    /**/
     _nbalive++;
     (void)_bse.h_write(1,kHDR_alive_,&_nbalive);
-    /**/
 	return(k+1);
 }
 

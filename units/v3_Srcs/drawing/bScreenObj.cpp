@@ -4,7 +4,7 @@
 // Purpose : C++ source file : Screen object class (i.e. object appearance for a style)
 // Author : Benoit Ogier, benoit.ogier@macmap.com
 //
-// Copyright (C) 1997-2015 Carte Blanche Conseil.
+// Copyright (C) 2004 Carte Blanche Conseil.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -96,11 +96,9 @@ void bScreenObj::setbounds(	float* x,
 							float hi,
 							float vi,
 							bool reset){
-//_bTrace_("bScreenObj::setbounds",false);
-float	bh/*=_hins*/,bv/*=_vins*/;
+float	bh,bv;
 
 	if(reset){
-//_tm_("reset");
 		_xmin=_xmax=x[0];
 		_ymin=_ymax=y[0];
 		_hins=hi;
@@ -115,7 +113,6 @@ float	bh/*=_hins*/,bv/*=_vins*/;
 		}
 	}
 	else{
-/**/
 		_xmin=_xmax=x[0];
 		_ymin=_ymax=y[0];
 		_hins=hi;
@@ -128,7 +125,6 @@ float	bh/*=_hins*/,bv/*=_vins*/;
 			_ymin-=_vins;
 			_ymax+=_vins;
 		}		
-/**/	
 	}
 	
 	if(_hins<hi){
@@ -137,7 +133,6 @@ float	bh/*=_hins*/,bv/*=_vins*/;
 	if(_vins<vi){
 		_vins=vi;
 	}
-//_tm_("set to "+_xmin+";"+_xmax+";"+_ymin+";"+_ymax);
 
 	if(n==1){
 		return;
@@ -166,8 +161,6 @@ float	bh/*=_hins*/,bv/*=_vins*/;
 		_ymin-=(_vins-bv);
 		_ymax+=(_vins-bv);
 	}
-//_tm_("set to "+_xmin+";"+_xmax+";"+_ymin+";"+_ymax);
-
 }
 
 // ---------------------------------------------------------------------------

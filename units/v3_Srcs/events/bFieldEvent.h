@@ -4,7 +4,7 @@
 // Purpose : Header file : MacMap field (database) event class
 // Author : Benoit Ogier, benoit.ogier@macmap.com
 //
-// Copyright (C) 1997-2015 Carte Blanche Conseil.
+// Copyright (C) 2005 Carte Blanche Conseil.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -37,65 +37,61 @@
 //----------------------------------------------------------------------------
 
 class bFieldEvent : public bMacMapEvent{
-	public:
-		bFieldEvent							(	char* msg, 
-												int crt, // BigEndian coded
-												int act);
-		virtual ~bFieldEvent				(	);
+public:
+    bFieldEvent				(	char* msg,
+                                int crt, // BigEndian coded
+                                int act);
+    virtual ~bFieldEvent	(	);
 
 // ext intf
-		virtual bool add					(	void* elt);
-		virtual int find					(	void* elt);
-					
-	protected:
-		virtual int find					(	field_info* f);		
-		static int compare					(	const void* a, 
-												const void* b);
-		
-	private:
-
+    virtual bool add		(	void* elt);
+    virtual int find		(	void* elt);
+                
+protected:
+    virtual int find		(	field_info* f);
+    static int compare		(	const void* a,
+                                const void* b);
+    
+private:
 };
 
 //----------------------------------------------------------------------------
 
 class bFieldCreateEvent : public bFieldEvent{
-	public:
-		bFieldCreateEvent					(	char* msg, 
-												int crt);// BigEndian coded
-		virtual ~bFieldCreateEvent			(	);
-				
-	protected:
+public:
+    bFieldCreateEvent			(	char* msg,
+                                    int crt);// BigEndian coded
+    virtual ~bFieldCreateEvent	(	);
+            
+protected:
 
-	private:
-
+private:
 };
 
 //----------------------------------------------------------------------------
 
 class bFieldDeleteEvent : public bFieldEvent{
-	public:
-		bFieldDeleteEvent					(	char* msg, 
-												int crt);// BigEndian coded
-		virtual ~bFieldDeleteEvent			(	);
-				
-	protected:
+public:
+    bFieldDeleteEvent			(	char* msg,
+                                    int crt);// BigEndian coded
+    virtual ~bFieldDeleteEvent	(	);
+            
+protected:
 
-	private:
-
+private:
 };
 
 //----------------------------------------------------------------------------
 
 class bFieldModifyEvent : public virtual bFieldEvent{
-	public:
-		bFieldModifyEvent					(	char* msg, 
-												int crt);// BigEndian coded
-		virtual ~bFieldModifyEvent			(	);
-				
-	protected:
+public:
+    bFieldModifyEvent			(	char* msg,
+                                    int crt);// BigEndian coded
+    virtual ~bFieldModifyEvent	(	);
+            
+protected:
 
-	private:
-
+private:
 };
 
 //----------------------------------------------------------------------------

@@ -63,9 +63,10 @@ bool bXMapShowSelectOnly::process(int msg, void* prm){
 			_gapp->typesMgr()->get(i)->iterator()->iterate(NULL,process_obj);
 		}
 		_gapp->mapIntf()->inval();
-		return(true);
+//		return(true);
 	}
-	return(false);
+//	return(false);
+    return(true);
 }
 
 // ---------------------------------------------------------------------------

@@ -160,7 +160,7 @@ bArray				sel(*(_gapp->selMgr()->elements()));
 		ivs_free(vxs);
 		return;
 	}
-	if(!InitWithStyle(_gapp,_gapp->layersAccessCtx()->get_current(),o)){
+    if(!InitWithStyle(_gapp,_gapp->layersMgr()->get_current(),o)){
 		NSBeep();
 	}
 	o->setVertices(vxs);

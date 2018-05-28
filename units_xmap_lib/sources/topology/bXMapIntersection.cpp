@@ -215,13 +215,7 @@ _te_("malformed polyline");
 _te_("malformed point");
 					}
 					else if(tp->new_object(&oc)){
-/*for(int z=0;z<vsc->nv;z++){
-_tm_("(x;y)=("+vsc->vx.vx2[z].h+";"+vsc->vx.vx2[z].v+")");
-}
-for(int z=0;z<vsc->no;z++){
-_tm_("(o)=("+vsc->offs[z]+")");
-}*/
-						if(!InitWithStyle(_gapp,_gapp->layersAccessCtx()->get_current(),oc)){
+                        if(!InitWithStyle(_gapp,_gapp->layersMgr()->get_current(),oc)){
 							NSBeep();
 						}
 						oc->setVertices(vsc);

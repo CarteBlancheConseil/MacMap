@@ -4,7 +4,7 @@
 // Purpose : Header file : MacMap document class
 // Author : Benoit Ogier, benoit.ogier@macmap.com
 //
-// Copyright (C) 1997-2015 Carte Blanche Conseil.
+// Copyright (C) 2004 Carte Blanche Conseil.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -42,94 +42,94 @@
 //----------------------------------------------------------------------------
 
 class bMacMapDocument : public bGenericDocument{
-	public:		
-		bMacMapDocument								(	);
-		virtual ~bMacMapDocument					(	);
-		
-		virtual void name							(	char* name);
-		
-		virtual void location						(	char* path);
+public:		
+    bMacMapDocument								(	);
+    virtual ~bMacMapDocument					(	);
+    
+    virtual void name							(	char* name);
+    
+    virtual void location						(	char* path);
 
-		virtual int srid							(	);
-		virtual bool set_srid						(	int	srid);
+    virtual int srid							(	);
+    virtual bool set_srid						(	int	srid);
 
-		virtual d2dvertex get_origin				(	);
-		virtual bool set_origin						(	d2dvertex vx);
-				
-		virtual double dist_resolution				(	);
-		virtual bGenericUnit* dist_resolution_unit	(	);
-		
-		virtual int dist_pref_digits				(	);
-		virtual void set_dist_pref_digits			(	int digits);
-			
-		virtual int load							(	const char* path);
-		virtual int unload							(	);
-				
+    virtual d2dvertex get_origin				(	);
+    virtual bool set_origin						(	d2dvertex vx);
+            
+    virtual double dist_resolution				(	);
+    virtual bGenericUnit* dist_resolution_unit	(	);
+    
+    virtual int dist_pref_digits				(	);
+    virtual void set_dist_pref_digits			(	int digits);
+        
+    virtual int load							(	const char* path);
+    virtual int unload							(	);
+            
 //----------------------------------------------------------------------------
 // High level params management
 //----------------------------------------------------------------------------
-		virtual bool writeTree						(	bGenericXMLBaseElement* elt, 
-														int sign, // BigEndian Coded
-														const char* name);
-		virtual bool readTree						(	bGenericXMLBaseElement** elt, 
-														int sign, // BigEndian Coded
-														const char* name);
-		virtual bool removeTree						(	int sign, // BigEndian Coded
-														const char* name);
+    virtual bool writeTree						(	bGenericXMLBaseElement* elt, 
+                                                    int sign, // BigEndian Coded
+                                                    const char* name);
+    virtual bool readTree						(	bGenericXMLBaseElement** elt, 
+                                                    int sign, // BigEndian Coded
+                                                    const char* name);
+    virtual bool removeTree						(	int sign, // BigEndian Coded
+                                                    const char* name);
 //----------------------------------------------------------------------------
 // Low level params management
 //----------------------------------------------------------------------------
 // Getting params count
-		virtual int countParams						(	const char* sub);
+    virtual int countParams						(	const char* sub);
 // Getting params name
-		virtual bool getParamName					(	const char* sub,
-														int idx,
-														char* name);
-		virtual bool writeXMLParam					(	bGenericXMLBaseElement* elt, 
-														const char* sub,
-														const char* name);
-		virtual bool readXMLParam					(	bGenericXMLBaseElement** elt, 
-														const char* sub,
-														const char* name);
-		virtual bool writeParam						(	void* buffer,
-														int sz,
-														const char* sub,
-														const char* name);
-		virtual bool readParam						(	void** buffer,
-														int* sz,
-														const char* sub,
-														const char* name);
+    virtual bool getParamName					(	const char* sub,
+                                                    int idx,
+                                                    char* name);
+    virtual bool writeXMLParam					(	bGenericXMLBaseElement* elt, 
+                                                    const char* sub,
+                                                    const char* name);
+    virtual bool readXMLParam					(	bGenericXMLBaseElement** elt, 
+                                                    const char* sub,
+                                                    const char* name);
+    virtual bool writeParam						(	void* buffer,
+                                                    int sz,
+                                                    const char* sub,
+                                                    const char* name);
+    virtual bool readParam						(	void** buffer,
+                                                    int* sz,
+                                                    const char* sub,
+                                                    const char* name);
 //----------------------------------------------------------------------------
 // 
 //----------------------------------------------------------------------------
-		virtual bool make							(	const char* path, 
-														int unit, 
-														double reso, 
-														int srid);
-	
-		virtual bGenericStyleMgr* styles			(	);
+    virtual bool make							(	const char* path, 
+                                                    int unit, 
+                                                    double reso, 
+                                                    int srid);
 
-		virtual void set_save_objstate				(	bool prf);
-		virtual bool get_save_objstate				(	);
+    virtual bGenericStyleMgr* styles			(	);
 
-	protected:
-		virtual void read_name						(	);
-		virtual bool make_package					(	);
-		
-		virtual bool pref_load						(	);
-		virtual bool pref_unload					(	);
+    virtual void set_save_objstate				(	bool prf);
+    virtual bool get_save_objstate				(	);
 
-	private:
-		char				_path[PATH_MAX];
-		char				_name[FILENAME_MAX];
-		double				_reso_coef;
-		double				_ox;
-		double				_oy;
-		int					_reso_idx;
-		int					_digits;
-		int					_srid;
-		int					_state;
-		bGenericStyleMgr*	_styles;
+protected:
+    virtual void read_name						(	);
+    virtual bool make_package					(	);
+    
+    virtual bool pref_load						(	);
+    virtual bool pref_unload					(	);
+
+private:
+    char				_path[PATH_MAX];
+    char				_name[FILENAME_MAX];
+    double				_reso_coef;
+    double				_ox;
+    double				_oy;
+    int					_reso_idx;
+    int					_digits;
+    int					_srid;
+    int					_state;
+    bGenericStyleMgr*	_styles;
 };
 
 //----------------------------------------------------------------------------

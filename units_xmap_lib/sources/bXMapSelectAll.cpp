@@ -71,7 +71,7 @@ int			typ;
 selall		p;
 char		mess[__MESSAGE_STRING_LENGTH_MAX__];
 		get_localized_name(mess,_bndl);
-bBarberWait	wt(mess,NULL,true,true);
+bBarberWait	wt(mess,"",true);
 	
 		p.wt=&wt;
 		p.n=0;
@@ -103,7 +103,7 @@ bArray		l(sizeof(bGenericGeoElement*),p.n);
 selall		p;
 char		mess[__MESSAGE_STRING_LENGTH_MAX__];
 		get_localized_name(mess,_bndl);
-bBarberWait	wt(mess,NULL,true,true);
+bBarberWait	wt(mess,"",true);
 
 		p.wt=&wt;
 		p.n=0;

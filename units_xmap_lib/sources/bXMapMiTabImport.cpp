@@ -307,7 +307,7 @@ int					kind,fvx=MiTab->CountFields()-1;
 
 int					err=0;
 	b_message_string(kXMapMiTabImportObjectCreateMessageID,msg,getbundle(),1);
-bProgressWait wt("",msg,true,true,MiTab->CountRecords());
+bProgressWait wt("",msg,true,MiTab->CountRecords());
 
 	_gapp->layersMgr()->SetObjInvalidation(false);
 	for(int i=1;i<=MiTab->CountRecords();i++){
@@ -401,7 +401,7 @@ int					err=0;
 char				msg[__MESSAGE_STRING_LENGTH_MAX__];
 char				exp[__MESSAGE_STRING_LENGTH_MAX__];
 	b_message_string(kXMapMiTabImportFieldCreateMessageID,msg,getbundle(),1);
-bProgressWait wt("",msg,true,false,MiTab->CountFields()*5);
+bProgressWait wt("",msg,false,MiTab->CountFields()*5);
 
 	for(int j=0;j<4;j++){
 		if(tp[j]==NULL){

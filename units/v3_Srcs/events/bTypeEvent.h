@@ -4,7 +4,7 @@
 // Purpose : Header file : MacMap type event class
 // Author : Benoit Ogier, benoit.ogier@macmap.com
 //
-// Copyright (C) 1997-2015 Carte Blanche Conseil.
+// Copyright (C) 2005 Carte Blanche Conseil.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -37,63 +37,63 @@
 //----------------------------------------------------------------------------
 
 class bTypeEvent : public bMacMapEvent{
-	public:
-		bTypeEvent							(	char* msg, 
-												int crt,
-												int act);
-		virtual ~bTypeEvent					(	);
+public:
+    bTypeEvent              (	char* msg,
+                                int crt,
+                                int act);
+    virtual ~bTypeEvent		(	);
 
 // ext intf
-		virtual bool add					(	void* elt);
-		virtual int find					(	void* elt);
-					
-	protected:
-		virtual int find					(	bGenericType* t);		
-		static int compare					(	const void* a, 
-												const void* b);
-		
-	private:
+    virtual bool add		(	void* elt);
+    virtual int find		(	void* elt);
+                
+protected:
+    virtual int find		(	bGenericType* t);
+    static int compare		(	const void* a,
+                                const void* b);
+    
+private:
 };
 
 //----------------------------------------------------------------------------
 
 class bTypeCreateEvent : public bTypeEvent{
-	public:
-		bTypeCreateEvent					(	char* msg, 
-												int crt);
-		virtual ~bTypeCreateEvent			(	);
-				
-	protected:
+public:
+    bTypeCreateEvent			(	char* msg,
+                                    int crt);
+    virtual ~bTypeCreateEvent   (	);
+            
+protected:
 
-	private:
+private:
 
 };
 
 //----------------------------------------------------------------------------
 
 class bTypeDeleteEvent : public bTypeEvent{
-	public:
-		bTypeDeleteEvent					(	char* msg, 
-												int crt);
-		virtual ~bTypeDeleteEvent			(	);
-				
-	protected:
+public:
+    bTypeDeleteEvent			(	char* msg,
+                                    int crt);
+    virtual ~bTypeDeleteEvent	(	);
+            
+protected:
 
-	private:
+private:
 
 };
 
 //----------------------------------------------------------------------------
 
 class bTypeModifyEvent : public virtual bTypeEvent{
-	public:
-		bTypeModifyEvent					(	char* msg, 
-												int crt);
-		virtual ~bTypeModifyEvent			(	);
-				
-	protected:
+public:
+    bTypeModifyEvent			(	char* msg,
+                                    int crt);
+    virtual ~bTypeModifyEvent	(	);
+            
+protected:
 
-	private:
+private:
 
 };
 

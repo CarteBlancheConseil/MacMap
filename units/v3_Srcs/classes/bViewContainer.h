@@ -4,7 +4,7 @@
 // Purpose : Header file : Views management classes
 // Author : Benoit Ogier, benoit.ogier@macmap.com
 //
-// Copyright (C) 1997-2015 Carte Blanche Conseil.
+// Copyright (C) 2005 Carte Blanche Conseil.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -38,21 +38,21 @@
 //----------------------------------------------------------------------------
 
 class bViewContainer : public bStdContainer{
-	public:		
-		bViewContainer				(	const char* file_name);
-		bViewContainer				(	const char* file_name, 
-										bViewContainer& v);
-		virtual ~bViewContainer		(	);
+public:
+    bViewContainer          (	const char* file_name);
+    bViewContainer          (	const char* file_name,
+                                    bViewContainer& v);
+    virtual ~bViewContainer (	);
 
-		virtual bool set_name		(	const char* name);		
-		virtual bool dump			(	);
-		virtual bool destroy		(	);
-		
-	protected:
-		virtual void load			(	);
-	
-	private:
-		void make					(	);
+    virtual bool set_name   (	const char* name);
+    virtual bool dump       (	);
+    virtual bool destroy    (	);
+    
+protected:
+    virtual void load       (	);
+
+private:
+    void make               (	);
 };
 
 //----------------------------------------------------------------------------

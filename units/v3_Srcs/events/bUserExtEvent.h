@@ -4,7 +4,7 @@
 // Purpose : Header file : MacMap user extern event class
 // Author : Benoit Ogier, benoit.ogier@macmap.com
 //
-// Copyright (C) 1997-2015 Carte Blanche Conseil.
+// Copyright (C) 2005 Carte Blanche Conseil.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -37,63 +37,63 @@
 //----------------------------------------------------------------------------
 
 class bUserExtEvent : public bMacMapEvent{
-	public:
-		bUserExtEvent						(	char* msg, 
-												int crt,
-												int act);
-		virtual ~bUserExtEvent				(	);
+public:
+    bUserExtEvent			(	char* msg,
+                                int crt,
+                                int act);
+    virtual ~bUserExtEvent	(	);
 
 // ext intf
-		virtual bool add					(	void* elt);
-		virtual int find					(	void* elt);
-					
-	protected:
-		virtual int find					(	bGenericExt* t);		
-		static int compare					(	const void* a, 
-												const void* b);
-		
-	private:
+    virtual bool add		(	void* elt);
+    virtual int find		(	void* elt);
+                
+protected:
+    virtual int find		(	bGenericExt* t);
+    static int compare		(	const void* a,
+                                const void* b);
+    
+private:
 };
 
 //----------------------------------------------------------------------------
 
 class bUserExtCreateEvent : public bUserExtEvent{
-	public:
-		bUserExtCreateEvent						(	char* msg, 
-													int crt);
-		virtual ~bUserExtCreateEvent			(	);
-				
-	protected:
+public:
+    bUserExtCreateEvent				(	char* msg,
+                                        int crt);
+    virtual ~bUserExtCreateEvent	(	);
+            
+protected:
 
-	private:
+private:
 
 };
 
 //----------------------------------------------------------------------------
 
 class bUserExtDeleteEvent : public bUserExtEvent{
-	public:
-		bUserExtDeleteEvent						(	char* msg, 
-													int crt);
-		virtual ~bUserExtDeleteEvent			(	);
-				
-	protected:
+public:
+    bUserExtDeleteEvent				(	char* msg,
+                                        int crt);
+    virtual ~bUserExtDeleteEvent	(	);
+            
+protected:
 
-	private:
+private:
 
 };
 
 //----------------------------------------------------------------------------
 
 class bUserExtModifyEvent : public virtual bUserExtEvent{
-	public:
-		bUserExtModifyEvent						(	char* msg, 
-													int crt);
-		virtual ~bUserExtModifyEvent			(	);
-				
-	protected:
+public:
+    bUserExtModifyEvent				(	char* msg,
+                                        int crt);
+    virtual ~bUserExtModifyEvent	(	);
+            
+protected:
 
-	private:
+private:
 
 };
 

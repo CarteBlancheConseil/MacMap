@@ -108,7 +108,7 @@ long			n=0;
 	}
 char	mess[__MESSAGE_STRING_LENGTH_MAX__];
 	b_message_string(kXMapRedoProgressMessageID,mess,getbundle(),1);
-bProgressWait wt("",mess,true,false,n);
+bProgressWait wt("",mess,false,n);
 
 	
 	for(long i=_gapp->eventMgr()->events()->count();i>0;i--){

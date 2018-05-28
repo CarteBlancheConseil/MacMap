@@ -4,7 +4,7 @@
 // Purpose : C++ source file : MacMap object class
 // Author : Benoit Ogier, benoit.ogier@macmap.com
 //
-// Copyright (C) 1997-2015 Carte Blanche Conseil.
+// Copyright (C) 2003 Carte Blanche Conseil.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -722,38 +722,34 @@ void bMacMapGeoElement::getVertices(ivertices** vxs){
 // ------------
 bool bMacMapGeoElement::setVertices(ivertices* vxs){
 _bTrace_("bMacMapGeoElement::setVertices",false);
-//if(_id==210298){
-//_tm_(_id+": _vxs="+(void*)_vxs);
-//}
-    
 	if(check_lock(kOBJ_Vertices_)){
 _te_("kOBJ_Vertices_ is lock");
-		return(false);
+		return false;
 	}
 	if(!vxs){
 _te_("vxs==NULL");
-		return(false);
+		return false;
 	}
 int status;
 	if((status=ivs_good(vxs))){
 _te_("ivs_good returns "+status);
-		return(false);
+		return false;
 	}
 	if((_typ->kind()==kBaseKindPolyline)&&(vxs->nv<2)){
 _te_("nb vertices="+vxs->nv+" for kBaseKindPolyline kind");
-		return(false);
+		return false;
 	}
 	if((_typ->kind()==kBaseKindPolygon)&&(vxs->nv<4)){
 _te_("nb vertices="+vxs->nv+" for kBaseKindPolygon kind");
-		return(false);
+		return false;
 	}
 	if((_typ->kind()==kBaseKindRaster)&&(vxs->nv<4)){
 _te_("nb vertices="+vxs->nv+" for kBaseKindRaster kind");
-		return(false);
+		return false;
 	}
 	if(!ivs_goodgeo(vxs)){
 _te_("ivs_goodgeo=false");
-		return(false);
+		return false;
 	}
 
 ivertices*	buf;
@@ -762,13 +758,13 @@ ivx_rect	vr;
 	if(_typ->kind()==kBaseKindRaster){
 		if(ivr2ivs(&vr,&buf)){
 _te_("buf==NULL");
-			return(false);
+			return false;
 		}
 	}
 	else{
 		if(ivs2ivs(vxs,&buf)){
 _te_("buf==NULL");
-			return(false);
+			return false;
 		}
         if((_typ->kind()==kBaseKindPoint)&&(buf->nv>1)){
             ivs_build_point_offsets(buf);
@@ -780,14 +776,14 @@ _te_("buf==NULL");
 	if(_typ->fields()->write(_offset,kOBJ_Vertices_,&buf)){
 		ivs_free(buf);
 _te_("write vxs");
-		return(false);
+		return false;
 	}
     
 	inval(kOBJ_Vertices_);
 	
 	if(!_typ->iterator()->rmv(this)){
 _te_("iterator->rmv");
-		return(false);
+		return false;
 	}
 	
 	if(_vxs){
@@ -798,15 +794,12 @@ _te_("iterator->rmv");
 
 	if(!_typ->iterator()->add(this)){
 _te_("iterator->add");
-		return(false);
+		return false;
 	}
 	
 	inval(kOBJ_Vertices_);
-//if(_id==210298){
-//_tm_(_id+": _vxs="+(void*)_vxs);
-//}
 	
-	return(true);
+	return true;
 }
 
 // ---------------------------------------------------------------------------
@@ -820,15 +813,16 @@ int bMacMapGeoElement::getSubType(){
 // 
 // ------------
 bool bMacMapGeoElement::setSubType(int subtype){
+//_bTrace_("bMacMapGeoElement::setSubType(int)",false);_tm_(subtype);
 	if(check_lock(kOBJ_SubType_)){
-		return(false);
+		return false;
 	}
 	eventmgr->modify(this,kOBJ_SubType_);
 	if(_typ->fields()->write(_offset,kOBJ_SubType_,&subtype)==noErr){
 		_styp=subtype;
-		return(true);
+		return true;
 	}
-	return(false);
+	return false;
 }
 
 // ---------------------------------------------------------------------------
@@ -843,14 +837,14 @@ int bMacMapGeoElement::getColor(){
 // ------------
 bool bMacMapGeoElement::setColor(int color){
 	if(check_lock(kOBJ_Color_)){
-		return(false);
+		return false;
 	}
 	eventmgr->modify(this,kOBJ_Color_);
 	if(_typ->fields()->write(_offset,kOBJ_Color_,&color)==noErr){
 		_color=color;
-		return(true);
+		return true;
 	}
-	return(false);
+	return false;
 }
 
 // ---------------------------------------------------------------------------
@@ -865,14 +859,14 @@ int bMacMapGeoElement::getDirection(){
 // ------------
 bool bMacMapGeoElement::setDirection(int direction){
 	if(check_lock(kOBJ_Dir_)){
-		return(false);
+		return false;
 	}
 	eventmgr->modify(this,kOBJ_Dir_);
 	if(_typ->fields()->write(_offset,kOBJ_Dir_,&direction)==noErr){
 		_dir=direction;
-		return(true);
+		return true;
 	}
-	return(false);
+	return false;
 }
 
 // ---------------------------------------------------------------------------
@@ -889,13 +883,13 @@ void bMacMapGeoElement::getName(char* name){
 // ------------
 bool bMacMapGeoElement::setName(char* name){
 	if(check_lock(kOBJ_Name_)){
-		return(false);
+		return false;
 	}
 	eventmgr->modify(this,kOBJ_Name_);
 	if(_typ->fields()->write(_offset,kOBJ_Name_,name)){
-		return(false);
+		return false;
 	}
-	return(true);
+	return true;
 }
 
 // ---------------------------------------------------------------------------
@@ -904,14 +898,14 @@ bool bMacMapGeoElement::setName(char* name){
 bool bMacMapGeoElement::getValue(int fieldIdx, void* value){
 	if((fieldIdx>kOBJ_Dir_)||(fieldIdx<kOBJ_Rect_)){
 		if(_typ->fields()->read(_offset,fieldIdx,value)){
-			return(false);
+			return false;
 		}
 	}
 	else{
 		switch(fieldIdx){
 			case kOBJ_Name_:	
 				if(_typ->fields()->read(_offset,fieldIdx,value)){
-					return(false);
+					return false;
 				}
 				break;
 			case kOBJ_SubType_:
@@ -930,10 +924,10 @@ bool bMacMapGeoElement::getValue(int fieldIdx, void* value){
 				getBounds((ivx_rect*)value);
 				break;
 			default:
-				return(false);
+				return false;
 		}
 	}
-	return(true);
+	return true;
 }
 
 // ---------------------------------------------------------------------------
@@ -942,7 +936,7 @@ bool bMacMapGeoElement::getValue(int fieldIdx, void* value){
 bool bMacMapGeoElement::getValue(char* fieldName, void* value){
 int	idx=_typ->fields()->get_index(fieldName);
 	if(idx<=0){
-		return(false);
+		return false;
 	}
 	return(getValue(idx,value));
 }
@@ -968,33 +962,33 @@ int		k,d,ck;
 			case _date:
 			case _time:
 				if(_typ->fields()->read(_offset,fieldIdx,buff)){
-					return(false);
+					return false;
 				}
 				break;
 			default:
-				return(false);
+				return false;
 				break;
 		}
 		if(_typ->fields()->count_constraints(fieldIdx)>0){
 			ck=_typ->fields()->get_constraints_kind(fieldIdx);
 			if((ck!=k)&&(ck!=_bit)){
 				if(!xToInt(k,d,buff,&x)){
-					return(false);
+					return false;
 				}
 				if(_typ->fields()->get_constraint(fieldIdx,x,value)==false){
 					value[0]=0;
-					return(false);
+					return false;
 				}
 			}
 			else{
 				if(!xToChar(k,d,buff,value)){
-					return(false);
+					return false;
 				}			
 			}
 		}
 		else{
 			if(!xToChar(k,d,buff,value)){
-				return(false);
+				return false;
 			}
 		}
 	}
@@ -1003,17 +997,17 @@ int		k,d,ck;
 			case kOBJ_Name_:
 				if(_typ->fields()->read(_offset,kOBJ_Name_,value)){
 					value[0]=0;
-					return(false);
+					return false;
 				}
 				break;
 			case kOBJ_SubType_:
 				if(_typ->fields()->count_constraints(kOBJ_SubType_)>0){
 					if(_typ->fields()->get_constraint(kOBJ_SubType_,getSubType(),value)==false){
 						value[0]=0;
-						return(false);
+						return false;
 					}
 				}
-				else{// Possible que certaines base n'aient pas de soustype à contrainte : Grid ASCII
+				else{// Possible que certaines base n'aient pas de sous-type à contrainte : Grid ASCII
 					sprintf(value,"%d",getSubType());
 				}
 				break;
@@ -1021,7 +1015,7 @@ int		k,d,ck;
 				if(_typ->fields()->count_constraints(kOBJ_Color_)>0){
 					if(_typ->fields()->get_constraint(kOBJ_Color_,getColor(),value)==false){
 						value[0]=0;
-						return(false);
+						return false;
 					}
 				}
 				else{// Possible que certaines base n'aient pas de couleur à contrainte : Grid ASCII
@@ -1040,10 +1034,10 @@ d2dvertex		vx;
 											_MMAPP_->document()->dist_pref_digits(),vx.y);
 				}break;
 			default:
-				return(false);
+				return false;
 		}
 	}
-	return(true);
+	return true;
 }
 
 // ---------------------------------------------------------------------------
@@ -1052,7 +1046,7 @@ d2dvertex		vx;
 bool bMacMapGeoElement::getValue(char* fieldName, char* value){
 int	idx=_typ->fields()->get_index(fieldName);
 	if(idx<=0){
-		return(false);
+		return false;
 	}
 	return(getValue(idx,value));
 }
@@ -1061,6 +1055,7 @@ int	idx=_typ->fields()->get_index(fieldName);
 // 
 // ------------
 bool bMacMapGeoElement::getValue(int fieldIdx, int* value){
+//_bTrace_("bMacMapGeoElement::getValue(int,int*)",false);
 	if((fieldIdx>kOBJ_Dir_)||(fieldIdx<kOBJ_Vertices_)){
 char	buff[1024];
 int		k,d;
@@ -1074,15 +1069,16 @@ int		k,d;
 			case _date:
 			case _time:
 				if(_typ->fields()->read(_offset,fieldIdx,buff)){
-					return(false);
+//_te_("read "+fieldIdx+" failed");
+                    return false;
 				}
 				break;
 			default:
-				return(false);
+				return false;
 				break;
 		}
 		if(!xToInt(k,d,buff,value)){
-			return(false);
+			return false;
 		}
 	}
 	else{
@@ -1091,7 +1087,7 @@ int		k,d;
 char	val[256];
 				if(_typ->fields()->read(_offset,fieldIdx,val)){
 					(*value)=LONG_MIN;
-					return(false);
+					return false;
 				}
 				(*value)=atoi(val);
 				}
@@ -1106,10 +1102,10 @@ char	val[256];
 				(*value)=getDirection();
 				break;
 			default:
-				return(false);
+				return false;
 		}
 	}
-	return(true);
+	return true;
 }
 
 // ---------------------------------------------------------------------------
@@ -1118,7 +1114,7 @@ char	val[256];
 bool bMacMapGeoElement::getValue(char* fieldName, int* value){
 long	idx=_typ->fields()->get_index(fieldName);
 	if(idx<=0){
-		return(false);
+		return false;
 	}
 	return(getValue(idx,value));
 }
@@ -1127,6 +1123,7 @@ long	idx=_typ->fields()->get_index(fieldName);
 // 
 // ------------
 bool bMacMapGeoElement::getValue(int fieldIdx, double* value){
+//_bTrace_("bMacMapGeoElement::getValue(int,double*)",false);
 	if((fieldIdx>kOBJ_Dir_)||(fieldIdx<kOBJ_Vertices_)){
 char	buff[1024];
 int		k,d;
@@ -1140,15 +1137,16 @@ int		k,d;
 			case _date:
 			case _time:
 				if(_typ->fields()->read(_offset,fieldIdx,buff)){
-					return(false);
+//_te_("read failed");
+					return false;
 				}
 				break;
 			default:
-				return(false);
+				return false;
 				break;
 		}
 		if(!xToDouble(k,d,buff,value)){
-			return(false);
+			return false;
 		}
 	}
 	else{
@@ -1157,7 +1155,7 @@ int		k,d;
 char	val[256];
 				if(_typ->fields()->read(_offset,fieldIdx,val)){
 					(*value)=NAN;
-					return(false);
+					return false;
 				}
 				(*value)=matof(val);
 				}
@@ -1172,10 +1170,10 @@ char	val[256];
 				(*value)=getDirection();
 				break;
 			default:
-				return(false);
+				return false;
 		}
 	}
-	return(true);
+	return true;
 }
 
 // ---------------------------------------------------------------------------
@@ -1184,7 +1182,7 @@ char	val[256];
 bool bMacMapGeoElement::getValue(char *fieldName, double *value){
 long	idx=_typ->fields()->get_index(fieldName);
 	if(idx<=0){
-		return(false);
+		return false;
 	}
 	return(getValue(idx,value));
 }
@@ -1194,12 +1192,12 @@ long	idx=_typ->fields()->get_index(fieldName);
 // ------------
 bool bMacMapGeoElement::setValue(int fieldIdx, void* value){
 	if(check_lock(fieldIdx)){
-		return(false);
+		return false;
 	}
 	if(fieldIdx>kOBJ_Dir_){
 		eventmgr->modify(this,fieldIdx);
 		if(_typ->fields()->write(_offset,fieldIdx,value)){
-			return(false);
+			return false;
 		}
 	}
 	else{
@@ -1220,11 +1218,11 @@ bool bMacMapGeoElement::setValue(int fieldIdx, void* value){
 				return(setVertices((ivertices*)value));
 				break;
 			default:
-				return(false);
+				return false;
 				break;
 		}
 	}
-	return(true);
+	return true;
 }
 
 // ---------------------------------------------------------------------------
@@ -1233,7 +1231,7 @@ bool bMacMapGeoElement::setValue(int fieldIdx, void* value){
 bool bMacMapGeoElement::setValue(char* fieldName, void* value){
 int	idx=_typ->fields()->get_index(fieldName);
 	if(idx<=0){
-		return(false);
+		return false;
 	}
 	return(setValue(idx,value));
 }
@@ -1243,7 +1241,7 @@ int	idx=_typ->fields()->get_index(fieldName);
 // ------------
 bool bMacMapGeoElement::setValue(int fieldIdx, char* value){
 	if(check_lock(fieldIdx)){
-		return(false);
+		return false;
 	}
 
 	if(fieldIdx>kOBJ_Dir_){
@@ -1255,20 +1253,20 @@ int		fk,ck,d,x;
 		if((ck!=0)&&(ck!=_bit)&&(ck!=fk)){// Classe
 			x=_typ->fields()->get_constraint_index(fieldIdx,value);
 			if(!x){
-				return(false);
+				return false;
 			}
 			if(!intToX(fk,d,x,buff)){
-				return(false);
+				return false;
 			}
 		}
 		else{
 			if(!charToX(fk,d,value,buff)){
-				return(false);
+				return false;
 			}
 		}
 		eventmgr->modify(this,fieldIdx);
 		if(_typ->fields()->write(_offset,fieldIdx,buff)){
-			return(false);
+			return false;
 		}
 	}
 	else{
@@ -1286,11 +1284,11 @@ int		fk,ck,d,x;
 				return(setDirection(atoi(value)));
 				break;
 			default:
-				return(false);
+				return false;
 				break;
 		}
 	}
-	return(true);
+	return true;
 }
 
 // ---------------------------------------------------------------------------
@@ -1299,7 +1297,7 @@ int		fk,ck,d,x;
 bool bMacMapGeoElement::setValue(char* fieldName, char* value){
 int	idx=_typ->fields()->get_index(fieldName);
 	if(idx<=0){
-		return(false);
+		return false;
 	}
 	return(setValue(idx,value));
 }
@@ -1309,7 +1307,7 @@ int	idx=_typ->fields()->get_index(fieldName);
 // ------------
 bool bMacMapGeoElement::setValue(int fieldIdx, int value){
 	if(check_lock(fieldIdx)){
-		return(false);
+		return false;
 	}
 	if(fieldIdx>kOBJ_Dir_){
 char	buff[1024];
@@ -1317,11 +1315,11 @@ int		k,d;
 		_typ->fields()->get_kind(fieldIdx,&k);
 		_typ->fields()->get_decs(fieldIdx,&d);
 		if(!intToX(k,d,value,buff)){
-			return(false);
+			return false;
 		}
 		eventmgr->modify(this,fieldIdx);
 		if(_typ->fields()->write(_offset,fieldIdx,buff)){
-			return(false);
+			return false;
 		}
 	}
 	else{
@@ -1343,10 +1341,10 @@ char val[256];
 				return(setDirection(value));
 				break;
 			default:
-				return(false);
+				return false;
 		}
 	}
-	return(true);
+	return true;
 }
 
 // ---------------------------------------------------------------------------
@@ -1355,7 +1353,7 @@ char val[256];
 bool bMacMapGeoElement::setValue(char* fieldName, int value){
 int	idx=_typ->fields()->get_index(fieldName);
 	if(idx<=0){
-		return(false);
+		return false;
 	}
 	return(setValue(idx,value));
 }
@@ -1364,20 +1362,21 @@ int	idx=_typ->fields()->get_index(fieldName);
 // 
 // ------------
 bool bMacMapGeoElement::setValue(int fieldIdx, double value){
+//_bTrace_("bMacMapGeoElement::setValue(int, double)",false);_tm_(value);
 	if(check_lock(fieldIdx)){
-		return(false);
+		return false;
 	}
-	eventmgr->modify(this,fieldIdx);
 	if(fieldIdx>kOBJ_Dir_){
 char	buff[1024];
 int		k,d;
 		_typ->fields()->get_kind(fieldIdx,&k);
 		_typ->fields()->get_decs(fieldIdx,&d);
 		if(!doubleToX(k,d,value,buff)){
-			return(false);
+			return false;
 		}
+        eventmgr->modify(this,fieldIdx);
 		if(_typ->fields()->write(_offset,fieldIdx,buff)){
-			return(false);
+			return false;
 		}
 	}
 	else{
@@ -1399,19 +1398,20 @@ char val[256];
 				return(setDirection(round(value)));
 				break;
 			default:
-				return(false);
+				return false;
 		}
 	}
-	return(true);
+	return true;
 }
 
 // ---------------------------------------------------------------------------
 // 
 // ------------
 bool bMacMapGeoElement::setValue(char* fieldName, double value){
+//_bTrace_("bMacMapGeoElement::setValue(char*, double)",false);_tm_(value);
 int	idx=_typ->fields()->get_index(fieldName);
 	if(idx<=0){
-		return(false);
+		return false;
 	}
 	return(setValue(idx,value));
 }
@@ -1513,7 +1513,7 @@ void bMacMapGeoElement::set_flag4(bool b){
 // ------------
 bool bMacMapGeoElement::is_lock(){
 	//return((_state&fMask)==fMask);
-	return(false);
+	return false;
 }
 
 // ---------------------------------------------------------------------------
@@ -1551,11 +1551,12 @@ void bMacMapGeoElement::inval(int idx){
 	if(!_inval){
 		return;
 	}
+//_bTrace_("bMacMapGeoElement::inval(int)",false);_tm_(idx);
 bGenericStyle*	stl;
 CGRect			cgr;
 	
-	for(long i=1;i<=_MMAPP_->layersAccessCtx()->count();i++){
-		stl=_MMAPP_->layersAccessCtx()->get(i);
+    for(long i=1;i<=_MMAPP_->layersMgr()->count();i++){
+        stl=_MMAPP_->layersMgr()->get(i);
 		if(stl->gettype()!=_typ){
 			continue;
 		}

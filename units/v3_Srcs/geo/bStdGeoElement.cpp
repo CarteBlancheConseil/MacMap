@@ -4,7 +4,7 @@
 // Purpose : C++ source file : Standart MacMap object class
 // Author : Benoit Ogier, benoit.ogier@macmap.com
 //
-// Copyright (C) 1997-2015 Carte Blanche Conseil.
+// Copyright (C) 2005 Carte Blanche Conseil.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -151,19 +151,6 @@ bool bStdGeoElement::handled(){
 void bStdGeoElement::sethandled(bool b){
 }
 
-/*// ---------------------------------------------------------------------------
-// 
-// ------------
-bool bStdGeoElement::isnew(){
-	return(false);
-}
-
-// ---------------------------------------------------------------------------
-// 
-// ------------
-void bStdGeoElement::resetnew(){
-}*/
-
 // ---------------------------------------------------------------------------
 // 
 // ------------
@@ -203,20 +190,6 @@ void bStdGeoElement::getVertices(ivertices** vxs){
 bool bStdGeoElement::setVertices(ivertices* vxs){
 	return(false);
 }
-
-/*// ---------------------------------------------------------------------------
-// 
-// ------------
-int bStdGeoElement::getIndex(){
-	return(0);
-}
-
-// ---------------------------------------------------------------------------
-// 
-// ------------
-bool bStdGeoElement::setIndex(int index){
-	return(false);
-}*/
 
 // ---------------------------------------------------------------------------
 // 

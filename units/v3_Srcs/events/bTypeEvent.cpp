@@ -4,7 +4,7 @@
 // Purpose : C++ source file : MacMap type event class
 // Author : Benoit Ogier, benoit.ogier@macmap.com
 //
-// Copyright (C) 1997-2015 Carte Blanche Conseil.
+// Copyright (C) 2005 Carte Blanche Conseil.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -48,16 +48,13 @@ bTypeEvent	::bTypeEvent(	char* msg,
 // Destructeur
 // -----------
 bTypeEvent::~bTypeEvent(){
+    _elts.reset();
 }
 
 // ---------------------------------------------------------------------------
 // 
 // -----------
 bool bTypeEvent::add(void* elt){
-//bGenericType* ti=(*((bGenericType**)elt));
-/*	if(find(ti)){
-		return(true);
-	}*/
 	return(bMacMapEvent::add(elt));
 }
 
@@ -72,7 +69,7 @@ int bTypeEvent::find(void* elt){
 // 
 // -----------
 int bTypeEvent::find(bGenericType* t){
-	return(_elts.search(&t,compare));
+    return(_elts.search(&t,compare));
 }
 
 // ---------------------------------------------------------------------------

@@ -1,3 +1,6 @@
 - Need to be rewrite to Cocoa or Swift.
 - Prepare 64 bits support.
 - Menus could be extracted to specific component and Cocoa rewrite like map and status windows.
+
+- Virer les ressources (.nib) des wait windows et cmyk picker
+- Porter GetAProj, GetAName et GetAValue

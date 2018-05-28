@@ -4,7 +4,7 @@
 // Purpose : Header file : Styles management classes
 // Author : Benoit Ogier, benoit.ogier@macmap.com
 //
-// Copyright (C) 1997-2015 Carte Blanche Conseil.
+// Copyright (C) 2005 Carte Blanche Conseil.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -39,80 +39,79 @@
 //----------------------------------------------------------------------------
 
 class bStdStyleContainer : public bStdContainer{
-	public:
-		bStdStyleContainer						(	const char* file_name);
-		bStdStyleContainer						(	const char* file_name, 
-													bStdStyleContainer& s);
-		bStdStyleContainer						(	const char* file_name, 
-													bGenericXMLBaseElement* root);
+public:
+    bStdStyleContainer          (	const char* file_name);
+    bStdStyleContainer          (	const char* file_name,
+                                    bStdStyleContainer& s);
+    bStdStyleContainer          (	const char* file_name,
+                                    bGenericXMLBaseElement* root);
 
-		virtual ~bStdStyleContainer				(	);
+    virtual ~bStdStyleContainer (	);
 
-		virtual bool set_name					(	const char* name);		
-		virtual bool dump						(	);
-		virtual bool destroy					(	);
+    virtual bool set_name       (	const char* name);
+    virtual bool dump           (	);
+    virtual bool destroy        (	);
 
-		virtual void set_root					(	bGenericXMLBaseElement* root);
-		virtual int signature					(	);
-		virtual bool save						(	);
-		virtual bool on_screen					(	);
-		virtual void set_on_screen				(	bool b);
-		virtual bool on_edit					(	);
-		virtual void set_on_edit				(	bool b);
-		
-	protected:
-		//virtual void load						(	);
-	
-	private:
-		bool			_on_screen;
-		bool			_on_edit;
+    virtual void set_root       (	bGenericXMLBaseElement* root);
+    virtual int signature       (	);
+    virtual bool save           (	);
+    virtual bool on_screen      (	);
+    virtual void set_on_screen  (	bool b);
+    virtual bool on_edit        (	);
+    virtual void set_on_edit    (	bool b);
+    
+protected:
+
+private:
+    bool    _on_screen;
+    bool    _on_edit;
 };
 
 //----------------------------------------------------------------------------
 
 class bStyleContainer : public bStdStyleContainer{
-	public:
-		bStyleContainer							(	const char* file_name,
-													bGenericType* tp);
-		bStyleContainer							(	const char* file_name, 
-													bStdStyleContainer& s);
-		bStyleContainer							(	const char* file_name, 
-													bGenericXMLBaseElement* root,
-													bGenericType* tp);
+public:
+    bStyleContainer             (	const char* file_name,
+                                    bGenericType* tp);
+    bStyleContainer             (	const char* file_name,
+                                    bStdStyleContainer& s);
+    bStyleContainer             (	const char* file_name,
+                                    bGenericXMLBaseElement* root,
+                                    bGenericType* tp);
 
-		virtual ~bStyleContainer				(	);
-		
-		virtual bool set_name					(	const char* name);		
-		virtual bool dump						(	);
-		virtual bool destroy					(	);
+    virtual ~bStyleContainer    (	);
+    
+    virtual bool set_name       (	const char* name);
+    virtual bool dump           (	);
+    virtual bool destroy        (	);
 
-	protected:
-		virtual void load						(	);
+protected:
+    virtual void load           (	);
 
-	private:
-		bGenericType*	_tp;
+private:
+    bGenericType*	_tp;
 };
 
 //----------------------------------------------------------------------------
 
 class bVirtualStyleContainer : public bStdStyleContainer{
-	public:
-		bVirtualStyleContainer					(	const char* file_name);
-		bVirtualStyleContainer					(	const char* file_name, 
-													bStdStyleContainer& s);
-		bVirtualStyleContainer					(	const char* file_name, 
-													bGenericXMLBaseElement* root);
+public:
+    bVirtualStyleContainer          (	const char* file_name);
+    bVirtualStyleContainer          (	const char* file_name,
+                                        bStdStyleContainer& s);
+    bVirtualStyleContainer          (	const char* file_name,
+                                        bGenericXMLBaseElement* root);
 
-		virtual ~bVirtualStyleContainer			(	);
+    virtual ~bVirtualStyleContainer (	);
 
-		virtual bool set_name					(	const char* name);		
-		virtual bool dump						(	);
-		virtual bool destroy					(	);
+    virtual bool set_name           (	const char* name);
+    virtual bool dump               (	);
+    virtual bool destroy            (	);
 
-	protected:
-		virtual void load						(	);
-	
-	private:
+protected:
+    virtual void load               (	);
+
+private:
 
 };
 

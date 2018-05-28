@@ -1767,7 +1767,7 @@ char				vc[1024],msg[__MESSAGE_STRING_LENGTH_MAX__];
 // Data load
 		{	
 			b_message_string(kBrowserMsgDataLoad,msg,[_hdr ext]->getbundle(),0);
-bProgressWait wt("",msg,true,true,[_hdr lines]->count()*2L);
+bProgressWait wt("",msg,true,[_hdr lines]->count()*2L);
 			
 // Only selected lines
 			for(i=1;i<=[_hdr lines]->count();i++){
@@ -1846,7 +1846,7 @@ bProgressWait wt("",msg,true,true,[_hdr lines]->count()*2L);
 // Sort		
 		{	
 			b_message_string(kBrowserMsgSortPrgr,msg,[_hdr ext]->getbundle(),0);
-bBarberWait wt("",msg,true,false);
+bBarberWait wt("",msg,false);
 			bBrowserStackValue::put_wt(&wt);
 			lsel.sort(bBrowserStackValue::compare);
 		}	
@@ -2001,7 +2001,7 @@ void*	buffer=(char*)malloc(maxSz+1);
 long	ci,ri;
 char	msg[__MESSAGE_STRING_LENGTH_MAX__];
 			message_string(kMsgProgress,msg,0);
-bProgressWait wt("",msg,true,true,[_hdr lines]->count());
+bProgressWait wt("",msg,true,[_hdr lines]->count());
 			
 			ri=1;
 			for(long i=1;i<=[_hdr lines]->count();i++){

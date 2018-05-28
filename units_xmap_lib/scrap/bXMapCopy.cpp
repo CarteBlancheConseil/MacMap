@@ -77,7 +77,7 @@ int					k,fsz;
 UInt32				etsz=(sizeof(tag)-sizeof(void*));
 char				mess[__MESSAGE_STRING_LENGTH_MAX__];
 	get_localized_name(mess,_bndl);
-bBarberWait			wt(mess,NULL,true,true);
+bBarberWait			wt(mess,"",true);
 	
 	for(long i=1;i<=arr.count();i++){
 //_tm_(i);

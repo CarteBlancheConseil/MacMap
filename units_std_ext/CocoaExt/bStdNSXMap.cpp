@@ -101,7 +101,7 @@ _tm_(_wd_open);
 // 
 // ------------
 void bStdNSXMap::close(){
-//_bTrace_("bStdNSXMap::close",true);
+_bTrace_("bStdNSXMap::close",true);
 //_tm_(_cfname);
 	if(_wd_open){
 		CCWDXMap_Close(_controller);

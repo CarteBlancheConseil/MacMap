@@ -64,7 +64,7 @@ bGenericGeoElement*	o;
 bGenericType*		tp;
 char				mess[__MESSAGE_STRING_LENGTH_MAX__];
     get_localized_name(mess,_bndl);
-bBarberWait			wt(mess,NULL,true,true);
+bBarberWait			wt(mess,"",true);
 bEventLog           log(_gapp,this);
     
     _gapp->layersMgr()->SetObjInvalidation(false);

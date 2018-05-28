@@ -4,7 +4,7 @@
 // Purpose : Header file : Utility container class for search function (styles & views)
 // Author : Benoit Ogier, benoit.ogier@macmap.com
 //
-// Copyright (C) 1997-2015 Carte Blanche Conseil.
+// Copyright (C) 2005 Carte Blanche Conseil.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -37,18 +37,18 @@
 //----------------------------------------------------------------------------
 
 class bDummyContainer : public bStdContainer{
-	public:
-		bDummyContainer				(	const char* file_name, 
-										const char* name, 
-										bGenericXMLBaseElement* root);
-		virtual ~bDummyContainer	(	);
-		
-		virtual void get_name		(	char* name);
-		
-	protected:
+public:
+    bDummyContainer				(	const char* file_name, 
+                                    const char* name, 
+                                    bGenericXMLBaseElement* root);
+    virtual ~bDummyContainer	(	);
+    
+    virtual void get_name		(	char* name);
+    
+protected:
 
-	private:
-		char	_name[256];
+private:
+    char	_name[256];
 };
 
 //----------------------------------------------------------------------------

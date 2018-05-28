@@ -1,0 +1,59 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>XMap Associer par un champ</title>
+<link rel="stylesheet" href="../css/style.css">
+<meta name="AppleTitle" content="Aide MacMap®">
+<meta name="AppleIcon" content="MacMap Help/img/MacMapIcon.png">
+<meta name="keywords" content="Associer par un champ">
+</head>
+<body>
+<a name=pg4_112>
+</a>
+<table class="switch" width=100%>
+<tr>
+<td align="left">
+<a href="help:anchor='pg0_3' bookID=Aide MacMap®">Index Menu</a>
+</td>
+<td align="right">
+<a href="help:anchor='pg0_4' bookID=Aide MacMap®">Index Alphabétique</a>
+</td>
+</tr>
+</table>
+<br>
+<table border=0 cellspacing=0 cellspacing=0 width=100%>
+<tr>
+<td class="item">
+XMap Associer par un champ
+</td>
+</tr>
+<tr>
+<td>
+<p>
+Cette fonction permet d'agréger une série d'objets linéaires sélectionnés (sélection monotype) par proximité et en fonction d'un champ.<br>
+Le premier popup permet de définir le champ qui servira de référence pour l'agrégation (un nom de voie par exemple).<br>
+L'option "Hiérarchiser par le sous-type" permet d'interdire l'association aux intersections si l'on rencontre des voies de sous-type supérieur (le premier sous-type étant considéré comme supérieur au second).<br>
+Le champ "Longueur minimale" permet de limiter, si possible, la longueur minimale d'un tronçon.<br>
+Le champ "Longueur maximale" permet de limiter, si possible, la longueur maximale d'un tronçon. Dés que l'on dépasse cette valeur, le processus d'agrégation s'arrête sur le tronçon concerné.
+</p>
+</td>
+</tr>
+
+<tr>
+<td class="scripttitle">
+Commande script
+</td>
+</tr>
+<tr>
+<td class="scriptitem">
+<pre class="scriptitem">
+&lt;associationwithfield&gt;    &lt;int&gt;<i class=varitem>Champ nom</i>&lt;/int&gt;    &lt;bool&gt;<i class=varitem>1 pour hiérarchiser par le sous-type, 0 sinon</i>&lt;/bool&gt;    &lt;float&gt;<i class=varitem>Longueur minimale d'un tronçon</i>&lt;/float&gt;    &lt;float&gt;<i class=varitem>Longueur maximale d'un tronçon</i>&lt;/float&gt;&lt;/associationwithfield&gt;</pre>
+</td>
+</tr>
+
+</table>
+<p>
+<a href="pg1_610.html">XMapBox Transformation</a>
+</p>
+</body>
+</html>

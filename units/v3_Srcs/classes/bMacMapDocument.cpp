@@ -4,7 +4,7 @@
 // Purpose : C++ source file : MacMap document class
 // Author : Benoit Ogier, benoit.ogier@macmap.com
 //
-// Copyright (C) 1997-2015 Carte Blanche Conseil.
+// Copyright (C) 2004 Carte Blanche Conseil.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -379,9 +379,9 @@ _tm_("unload with state at "+_state);
 	
 	if(_state>=5){
 		(void)typesmgr->unload();	
-		(void)_styles->unload();	
+		(void)_styles->unload();
 	}
-	
+
 	if(_state>=7){
 		(void)viewmgr->unload();
 	}

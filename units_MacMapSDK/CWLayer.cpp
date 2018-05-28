@@ -37,7 +37,7 @@
 // ------------
 int CWLayer_GetLayerCount(CWCallback Callback){
 bGenericMacMapApp*	gapp=(bGenericMacMapApp*)Callback;
-	return(gapp->layersAccessCtx()->count());
+    return(gapp->layersMgr()->count());
 }
 
 // ---------------------------------------------------------------------------
@@ -45,7 +45,7 @@ bGenericMacMapApp*	gapp=(bGenericMacMapApp*)Callback;
 // ------------
 CWLayer CWLayer_Get(CWCallback Callback, int index){
 bGenericMacMapApp*	gapp=(bGenericMacMapApp*)Callback;
-	return((CWLayer)gapp->layersAccessCtx()->get(index));
+    return((CWLayer)gapp->layersMgr()->get(index));
 }
 
 // ---------------------------------------------------------------------------
@@ -53,7 +53,7 @@ bGenericMacMapApp*	gapp=(bGenericMacMapApp*)Callback;
 // ------------
 CWLayer CWLayer_GetCurrent(CWCallback Callback){
 bGenericMacMapApp*	gapp=(bGenericMacMapApp*)Callback;
-	return((CWLayer)gapp->layersAccessCtx()->get(gapp->layersAccessCtx()->get_current()));
+    return((CWLayer)gapp->layersMgr()->get(gapp->layersMgr()->get_current()));
 }
 
 // ---------------------------------------------------------------------------
@@ -61,7 +61,7 @@ bGenericMacMapApp*	gapp=(bGenericMacMapApp*)Callback;
 // ------------
 int CWLayer_SetCurrent(CWCallback Callback, int index){
 bGenericMacMapApp*	gapp=(bGenericMacMapApp*)Callback;
-	return(gapp->layersAccessCtx()->set_current(index));
+    return(gapp->layersMgr()->set_current(index));
 }
 
 // ---------------------------------------------------------------------------
@@ -69,7 +69,7 @@ bGenericMacMapApp*	gapp=(bGenericMacMapApp*)Callback;
 // ------------
 void CWLayer_SetCurLayerVisibility(CWCallback Callback, int data){
 bGenericMacMapApp*	gapp=(bGenericMacMapApp*)Callback;
-	gapp->layersAccessCtx()->setvisible(data);
+    gapp->layersMgr()->setvisible(data);
 }
 
 // ---------------------------------------------------------------------------
@@ -77,7 +77,7 @@ bGenericMacMapApp*	gapp=(bGenericMacMapApp*)Callback;
 // ------------
 void CWLayer_SetCurLayerSelectability(CWCallback Callback, int data){
 bGenericMacMapApp*	gapp=(bGenericMacMapApp*)Callback;
-	gapp->layersAccessCtx()->setselectable(data);
+    gapp->layersMgr()->setselectable(data);
 }
 
 // ---------------------------------------------------------------------------

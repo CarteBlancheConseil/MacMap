@@ -303,7 +303,7 @@ double bCoreTextInfo::textHeight(){
 // ---------------------------------------------------------------------------
 //
 // ------------
-void bCoreTextInfo::textOrigin(double *x,
+void bCoreTextInfo::textOrigin( double *x,
 								double *y){
 int		sz,k;
 double	ox,oy;
@@ -412,9 +412,9 @@ double bCoreTextInfo::glyphWidth(int idx){
 // ---------------------------------------------------------------------------
 //
 // ------------
-void bCoreTextInfo::relativeGlyphPos(double *xshift, 
-									  double *yshift, 
-									  int idx){
+void bCoreTextInfo::relativeGlyphPos(   double *xshift,
+                                        double *yshift,
+                                        int idx){
 	if((idx<0)||(idx>=_len)){
 		(*xshift)=0;
 		(*yshift)=0;
@@ -427,10 +427,10 @@ void bCoreTextInfo::relativeGlyphPos(double *xshift,
 // ---------------------------------------------------------------------------
 // 
 // ------------
-void bCoreTextInfo::absoluteGlyphPos(double *xpos, 
-									  double *ypos, 
-									  int idx, 
-									  double dcf){
+void bCoreTextInfo::absoluteGlyphPos(   double *xpos,
+                                        double *ypos,
+                                        int idx,
+                                        double dcf){
 	if((idx<0)||(idx>=_len)){
 		(*xpos)=0;
 		(*ypos)=0;

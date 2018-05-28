@@ -66,10 +66,11 @@ i2dvertex	vx;
 			o->getBounds(&vr);
 			ivr_mid(&vr,&vx);
 			_gapp->mapIntf()->setScreenCenter(vx);
-			return(true);
+//			return(true);
 		}		
 	}
-	return(false);
+//	return(false);
+    return(true);
 }
 
 // ---------------------------------------------------------------------------

@@ -2,10 +2,9 @@
 // File : bVirtualStyle.h
 // Project : MacMap
 // Purpose : Header file : Virtual style class (i.e. styles for non objects : WMS, tiling, legends, titles, etc...)
-
 // Author : Benoit Ogier, benoit.ogier@macmap.com
 //
-// Copyright (C) 1997-2015 Carte Blanche Conseil.
+// Copyright (C) 2004 Carte Blanche Conseil.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -40,7 +39,7 @@
 
 class bVirtualStyle : public bStyle{
 public:
-	bVirtualStyle 						(	); 
+	bVirtualStyle 						(	bGenericLayersMgr* mgr); 
 	virtual ~bVirtualStyle				(	);
 
 	virtual void settype				(	const char *name);

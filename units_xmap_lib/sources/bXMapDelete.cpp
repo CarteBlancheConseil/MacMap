@@ -76,7 +76,7 @@ bEventLog			log(_gapp,
 						
 char	mess[__MESSAGE_STRING_LENGTH_MAX__];
 		b_message_string(kXMapDeleteProgressMessageID,mess,getbundle(),1);
-bProgressWait wt("",mess,true,true,arr.count());
+bProgressWait wt("",mess,true,arr.count());
 
 		_gapp->layersMgr()->SetObjInvalidation(false);
 		for(int i=arr.count();i>0;i--){

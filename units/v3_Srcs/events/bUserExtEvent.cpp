@@ -4,7 +4,7 @@
 // Purpose : C++ source file : MacMap user extern event class
 // Author : Benoit Ogier, benoit.ogier@macmap.com
 //
-// Copyright (C) 1997-2015 Carte Blanche Conseil.
+// Copyright (C) 2005 Carte Blanche Conseil.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -48,16 +48,13 @@ bUserExtEvent	::bUserExtEvent(	char* msg,
 // Destructeur
 // -----------
 bUserExtEvent::~bUserExtEvent(){
+    _elts.reset();
 }
 
 // ---------------------------------------------------------------------------
 // 
 // -----------
 bool bUserExtEvent::add(void* elt){
-/*bGenericExt* ti=(*((bGenericExt**)elt));
-	if(find(ti)){
-		return(true);
-	}*/
 	return(bMacMapEvent::add(elt));
 }
 
@@ -72,7 +69,7 @@ int bUserExtEvent::find(void* elt){
 // 
 // -----------
 int bUserExtEvent::find(bGenericExt* t){
-	return(_elts.search(&t,compare));
+    return(_elts.search(&t,compare));
 }
 
 // ---------------------------------------------------------------------------

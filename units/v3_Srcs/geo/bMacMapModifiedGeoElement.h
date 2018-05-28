@@ -4,7 +4,7 @@
 // Purpose : Header file : MacMap modified object class (events and undo/redo maangement)
 // Author : Benoit Ogier, benoit.ogier@macmap.com
 //
-// Copyright (C) 1997-2015 Carte Blanche Conseil.
+// Copyright (C) 2005 Carte Blanche Conseil.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -38,41 +38,41 @@
 //----------------------------------------------------------------------------
 
 class bMacMapModifiedGeoElement : public bStdGeoElement{
-	public:
-		bMacMapModifiedGeoElement	 			(	bGenericGeoElement* ref,
-													int field);
-		virtual ~bMacMapModifiedGeoElement  	(	);
-		
-		virtual int getType						(	);
-		virtual void getBounds					(	ivx_rect	*vxr);
-		
-		virtual void getVertices				(	ivertices	**vxs);
-		
-		virtual int getSubType					(	);
+public:
+    bMacMapModifiedGeoElement	 		(	bGenericGeoElement* ref,
+                                            int field);
+    virtual ~bMacMapModifiedGeoElement  (	);
+    
+    virtual int getType					(	);
+    virtual void getBounds				(	ivx_rect	*vxr);
+    
+    virtual void getVertices			(	ivertices	**vxs);
+    
+    virtual int getSubType				(	);
 
-		virtual int getColor					(	);
-		
-		virtual int getDirection				(	);
-		
-		virtual void getName					(	char *name);
-				
-		virtual bool getValue					(	int fieldIdx, 
-													void *value);
-		virtual bool getValue					(	char *fieldName, 
-													void *value);
-		
-		virtual bGenericGeoElement* get_ref		(	);
+    virtual int getColor				(	);
+    
+    virtual int getDirection			(	);
+    
+    virtual void getName				(	char *name);
+            
+    virtual bool getValue				(	int fieldIdx,
+                                            void *value);
+    virtual bool getValue				(	char *fieldName,
+                                            void *value);
+    
+    virtual bGenericGeoElement* get_ref	(	);
 
-	protected:
-		
-	private:
-		void replicate							(	);
+protected:
+    
+private:
+    void replicate						(	);
 
-		bGenericGeoElement*	_ref;
-		void*				_buffer;
-		int					_buffersz;
-		int					_field;
-		int					_fieldsgn;
+    bGenericGeoElement*	_ref;
+    void*				_buffer;
+    int					_buffersz;
+    int					_field;
+    int					_fieldsgn;
 };
 
 //----------------------------------------------------------------------------

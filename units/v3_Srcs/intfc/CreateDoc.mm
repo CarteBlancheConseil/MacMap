@@ -4,7 +4,7 @@
 // Purpose : Objective C++ source file : Document creation utility
 // Author : Benoit Ogier, benoit.ogier@macmap.com
 //
-// Copyright (C) 1997-2015 Carte Blanche Conseil.
+// Copyright (C) 2005 Carte Blanche Conseil.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -177,7 +177,7 @@ _tm_("unit:"+(*unit)+" reso:"+(*reso));
 // ------------
 static void MMCreateDoc_releaseController(void* ctrlr){
 _bTrace_("MMCreateDoc_releaseController",true);
-MMCreateDocViewController   *controller=(MMCreateDocViewController*)ctrlr;
+//MMCreateDocViewController   *controller=(MMCreateDocViewController*)ctrlr;
 NSAutoreleasePool           *localPool;
     
     localPool=[[NSAutoreleasePool alloc] init];

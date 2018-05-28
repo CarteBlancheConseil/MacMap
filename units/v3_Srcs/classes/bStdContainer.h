@@ -4,7 +4,7 @@
 // Purpose : Header file : Standard container base class for styles and views management
 // Author : Benoit Ogier, benoit.ogier@macmap.com
 //
-// Copyright (C) 1997-2015 Carte Blanche Conseil.
+// Copyright (C) 2005 Carte Blanche Conseil.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -39,36 +39,36 @@
 //----------------------------------------------------------------------------
 
 class bStdContainer : public bGenericElement{
-	public:		
-		bStdContainer							(	const char* file_name);
-		bStdContainer							(	const char* file_name, 
-													bStdContainer& c);
-		bStdContainer							(	const char* file_name, 
-													bGenericXMLBaseElement* root);
-		bStdContainer							(	const char* file_name, 
-													bool dummy);
-		virtual ~bStdContainer					(	);
-		
-		virtual int status						(	);
-		
-		virtual void get_name					(	char* name);
-		virtual bool set_name					(	const char* name);
-		virtual void file_name					(	char* name);
-		virtual bGenericXMLBaseElement* root	(	);
-		virtual bool dump						(	);
-		virtual bool destroy					(	);
-		
-	protected:
-		virtual void load						(	);
-		virtual void unload						(	);
-		bool set_root_name						(	const char* name);
-		
-		int						_status;
-		char					_file_name[256];
-		bGenericXMLBaseElement*	_root;
-		
-	private:
-		
+public:		
+    bStdContainer							(	const char* file_name);
+    bStdContainer							(	const char* file_name, 
+                                                bStdContainer& c);
+    bStdContainer							(	const char* file_name, 
+                                                bGenericXMLBaseElement* root);
+    bStdContainer							(	const char* file_name, 
+                                                bool dummy);
+    virtual ~bStdContainer					(	);
+    
+    virtual int status						(	);
+    
+    virtual void get_name					(	char* name);
+    virtual bool set_name					(	const char* name);
+    virtual void file_name					(	char* name);
+    virtual bGenericXMLBaseElement* root	(	);
+    virtual bool dump						(	);
+    virtual bool destroy					(	);
+    
+protected:
+    virtual void load						(	);
+    virtual void unload						(	);
+    bool set_root_name						(	const char* name);
+    
+    int						_status;
+    char					_file_name[256];
+    bGenericXMLBaseElement*	_root;
+    
+private:
+    
 };
 
 //----------------------------------------------------------------------------

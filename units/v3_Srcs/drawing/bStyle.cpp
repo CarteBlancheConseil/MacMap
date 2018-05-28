@@ -4,7 +4,7 @@
 // Purpose : C++ source file : Style class
 // Author : Benoit Ogier, benoit.ogier@macmap.com
 //
-// Copyright (C) 1997-2015 Carte Blanche Conseil.
+// Copyright (C) 2004 Carte Blanche Conseil.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -24,10 +24,11 @@
 //----------------------------------------------------------------------------
 // 
 //----------------------------------------------------------------------------
-// 02/02/2004 creation.
+// 02/02/2004 creation
 // 27/03/2007 fonctionne avec les tris inverses
-// 17/04/2007 prise en compte des false retournés dans les procédures applyfor…
-// 04/09/2014 elimination des appels avec geometrie QD.
+// 17/04/2007 prise en compte des false retournés dans les procédures applyfor
+// 04/09/2014 elimination des appels avec geometrie QD
+// 18/07/2017 simplification de la boucle de chargement des objets
 //----------------------------------------------------------------------------
 
 #include "bStyle.h"
@@ -51,7 +52,7 @@
 // 
 // ------------
 
-#define _ltrace_	0
+#define _ltrace_	1
 #if(_ltrace_==1)
 #define	_lbTrace_(a,b)	_bTrace_(a,b)
 #define	_lm_(a)			_tm_(a)
@@ -67,7 +68,7 @@
 // ---------------------------------------------------------------------------
 // Constructeur
 // ------------
-bStyle::bStyle(){
+bStyle::bStyle(bGenericLayersMgr* mgr){
 	_ctx=NULL;
 	
 	_typename=NULL;
@@ -107,6 +108,8 @@ bStyle::bStyle(){
 	_curstylerun=NULL;
 	_curclass=1;
 	_margin=0;
+    
+    _mgr=mgr;
 }
 
 // ---------------------------------------------------------------------------
@@ -461,8 +464,6 @@ void bStyle::setroot(void* elt){
 // 
 // ------------
 void bStyle::setlayer(void* elt){
-//_bTrace_("bStyle::setlayer",true);
-//_tm_((void*)elt);
 	_layer=(bGenericXMLRenderingElement*)elt;
 }
 
@@ -482,27 +483,22 @@ bGenericXMLBaseElement* bStyle::getlayer(){
 	return(_layer);
 }
 
+#pragma mark =>setbounds
 // ---------------------------------------------------------------------------
 // 
 // ------------
 void bStyle::setbounds(ivx_rect* bounds){
-_lbTrace_("bStyle::setbounds",false);
 	if(!_vis){
 		return;
 	}
 	
-/* CONDITION 20/01/09*/	
-_lm_("init");
 	_scale=scalemgr->get()->coef();
 	_ctx->setScaleRef(_scaleref);
 	_ctx->setUnitCoef(_unitcoef);
 	_ctx->setElement(NULL);
-
-_lm_("applyglobals");
 	if(!applyglobals()){
-		return;
+        return;
 	}
-/**/
 	
 	_nobjects=0;
 	_area=(*bounds);
@@ -512,7 +508,6 @@ bGenericType* tp=typesmgr->get(_typeindex);
 		return;
 	}
 	_fieldindex=tp->fields()->get_index(_fieldname);
-	
 	_lock=true;
 
 /**/
@@ -521,41 +516,14 @@ bGenericType* tp=typesmgr->get(_typeindex);
 	_area.top-=_margin;
 	_area.bottom+=_margin;
 /**/
-	
-//_tm_("find");
-	tp->iterator()->iterate(&_area,this,find);
-	if(_nobjects==0){
-		_lock=false;
-/**/
-		_area=(*bounds);
-/**/
-		return;
-	}
-	_screenobjs=new bArray(sizeof(bScreenObj*),_nobjects);
-	_nobjects=0;
-//_tm_("fill");
-	tp->iterator()->iterate(&_area,this,fill);
-	if(_nobjects==0){
-		_lock=false;
-/**/
-		_area=(*bounds);
-/**/
-		return;
-	}
-/**/
-	_area=(*bounds);
-/**/
-	
-/* CONDITION 20/01/09*/
-int	i;
-	if(_nobjects!=_screenobjs->count()){
-		for(i=_screenobjs->count();i>_nobjects;i--){
-			_screenobjs->rmv(i);
-		}
-	}	
-/**/
-
-	switch(_sort){
+    
+long	i;
+    
+    _screenobjs=new bArray(sizeof(bScreenObj*));
+    _nobjects=0;
+    tp->iterator()->iterate(&_area,this,fill);
+    _area=(*bounds);
+    switch(_sort){
 		case -2:
 			_screenobjs->sort(classCompInv);
 			break;
@@ -569,10 +537,15 @@ int	i;
 			_screenobjs->sort(classComp);
 			break;
 	}
-	
-int			n=_valbounds->count();
+    _nobjects=_screenobjs->count();
+    if(_nobjects==0){
+        _lock=false;
+        return;
+    }
+    
+long		n=_valbounds->count();
 int			c=0;
-int			k/*,k1*/;
+int			k;
 bScreenObj*	o;
 	
 	k=0;
@@ -582,7 +555,6 @@ bScreenObj*	o;
 	}
 	
 	k=0;
-//	k1=0;
 	if(_sort>0){
 		for(i=1;i<=_screenobjs->count();i++){
 			_screenobjs->get(i,&o);
@@ -616,7 +588,7 @@ bScreenObj*	o;
 		_offsets->put(2,&k);
 		_counts->put(1,&k);
 	}
-		
+    
 	_lock=false;
 }
 
@@ -687,17 +659,14 @@ bool bStyle::save(){
 // 
 // ------------
 void bStyle::draw(bStdWait& wt){
-_lbTrace_("bStyle::draw",true);
-_lm_("drawing "+_name);
-
+_lbTrace_("bStyle::draw",false);
 	if(!_vis){
 		return;
 	}
 	
 long			i,j,ri=1,k,a,b,nbounds=_valbounds->count();
-unsigned int	t1,t0=EventTimeToTicks(GetCurrentEventTime());
-bScreenObj*		scr;
-
+unsigned int    t1,t0=EventTimeToTicks(GetCurrentEventTime());
+bScreenObj*     scr;
 float			xa,xb,ya,yb;
 float			xxa,xxb,yya,yyb;
 
@@ -706,16 +675,12 @@ float			xxa,xxb,yya,yyb;
 	_ctx->setUnitCoef(_unitcoef);
 	_ctx->setElement(NULL);
 
-_lm_("applyglobals");
 	if(!applyglobals()){
 		return;
 	}
 
-bLayersMgr*	mgr=(bLayersMgr*)layersmgr;
-	
 	for(i=1;i<=_nbpass;i++){
-		if(mgr->breaked()){
-_lw_("mgr->breaked() 1");
+		if(_mgr->breaked()){
 			break;
 		}
 		if(_sort>=0){
@@ -723,7 +688,7 @@ _lw_("mgr->breaked() 1");
 // TRI CROISSANT
 // ********************
 			for(j=1;j<=nbounds-1;j++){
-				if(mgr->breaked()){
+				if(_mgr->breaked()){
 					break;
 				}
 				_ctx->reset();
@@ -739,7 +704,7 @@ _lw_("mgr->breaked() 1");
 					a=last(j);
 				}
 				for(k=a;k<=b;k++){
-					if(mgr->breaked()){
+					if(_mgr->breaked()){
 						break;
 					}
 					t1=EventTimeToTicks(GetCurrentEventTime());
@@ -748,7 +713,6 @@ _lw_("mgr->breaked() 1");
 						t0=t1;
 					}
 					
-// 15/05/2009 -> PLUS DE FLUIDITE EN METTANT LE PROGRESS EN DEHORS DU TEST FLUSH
 					wt.set_progress(0);
 					if(!wt.get_progress()){
 						break;
@@ -757,15 +721,8 @@ _lw_("mgr->breaked() 1");
 					if(!_screenobjs->get(k,&scr)){
 						break;
 					}
-
 					_ctx->setElement(scr);
-/* CONDITION 20/01/09
-					if(!applyconditions()){
-						continue;
-					}
-*/
 					for(ri=1;ri<=_goodstyleruns->count();ri++){
-//_tm_("ri="+ri);
 						if(!applystylesruns(ri)){
 							continue;
 						}
@@ -807,7 +764,7 @@ _lw_("mgr->breaked() 1");
 // TRI DECROISSANT
 // ********************
 			for(j=nbounds-1;j>=1;j--){
-				if(mgr->breaked()){
+				if(_mgr->breaked()){
 					break;
 				}
 				_ctx->reset();
@@ -823,7 +780,7 @@ _lw_("mgr->breaked() 1");
 					a=last(j);
 				}
 				for(k=a;k<=b;k++){
-					if(mgr->breaked()){
+					if(_mgr->breaked()){
 						break;
 					}
                     t1=EventTimeToTicks(GetCurrentEventTime());
@@ -832,7 +789,6 @@ _lw_("mgr->breaked() 1");
 						t0=t1;
 					}
 
-// 15/05/2009 -> PLUS DE FLUIDITE EN METTANT LE PROGRESS EN DEHORS DU TEST FLUSH
 					wt.set_progress(0);
 					if(!wt.get_progress()){
 						break;
@@ -842,11 +798,6 @@ _lw_("mgr->breaked() 1");
 						break;
 					}
 					_ctx->setElement(scr);
-/* CONDITION 20/01/09
-					if(!applyconditions()){
-						continue;
-					}
-*/
 					for(ri=_goodstyleruns->count();ri>0;ri--){
 						if(!applystylesruns(ri)){
 							continue;
@@ -886,7 +837,7 @@ _lw_("mgr->breaked() 1");
 			}
 		}
 	}
-	if(mgr->breaked()){
+	if(_mgr->breaked()){
 		return;
 	}
 	_ctx->reset();	
@@ -912,9 +863,7 @@ double	val;
 	
 	_ctx->setScaleRef(_scaleref);
 	_ctx->setUnitCoef(_unitcoef);
-/**/
 	_ctx->reset();
-/**/
 	_ctx->setElement(NULL);
 	
 	if(!applyglobals()){
@@ -927,19 +876,15 @@ bScreenObj scr;
 	scr.setclass(findclass(val));
 	_ctx->setElement(&scr);
 		
-	for(int i=1;i<=_nbpass;i++){
+	for(long i=1;i<=_nbpass;i++){
 		findgoodstylesruns(i,scr.getclass());
-		for(int ri=_goodstyleruns->count();ri>0;ri--){
+		for(long ri=_goodstyleruns->count();ri>0;ri--){
 			if(!applygeometry(ri)){
 				continue;
 			}
-			// applyconditions à tester
 			if(!applyconditions()){
 				continue;
 			}
-//			if(!applygeometry(&scr,ri)){
-//				continue;
-//			}
 			if(!applystylesruns(ri)){
 				continue;
 			}
@@ -958,11 +903,9 @@ bScreenObj scr;
 void bStyle::rect(bGenericGeoElement* o, CGRect* bounds){
 _lbTrace_("bStyle::rect",false);
 	if(_lock){
-//_tm_("locked");
 		return;
 	}
 	if(o->masked()){
-//_tm_("masked");
 		return;
 	}
 double	val;
@@ -971,8 +914,7 @@ double	val;
 	
 	o->getValue(_fieldindex,&val);
 	if((val<_minbound)||(val>=_maxbound)){
-//_tm_("bad val");
-		return;
+        return;
 	}
 	
 	_ctx->setScaleRef(_scaleref);
@@ -993,22 +935,13 @@ bScreenObj scr;
 float	xmin,ymin,xmax,ymax;
 CGRect	tmpa=CGRectZero,tmpb;
 	
-	for(int i=1;i<=_nbpass;i++){
+	for(long i=1;i<=_nbpass;i++){
 		findgoodstylesruns(i,scr.getclass());
-//_tm_(i+"->"+scr.getclass());
-		for(int ri=_goodstyleruns->count();ri>0;ri--){
-//_tm_(ri);
+		for(long ri=_goodstyleruns->count();ri>0;ri--){
 			if(!applygeometry(ri)){
-//_tm_("!applygeometry(ri)");
 				continue;
 			}
-/* CONDITION 20/01/09
-			 if(!applyconditions()){
-			 continue;
-			 }
-*/
 			if(!applygeometry(&scr,ri)){
-//_tm_("!applygeometry(&scr,ri)");
 				continue;
 			}
 			(*_boundp)(_ctx);
@@ -1040,15 +973,13 @@ CGRect	tmpa=CGRectZero,tmpb;
 // ------------
 bGenericGraphicContext* bStyle::get_context_for_object(bGenericGeoElement* o, int pass, bool render){
 _lbTrace_("bStyle::get_context_for_object",false);
-    if(((bLayersMgr*)layersmgr)->drawing()){
+    if(_mgr->drawing()){
         return NULL;
     }
 	if(_lock){
-//_tm_("locked");
 		return(_ctx);
 	}
 	if(o->masked()){
-//_tm_("masked");
 		return(_ctx);
 	}
 double	val;
@@ -1063,7 +994,6 @@ _lm_("((val<_minbound)||(val>=_maxbound))");
 	_ctx->setUnitCoef(_unitcoef);
 	_ctx->setElement(NULL);
 
-//_tm_("applyglobals");
 	if(!applyglobals()){
 _lm_("globals not applied");
 		return(_ctx);
@@ -1075,14 +1005,13 @@ bScreenObj scr;
 	scr.setclass(findclass(val));
 	_ctx->setElement(&scr);
 	
-int	first=(pass>0)?pass:1;
-int	last=(pass>0)?pass:_nbpass;
-int ri=(_sort>0)?_goodstyleruns->count():1;
+long	first=(pass>0)?pass:1;
+long	last=(pass>0)?pass:_nbpass;
+long ri=(_sort>0)?_goodstyleruns->count():1;
 
 	for(int i=first;i<=last;i++){
 // ON CHERCHE LES STYLERUNS POUR LA CLASSE
 		findgoodstylesruns(i,scr.getclass());
-//_tm_("i="+i+"; class="+scr.getclass()+"; ri="+ri);
 
 // ON APPLIQUE POUR LA CLASSE
 		if(render){
@@ -1098,24 +1027,15 @@ _lm_("!applystylesruns(ri) for "+i);
 // LE applygeometry(ri) EST NECESSAIRE POUR LES CALCS TEXTE A L'ECRAN...
 //	---------------------------------------------------------------------
 // SINON C'EST DU GEOMETRIE, ON APPLIQUE LE RENDER DU PREMIER RUN POUR LA CLASSE
-//_tm_("applygeometry(ri)");
 			if(!applygeometry(ri)){
 _lm_("!applygeometry(ri) for "+i);
 				continue;
 			}
 		}
-		
-/* CONDITION 20/01/2009 : VIRE EN AMONT LORS DE L'INIT DU DRAW
-		if(!applyconditions()){
-//_tm_("!applyconditions() for %d",i);
-			continue;
-		}
-*/
 
 // ON APPLIQUE POUR L'OBJET
 		if(render){
 // SI C'EST DU RENDER, ON APPLIQUE LE RENDER DU PREMIER RUN POUR L'OBJET
-//_tm_("applystylesruns(&scr,ri)");
 			if(!applystylesruns(&scr,ri)){
 _lm_("!applystylesruns(&scr,ri) for "+ri);
 				continue;
@@ -1123,7 +1043,6 @@ _lm_("!applystylesruns(&scr,ri) for "+ri);
 		}
 		else{
 // SINON C'EST DU GEOMETRIE, ON APPLIQUE LE RENDER DU PREMIER RUN POUR L'OBJET
-//_tm_("applygeometry(&scr,ri)");
 			if(!applygeometry(&scr,ri)){
 _lm_("!applygeometry(&scr,ri) for "+ri);
 				continue;
@@ -1139,7 +1058,7 @@ _lm_("!applygeometry(&scr,ri) for "+ri);
 // La, dificile de faire passer le coup du styleruns multiples... A VOIR !
 // ------------
 bGenericGraphicContext* bStyle::get_context_for_class(int clss, int pass, bool render){
-    if(((bLayersMgr*)layersmgr)->drawing()){
+    if(_mgr->drawing()){
         return NULL;
     }
     if(_lock){
@@ -1154,11 +1073,11 @@ bGenericGraphicContext* bStyle::get_context_for_class(int clss, int pass, bool r
 		return(_ctx);
 	}
 	
-int	first=(pass>0)?pass:1;
-int	last=(pass>0)?pass:_nbpass;
-int ri;
+long    first=(pass>0)?pass:1;
+long	last=(pass>0)?pass:_nbpass;
+long    ri;
 
-	for(int i=first;i<=last;i++){
+	for(long i=first;i<=last;i++){
 		findgoodstylesruns(i,clss);
 		ri=(_sort>0)?_goodstyleruns->count():1;
 		if(render){
@@ -1343,7 +1262,7 @@ float				xmin,ymin,xmax,ymax;
 CGRect				bounds;
 bGenericGeoElement*	o;
 bScreenObj*			scr;
-	for(int j=_screenobjs->count();j>=1;j--){
+	for(long j=_screenobjs->count();j>=1;j--){
 		if(!_screenobjs->get(j,&scr)){
 			continue;
 		}
@@ -1372,7 +1291,6 @@ bScreenObj*			scr;
 // 
 // ------------
 bArray* bStyle::objsincircle(CGRect* cgr, bool strict){
-_lbTrace_("bStyle::objsincircle",true);
 bArray*	arr=new bArray(sizeof(bGenericGeoElement*));
 	if(_lock){
 		return(arr);
@@ -1380,10 +1298,11 @@ bArray*	arr=new bArray(sizeof(bGenericGeoElement*));
 	if((!visible())||(!selectable())){
 		return(arr);
 	}
-int						i,j,k,a,b,ri;
-float					dmax=cgr->size.width/2.0;
-CGPoint					cgp;
-bGenericGeoElement*		o;
+long                i,j,k;
+int                 a,b,ri;
+float               dmax=cgr->size.width/2.0;
+CGPoint             cgp;
+bGenericGeoElement* o;
 bScreenObj*				scr;
 distProc				distp;
 
@@ -1432,22 +1351,6 @@ distProc				distp;
 			for(j=_valbounds->count()-1;j>0;j--){
 				_ctx->setElement(NULL);
 				findgoodstylesruns(i,j);
-				// Retrait du 2010/06/2004 -> test erroné
-				/*if(_goodstyleruns->count()==0){
-					a=first(j);
-					b=last(j);
-					if(b<a){
-						b=first(j);
-						a=last(j);
-					}
-					for(k=b;k>=a;k--){
-						if(!_screenobjs->get(k,&scr)){
-							break;
-						}
-						scr->setflag(false);
-					}
-				}
-				else */
 				for(ri=_goodstyleruns->count();ri>0;ri--){
 					a=first(j);
 					b=last(j);
@@ -1478,12 +1381,6 @@ distProc				distp;
 							continue;
 						}
 						_ctx->setElement(scr);
-/* CONDITION 20/01/09
-						if(!applyconditions()){
-							scr->setflag(false);
-							continue;
-						}
-*/
 						if(!applygeometry(scr,ri)){
 							scr->setflag(false);
 							continue;
@@ -1509,22 +1406,6 @@ distProc				distp;
 			for(j=1;j<=_valbounds->count()-1;j++){
 				_ctx->setElement(NULL);
 				findgoodstylesruns(i,j);
-				// Retrait du 2010/06/2004 -> test erroné
-				/*if(_goodstyleruns->count()==0){
-					a=first(j);
-					b=last(j);
-					if(b<a){
-						b=first(j);
-						a=last(j);
-					}
-					for(k=b;k>=a;k--){
-						if(!_screenobjs->get(k,&scr)){
-							break;
-						}
-						scr->setflag(false);
-					}					
-				}
-				else */
 				for(ri=1;ri<=_goodstyleruns->count();ri++){
 					a=first(j);
 					b=last(j);
@@ -1555,12 +1436,6 @@ distProc				distp;
 							continue;
 						}
 						_ctx->setElement(scr);
-/* CONDITION 20/01/09
-						if(!applyconditions()){
-							scr->setflag(false);
-							continue;
-						}
-*/
 						if(!applygeometry(scr,ri)){
 							scr->setflag(false);
 							continue;
@@ -1602,11 +1477,12 @@ bArray*	arr=new bArray(sizeof(bGenericGeoElement*));
 	if((!visible())||(!selectable())){
 		return(arr);
 	}
-int						i,j,k,l,a,b,n,*of,nof,ri;
-bGenericGeoElement*		o;
-bScreenObj*				scr;
-float					*x=new float[nb],*y=new float[nb];
-float					*gx,*gy;
+long                i,j,k,l;
+int                 a,b,n,*of,nof,ri;
+bGenericGeoElement* o;
+bScreenObj*         scr;
+float               *x=new float[nb],*y=new float[nb];
+float               *gx,*gy;
 	
 	for(i=0;i<nb;i++){
 		x[i]=cgp[i].x;
@@ -1626,22 +1502,6 @@ float					*gx,*gy;
 			for(j=_valbounds->count()-1;j>0;j--){
 				_ctx->setElement(NULL);
 				findgoodstylesruns(i,j);
-				// Retrait du 2010/06/2004 -> test erroné
-				/*if(_goodstyleruns->count()==0){
-					a=first(j);
-					b=last(j);
-					if(b<a){
-						b=first(j);
-						a=last(j);
-					}
-					for(k=b;k>=a;k--){
-						if(!_screenobjs->get(k,&scr)){
-							break;
-						}
-						scr->setflag(false);
-					}					
-				}
-				else */
 				for(ri=_goodstyleruns->count();ri>0;ri--){
 					a=first(j);
 					b=last(j);
@@ -1672,12 +1532,6 @@ float					*gx,*gy;
 							continue;
 						}
 						_ctx->setElement(scr);
-/* CONDITION 20/01/09
-						if(!applyconditions()){
-							scr->setflag(false);
-							continue;
-						}
-*/
 						if(!applygeometry(scr,ri)){
 							scr->setflag(false);
 							continue;
@@ -1710,22 +1564,6 @@ float					*gx,*gy;
 			for(j=1;j<=_valbounds->count()-1;j++){
 				_ctx->setElement(NULL);
 				findgoodstylesruns(i,j);
-				// Retrait du 2010/06/2004 -> test erroné
-				/*if(_goodstyleruns->count()==0){
-					a=first(j);
-					b=last(j);
-					if(b<a){
-						b=first(j);
-						a=last(j);
-					}
-					for(k=b;k>=a;k--){
-						if(!_screenobjs->get(k,&scr)){
-							break;
-						}
-						scr->setflag(false);
-					}					
-				}
-				else */
 				for(ri=1;ri<=_goodstyleruns->count();ri++){
 					a=first(j);
 					b=last(j);
@@ -1756,12 +1594,6 @@ float					*gx,*gy;
 							continue;
 						}
 						_ctx->setElement(scr);
-/* CONDITION 20/01/09
-						if(!applyconditions()){
-							scr->setflag(false);
-							continue;
-						}
-*/
 						if(!applygeometry(scr,ri)){
 							scr->setflag(false);
 							continue;
@@ -1813,11 +1645,12 @@ bArray*	arr=new bArray(sizeof(bGenericGeoElement*));
 	if((!visible())||(!selectable())){
 		return(arr);
 	}
-bool					flg=false;
-int						i,j,k,a,b,ri;
-float					xmin,ymin,xmax,ymax;
-bGenericGeoElement*		o;
-bScreenObj*				scr;
+bool                flg=false;
+long                i,j,k;
+int                 a,b,ri;
+float               xmin,ymin,xmax,ymax;
+bGenericGeoElement* o;
+bScreenObj*         scr;
 		
 	for(i=1;i<=_nbpass;i++){
 		if(_sort>=0){
@@ -1850,11 +1683,6 @@ bScreenObj*				scr;
 							continue;
 						}
 						_ctx->setElement(scr);
-/* CONDITION 20/01/09
-						if(!applyconditions()){
-							continue;
-						}
-*/
 						if(!applygeometry(scr,ri)){
 							continue;
 						}
@@ -1869,7 +1697,6 @@ bScreenObj*				scr;
 								arr->add(&scr);
 								scr->setflag(true);
 							}
-						//break;
 						}
 					}
 					if(flg){
@@ -1911,11 +1738,6 @@ bScreenObj*				scr;
 							continue;
 						}
 						_ctx->setElement(scr);
-/* CONDITION 20/01/09
-						if(!applyconditions()){
-							continue;
-						}
-*/
 						if(!applygeometry(scr,ri)){
 							continue;
 						}
@@ -1930,7 +1752,6 @@ bScreenObj*				scr;
 								arr->add(&scr);
 								scr->setflag(true);
 							}
-						//break;
 						}
 					}
 					if(flg){
@@ -1994,17 +1815,11 @@ bScreenObj scr;
 	scr.setvalue(val);
 	scr.setclass(findclass(val));
 	_ctx->setElement(&scr);
-/* CONDITION 20/01/09
-	if(!applyconditions()){
-		_ctx->setElement(NULL);
-		return;
-	}
-*/
 	findgoodstylesruns(pass,scr.getclass());
 
 bStyleRun*				run;
 bGenericXMLBaseElement*	root;
-	for(int i=1;i<=_goodstyleruns->count();i++){
+	for(long i=1;i<=_goodstyleruns->count();i++){
 		_goodstyleruns->get(i,&run);
 		root=run->root();
 		arr.add(&root);
@@ -2013,39 +1828,20 @@ bGenericXMLBaseElement*	root;
 	_ctx->setElement(NULL);
 }
 
-// ---------------------------------------------------------------------------
-// 
-// ------------
-int bStyle::find(void *o, void *prm){
-bGenericGeoElement*		geo=(bGenericGeoElement*)o;
-bStyle*					style=(bStyle*)prm;
-double					val;
-ivx_rect				vr2,vr1;
-
-	geo->getValue(style->_fieldindex,&val);
-	if((val>=style->_minbound)&&(val<style->_maxbound)){
-		if(!geo->masked()){
-			geo->getBounds(&vr2);
-			if(ivr_sect(&vr2,&style->_area,&vr1)){
-				style->_nobjects++;
-				geo->setneedupdate(true);
-			}
-		}
-	}
-	return(0);
-}
-
+#pragma mark => fill
 // ---------------------------------------------------------------------------
 // 
 // ------------
 int bStyle::fill(void *o, void *prm){
-bGenericGeoElement*		geo=(bGenericGeoElement*)o;
-bStyle*					style=(bStyle*)prm;
-bScreenObj*				scr;
-double					val;
-ivx_rect				vr2,vr1;
+bGenericGeoElement* geo=(bGenericGeoElement*)o;
+bStyle*             style=(bStyle*)prm;
+bScreenObj*         scr;
+double              val;
+ivx_rect            vr2,vr1;
 
-	geo->getValue(style->_fieldindex,&val);
+    if(geo->getValue(style->_fieldindex,&val)==false){
+        return(0);
+    }
 	if((val>=style->_minbound)&&(val<style->_maxbound)){
 		if(!geo->masked()){
 			geo->getBounds(&vr2);
@@ -2054,18 +1850,15 @@ ivx_rect				vr2,vr1;
 				scr->setreference(geo);
 				scr->setvalue(val);
 				scr->setclass(style->findclass(val));
-/* CONDITION 20/01/09*/				
 				style->_ctx->setElement(scr);
 				if(!style->applyconditions()){
-					/**/
 					style->_ctx->setElement(NULL);
 					delete scr;
-					/**/
 					return(0);
 				}
-/**/
-				style->_nobjects++;
-				style->_screenobjs->put(style->_nobjects,&scr);
+                style->_screenobjs->add(&scr);
+                geo->setneedupdate(true);
+                
 				geo->setatscreen(true);
 			}
 		}
@@ -2161,7 +1954,7 @@ int bStyle::objcount(){
 // 
 // ------------
 bScreenObj* bStyle::objget(int idx){
-	bScreenObj*	scr;
+bScreenObj*	scr;
 	
 	if(!_screenobjs->get(idx,&scr)){
 		return(NULL);
@@ -2175,11 +1968,8 @@ bScreenObj* bStyle::objget(int idx){
 int bStyle::findclass(double val){
 double	a,b;
 	
-	/*if(val==_maxbound){
-		return(_valbounds->count());
-	}*/
 	_valbounds->get(1,&a);
-	for(int i=1;i<_valbounds->count();i++){
+	for(long i=1;i<_valbounds->count();i++){
 		_valbounds->get(i+1,&b);
 		if((val>=a)&&(val<b)){
 			return(i);
@@ -2194,6 +1984,7 @@ double	a,b;
 // ------------
 int bStyle::findclass(bGenericGeoElement* o){
 double	d;
+    
 	o->getValue(_fieldindex,&d);
 	return(findclass(d));
 }
@@ -2205,7 +1996,7 @@ void bStyle::flushscreen(){
 bScreenObj*			scr;
 bGenericGeoElement*	o;
 	
-	for(int i=1;i<=_screenobjs->count();i++){
+	for(long i=1;i<=_screenobjs->count();i++){
 		if((_screenobjs->get(i,&scr))&&(scr)){
 			o=scr->getreference();
 			if(o){
@@ -2231,9 +2022,9 @@ bool bStyle::is_virtual(){
 // 
 // ------------
 void bStyle::flushstyleruns(){
-bStyleRun*			run;
+bStyleRun*  run;
 	
-	for(int i=1;i<=_styleruns->count();i++){
+	for(long i=1;i<=_styleruns->count();i++){
 		if((_styleruns->get(i,&run))&&(run)){
 			delete run;
 		}
@@ -2254,7 +2045,6 @@ int	k=0;
 // 
 // ------------
 int bStyle::last(int clss){
-
 int	k=0,c=0;
 	_offsets->get(clss,&k);
 	_counts->get(clss,&c);
@@ -2346,16 +2136,13 @@ bStyleRun*	run;
 // 
 // ------------
 bool bStyle::applygeometry(bScreenObj* scr, int ir){
-//_bTrace_("bStyle::applygeometry(bScreenObj* scr, int ir)",true);
 	if(_goodstyleruns->count()<=0){
 		return(false);
 	}
-//_tm_(ir+"/"+_goodstyleruns->count());
-
 bStyleRun*	run;
 		if(_goodstyleruns->get(ir,&run)){
 			if(!run->applygeometryforobject(_ctx)){
-				return(false);// MOD 17/04/07
+				return(false);
 			}
 		}
 	return(true);
@@ -2365,19 +2152,16 @@ bStyleRun*	run;
 // 
 // ------------
 void bStyle::findgoodstylesruns(int pass, int clss){
-//_bTrace_("bStyle::findgoodstylesruns",false);
-int			i;
 bStyleRun*	run;
 	
 	_goodstyleruns->reset();
-	for(i=1;i<=_styleruns->count();i++){
+	for(long i=1;i<=_styleruns->count();i++){
 		if(_styleruns->get(i,&run)){
 			if(run->good(_scale,clss,pass)){
 				_goodstyleruns->add(&run);
 			}
 		}
 	}
-//_tm_(_goodstyleruns->count()+" styleruns for scale="+_scale+" class="+clss+" pass="+pass);
 }
 
 // ---------------------------------------------------------------------------
@@ -2531,7 +2315,6 @@ void bStyle::boundsForRect(bGenericGraphicContext* ctx){
 // 
 // ------------
 void bStyle::boundsForText(bGenericGraphicContext* ctx){
-//_bTrace_("bStyle::boundsForText",true);
 	ctx->boundsForText();
 }
 

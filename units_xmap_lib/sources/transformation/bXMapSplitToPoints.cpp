@@ -159,7 +159,7 @@ _te_("new_object");
 				ivs_free(pt);
 				return;
 			}
-			if(!InitWithStyle(_gapp,_gapp->layersAccessCtx()->get_current(),d)){
+            if(!InitWithStyle(_gapp,_gapp->layersMgr()->get_current(),d)){
 				NSBeep();
 			}
 			if(!d->setVertices(pt)){

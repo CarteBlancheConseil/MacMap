@@ -38,14 +38,13 @@ class bStdWait{
 		bStdWait						(	CFStringRef window,
 											const char* title,
 											const char* message, 
-											bool autoclose,
-											bool couldbreak,
+											bool canbreak,
 											bool show,
-											int	 maximum);
+											long maximum);
 		virtual ~bStdWait				(	);
 		
-		virtual bool set_progress		(	int index);	// Set 
-		virtual int get_progress		(	);			// 0=stopped
+		virtual bool set_progress		(	long index);	// Set
+		virtual long get_progress		(	);              // 0=stopped
 		
 	protected:
 	
@@ -53,13 +52,11 @@ class bStdWait{
 											EventRef evt, 
 											void *up);
 		
-		bool			_autoclose;
 		bool			_visible;
 		bool			_show;
-		bool			_couldbreak;
-
-		int				_index;
-		int				_maximum;		
+		bool			_canbreak;
+		long            _index;
+		long            _maximum;
 		
 		clock_t			_timer;
 		
@@ -76,9 +73,8 @@ class bProgressWait : public bStdWait{
 	public:
 		bProgressWait					(	const char* title,
 											const char* message, 
-											bool autoclose,
-											bool couldbreak,
-											int	 maximum);
+											bool canbreak,
+											long maximum);
 		virtual ~bProgressWait			(	);
 
 	protected:
@@ -92,11 +88,10 @@ class bBarberWait : public bStdWait{
 	public:
 		bBarberWait						(	const char* title,
 											const char* message, 
-											bool autoclose,
-											bool couldbreak);
+											bool canbreak);
 		virtual ~bBarberWait			(	);
 		
-		virtual bool set_progress		(	int index);	// Set 
+		virtual bool set_progress		(	long index);	// Set
 
 	protected:
 		
@@ -107,10 +102,10 @@ class bBarberWait : public bStdWait{
 
 class bCursWait : public bStdWait{
 	public:
-		bCursWait						(	bool couldbreak);
+		bCursWait						(	bool canbreak);
 		virtual ~bCursWait				(	);
 
-		virtual bool set_progress		(	int index);
+		virtual bool set_progress		(	long index);
 
 	protected:
 		

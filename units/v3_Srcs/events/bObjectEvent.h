@@ -4,7 +4,7 @@
 // Purpose : Header file : MacMap object event class
 // Author : Benoit Ogier, benoit.ogier@macmap.com
 //
-// Copyright (C) 1997-2015 Carte Blanche Conseil.
+// Copyright (C) 2005 Carte Blanche Conseil.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -37,72 +37,71 @@
 //----------------------------------------------------------------------------
 
 class bObjectEvent : public bMacMapEvent{
-	public:
-		bObjectEvent						(	char* msg, 
-												int crt,// BigEndian coded
-												int act);
-		virtual ~bObjectEvent				(	);
+public:
+    bObjectEvent			(	char* msg,
+                                int crt,// BigEndian coded
+                                int act);
+    virtual ~bObjectEvent	(	);
 
 // ext intf
-		virtual bool add					(	void* elt);
-		virtual int find					(	void* elt);
-				
-	protected:
-		virtual int find					(	bGenericGeoElement* o);		
-		static int compare					(	const void* a, 
-												const void* b);
+    virtual bool add		(	void* elt);
+    virtual int find		(	void* elt);
+            
+protected:
+    virtual int find		(	bGenericGeoElement* o);
+    static int compare		(	const void* a, 
+                                const void* b);
 
-	private:
-
+private:
 };
 
 //----------------------------------------------------------------------------
 
 class bObjectCreateEvent : public bObjectEvent{
-	public:
-		bObjectCreateEvent					(	char* msg, 
-												int crt);// BigEndian coded
-		virtual ~bObjectCreateEvent			(	);
-				
-	protected:
+public:
+    bObjectCreateEvent			(	char* msg,
+                                    int crt);// BigEndian coded
+    virtual ~bObjectCreateEvent	(	);
+            
+protected:
 
-	private:
+private:
 
 };
 
 //----------------------------------------------------------------------------
 
 class bObjectDeleteEvent : public bObjectEvent{
-	public:
-		bObjectDeleteEvent					(	char* msg, 
-												int crt);// BigEndian coded
-		virtual ~bObjectDeleteEvent			(	);
-				
-	protected:
+public:
+    bObjectDeleteEvent			(	char* msg,
+                                    int crt);// BigEndian coded
+    virtual ~bObjectDeleteEvent	(	);
+            
+protected:
 
-	private:
+private:
 
 };
 
 //----------------------------------------------------------------------------
 
 class bObjectModifyEvent : public virtual bObjectEvent{
-	public:
-		bObjectModifyEvent					(	char* msg, 
-												int crt);// BigEndian coded
-		virtual ~bObjectModifyEvent			(	);
-		
-		virtual bool add					(	void* elt, 
-												int fld);
-		virtual int find					(	void* elt);
-		
-	protected:
-		virtual int find					(	bGenericGeoElement* o);		
-		static int compare					(	const void* a, 
-												const void* b);
-//		virtual bool clone_tbl				(bGenericGeoElement* o);
-	private:
-//		bStdTable*	_tbl;
+public:
+    bObjectModifyEvent			(	char* msg,
+                                    int crt);// BigEndian coded
+    virtual ~bObjectModifyEvent	(	);
+    
+    virtual bool add			(	void* elt);
+
+    virtual bool add			(	void* elt,
+                                    int fld);
+    virtual int find			(	void* elt);
+    
+protected:
+    virtual int find			(	bGenericGeoElement* o);
+    static int compare			(	const void* a,
+                                    const void* b);
+private:
 
 };
 

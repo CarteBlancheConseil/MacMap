@@ -4,7 +4,7 @@
 // Purpose : C++ source file : Application main class
 // Author : Benoit Ogier, benoit.ogier@macmap.com
 //
-// Copyright (C) 1997-2015 Carte Blanche Conseil.
+// Copyright (C) 2003 Carte Blanche Conseil.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -25,6 +25,7 @@
 // 
 //----------------------------------------------------------------------------
 // 20/11/2003 creation.
+// 13/04/2017 LayerAccessContext removed.
 //----------------------------------------------------------------------------
 
 
@@ -51,7 +52,6 @@
 #include "bPrintMgr.h"
 #include "bSelectionMgr.h"
 #include "bContrastesMgr.h"
-#include "bMacMapLayerAccessContext.h"
 
 #include "bCGLocConverter.h"
 
@@ -140,9 +140,7 @@ int status;
 
 	_selmgr				=new bSelectionMgr();
 	_cntmgr				=new bContrastesMgr();
-	
-	_layersaccessctx	=new bMacMapLayerAccessContext();
-	
+		
 	_locConverter		=new bCGLocConverter();
 	
 	_map_intf			=NULL;// CrŽŽ ˆ run
@@ -186,8 +184,6 @@ bMacMapApp::~bMacMapApp(){
 	delete _eventmgr;
 
 	delete _clssmgr;
-	
-	delete _layersaccessctx;
 }
 
 // ---------------------------------------------------------------------------
@@ -282,13 +278,6 @@ bGenericObjListMgr* bMacMapApp::selMgr(){
 // ------------
 bGenericObjListMgr* bMacMapApp::cntMgr(){
 	return(_cntmgr);
-}
-
-// ---------------------------------------------------------------------------
-// 
-// ------------
-bGenericLayerAccessContext* bMacMapApp::layersAccessCtx(){
-	return(_layersaccessctx);
 }
 
 // ---------------------------------------------------------------------------
@@ -756,9 +745,9 @@ _tm_("kHICommandQuit");
 				}
 				status=noErr;
 				break;
-			case kHICommandClose:// Normalement on ne devrait plus arriver ici
+			case kHICommandClose:// Normalement on ne devrait plus arriver ici, sauf si on ferme alors que la fentre est dŽjˆ fermŽe
 _tw_("kHICommandClose");
-				if((!app->_closing)&&(!app->_opening)){
+				if(/*(app->_doc!=NULL)&&*/(!app->_closing)&&(!app->_opening)){
 					if(app->_map_intf){
 						app->_map_intf->close();
 					}
@@ -933,7 +922,7 @@ bDelayedAEClose	dae(ae,gapp);
 }
 
 // ---------------------------------------------------------------------------
-// 
+//
 // -----------
 OSErr bMacMapApp::AEQuitHandler(	const AppleEvent* ae,
 									AppleEvent* dmy,

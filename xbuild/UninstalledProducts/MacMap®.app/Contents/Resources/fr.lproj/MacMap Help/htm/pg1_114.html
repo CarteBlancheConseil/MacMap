@@ -1,0 +1,16 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>XMap Format d'export</title><link rel="stylesheet" href="../css/style.css"><meta name="AppleTitle" content="Aide MacMap®"><meta name="AppleIcon" content="MacMap Help/img/MacMapIcon.png"><meta name="keywords" content="Format d'export"></head><body><a name=pg1_114></a><table class="switch" width=100%><tr><td align="left"><a href="help:anchor='pg0_3' bookID=Aide MacMap®">Index Menu</a></td><td align="right"><a href="help:anchor='pg0_4' bookID=Aide MacMap®">Index Alphabétique</a></td></tr></table><br><table border=0 cellspacing=0 cellspacing=0 width=100%><tr><td class="item">XMap Format d'export</td></tr><tr><td><p>Permet de déterminer, par type, la liste des attributs de la base de données à exporter.<br>Les champs disponibles sont présentés dans la liste de gauche, les champs exportés dans la liste de droite.<br>Les boutons situés dans la zone centrale permettent de modifier la liste des champs exportés.<br>Actuellement, les exports <a href="pg1_123.html">MacMap® Texte</a>, <a href="pg1_106.html">ShapeFile</a>, <a href="pg1_118.html">Mif-Mid</a> et <a href="pg1_115.html">KML</a> utilisent cette possibilité.<br>
+Le bouton "Projection" vous permet d'accéder à une fenêtre permettant de définir la projection des données en sortie. Ceci permet, si la projection du document a été réglé de re-projeter dynamiquement les données à l'export.</p></td></tr>
+
+<tr>
+<td class="scripttitle">
+Commande script
+</td>
+</tr>
+<tr>
+<td class="scriptitem">
+<pre class="scriptitem">
+&lt;fexp&gt;    &lt;int&gt;<i class=varitem>Identifiant EPSG de projection</i>&lt;/int&gt;    &lt;!--Liste des des définitions de type--&gt;    &lt;container&gt;        &lt;name&gt;<i class=varitem>Nom du type</i>&lt;/name&gt;        &lt;!--Liste des champs à exporter--&gt;        &lt;string&gt;<i class=varitem>Nom du champ</i>&lt;/string&gt;        &lt;!--Ce tag doit être répété pour chacun des champs à exporter--&gt;    &lt;/container&gt;    &lt;!--Cette séquence doit être répétée pour chacune des définitions de type--&gt;&lt;/fexp&gt;
+</pre>
+</td>
+</tr>
+</table></body></html>

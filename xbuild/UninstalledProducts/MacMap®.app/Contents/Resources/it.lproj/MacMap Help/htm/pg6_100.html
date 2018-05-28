@@ -1,0 +1,142 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>XMap Editor di formule</title>
+<link rel="stylesheet" href="../css/style.css">
+<meta name="AppleTitle" content="Aiuto MacMap®">
+<meta name="AppleIcon" content="MacMap Help/img/MacMapIcon.png">
+<meta name="keywords" content="Editor di formule">
+</head>
+<body>
+<a name=pg6_100>
+</a>
+<table class="switch" width=100%>
+<tr>
+<td align="left">
+<a href="help:anchor='pg0_3' bookID=Aiuto MacMap®">Indice Menu</a>
+</td>
+<td align="right">
+<a href="help:anchor='pg0_4' bookID=Aiuto MacMap®">Indice Alfabetico</a>
+</td>
+</tr>
+</table>
+<br>
+<table border=0 cellspacing=0 cellspacing=0 width=100%>
+<tr>
+<td class="item">
+XMap Editor di formule
+</td>
+</tr>
+<tr>
+<td>
+<p>
+permette di creare o di modificare le calc dell'utente.<br>
+
+Il popup situato nella parte alta della finestra permette di scegliere gli elementi che compongono la calc : Operatori, Iteratori, Funzioni, Costanti, Campi, Calc et Macro.<br>
+Un popup aggiuntivo compare nel momento in cui si seleziona il comando "Campi" : 
+permette di visualizzare la lista dei campi per ciascun Tipo.<br>
+La lista dei popup mostra gli elementi disponibili per ogni categoria.<br>
+Le formule hanno una struttura ad albero, visualizzata nella zona centrale. 
+All'interno di questa zona di disegno, il doppio clic centra il grafico sul punto desiderato.
+Un semplice clic seleziona gli elementi che compongono la formula.<br>
+Un elemento selezionato può essere sostituito con un altro elemento della stessa categoria, o cancellato con il pulsante "Cancella".<br>
+Le formule si sviluppano dall'alto verso il basso, partendo dalle estremità della struttura ad albero.<br>
+Le formule sono definite secondo la logica "polonaise", ovvero inserendo al primo posto gli elementi risolti per ultimi.<br>
+Infine, bisogna assegnare un nome alla Calc e specificare il tipo di valore che sarà restituito dalla formula.<br>
+ 
+<b>Operatori :</b>
+<br>
+Gli Operatori accettano due argomenti qualsiasi, effettuando un'operazione tra i loro due termini.<br>
+Gli Operatori disponibili sono :<br>
+and : e logico (boleano)<br>
+beginwith : sequenza che inizia con un'altra sequenza (boleano)<br>
+contain : sequenza che contiene un'altra sequenza (boleano)<br>
+div : divisione (numerico)<br>
+endwith : sequenza che finisce con un'altra sequenza (boleano)<br>
+equal : uguaglianza tra 2 termini (boleano)<br>
+higher : maggiore (boleano)<br>
+higherorequal : maggiore o uguale (boleano)<br>
+lower : inférieur (boleano)<br>
+lowerorequal : inferiore o uguale (boleano)<br>
+minus : sottrazione (numerico)<br>
+modulo : modulo (intero)<br>
+mult : moltiplicazione (numerico)<br>
+notequal  : diverso (boleano)<br>
+or : o logico (boleano)<br>
+plus : addizione (numerico)<br>
+pow : potenza (numerico)<br>
+strcat : concatenazione di sequenze (carattere)<br>
+xor : o logico esclusivo (boleano)<br>
+<b>Iteratori :</b>
+<br>
+Gli Iteratori accettano due argomenti. Il primo argomento può essere una macro, oppure può restare vuoto. Nel primo caso, l'iteratore esegue prima la macro, poi effettua un'operazione sul secondo termine relativamente alla selezione operata dalla macro. Nel secondo caso, l'iteratore utilizza solo la funzione impostata.<br>
+Gli Iteratori disponibili sono :<br>
+average : media (numerico)<br>
+first : considera solo il primo oggetto della selezione (il risultato dipende dal secondo termine)<br>
+last : considera solo l'ultimo oggetto della selezione (il risultato dipende dal secondo termine)<br>
+max : massimo (il risultato dipende dal secondo termine)<br>
+median : mediana (numerico)<br>
+min : minimo (il risultato dipende dal secondo termine)<br>
+product : prodotto (numerico)<br>
+single : Restituisce il valore NaN se la selezione contiene più di un oggetto (il risultato dipende dal secondo termine)<br>
+stddeviation : scarto tipo (numerico)<br>
+sum : somma (numerico)<br>
+variance : varianza (numerico)<br>
+<b>Funzioni :</b>
+<br>
+Le Funzioni accettano un argomento qualsiasi.<br>
+Le Funzioni disponibili sono :<br>
+ceil : Restituisce il più piccolo intero che non sia inferiore al suo argomento (numerico)<br>
+cos : Restituisce il coseno di un angolo in radianti (numerico)<br>
+exp : Restituisce l'esponenziale del suo argomento (numerico)<br>
+fact : Restituisce il fattoriale del suo argomento (numerico)<br>
+floor : Restituisce il più grande intero che non sia inferiore al suo argomento (numerico)<br>
+inv : Restituisce 1/suo argomento (numerico)<br>
+ln : Restituisce il logaritmo naturale del suo argomento (numerico)<br>
+log : Restituisce il logaritmo in base 10 del suo argomento (numerico)<br>
+not : Restituisce il contrario del suo argomento (boleano)<br>
+round : Restituisce l'arrotondamento del suo argomento (numerico)<br>
+sin : Restituisce il seno di un angolo in radianti (numerico)<br>
+sqr : Restituisce il quadrato del suo argomento (numerico)<br>
+sqrt : Restituisce la radice quadrata del suo argomento (numerico)<br>
+strlen : Restituisce la lunghezza del suo argomento in quanto sequenza (numerico)<br>
+strlwr : trasforma in minuscolo l'argomento, "ESEMPIO" diventa "esempio" (carattere)<br>
+strsntfcupr : trasforma in maiuscolo la prima lettera dell'argomento, "esempio" diventa "Esempio" (carattere)<br>
+strupr : trasforma in maiuscolo l'argomento, "esempio" diventa "ESEMPIO" (carattere)<br>
+strwrdfcupr : trasforma in maiuscolo la prima lettera delle parole dell'argomento, "un esempio" diventa "Un Esempio" (carattere)<br>
+tan : Restituisce la tangente di un angolo in radianti (numerico)<br>
+<b>Costanti :</b>
+<br>
+Le Costanti non accettano argomenti.<br>
+Le Costanti standard disponibili sono presentate nel <a href="pg1_613.html">Box Costanti</a>
+<br>
+<b>Campi :</b>
+<br>
+I campi non accettano argomenti.<br>
+<b>Calc :</b>
+<br>
+Le Calc non accettano argomenti.<br>
+Le Calc standard disponibili sono presentate nel <a href="pg1_607.html">Box Calc</a>
+<br>
+<b>Macro :</b>
+<br>
+Le Macro non accettano argomenti.<br>
+</p>
+<p>
+<b>Esempio</b>
+<br>
+Densità di popolazione :
+Per calcolare la densità della popolazione all'interno di una superficie, in un documento in metri, si parte dal posizionamento dell'operatore divisione ("div"), seguito dall'operatore moltiplicazione ("mult") posizionato sul ramo inferiore del primo.<br>
+Successivamente, si posiziona il campo "Popolazione" sul ramo superiore di "div", la calc "Superficie" sul ramo superiore di "mult" e la costante "1000000" sul ramo inferiore di "mult", per ottenere un risultato in km2. Infine, si assegna un nome alla calc e si specifica il tipo di valore restituito (numerico).<br>
+La formula finale apparirà nel modo seguente: :<br>
+<img src="../img/formula1.png" alt="formula1.png">
+<br>
+</p>
+</td>
+</tr>
+</table>
+<p>
+<a href="pg1_607.html">Box Calc</a>
+</p>
+</body>
+</html>

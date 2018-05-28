@@ -245,7 +245,7 @@ void bXMapMiTabExport::objs_dump(bArray& arr){
 _bTrace_("bXMapMiTabExport::objs_dump",false);
 char			msg[__MESSAGE_STRING_LENGTH_MAX__];
 	b_message_string(kXMapMiTabExportProcessingID,msg,getbundle(),0);
-bProgressWait	wt("",msg,true,true,arr.count());
+bProgressWait	wt("",msg,true,arr.count());
 extype			et;
 
 	for(int i=1;i<=arr.count();i++){
@@ -268,7 +268,7 @@ void bXMapMiTabExport::objs_dump(bArray& arr, bArray& sel){
 _bTrace_("bXMapMiTabExport::objs_dump",false);
 char				msg[__MESSAGE_STRING_LENGTH_MAX__];
 	b_message_string(kXMapMiTabExportProcessingID,msg,getbundle(),0);
-bProgressWait		wt("",msg,true,true,sel.count());
+bProgressWait		wt("",msg,true,sel.count());
 extype				et;
 bGenericGeoElement*	o;
 	for(int i=1;i<=sel.count();i++){

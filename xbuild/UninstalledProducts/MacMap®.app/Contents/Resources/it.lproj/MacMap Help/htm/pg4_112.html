@@ -1,0 +1,65 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>XMap Associazione sul campo</title>
+<link rel="stylesheet" href="../css/style.css">
+<meta name="AppleTitle" content="Aiuto MacMap®">
+<meta name="AppleIcon" content="MacMap Help/img/MacMapIcon.png">
+<meta name="keywords" content="Associazione sul campo">
+</head>
+<body>
+<a name=pg4_112>
+</a>
+<table class="switch" width=100%>
+<tr>
+<td align="left">
+<a href="help:anchor='pg0_3' bookID=Aiuto MacMap®">Indice Menu</a>
+</td>
+<td align="right">
+<a href="help:anchor='pg0_4' bookID=Aiuto MacMap®">Indice Alfabetico</a>
+</td>
+</tr>
+</table>
+<br>
+<table border=0 cellspacing=0 cellspacing=0 width=100%>
+<tr>
+<td class="item">
+XMap Associazione sul campo
+</td>
+</tr>
+<tr>
+<td>
+<p>
+Questa funzione permette di aggregare una serie di oggetti lineari selezionati (dello stesso tipo) connessi tra di loro, in funzione di un campo.<br>In questo modo è possibile ricostruire una linea unica a partire da più linee connesse, aventi lo stesso nome (o lo stesso valore all'interno di un campo a scelta).<br><br>
+Il primo popup permette di definire il campo che servirà da riferimento per l'aggregazione (il nome di una strada per esempio).<br>
+L'opzione "Gerarchia per sotto-tipo" permette di impedire l'associazione in corrispondenza delle intersezioni se si incontrano delle strade si sotto-tipo superiore (il primo sotto-tipo è considerato superiore al secondo).<br>
+Il campo "Lunghezza minima" permette di limitare, se possibile, la lunghezza minima di un arco.<br>
+Il campo "Lunghezza massima" permette di limitare, se possibile, la lunghezza massima di un arco. Quando si supera questo valore, il processo di aggregazione si arresta sull'arco interessato.
+</p>
+</td>
+</tr>
+
+<tr>
+<td class="scripttitle">
+Comando script
+</td>
+</tr>
+<tr>
+<td class="scriptitem">
+<pre class="scriptitem">
+&lt;associationwithfield&gt;
+    &lt;int&gt;<i class=varitem>Campo nome</i>&lt;/int&gt;
+    &lt;bool&gt;<i class=varitem>1 per gerrarchizzare sul sotto-tipo, altrimenti 0</i>&lt;/bool&gt;
+    &lt;float&gt;<i class=varitem>Lunghezza minima dell'arco</i>&lt;/float&gt;
+    &lt;float&gt;<i class=varitem>Lunghezza massima dell'arco</i>&lt;/float&gt;
+&lt;/associationwithfield&gt;
+</pre>
+</td>
+</tr>
+
+</table>
+<p>
+<a href="pg1_610.html">XMapBox Trasformazioni</a>
+</p>
+</body>
+</html>

@@ -94,7 +94,7 @@ bGenericMacMapApp* gapp=(bGenericMacMapApp*)xapp;
 // ------------
 long CountLayers(void* xapp){
 bGenericMacMapApp* gapp=(bGenericMacMapApp*)xapp;
-	return gapp->layersAccessCtx()->count();
+    return gapp->layersMgr()->count();
 }
 
 // ---------------------------------------------------------------------------
@@ -103,7 +103,7 @@ bGenericMacMapApp* gapp=(bGenericMacMapApp*)xapp;
 void* GetIndLayer (void* xapp,
 				   long i){
 bGenericMacMapApp* gapp=(bGenericMacMapApp*)xapp;
-	return gapp->layersAccessCtx()->get(i);
+    return gapp->layersMgr()->get(i);
 }
 
 // ---------------------------------------------------------------------------
@@ -111,11 +111,11 @@ bGenericMacMapApp* gapp=(bGenericMacMapApp*)xapp;
 // -----------
 void* CurLayer(void* xapp){
 bGenericMacMapApp* gapp=(bGenericMacMapApp*)xapp;
-long	x=gapp->layersAccessCtx()->get_current();
+long	x=gapp->layersMgr()->get_current();
 	if(!x){
 		return(NULL);
 	}
-	return(gapp->layersAccessCtx()->get(x));
+    return(gapp->layersMgr()->get(x));
 }
 
 #pragma mark -> Types

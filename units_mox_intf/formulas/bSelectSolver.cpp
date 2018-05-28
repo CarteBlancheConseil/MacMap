@@ -371,7 +371,7 @@ t1=clock();
 		
 char	msg[__MESSAGE_STRING_LENGTH_MAX__];
 		message_string(_CSTR_(kMsgProgress),msg,1);
-		wt=new bProgressWait(_CSTR_(""),msg,true,true,_ocount);
+		wt=new bProgressWait("",(const char*)msg,true,(long)_ocount);
 	}
 	
 #if _DEBUG_SOLVER_

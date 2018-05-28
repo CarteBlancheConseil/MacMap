@@ -4,7 +4,7 @@
 // Purpose : C++ source file : MacMap event management class
 // Author : Benoit Ogier, benoit.ogier@macmap.com
 //
-// Copyright (C) 1997-2015 Carte Blanche Conseil.
+// Copyright (C) 2005 Carte Blanche Conseil.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -28,6 +28,8 @@
 //----------------------------------------------------------------------------
 
 #include "bMacMapEvent.h"
+#include "bMacMapEventMgr.h"
+#include "bMacMapApp.h"
 #include <MacMapSuite/bTrace.h>
 
 // ---------------------------------------------------------------------------
@@ -42,11 +44,6 @@
 #endif
 
 // ---------------------------------------------------------------------------
-// 
-// ------------
-int bMacMapEvent::_last_id=0;
-
-// ---------------------------------------------------------------------------
 // Constructeur
 // ------------
 bMacMapEvent	::bMacMapEvent(	char* msg, 
@@ -55,9 +52,7 @@ bMacMapEvent	::bMacMapEvent(	char* msg,
 								int act,
 								int esz)
 				:_elts(esz){
-	_last_id++;
-	_id=_last_id;
-	strncpy(_msg,msg,256);
+//_bTrace_("bMacMapEvent::bMacMapEvent",false);_tm_(crt+"|"+knd+"|"+act+"|"+esz);
 	_creator=crt;
 	_kind=knd;
 	_action=act;
@@ -68,13 +63,8 @@ bMacMapEvent	::bMacMapEvent(	char* msg,
 // Destructeur
 // -----------
 bMacMapEvent::~bMacMapEvent(){
-}
-
-// ---------------------------------------------------------------------------
-// 
-// -----------
-int bMacMapEvent::eid(){
-	return(_id);
+//_bTrace_("bMacMapEvent::~bMacMapEvent",false);_tm_(_creator+"|"+_kind+"|"+_action);
+//_tm_("nb elements :"+_elts.count());
 }
 
 // ---------------------------------------------------------------------------
@@ -102,7 +92,8 @@ int bMacMapEvent::creator(){
 // 
 // -----------
 char* bMacMapEvent::message(){
-	return(_msg);
+bMacMapEventMgr*    mgr=(bMacMapEventMgr*)eventmgr;
+    return mgr->message();
 }
 
 // ---------------------------------------------------------------------------
@@ -123,7 +114,7 @@ bool bMacMapEvent::is_redo(){
 // 
 // -----------
 bool bMacMapEvent::add(void* elt){
-	if(_closed){
+    if(_closed){
 		return(false);
 	}
 	return(_elts.add(elt));
@@ -157,5 +148,5 @@ void bMacMapEvent::close(){
 // 
 // -----------
 bArray* bMacMapEvent::elements(){
-	return(&_elts);
+    return(&_elts);
 }

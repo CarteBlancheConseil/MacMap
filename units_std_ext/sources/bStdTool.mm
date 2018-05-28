@@ -247,7 +247,7 @@ void bStdTool::close(){
 }
 
 // ---------------------------------------------------------------------------
-// 
+// A supprimer
 // -----------
 bool bStdTool::event(EventRef evt){
 _bTrace_("bStdTool::event(void*)",false);
@@ -614,7 +614,7 @@ CGImageRef bStdTool::symb(){
 // 
 // -----------
 void bStdTool::activate(){
-_bTrace_("bStdTool::activate",true);
+//_bTrace_("bStdTool::activate",true);
 	if(_on_edit){
 		//return;
 	}
@@ -631,7 +631,7 @@ _bTrace_("bStdTool::activate",true);
 // 
 // -----------
 void bStdTool::deactivate(){
-_bTrace_("bStdTool::deactivate",true);
+//_bTrace_("bStdTool::deactivate",true);
 	if(_on_edit){
 		return;
 	}
@@ -704,7 +704,7 @@ i2dvertex	vx;
 // 
 // -----------
 bool bStdTool::edit(void* prm){
-_bTrace_("bStdTool::edit",true);
+/*_bTrace_("bStdTool::edit",true);
 OSStatus			status;
 IBNibRef			nib=NULL;
 EventHandlerUPP		hdlr=NULL;
@@ -747,7 +747,7 @@ _te_("NewEventHandlerUPP returns NULL");
 	if(_edit_wd){
 		DisposeWindow(_edit_wd);
 	}
-	_on_edit=false;
+	_on_edit=false;*/
 	return(true);
 }
 
@@ -1486,13 +1486,13 @@ void bStdTool::track_obj(){
 bArray*				ga;
 bGenericStyle*		style;
 bGenericGeoElement	*o=NULL,*prev;
-long				i,n=_gapp->layersAccessCtx()->count();
+long				i,n=_gapp->layersMgr()->count();
 CGPoint				pt;
 	
 	get_cur(&pt);
 	prev=get_obj();
 	for(i=n;i>0;i--){
-		style=_gapp->layersAccessCtx()->get(i);
+        style=_gapp->layersMgr()->get(i);
 		if(!style){
 			continue;
 		}	
@@ -1538,17 +1538,17 @@ void bStdTool::action(int count){
 }
 
 // ---------------------------------------------------------------------------
-// 
+// A supprimer
 // -----------
-bool bStdTool::edit_event(EventRef evt, WindowRef wd){
+/*bool bStdTool::edit_event(EventRef evt, WindowRef wd){
 	return(false);
-}
+}*/
 
 // ---------------------------------------------------------------------------
-// 
+// A supprimer
 // -----------
-void bStdTool::edit_init(WindowRef wd){
-}
+/*void bStdTool::edit_init(WindowRef wd){
+}*/
 
 // ---------------------------------------------------------------------------
 // 
@@ -1706,9 +1706,9 @@ void bStdTool::hilite_cross(CGContextRef ctx, CGPoint pt){
 }
 
 // ---------------------------------------------------------------------------
-// 
+// A supprimer
 // -----------
-pascal OSStatus bStdTool::edit_evt_hdlr(EventHandlerCallRef hdlr, EventRef evt, void *up){
+/*pascal OSStatus bStdTool::edit_evt_hdlr(EventHandlerCallRef hdlr, EventRef evt, void *up){
 OSStatus	result=eventNotHandledErr;
 HICommand	cmd;
 bStdTool*	t=(bStdTool*)up;
@@ -1732,7 +1732,7 @@ bStdTool*	t=(bStdTool*)up;
 		}
 	}
 	return(result);
-}
+}*/
 
 // ---------------------------------------------------------------------------
 // Contextual menu for tool choice

@@ -4,7 +4,7 @@
 // Purpose : C++ source file : MacMap object event class
 // Author : Benoit Ogier, benoit.ogier@macmap.com
 //
-// Copyright (C) 1997-2015 Carte Blanche Conseil.
+// Copyright (C) 2005 Carte Blanche Conseil.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -51,16 +51,13 @@ bObjectEvent	::bObjectEvent(	char* msg,
 // Destructeur
 // -----------
 bObjectEvent::~bObjectEvent(){
+    _elts.reset();
 }
 
 // ---------------------------------------------------------------------------
 // 
 // -----------
 bool bObjectEvent::add(void* elt){
-//bGenericGeoElement* oi=(*((bGenericGeoElement**)elt));
-//	if(find(oi)){
-//		return(true);
-//	}
 	return(bMacMapEvent::add(elt));
 }
 
@@ -75,7 +72,7 @@ int bObjectEvent::find(void* elt){
 // 
 // -----------
 int bObjectEvent::find(bGenericGeoElement* o){
-	return(_elts.search(&o,compare));
+    return(_elts.search(&o,compare));
 }
 
 // ---------------------------------------------------------------------------
@@ -101,12 +98,16 @@ bObjectCreateEvent	::bObjectCreateEvent(	char* msg,
 					:bObjectEvent(	msg,
 									crt,
 									kEventActionCreate){
+//_bTrace_("bObjectCreateEvent::bObjectCreateEvent",false);
+//_tm_("alloc");
 }
 
 // ---------------------------------------------------------------------------
 // Destructeur
 // -----------
 bObjectCreateEvent::~bObjectCreateEvent(){
+//_bTrace_("bObjectCreateEvent::~bObjectCreateEvent",false);
+//_tm_("delete");
 }
 
 // ---------------------------------------------------------------------------
@@ -140,7 +141,6 @@ bObjectModifyEvent	::bObjectModifyEvent(	char* msg,
 					:bObjectEvent(	msg,
 									crt,
 									kEventActionModify){
-//	_tbl=NULL;
 }
 
 // ---------------------------------------------------------------------------
@@ -148,13 +148,17 @@ bObjectModifyEvent	::bObjectModifyEvent(	char* msg,
 // -----------
 bObjectModifyEvent::~bObjectModifyEvent(){
 bMacMapModifiedGeoElement* o;
-	for(int i=1;i<=_elts.count();i++){
+	for(long i=1;i<=_elts.count();i++){
 		_elts.get(i,&o);
 		delete o;
 	}
-/*	if(_tbl){
-		wtbl_free(_tbl);
-	}*/
+}
+
+// ---------------------------------------------------------------------------
+//
+// -----------
+bool bObjectModifyEvent::add(void* elt){
+    return(false);
 }
 
 // ---------------------------------------------------------------------------
@@ -162,13 +166,7 @@ bMacMapModifiedGeoElement* o;
 // -----------
 bool bObjectModifyEvent::add(void* elt, int fld){
 bGenericGeoElement* oi=(*((bGenericGeoElement**)elt));
-//	if(!_tbl){
-//		clone_tbl(oi);
-//	}
-//	if(find(oi)){
-//		return(true);
-//	}
-bGenericGeoElement* mi=new bMacMapModifiedGeoElement(oi,fld);
+bMacMapModifiedGeoElement* mi=new bMacMapModifiedGeoElement(oi,fld);
 	return(bMacMapEvent::add(&mi));
 }
 
@@ -183,7 +181,7 @@ int bObjectModifyEvent::find(void* elt){
 // 
 // -----------
 int bObjectModifyEvent::find(bGenericGeoElement* o){
-	return(_elts.search(&o,compare));
+    return(_elts.search(&o,compare));
 }
 
 // ---------------------------------------------------------------------------

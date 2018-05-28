@@ -356,13 +356,14 @@ bGenericXMLBaseElement*	elt;
 
 bGenericType*	tp=_gapp->typesMgr()->get(_gapp->typesMgr()->index(tpname));
 bGenericStyle*	stl;
-	for(long i=1;i<=_gapp->layersAccessCtx()->count();i++){
-		stl=_gapp->layersAccessCtx()->get(i);
-		if((stl->gettype()==tp)&&(strcmp(stlname,stl->getname())==0)){
-			_gapp->layersAccessCtx()->set_current(i);
-			_gapp->layersAccessCtx()->setvisible(false);
-		}
-	}
+
+    for(long i=1;i<=_gapp->layersMgr()->count();i++){
+        stl=_gapp->layersMgr()->get(i);
+        if((stl->gettype()==tp)&&(strcmp(stlname,stl->getname())==0)){
+            _gapp->layersMgr()->set_current(i);
+            _gapp->layersMgr()->setvisible(false);
+        }
+    }
 
 	return(true);
 }
@@ -415,13 +416,13 @@ bGenericXMLBaseElement*	elt;
     
 bGenericType*	tp=_gapp->typesMgr()->get(_gapp->typesMgr()->index(tpname));
 bGenericStyle*	stl;
-	for(long i=1;i<=_gapp->layersAccessCtx()->count();i++){
-		stl=_gapp->layersAccessCtx()->get(i);
-		if((stl->gettype()==tp)&&(strcmp(stlname,stl->getname())==0)){
-			_gapp->layersAccessCtx()->set_current(i);
-			_gapp->layersAccessCtx()->setvisible(true);
-		}
-	}
+    for(long i=1;i<=_gapp->layersMgr()->count();i++){
+        stl=_gapp->layersMgr()->get(i);
+        if((stl->gettype()==tp)&&(strcmp(stlname,stl->getname())==0)){
+            _gapp->layersMgr()->set_current(i);
+            _gapp->layersMgr()->setvisible(true);
+        }
+    }
 
 	return(true);
 }
@@ -455,6 +456,7 @@ bGenericXMLBaseElement* bXMapLockScreen::create(bGenericXMLBaseElement* elt){
 //
 // ------------
 bool bXMapLockScreen::process(int msg, void* prm){
+//_bTrace_("bXMapLockScreen::process",true);
     if(msg!=kExtProcessCallWithXMLTree){
         return(false);
     }
@@ -468,6 +470,7 @@ bGenericXMLBaseElement*	elt;
         elt->getvalue(val);
     }
     
+//_tm_("valeur:"+val);
     _gapp->layersMgr()->SetObjInvalidation(!atoi(val));
     
     return(true);

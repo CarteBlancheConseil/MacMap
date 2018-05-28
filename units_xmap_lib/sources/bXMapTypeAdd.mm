@@ -211,7 +211,7 @@ _tm_(rel);
 _te_("Adding type failed for "+name);
 		}
 		else if(atv){
-			_gapp->layersAccessCtx()->add(_gapp->typesMgr()->count(),1);
+            _gapp->layersMgr()->add(_gapp->typesMgr()->count(),1);
 		}
     }
     log.close();

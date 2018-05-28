@@ -4,7 +4,7 @@
 // Purpose : C++ source file : Style param set for a class of object
 // Author : Benoit Ogier, benoit.ogier@macmap.com
 //
-// Copyright (C) 1997-2015 Carte Blanche Conseil.
+// Copyright (C) 2004 Carte Blanche Conseil.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -142,12 +142,9 @@ bool bStyleRun::good(double scale, int clss, int pass){
 // 
 // ------------
 bool bStyleRun::applyforclass(bGenericGraphicContext* ctx){
-//_bTrace_("bStyleRun::applyforclass",true);
-//_tm_("_geometry->applyforclass");
 	if(!_geometry->applyforclass(ctx)){
 		return(false);
 	}
-//_tm_("_render->applyforclass");
 	return(_render->applyforclass(ctx));
 }
 
@@ -157,7 +154,6 @@ bool bStyleRun::applyforclass(bGenericGraphicContext* ctx){
 // ------------
 bool bStyleRun::applyforobject(bGenericGraphicContext* ctx){
 	if(!_geometry->applyforobject(ctx)){
-//_MMAPP_->message("bStyleRun::applyforobject : bad ");
 		return(false);
 	}
 	return(_render->applyforobject(ctx));

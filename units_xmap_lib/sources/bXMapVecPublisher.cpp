@@ -29,6 +29,7 @@
 //            au PDFGraphicContext.
 // 10/02/2015 passage des fenêtres NAV en NS.
 // 07/05/2015 ajout de l'accès au format d'export pour le KML
+// 14/04/2017 layermgr clone.
 //----------------------------------------------------------------------------
 // SCRIPT_COMPATIBLE
 //----------------------------------------------------------------------------
@@ -157,13 +158,15 @@ VectorData	dt;
 	dt.bounds.size.height=r.size.height;
 	
 ivx_rect			back;
-
-	_gapp->mapIntf()->screenBounds(&back);
-	_gapp->locConverter()->reset(&vxr);
-	_gapp->layersMgr()->SwitchContext(_gc,&dt);
-	_gapp->layersMgr()->DrawLayers(NULL,&vxr);
-	_gapp->layersMgr()->SwitchContext(kCGGraphicContext,NULL);
-	_gapp->locConverter()->reset(&back);
+bGenericLayersMgr*  mgr=_gapp->layersMgr()->clone();
+    
+    _gapp->mapIntf()->screenBounds(&back);
+    _gapp->locConverter()->reset(&vxr);
+    mgr->SwitchContext(_gc,&dt);
+    mgr->DrawLayers(NULL,&vxr);
+    mgr->SwitchContext(kCGGraphicContext,NULL);
+    _gapp->locConverter()->reset(&back);
+    _gapp->layersMgr()->cloneDelete(mgr);
 }
 
 // ---------------------------------------------------------------------------

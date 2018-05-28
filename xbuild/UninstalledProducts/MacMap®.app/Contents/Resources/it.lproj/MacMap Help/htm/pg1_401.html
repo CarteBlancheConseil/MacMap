@@ -1,0 +1,119 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>XMap Seleziona</title>
+<link rel="stylesheet" href="../css/style.css">
+<meta name="AppleTitle" content="Aiuto MacMap®">
+<meta name="AppleIcon" content="MacMap Help/img/MacMapIcon.png">
+<meta name="keywords" content="Seleziona">
+</head>
+<body>
+<a name=pg1_401>
+</a>
+<table class="switch" width=100%>
+<tr>
+<td align="left">
+<a href="help:anchor='pg0_3' bookID=Aiuto MacMap®">Indice Menu</a>
+</td>
+<td align="right">
+<a href="help:anchor='pg0_4' bookID=Aiuto MacMap®">Indice Alfabetico</a>
+</td>
+</tr>
+</table>
+<br>
+<table border=0 cellspacing=0 cellspacing=0 width=100%>
+<tr>
+<td class="item">
+XMap Seleziona
+</td>
+</tr>
+<tr>
+<td>
+<p>
+Permette di definire ricerche combinando più criteri.<br><br>La finestra "Seleziona" è divisa in tre rubriche:<br><br>
+<b>Criteri</b>
+<br>
+Permette di specificare il Tipo di oggetto su cui agirà la ricerca, insieme ai criteri alfanumerici. Un criterio di ricerca è composto da tre elementi : un campo o una <a href="pg1_607.html">calc</a> obiettivo, un operatore e un valore. Una volta determinato il criterio, un clic sul pulsante "+" permette di aggiungerlo alla lista dei criteri. Il pulsante "-" elimina un criterio dall'elenco.<br>
+La casella "Richiesta aperta" permette di inserire il contenuto della richiesta (un testo o un valore) ad ogni esecuzione (utile per realizzare delle macro).<br><br>
+<b>Relazioni</b>
+<br>
+Sono le relazioni (Geogs per relazioni geografiche) che intervengono tra gli oggetti. E' quindi possibile selezionare gli oggetti di un determinato tipo contenuti in un insieme di oggetti superficiali selezionati o contrastati. Per esempio, selezionare tutte le linee (strade) contenute all'interno di una superficie (regione).<br>
+I geogs disponibili sono :<br>
+
+<a href="pg5_101.html">A meno di</a>
+<br>
+<a href="pg5_102.html">A più di</a>
+<br>
+<a href="pg5_103.html">Dentro</a>
+<br>
+<a href="pg5_104.html">Fuori</a>
+<br>
+<a href="pg5_105.html">Inglobante</a>
+<br>
+<a href="pg5_106.html">Lungo</a>
+<br>
+<a href="pg5_107.html">Al punto iniziale</a>
+<br>
+<a href="pg5_108.html">Al punto finale</a>
+<br>
+<a href="pg5_109.html">I più vicini</a>
+<br>
+<a href="pg5_110.html">I più lontani</a>
+<br>
+<a href="pg5_111.html">Ce parte da</a>
+<br>
+<a href="pg5_112.html">Che arriva a</a>
+
+
+<br><br>
+<b>Opzioni</b>
+<br>
+Permettono di definire delle operazioni particolari : sostituire la selezione corrente con la nuova, aggiungere gli oggetti selezionati alla selezione corrente, sottrarre gli oggetti selezionati dalla selezione corrente, e prendere in conto nella selezione anche gli oggetti mascherati.<br>
+E' anche possibile provocare il contrasto o il mascheramento degli oggetti selezionati o, al contrario, di quelli non selezionati.<br>
+Infine, si può scegliere una macro che sarà eseguita automaticamente dopo la selezione iniziale.<br>
+Il pulsante "Registra", che compare quando la selezione è fatta a partire dal box "Macro", permette di registrare la selezione.
+Questa sarà successivamente disponibile nel box "Macro".
+
+</p>
+</td>
+</tr>
+
+<tr>
+<td class="scripttitle">
+Comando script
+</td>
+</tr>
+<tr>
+<td class="scriptitem">
+<pre class="scriptitem">
+&lt;selector&gt;
+    &lt;formula&gt;
+        &lt;dbtype&gt;<i class=varitem>Nome del tipo</i>&lt;/dbtype&gt;
+        &lt;dbselkind&gt;<i class=varitem>Tipo di selezione (1=Sostituisci, 2=Aggiungi, 3=Sottrai)</i>&lt;/dbselkind&gt;
+        &lt;dbusemasked&gt;<i class=varitem>Considera gli oggetti mascherati (0 o 1)</i>&lt;/dbusemasked&gt;
+        &lt;dbaddtocontrast&gt;<i class=varitem>Aggiungi la selezione ai contrasti (0 o 1)</i>&lt;/dbaddtocontrast&gt;
+        &lt;dbaddtomasked&gt;<i class=varitem>Maschera la selezione (0=Non mascherare, 1=Questi, 2=Gli altr)</i>&lt;/dbaddtomasked&gt;
+        &lt;dbsetnext&gt;<i class=varitem>Opzionale, identificativo di una macro, su 4 caratteri.</i>&lt;/dbsetnext&gt;
+        &lt;!--Esempio di Geog (Opzionale)--&gt;
+        &lt;lessthan&gt;<i class=varitem>A meno di : distanza di ricerca degli oggetti</i>&lt;/lessthan&gt;
+        &lt;!--Esempio di formula--&gt;
+        &lt;and&gt;<i class=varitem>!--ou : or--</i>&lt;/and&gt;
+            &lt;equal&gt;<i class=varitem>!--ou : higher, higherorequal, lower, lowerorequal, notequal, beginwith, endwith, contain--</i>&lt;/equal&gt;
+                &lt;dbfield&gt;<i class=varitem>Nome del campo</i>&lt;/dbfield&gt;
+                &lt;dbint&gt;<i class=varitem>Valore (dbfloat, dbchar, dbbool, dbdate, dbtime, dbquestion). Qui è possibile inserire una costante, per esempio fvarnow (adesso). Per le costanti dell'utente, utilizzare fvaruser e inserire l'idendificativo della costante constante come parametro</i>&lt;/dbint&gt;
+            &lt;/equal&gt;
+            &lt;lowerorequal&gt;
+                &lt;fcalcarea&gt;<i class=varitem>!--Superficie. Per le calc utente, utilizzare fcalcuser e e inserire l'idendificativo della calc constante come parametro--</i>&lt;/fcalcarea&gt;
+                &lt;dbfloat&gt;<i class=varitem>Valore della superficie</i>&lt;/dbfloat&gt;
+            &lt;/lowerorequal&gt;
+        &lt;/and&gt;
+    &lt;/formula&gt;
+&lt;/selector&gt;
+</pre>
+</td>
+</tr>
+
+
+</table>
+</body>
+</html>

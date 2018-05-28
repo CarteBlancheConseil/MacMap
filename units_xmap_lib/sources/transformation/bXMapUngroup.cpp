@@ -131,7 +131,7 @@ bArray				sel(*(_gapp->selMgr()->elements()));
 bGenericType*		tp;
 char				mess[__MESSAGE_STRING_LENGTH_MAX__];
 	b_message_string(kXMapUngroupProgressMessageID,mess,getbundle(),1);
-bProgressWait		wt("",mess,true,false,sel.count());
+bProgressWait		wt("",mess,false,sel.count());
 
 	FlushSelection(_gapp);
 	FlushContrasts(_gapp);
@@ -154,36 +154,29 @@ bProgressWait		wt("",mess,true,false,sel.count());
 // 
 // ------------
 bool bXMapUngroup::ungroup(bGenericGeoElement* o, bool silent){
+//_bTrace_("bXMapUngroup::ungroup(bGenericGeoElement*,bool)",true);
 bGenericGeoElement* no;
 ivertices*			vxs;
 ivertices*			nvxs;
-//i2dvertex*			part;
-//int					n;
 bGenericType*		tp;
 
 	o->getVertices(&vxs);
     tp=_gapp->typesMgr()->get(o->getType());
 	for(long i=0;i<ivs_n_parts(vxs);i++){
+//_tm_("loop "+(int)i);
         nvxs=nth_ivs(vxs,i);
+//_tm_(nvxs->nv);
         if(nvxs!=NULL){
+//_tm_("(nvxs!=NULL)");
             if(tp->clone_object(o,&no)&&(no!=NULL)){
-                o->setVertices(nvxs);
-                o=no;
+//_tm_("(clone_object)");
+                no->setVertices(nvxs);
+//_tm_("(setVertices)");
             }
-            ivs_free(nvxs);
+           ivs_free(nvxs);
+//_tm_("(ivs_free)");
         }
-        
-		/*part=ivs2_part(vxs,i,&n);
-		if(n>0){
-			tp=_gapp->typesMgr()->get(o->getType());
-			tp->clone_object(o,&no);
-			nvxs=ivs_new(_2D_VX,n,0);
-			memmove(nvxs->vx.vx2,part,n*sizeof(i2dvertex));
-			no->setVertices(nvxs);
-			ivs_free(nvxs);
-			o=no;
-		}*/
-	}
+    }
 	return(true);
 }
 

@@ -27,6 +27,7 @@
 // 12/04/2007 creation.
 // 10/02/2015 NAV to NS file window.
 // 15/03/2016 cocoa intf. for options window.
+// 14/04/2017 layermgr clone.
 //----------------------------------------------------------------------------
 
 #import "bXMapsRasterPublisher.h"
@@ -587,7 +588,9 @@ _te_("bad directory "+ep->path+"->"+dr.status());
 bArray*					arr;
 	SaveCurrentMargins(_gapp,&arr);
 	SetMarginToCurview(_gapp,ep->mrg);
-		
+
+bGenericLayersMgr*      mgr=_gapp->layersMgr()->clone();
+   
 	for(j=0;j<ep->nv;j++){
 		vxr.top=area.top+round((double)j*v);
 		vxr.bottom=area.top+round((double)(j+1)*v);
@@ -603,8 +606,8 @@ bArray*					arr;
 			r=ivr2cgr(_gapp,vxr);
 			
 // Bitmap Infos
-			dt.width=r.size.width;//(r.right-r.left);
-			dt.height=r.size.height;//(r.bottom-r.top);
+			dt.width=r.size.width;
+			dt.height=r.size.height;
 			dt.bitsPerComponent=8;
 			dt.colorspace=CGColorSpaceCreateDeviceRGB();
 			dt.bytesPerRow=(dt.width*4);
@@ -619,10 +622,10 @@ _te_("dt.data==NULL");
 			
 // Restauration contexte de dessin
 			_gapp->mapIntf()->screenBounds(&back);
-			_gapp->locConverter()->reset(&vxr);
-			_gapp->layersMgr()->SwitchContext(kBitMapGraphicContext,&dt);
-			_gapp->layersMgr()->DrawLayers(NULL,&vxr);
-			
+            _gapp->locConverter()->reset(&vxr);
+            mgr->SwitchContext(kBitMapGraphicContext,&dt);
+            mgr->DrawLayers(NULL,&vxr);
+
 _tm_("dt.outbm="+(void*)dt.outbm);
 			if(dt.outbm==NULL){
 _te_("dt.outbm==NULL");
@@ -665,11 +668,13 @@ double			d[4]={0,0,0,0};
 			dt.data=NULL;
 		
 // Restauration contexte de dessin
-			_gapp->layersMgr()->SwitchContext(kCGGraphicContext,NULL);
-			_gapp->locConverter()->reset(&back);
+            mgr->SwitchContext(kCGGraphicContext,NULL);
+            _gapp->locConverter()->reset(&back);
 		}
 	}
 	
+    _gapp->layersMgr()->cloneDelete(mgr);
+
 	RestoreCurrentMargins(_gapp,arr);
 	delete arr;
 

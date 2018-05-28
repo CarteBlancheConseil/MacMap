@@ -4,7 +4,7 @@
 // Purpose : Header file : Style class
 // Author : Benoit Ogier, benoit.ogier@macmap.com
 //
-// Copyright (C) 1997-2015 Carte Blanche Conseil.
+// Copyright (C) 2004 Carte Blanche Conseil.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -24,8 +24,11 @@
 //----------------------------------------------------------------------------
 // 
 //----------------------------------------------------------------------------
-// 02/02/2004 creation.
-// 04/09/2014 elimination des appels avec geometrie QD.
+// 02/02/2004 creation
+// 27/03/2007 fonctionne avec les tris inverses
+// 17/04/2007 prise en compte des false retournés dans les procédures applyfor
+// 04/09/2014 elimination des appels avec geometrie QD
+// 18/07/2017 simplification de la boucle de chargement des objets
 //----------------------------------------------------------------------------
 
 #ifndef __bStyle__
@@ -33,17 +36,31 @@
 
 //----------------------------------------------------------------------------
 
-#include <mox_intf/bGenericStyle.h>
-#include <mox_intf/bGenericGeoElement.h>
-#include <MacMapSuite/bArray.h>
-#include <mox_intf/bGenericXMLBaseElement.h>
-#include <mox_intf/bGenericXMLRenderingElement.h>
-#include <mox_intf/bGenericGraphicContext.h>
-
 #include "bStyleRun.h"
 #include "bScreenObj.h"
 
+#include <mox_intf/bGenericStyle.h>
+#include <mox_intf/bGenericGeoElement.h>
+#include <mox_intf/bGenericXMLBaseElement.h>
+#include <mox_intf/bGenericXMLRenderingElement.h>
+#include <mox_intf/bGenericGraphicContext.h>
+#include <mox_intf/bGenericLayersMgr.h>
+
+#include <MacMapSuite/bArray.h>
+
+/**/
+//#include <map>
+//#include <list>
+//#include <vector>
+/**/
+
+
 //----------------------------------------------------------------------------
+
+/**/
+//typedef std::multimap   <double, bScreenObj*>	MultiMapScreenObj;
+//typedef std::pair		<double, bScreenObj*>	PairScreenObj;
+/**/
 
 typedef	void	(*drawProc)(bGenericGraphicContext*);
 typedef	float	(*distProc)(bGenericGraphicContext*,CGPoint*);
@@ -53,7 +70,7 @@ typedef	void	(*boundProc)(bGenericGraphicContext*);
 
 class bStyle : public bGenericStyle{
 public:
-	bStyle 										(	); 
+	bStyle 										(	bGenericLayersMgr* mgr);
 	virtual ~bStyle   							(	);
 
 // Accès librairie XML
@@ -179,9 +196,7 @@ protected:
 	static int fullCompInv						(	const void *a, 
 													const void *b);
 	
-	static int find								(	void *prm, 
-													void *o);
-	static int fill								(	void *prm, 
+	static int fill								(	void *prm,
 													void *o);
 	
 	void flushstyleruns							(	);
@@ -262,6 +277,8 @@ protected:
 	boundProc						_boundp;
 	
 	bArray*							_screenobjs;
+//    MultiMapScreenObj               _mmscreenobjs;
+    
 	bArray*							_valbounds;
 	bArray*							_valnames;
 	bArray*							_offsets;
@@ -284,6 +301,8 @@ protected:
 	
 	int								_margin;
 
+    bGenericLayersMgr*              _mgr;
+    
 private:
 
 };

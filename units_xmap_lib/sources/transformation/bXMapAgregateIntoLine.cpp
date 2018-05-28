@@ -176,7 +176,7 @@ _te_("ivs2ivs");
 		ivs_free(poly);
 		return;
 	}
-	if(!InitWithStyle(_gapp,_gapp->layersAccessCtx()->get_current(),o)){
+    if(!InitWithStyle(_gapp,_gapp->layersMgr()->get_current(),o)){
 		NSBeep();
 	}
 	if(!o->setVertices(poly)){

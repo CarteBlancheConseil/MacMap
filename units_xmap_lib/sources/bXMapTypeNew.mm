@@ -211,7 +211,7 @@ _te_("_gapp->typesMgr()->add failed");
 		return(false);
 	}
 	else if(atv){
-		_gapp->layersAccessCtx()->add(_gapp->typesMgr()->count(),1);
+        _gapp->layersMgr()->add(_gapp->typesMgr()->count(),1);
 	}
 	return(true);
 }

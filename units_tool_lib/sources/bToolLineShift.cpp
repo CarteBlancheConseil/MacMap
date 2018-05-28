@@ -4,7 +4,7 @@
 // Purpose : C++ source file : Object modification (line shift by field) tool class
 // Author : Benoit Ogier, benoit.ogier@macmap.com
 //
-// Copyright (C) 1997-2015 Carte Blanche Conseil.
+// Copyright (C) 2007 Carte Blanche Conseil.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -25,7 +25,6 @@
 // 
 //----------------------------------------------------------------------------
 // 19/06/2007 creation.
-//----------------------------------------------------------------------------
 // 19/03/2014 Ready for CG geometry	& drawing 
 //----------------------------------------------------------------------------
 
@@ -94,13 +93,13 @@ bArray*					ga;
 bArray					runs(sizeof(bGenericXMLBaseElement*));
 bGenericXMLBaseElement	*run,*gm,*elt;
 bGenericGeoElement*		o=NULL;
-int						i,n=_gapp->layersAccessCtx()->count();
+int						i,n=_gapp->layersMgr()->count();
 CGPoint					p;
 	
 	set_obj(NULL);	
 	get_clic(&p);
 	for(i=n;i>0;i--){
-		_styl=_gapp->layersAccessCtx()->get(i);
+        _styl=_gapp->layersMgr()->get(i);
 		if(!_styl){
 			continue;
 		}	

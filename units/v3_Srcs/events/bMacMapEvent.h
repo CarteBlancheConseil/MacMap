@@ -4,7 +4,7 @@
 // Purpose : Header file : MacMap event management class
 // Author : Benoit Ogier, benoit.ogier@macmap.com
 //
-// Copyright (C) 1997-2015 Carte Blanche Conseil.
+// Copyright (C) 2005 Carte Blanche Conseil.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -40,46 +40,42 @@
 //----------------------------------------------------------------------------
 
 class bMacMapEvent : public bGenericEvent{
-	public:
-		bMacMapEvent							(	char* msg, 
-													int crt, // BigEndian coded
-													int knd,
-													int act,
-													int esz);
-		virtual ~bMacMapEvent					(	);
+public:
+    bMacMapEvent				(	char* msg,
+                                    int crt, // BigEndian coded
+                                    int knd,
+                                    int act,
+                                    int esz);
+    virtual ~bMacMapEvent		(	);
 
 // ext intf
-		virtual int eid							(	);
-		virtual int kind						(	);
-		virtual int action						(	);
-		virtual int creator						(	); // BigEndian coded
-		virtual char* message					(	);
-		
-		virtual bool is_undo					(	);
-		virtual bool is_redo					(	);
+    virtual int eid             (	){return (int)this;};
+    virtual int kind			(	);
+    virtual int action			(	);
+    virtual int creator			(	); // BigEndian coded
+    virtual char* message		(	);
+    
+    virtual bool is_undo		(	);
+    virtual bool is_redo		(	);
 
-		virtual bool add						(	void* elt);
-		virtual bool add						(	void* elt, 
-													int prm);
-		virtual int find						(	void* elt);
-		
-		virtual void close						(	);
+    virtual bool add			(	void* elt);
+    virtual bool add			(	void* elt,
+                                    int prm);
+    virtual int find			(	void* elt);
+    
+    virtual void close			(	);
 
-		virtual bArray* elements				(	);
-			
-	protected:
-		
-		bool		_closed;
-		bArray		_elts;
-		
-	private:
-		char		_msg[256];
-		int			_creator;
-		int			_kind;
-		int			_action;
-		int			_id;
-
-		static int _last_id;
+    virtual bArray* elements	(	);
+        
+protected:
+    
+    bool		_closed;
+    bArray		_elts;
+    
+private:
+    int			_creator;
+    int			_kind;
+    int			_action;
 };
 
 //----------------------------------------------------------------------------

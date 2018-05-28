@@ -247,41 +247,6 @@ _te_("mmt table err "+status);
 	tbl_kind=status;
 
 bGenericType*   tp=GISIOImport_getImportType(_gapp,tbl_kind,_prm);
-
-/*	switch(tbl_kind){
-		case kBaseKindPoint:
-			tp=_gapp->typesMgr()->get(_gapp->typesMgr()->index(_prm.grid.t_point));
-			break;
-		case kBaseKindPolyline:
-			tp=_gapp->typesMgr()->get(_gapp->typesMgr()->index(_prm.grid.t_line));
-			break;
-		case kBaseKindText:
-			tp=_gapp->typesMgr()->get(_gapp->typesMgr()->index(_prm.grid.t_text));
-			break;
-		case kBaseKindPolygon:
-			tp=_gapp->typesMgr()->get(_gapp->typesMgr()->index(_prm.grid.t_poly));
-			break;
-		case kBaseKindRaster:
-			tp=_gapp->typesMgr()->get(_gapp->typesMgr()->index(_prm.grid.t_raster));
-			break;
-	}
-
-//new
-	if((tp==NULL)&&(prm->ctin)){
-		tp=_gapp->typesMgr()->get(_gapp->typesMgr()->index(prm->name));
-		if(tp==NULL){
-			strcpy(name,prm->name);
-			UTF82MacRoman(name,FILENAME_MAX);			
-			if(_gapp->typesMgr()->add(name,"",NULL,kBaseLocalDBID,tbl_kind)!=noErr){
-_te_("_gapp->typesMgr()->add failed");
-			}
-			else{
-				tp=_gapp->typesMgr()->get(_gapp->typesMgr()->count());
-				_gapp->layersAccessCtx()->add(_gapp->typesMgr()->count(),1);
-			}
-		}
-	}
-//new*/
 	
 	if(tp==NULL){
 		wtbl_free(mmt);
@@ -322,7 +287,7 @@ _te_("no geometry field ");
 
 int					err=0;
 	b_message_string(kXMapMMTImportObjectCreateMessageID,msg,getbundle(),1);
-bProgressWait wt("",msg,true,true,mmt->CountRecords());
+bProgressWait wt("",msg,true,mmt->CountRecords());
 
 // Attention, ne pas libŽrer les vxs car ils sortent direct de la table !!!
 	_gapp->layersMgr()->SetObjInvalidation(false);
@@ -407,7 +372,7 @@ int					err=0;
 char				msg[__MESSAGE_STRING_LENGTH_MAX__];
 char				exp[__MESSAGE_STRING_LENGTH_MAX__];
 	b_message_string(kXMapMMTImportFieldCreateMessageID,msg,getbundle(),1);
-bProgressWait wt("",msg,true,false,mmt->CountFields());
+bProgressWait wt("",msg,false,mmt->CountFields());
 
 	bse=tp->fields();
 	for(int i=1;i<=mmt->CountFields();i++){

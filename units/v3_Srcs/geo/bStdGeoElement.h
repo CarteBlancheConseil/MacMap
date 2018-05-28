@@ -4,7 +4,7 @@
 // Purpose : Header file : Standart MacMap object class
 // Author : Benoit Ogier, benoit.ogier@macmap.com
 //
-// Copyright (C) 1997-2015 Carte Blanche Conseil.
+// Copyright (C) 2005 Carte Blanche Conseil.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -38,99 +38,112 @@
 //----------------------------------------------------------------------------
 
 class bStdGeoElement : public bGenericGeoElement{
-	public:
-		bStdGeoElement							(	);
-		virtual ~bStdGeoElement					(	);
-		
-		virtual void kill						(	);
-		virtual void unkill						(	);
-		virtual bool killed						(	);
-		
-		virtual bool selected					(	);
-		virtual void setselect					(	bool b);
-		virtual void setselect					(	bool b, 
-													bool unused);
-		
-		virtual bool contrasted					(	);
-		virtual void setcontrast				(	bool b);
-		virtual void setcontrast				(	bool b, 
-													bool unused);
-		
-		virtual bool masked						(	);
-		virtual void setmasked					(	bool b, 
-													bool report);
-		
-		virtual bool atscreen					(	);
-		virtual void setatscreen				(	bool b);
-		
-		virtual bool needupdate					(	);
-		virtual void setneedupdate				(	bool b);
-		
-		virtual bool handled					(	);
-		virtual void sethandled					(	bool b);
+public:
+    bStdGeoElement						(	);
+    virtual ~bStdGeoElement				(	);
 
-		virtual int getID						(	);
-		virtual int getType						(	);
-		virtual int getOffset					(	);
-		virtual void getBounds					(	ivx_rect	*vxr);
-		
-		virtual void getVertices				(	ivertices	**vxs);
-		virtual bool setVertices				(	ivertices	*vxs);
-				
-		virtual int getSubType					(	);
-		virtual bool setSubType					(	int	subtype);
+    virtual void kill					(	);
+    virtual void unkill					(	);
+    virtual bool killed					(	);
+    
+    virtual bool selected				(	);
+    virtual void setselect				(	bool b);
+    virtual void setselect				(	bool b,
+                                            bool unused);
+    
+    virtual bool contrasted				(	);
+    virtual void setcontrast			(	bool b);
+    virtual void setcontrast			(	bool b,
+                                            bool unused);
+    
+    virtual bool masked					(	);
+    virtual void setmasked				(	bool b,
+                                            bool report);
+    
+    virtual bool atscreen				(	);
+    virtual void setatscreen			(	bool b);
+    
+    virtual bool needupdate				(	);
+    virtual void setneedupdate			(	bool b);
+    
+    virtual bool handled				(	);
+    virtual void sethandled				(	bool b);
 
-		virtual int getColor					(	);
-		virtual bool setColor					(	int	color);
-		
-		virtual int getDirection				(	);
-		virtual bool setDirection				(	
-													int	direction);
-		
-		virtual void getName					(	char *name);
-		virtual bool setName					(	char *name);
-				
-		virtual bool getValue					(	int fieldIdx, 
-													void *value);
-		virtual bool getValue					(	char *fieldName, 
-													void *value);
-		virtual bool getValue					(	int fieldIdx, char *value);
-		virtual bool getValue					(	char *fieldName, char *value);
-		virtual bool getValue					(	int fieldIdx, int *value);
-		virtual bool getValue					(	char *fieldName, int *value);
-		virtual bool getValue					(	int fieldIdx, double *value);
-		virtual bool getValue					(	char *fieldName, double *value);
-		
-		virtual bool setValue					(	int fieldIdx, void *value);
-		virtual bool setValue					(	char *fieldName, void *value);
-		virtual bool setValue					(	int fieldIdx, char *value);
-		virtual bool setValue					(	char *fieldName, char *value);
-		virtual bool setValue					(	int fieldIdx, int value);
-		virtual bool setValue					(	char *fieldName, int value);
-		virtual bool setValue					(	int fieldIdx, double value);
-		virtual bool setValue					(	char *fieldName, double value);
+    virtual int getID					(	);
+    virtual int getType					(	);
+    virtual int getOffset				(	);
+    virtual void getBounds				(	ivx_rect	*vxr);
+    
+    virtual void getVertices			(	ivertices	**vxs);
+    virtual bool setVertices			(	ivertices	*vxs);
+            
+    virtual int getSubType				(	);
+    virtual bool setSubType				(	int	subtype);
 
-		virtual bool flag1						(	);
-		virtual void set_flag1					(	bool b);
-		virtual bool flag2						(	);
-		virtual void set_flag2					(	bool b);
-		virtual bool flag3						(	);
-		virtual void set_flag3					(	bool b);
-		virtual bool flag4						(	);
-		virtual void set_flag4					(	bool b);
-		
-		virtual bool is_lock					(	);
-		virtual void set_lock					(	bool b);
+    virtual int getColor				(	);
+    virtual bool setColor				(	int	color);
+    
+    virtual int getDirection			(	);
+    virtual bool setDirection			(
+                                            int	direction);
+    
+    virtual void getName				(	char *name);
+    virtual bool setName				(	char *name);
+            
+    virtual bool getValue				(	int fieldIdx,
+                                            void *value);
+    virtual bool getValue				(	char *fieldName,
+                                            void *value);
+    virtual bool getValue				(	int fieldIdx,
+                                            char *value);
+    virtual bool getValue				(	char *fieldName,
+                                            char *value);
+    virtual bool getValue				(	int fieldIdx,
+                                            int *value);
+    virtual bool getValue				(	char *fieldName,
+                                            int *value);
+    virtual bool getValue				(	int fieldIdx,
+                                            double *value);
+    virtual bool getValue				(	char *fieldName,
+                                            double *value);
+    
+    virtual bool setValue				(	int fieldIdx,
+                                            void *value);
+    virtual bool setValue				(	char *fieldName,
+                                            void *value);
+    virtual bool setValue				(	int fieldIdx,
+                                            char *value);
+    virtual bool setValue				(	char *fieldName,
+                                            char *value);
+    virtual bool setValue				(	int fieldIdx,
+                                            int value);
+    virtual bool setValue				(	char *fieldName,
+                                            int value);
+    virtual bool setValue				(	int fieldIdx,
+                                            double value);
+    virtual bool setValue				(	char *fieldName,
+                                            double value);
 
-		virtual void inval						(	int idx);
-		
-		virtual bGenericGeoElement* get_ref		(	);
+    virtual bool flag1					(	);
+    virtual void set_flag1				(	bool b);
+    virtual bool flag2					(	);
+    virtual void set_flag2				(	bool b);
+    virtual bool flag3					(	);
+    virtual void set_flag3				(	bool b);
+    virtual bool flag4					(	);
+    virtual void set_flag4				(	bool b);
+    
+    virtual bool is_lock				(	);
+    virtual void set_lock				(	bool b);
 
-	protected:
-		int				_offset;
+    virtual void inval					(	int idx);
+    
+    virtual bGenericGeoElement* get_ref	(	);
 
-	private:
-	
+protected:
+    int _offset;
+
+private:
 };
 
 //----------------------------------------------------------------------------

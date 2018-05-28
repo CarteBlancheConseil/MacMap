@@ -123,7 +123,7 @@ ivertices			*vsa,*vsb;
 bArray				sel(*(_gapp->selMgr()->elements()));
 char				mess[__MESSAGE_STRING_LENGTH_MAX__];
 	b_message_string(kXMapPerforateProgressMessageID,mess,getbundle(),1);
-bProgressWait		wt("",mess,true,false,sel.count());
+bProgressWait		wt("",mess,false,sel.count());
 bGenericType*		tp;
 i2dvertex*			p;
 int					i,j,nv;

@@ -4,7 +4,7 @@
 // Purpose : C++ source file : (events and undo/redo maangement)
 // Author : Benoit Ogier, benoit.ogier@macmap.com
 //
-// Copyright (C) 1997-2015 Carte Blanche Conseil.
+// Copyright (C) 2005Carte Blanche Conseil.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -30,32 +30,37 @@
 #include "bMacMapModifiedGeoElement.h"
 #include "bMacMapApp.h"
 
+//size_t   _AllocCount=0;
+
 // ---------------------------------------------------------------------------
 // Constructeur
 // ------------
 bMacMapModifiedGeoElement	::bMacMapModifiedGeoElement(bGenericGeoElement* ref,
-														/*bStdTable* tbl*/
 														int field)
 							:bStdGeoElement(){
+//_bTrace_("bMacMapModifiedGeoElement::bMacMapModifiedGeoElement",false);_tm_("alloc "+field);
 	_ref=ref;
 	_buffer=NULL;
 	_buffersz=0;
 	_field=field;
 	_fieldsgn=0;
-	replicate();
+ 	replicate();
 }
 
 // ---------------------------------------------------------------------------
 // Destructeur
 // ------------
 bMacMapModifiedGeoElement::~bMacMapModifiedGeoElement(){
+//_bTrace_("bMacMapModifiedGeoElement::~bMacMapModifiedGeoElement()",false);_tm_("delete "+_field);
 	if(_buffer){
 		switch(_fieldsgn){
 			case _ivxs2:
-			case _ivxs3:
+            case _ivxs3:{
+//_tm_("free vxs");
 				ivs_free(*((ivertices**)_buffer));
-				break;
+                }break;
 		}
+//_tm_("free _buffer");
 		free(_buffer);
 	}
 }
@@ -91,11 +96,6 @@ void bMacMapModifiedGeoElement::getVertices(ivertices** vxs){
 		return;
 	}
 	*vxs=(*(ivertices**)_buffer);
-//_bTrace_("bMacMapModifiedGeoElement::getVertices",false);
-//	if(_tbl->ReadVal(_offset,kOBJ_Vertices_,vxs)){
-//_te_("ReadVal failed");
-//		*vxs=NULL;
-//	}
 }
 
 // ---------------------------------------------------------------------------
@@ -202,37 +202,19 @@ int				status;
 
 	tp->fields()->get_size(_field,&_buffersz);
 	tp->fields()->get_kind(_field,&_fieldsgn);
+    
+    switch(_fieldsgn){
+        case _ivxs2:
+        case _ivxs3:
+            _buffersz=sizeof(ivertices*);
+            break;
+        default:
+            break;
+    }
+    
 	_buffer=malloc(_buffersz);
-//_tm_("buffer =%d, %x",_buffersz,_buffer);	
+//_tm_("buffer size ="+_buffersz);
 	if((status=tp->fields()->read(_ref->getOffset(),_field,_buffer))){
-//_te_("tp->fields()->read failed for %d with %d",_field,status);
+//_te_("tp->fields()->read failed for "+_field+" with status "+status);
 	}
-	
-	
-/*bGenericType*	tp=typesmgr->get(_ref->getType());
-unsigned char	buff[2048];
-void*			val;
-ivertices*		vxs;
-int				sgn,status;
-
-	for(int i=1;i<=tp->fields()->count();i++){
-		_tbl->FieldSign(i,&sgn);
-		switch(sgn){
-			case _ivxs2:
-			case _ivxs3:
-				val=&vxs;
-				break;
-			default:
-				val=buff;
-				break;
-		}
-		if(status=tp->fields()->read(_ref->getOffset(),i,val)){
-//_te_("tp->fields()->read failed for %d with %d",i,status);
-			break;
-		}
-		if(status=_tbl->WriteVal(_offset,i,val)){
-//_te_("_tbl->WriteVal failed for %d with %d",i,status);
-			break;
-		}
-	}*/
 }
