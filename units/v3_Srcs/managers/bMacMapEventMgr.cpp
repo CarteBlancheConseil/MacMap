@@ -69,11 +69,7 @@ _bTrace_("bMacMapEventMgr::enable",true);_tm_("");
 // 
 // -----------
 void bMacMapEventMgr::disable(){
-<<<<<<< HEAD
 _bTrace_("bMacMapEventMgr::disable",true);_tm_("");
-=======
-_bTrace_("bMacMapEventMgr::disable",true);
->>>>>>> origin/master
     if(_enabled){
 _tm_("enabled");
         if(_evt){
