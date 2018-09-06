@@ -125,10 +125,12 @@ bEventLog	log(_gapp,this);
         geo->inval(kOBJ_Vertices_);
         if(b1&&b2){
             if(prm1.d<=prm2.d){
-                vx->vx.vx2[vx->nv-1]=prm1.res;
+                //vx->vx.vx2[vx->nv-1]=prm1.res;
+                vx->vx.vx2[0]=prm1.res;
             }
             else{
-                vx->vx.vx2[0]=prm2.res;
+                //vx->vx.vx2[0]=prm2.res;
+                vx->vx.vx2[vx->nv-1]=prm2.res;
             }
         }
         else if(b2&&!b1){

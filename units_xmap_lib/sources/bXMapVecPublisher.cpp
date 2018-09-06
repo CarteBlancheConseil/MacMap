@@ -158,7 +158,6 @@ VectorData	dt;
 	dt.bounds.size.height=r.size.height;
 	
 ivx_rect			back;
-<<<<<<< HEAD
 bGenericLayersMgr*  mgr=_gapp->layersMgr()->clone();
     
     _gapp->mapIntf()->screenBounds(&back);
@@ -168,15 +167,6 @@ bGenericLayersMgr*  mgr=_gapp->layersMgr()->clone();
     mgr->SwitchContext(kCGGraphicContext,NULL);
     _gapp->locConverter()->reset(&back);
     _gapp->layersMgr()->cloneDelete(mgr);
-=======
-    
-	_gapp->mapIntf()->screenBounds(&back);
-	_gapp->locConverter()->reset(&vxr);
-    _gapp->layersMgr()->SwitchContext(_gc,&dt);
-	_gapp->layersMgr()->DrawLayers(NULL,&vxr);
-	_gapp->layersMgr()->SwitchContext(kCGGraphicContext,NULL);
-    _gapp->locConverter()->reset(&back);
->>>>>>> origin/master
 }
 
 // ---------------------------------------------------------------------------

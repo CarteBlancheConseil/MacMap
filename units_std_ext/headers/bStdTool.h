@@ -177,15 +177,9 @@ public:
 	virtual void action						(	int count);
 
 /*> A supprimer */
-<<<<<<< HEAD
 //	virtual bool edit_event					(	EventRef evt,		//CC
 //												WindowRef wd);		//CC
 //	virtual void edit_init					(	WindowRef wd);		//CC
-=======
-	virtual bool edit_event					(	EventRef evt,		//CC
-												WindowRef wd);		//CC
-	virtual void edit_init					(	WindowRef wd);		//CC
->>>>>>> origin/master
 /*< A supprimer */
 	
 	virtual bGenericXMLBaseElement* load	(	);
@@ -220,15 +214,9 @@ public:
 protected:
 
 /*> A supprimer */
-<<<<<<< HEAD
 //	pascal static OSStatus edit_evt_hdlr	(	EventHandlerCallRef hdlr, //CC
 //												EventRef evt, 
 //												void *up);
-=======
-	pascal static OSStatus edit_evt_hdlr	(	EventHandlerCallRef hdlr, //CC
-												EventRef evt, 
-												void *up);
->>>>>>> origin/master
 /*< A supprimer */
 
 private:
@@ -236,11 +224,7 @@ private:
 	CursorRef			_curs;
 
 /*> A supprimer */
-<<<<<<< HEAD
 //	WindowRef			_edit_wd;	//CC
-=======
-	WindowRef			_edit_wd;	//CC
->>>>>>> origin/master
 /*< A supprimer */
 	
 	int					_clic_count;

@@ -93,10 +93,7 @@ public:
         CurrentGraphicContext               (   )=0;
 
     virtual bool breaked					(	)=0;
-    virtual bool drawing					(	)=0;
-
-<<<<<<< HEAD
-    
+    virtual bool drawing					(	)=0;    
     
     
     
@@ -133,11 +130,6 @@ public:
                                                     int sidx)=0;
     virtual bool change							(	int idx, 
                                                     int newidx)=0;
-
-=======
-    /*virtual bGenericLayersMgr* clone        (   )=0;
-    virtual void cloneDelete                (   bGenericLayersMgr* mgr)=0;*/
->>>>>>> origin/master
 };
 
 //----------------------------------------------------------------------------
