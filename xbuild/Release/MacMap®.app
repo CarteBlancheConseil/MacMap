@@ -1,1 +1,0 @@
-/Users/benoit/Encours/MacMap2005/Sources/Applis/Current/MacMap®/build/UninstalledProducts/MacMap®.app

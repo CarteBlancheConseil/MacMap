@@ -1,0 +1,158 @@
+/*MESSAGES*/
+"ok"				= "valider";
+"cancel"			= "annuler";
+"save"              = "Enregistrer";
+
+"plural"			= "objet(s) du type";
+
+"objects"			= "objets";
+"object"			= "objet";
+"types"				= "types";
+"type"				= "type";
+"card"				= "fiche";
+"cards"				= "fiches";
+"kind"				= "genre";
+
+"unit"				= "unité";
+"resolution"		= "résolution";
+
+"no selection"		= "pas de sélection";
+"no document"		= "pas de document";
+
+"progress"			= "travail en cours…";
+"options"			= "options";
+
+"copy"				= "copie";
+"untitled"			= "sans titre";
+"new view"			= "nouvelle vue";
+"new style"			= "nouveau style";
+"virtual"			= "virtuel";
+
+"name"				= "nom";
+"color"				= "couleur";
+"subtype"			= "sous-type";
+"flag"				= "drapeau";
+"direction"			= "direction";
+
+"point_kind"		= "ponctuel";
+"line_kind"			= "linéaire";
+"text_kind"			= "textuel";
+"area_kind"			= "surfacique";
+"raster_kind"		= "raster";
+
+"defaultsubtype"	= "sous-type par défaut";
+
+"black"				= "noir";
+"white"				= "blanc";
+"red"				= "rouge";
+"green"				= "vert";
+"blue"				= "bleu";
+"cyan"				= "cyan";
+"magenta"			= "magenta";
+"yellow"			= "jaune";
+
+"navigation"		= "Navigation";
+"geometry"			= "Géométrie";
+"presentation"		= "Présentation";
+
+"open"				= "ouvrir";
+"close"				= "fermer";
+"new"				= "nouveau";
+
+"length"			= "longueur";
+"area"				= "surface";
+
+"decimals"			= "décimales";
+
+"format"			= "format";
+
+"angstroms"			= "angstroems";
+"nanometers"		= "nanomètres";
+"micrometers"		= "micromètres";
+"millimeters"		= "millimètres";
+"centimeters"		= "centimètres";
+"inches"			= "pouces";
+"decimeters"		= "decimètres";
+"feet"				= "pieds";
+"yards"				= "yards";
+"meters"			= "mètres";
+"decameters"		= "décamètres";
+"hectometers"		= "hectomètres";
+"kilometers"		= "kilomètres";
+"miles"				= "miles";
+
+"angstromsAB"		= "Å";
+"nanometersAB"		= "nanomètres";
+"micrometersAB"		= "µ";
+"millimetersAB"		= "mm";
+"centimetersAB"		= "cm";
+"inchesAB"			= "in";
+"decimetersAB"		= "dm";
+"feetAB"			= "ft";
+"yardsAB"			= "yard";
+"metersAB"			= "m";
+"decametersAB"		= "dam";
+"hectometersAB"		= "hm";
+"kilometersAB"		= "km";
+"milesAB"			= "mi";
+
+"Aseconds"			= "secondes";
+"Aminutes"			= "minutes";
+"degrees"			= "degrés";
+
+"AsecondsAB"		= "''";
+"AminutesAB"		= "'";
+"degreesAB"			= "°";
+
+"Tseconds"			= "secondes";
+"Tminutes"			= "minutes";
+"hours"				= "heures";
+"days"				= "jours";
+"months"			= "mois";
+"years"				= "années";
+"centuries"			= "siècles";
+
+"TsecondsAB"		= "s";
+"TminutesAB"		= "mn";
+"hoursAB"			= "h";
+"daysAB"			= "j";
+"monthsAB"			= "m";
+"yearsAB"			= "a";
+"centuriesAB"		= "s";
+
+"name new style"	= "Nommez le style";
+
+/*ERRORS*/
+"unknown_err"		= "Code d'erreur inconnu";
+
+"-1001"             = "Codec \"%s\" non supporté";
+
+"-10001"			= "Famille de la librairie introuvable";
+"-10002"			= "Createur de la librairie introuvable";
+"-10003"			= "Version de la librairie introuvable";
+"-10004"			= "Nom de la librairie introuvable";
+"-10005"			= "Identificateur de la librairie introuvable";
+"-10006"			= "Signature de la librairie introuvable";
+"-10007"			= "Version de la librairie introuvable";
+"-10008"			= "Librarie déjà chargée";
+"-10009"			= "Erreur au chargement de la librairie";
+"-10010"			= "Routine d'allocation de la librairie non trouvée";
+"-10011"			= "Routine de destruction de la librairie non trouvée";
+"-10012"			= "Instance de librairie non créée";
+
+"-10041"			= "Les classes XML n'ont pas été chargées.";
+
+"-100001"			= "Erreur d'initialisation du log";
+"-100002"			= "Erreur d'initialisation du spécificateur de fichier";
+"-100003"			= "Erreur d'initialisation du nib";
+"-100004"			= "Erreur d'initialisation de la plage des ressources";
+"-100005"			= "Erreur d'initialisation de la protection";
+
+"-110001"			= "Erreur en lecture";
+"-110002"			= "Erreur en écriture";
+"-110003"			= "Erreur à l'ajout d'un champ";
+"-110004"			= "Erreur à la supression d'un champ";
+"-110005"			= "Erreur à la modification d'un champ";
+"-110006"			= "Erreur à l'affectation de la valeur par défaut";
+
+

@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
+            <connections>
+                <outlet property="delegate" destination="Voe-Tx-rLC" id="GzC-gU-4Uq"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customObject id="Voe-Tx-rLC" customClass="AppDelegate"/>
+        <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
+        <menu title="Main Menu" systemMenu="main" id="w0F-vf-Yle">
+            <items>
+                <menuItem title="MacMap" id="L5b-NH-Hqc">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="MacMap" systemMenu="apple" id="Dfg-DJ-gkS">
+                        <items>
+                            <menuItem title="A propos de MacMap…" id="mNy-kV-uux">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="about:" target="-1" id="hn0-U7-qt2"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="E6k-cv-w5j"/>
+                            <menuItem title="Préférences…" tag="1349674342" keyEquivalent="," id="Bcd-15-v1L">
+                                <connections>
+                                    <action selector="menuAction:" target="Voe-Tx-rLC" id="LNi-rX-aBJ"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="aKk-m5-B6Y"/>
+                            <menuItem title="Services" id="tOy-u0-Nmd">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Services" systemMenu="services" id="fak-r8-pST"/>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="8GK-Wc-8t4"/>
+                            <menuItem title="Masquer MacMap" keyEquivalent="h" id="5Ta-Fh-zaN">
+                                <connections>
+                                    <action selector="hide:" target="-1" id="9Ae-OT-RSB"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Masquer les autres" keyEquivalent="h" id="jar-m5-kWb">
+                                <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                <connections>
+                                    <action selector="hideOtherApplications:" target="-1" id="vyy-BM-74M"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Tout afficher" id="IXQ-po-pSM">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="unhideAllApplications:" target="-1" id="3KF-WC-tX0"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="ND0-CX-UEh"/>
+                            <menuItem title="Quitter MacMap" keyEquivalent="q" id="SwQ-d7-gIc">
+                                <connections>
+                                    <action selector="terminate:" target="-1" id="bSj-KL-6lD"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
+                <menuItem title="Fichier" tag="1" id="C2M-jP-CE0">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Fichier" autoenablesItems="NO" id="WPv-Rc-3Yu">
+                        <items>
+                            <menuItem title="Nouveau…" keyEquivalent="n" id="iYj-FR-3st">
+                                <connections>
+                                    <action selector="newDocument:" target="-1" id="XUN-fq-yGn"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Ouvrir…" keyEquivalent="o" id="JUq-4e-m3t">
+                                <connections>
+                                    <action selector="openDocument:" target="-1" id="Evv-Es-3Bc"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Ouvrir récent" id="H6e-TO-74V">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Ouvrir récent" systemMenu="recentDocuments" autoenablesItems="NO" id="Gyr-NA-YuA">
+                                    <items>
+                                        <menuItem title="Effacer le menu" id="JP0-jL-2TZ">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="clearRecentDocuments:" target="-1" id="fo8-dZ-Btz"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="LZJ-Z4-xjY"/>
+                            <menuItem title="Importer" id="ll8-bR-JYe">
+                                <menu key="submenu" id="BCW-i0-5Sf">
+                                    <items>
+                                        <menuItem title="MacMap® Texte…" tag="1766673748" id="xsU-My-1yV">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="menuAction:" target="Voe-Tx-rLC" id="PLN-9a-jIk"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="ShapeFile…" tag="1767065680" id="517-zQ-COx">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="menuAction:" target="Voe-Tx-rLC" id="A94-4M-q06"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Mif-Mid…" tag="1766672710" id="BCW-FW-2Iq">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="menuAction:" target="Voe-Tx-rLC" id="npT-m9-miK"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="Zpv-zv-oMw"/>
+                                        <menuItem title="Raster…" tag="1767002964" id="tTr-Jt-j0n">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="menuAction:" target="Voe-Tx-rLC" id="4X8-cd-xtP"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                            <menuItem title="Exporter" id="bnR-Ub-Ncm">
+                                <menu key="submenu" title="Exporter" id="i5S-TS-YI6">
+                                    <items>
+                                        <menuItem title="MacMap® Texte…" tag="1867337044" id="9kY-ql-rXE">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="menuAction:" target="Voe-Tx-rLC" id="5Hd-h9-c3f"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="ShapeFile…" tag="1867728976" id="c8w-63-zld">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="menuAction:" target="Voe-Tx-rLC" id="boL-Ld-Jn7"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Mif-Mid…" tag="1867336006" id="pAg-rN-dNi">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="menuAction:" target="Voe-Tx-rLC" id="BEs-we-37d"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                            <menuItem title="Publier" id="pwc-Dz-4o3">
+                                <menu key="submenu" title="Publier" id="xd8-yL-RZf">
+                                    <items>
+                                        <menuItem title="PDF…" tag="1884308550" id="Xf5-6x-0Up">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="menuAction:" target="Voe-Tx-rLC" id="LMT-ck-g5g"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="KML…" tag="1883983180" id="h5I-zF-Tmi">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="menuAction:" target="Voe-Tx-rLC" id="YBe-Gv-HmM"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="VFR-tw-GMh"/>
+                                        <menuItem title="JPEG…" tag="1883918407" id="X5y-2p-AOt">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="menuAction:" target="Voe-Tx-rLC" id="MMe-zD-byB"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="TIFF…" tag="1884571974" id="F71-Dp-ZLn">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="menuAction:" target="Voe-Tx-rLC" id="tKH-bV-rjA"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="PNG…" tag="1884311111" id="vGA-AO-Zee">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="menuAction:" target="Voe-Tx-rLC" id="Tl1-LE-0rO"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="Ydu-70-vaD"/>
+                            <menuItem title="Fermer" keyEquivalent="w" id="VRp-Oy-htz">
+                                <connections>
+                                    <action selector="performClose:" target="-1" id="bt3-iX-aIx"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="p09-3k-QPm"/>
+                            <menuItem title="Format d'impression…" tag="1885431640" keyEquivalent="P" id="khm-ia-9fg">
+                                <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
+                                <connections>
+                                    <action selector="menuAction:" target="Voe-Tx-rLC" id="68q-7H-hKx"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Imprimer…" tag="1886547572" keyEquivalent="p" id="wkD-KJ-3wX">
+                                <connections>
+                                    <action selector="menuAction:" target="Voe-Tx-rLC" id="L7b-nA-xl3"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
+                <menuItem title="Edition" tag="2" id="aCV-oo-AVp">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Edition" id="Uhd-os-qtr">
+                        <items>
+                            <menuItem title="Annuler" tag="1970168943" keyEquivalent="z" id="hZf-MS-ikD">
+                                <connections>
+                                    <action selector="undo:" target="-1" id="oWI-W9-iVi"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Rétablir" tag="1919247471" keyEquivalent="Z" id="b7j-xw-z6m">
+                                <connections>
+                                    <action selector="redo:" target="-1" id="hli-hW-CrM"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="tpi-WD-lS6"/>
+                            <menuItem title="Couper" tag="1668641824" keyEquivalent="x" id="U3u-AW-Wgg">
+                                <connections>
+                                    <action selector="cut:" target="-1" id="WWZ-NG-Y5d"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Copier" tag="1668247673" keyEquivalent="c" id="9WO-2Y-6Cd">
+                                <connections>
+                                    <action selector="copy:" target="-1" id="G6x-YV-I29"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Coller" tag="1885434740" keyEquivalent="v" id="7WF-8v-JFt">
+                                <connections>
+                                    <action selector="paste:" target="-1" id="9B0-ja-1yh"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Supprimer" tag="1668048225" id="B2R-mm-iYV">
+                                <string key="keyEquivalent" base64-UTF8="YES">
+CA
+</string>
+                                <connections>
+                                    <action selector="delete:" target="-1" id="aOC-98-bRd"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Tout sélectionner" tag="1935764588" keyEquivalent="a" id="JR3-wG-LNp">
+                                <connections>
+                                    <action selector="selectAll:" target="-1" id="z0k-km-Qo5"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Tout désélectionner" tag="1718383475" keyEquivalent="A" id="7ul-TF-h5P">
+                                <connections>
+                                    <action selector="menuAction:" target="-1" id="svc-yu-jEa"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="N9x-14-KLh"/>
+                            <menuItem title="Raccourcis clavier…" tag="1399353972" id="HnV-F8-vtz">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="menuAction:" target="Voe-Tx-rLC" id="lXq-bm-wVM"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
+                <menuItem title="Données" id="k6s-Mi-tKx">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Données" id="keq-Pi-dLc">
+                        <items>
+                            <menuItem title="Remplir…" tag="1179019628" id="uuU-c0-hQb">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="menuAction:" target="Voe-Tx-rLC" id="1hb-T6-QLU"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Traitement des chaînes…" tag="1347646578" id="S8t-F9-TNd">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="menuAction:" target="Voe-Tx-rLC" id="i7W-bg-hvu"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Colorier…" tag="1348561262" id="228-Jr-Azg">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="menuAction:" target="Voe-Tx-rLC" id="CaZ-ke-msD"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Transfert de types…" tag="1416778864" id="een-zQ-3fj">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="menuAction:" target="Voe-Tx-rLC" id="BSd-MA-ZHS"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Ré-indexer" tag="1380541560" id="A2h-hq-sRh">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="menuAction:" target="Voe-Tx-rLC" id="Fyw-8m-YSb"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Détecteur de doublons…" tag="1131179588" id="PKa-lM-GLk">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="menuAction:" target="Voe-Tx-rLC" id="a5S-SD-guX"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Base de données" id="zxd-bi-3rt">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" id="xDn-4U-XqV">
+                                    <items>
+                                        <menuItem title="Structure des tables…" tag="1179020660" id="l4A-VY-m9H">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="menuAction:" target="Voe-Tx-rLC" id="gPS-qO-Z73"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Contraintes de saisie…" tag="1178824308" id="1Rc-kt-Mjb">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="menuAction:" target="Voe-Tx-rLC" id="29Q-Sk-LgE"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Valeurs par défaut…" tag="1147496022" id="Q87-zh-sa6">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="menuAction:" target="Voe-Tx-rLC" id="5ue-V4-4lj"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="8hX-Jy-C9S"/>
+                                        <menuItem title="Gestion des types…" tag="1414358898" keyEquivalent="N" id="C92-Qb-qRG">
+                                            <connections>
+                                                <action selector="menuAction:" target="Voe-Tx-rLC" id="ZBz-YN-VXq"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="wwl-nw-Laz"/>
+                                        <menuItem title="Importer des données…" tag="1148471661" id="HJR-hd-Pp1">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="menuAction:" target="Voe-Tx-rLC" id="VY8-9C-5l3"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Joindre des données…" tag="1148471918" id="il0-Aj-LW6">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="menuAction:" target="Voe-Tx-rLC" id="mI8-xS-ffO"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
+                <menuItem title="Recherche" id="R3f-MZ-6Bn">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Recherche" id="73h-A5-5bd">
+                        <items>
+                            <menuItem title="Sélectionner…" tag="1718185572" keyEquivalent="f" id="rb8-re-2ST">
+                                <connections>
+                                    <action selector="menuAction:" target="Voe-Tx-rLC" id="4xj-3G-y3R"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Sélectionner les contrastes" tag="1935896180" keyEquivalent="K" id="eO4-ob-JZr">
+                                <connections>
+                                    <action selector="menuAction:" target="Voe-Tx-rLC" id="obg-Pj-PMN"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Contraster la sélection" tag="1668506988" keyEquivalent="k" id="KRJ-Aa-FGt">
+                                <connections>
+                                    <action selector="menuAction:" target="Voe-Tx-rLC" id="F5f-2N-0af"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Annuler les contrastes" tag="1718383459" keyEquivalent="k" id="VKH-cE-g3c">
+                                <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                <connections>
+                                    <action selector="menuAction:" target="Voe-Tx-rLC" id="91H-CZ-ORh"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
+                <menuItem title="Page" id="eBC-gb-Ddu">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Page" id="Zor-bv-yhD">
+                        <items>
+                            <menuItem title="Masquer" tag="1835103083" keyEquivalent="m" id="4KD-K3-EWi">
+                                <connections>
+                                    <action selector="menuAction:" target="-1" id="KZF-sb-Y1Z"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Afficher uniquement ceci" tag="1936682604" keyEquivalent="m" id="OeB-hF-Hv2">
+                                <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
+                                <connections>
+                                    <action selector="menuAction:" target="-1" id="9BE-wL-2SW"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Tout afficher" tag="1936224119" keyEquivalent="m" id="VFO-ie-fjI">
+                                <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                <connections>
+                                    <action selector="menuAction:" target="-1" id="MO4-rc-kRA"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="Yps-lC-gJB"/>
+                            <menuItem title="Centrer sur le suivant" tag="1852143732" keyEquivalent="&gt;" id="1WK-Jf-QFY">
+                                <connections>
+                                    <action selector="menuAction:" target="-1" id="z65-BH-oAz"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Centrer sur le précédent" tag="1886545270" keyEquivalent="&lt;" id="yJP-1J-0Us">
+                                <connections>
+                                    <action selector="menuAction:" target="-1" id="m3k-m8-kPK"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Centrer sur le curseur" tag="1198474098" keyEquivalent="&lt;" id="9Im-dv-IPb">
+                                <modifierMask key="keyEquivalentModifierMask" option="YES"/>
+                                <connections>
+                                    <action selector="menuAction:" target="-1" id="6hu-NH-TsX"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Zoom plus" tag="2053990766" keyEquivalent="+" id="Sis-2t-fNf">
+                                <connections>
+                                    <action selector="menuAction:" target="-1" id="PLo-aH-tHa"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Zoom plus curseur" tag="1515209586" keyEquivalent="+" id="J67-Gd-hHw">
+                                <modifierMask key="keyEquivalentModifierMask" option="YES"/>
+                                <connections>
+                                    <action selector="menuAction:" target="-1" id="dHU-3e-Oor"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Zoom moins" tag="2053992309" keyEquivalent="-" id="hba-bD-7wG">
+                                <connections>
+                                    <action selector="menuAction:" target="-1" id="7Jd-Pz-yGp"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Zoom moins curseur" tag="1515012978" keyEquivalent="-" id="6LR-RV-TWT">
+                                <modifierMask key="keyEquivalentModifierMask" option="YES"/>
+                                <connections>
+                                    <action selector="menuAction:" target="-1" id="Siu-Nm-nuh"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="A droite" tag="1198477929" keyEquivalent="" id="Dlz-Ml-iZD">
+                                <connections>
+                                    <action selector="menuAction:" target="-1" id="wUq-2R-7aW"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="A gauche" tag="1198476389" keyEquivalent="" id="Who-5q-gGM">
+                                <connections>
+                                    <action selector="menuAction:" target="-1" id="vZo-j3-ae2"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="En haut" tag="1198478704" keyEquivalent="" id="bsb-Lj-c51">
+                                <connections>
+                                    <action selector="menuAction:" target="-1" id="uKI-tf-YS5"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="En bas" tag="1198474351" keyEquivalent="" id="kYR-G5-fAO">
+                                <connections>
+                                    <action selector="menuAction:" target="-1" id="03s-e1-p9w"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
+                <menuItem title="Palettes" tag="6" id="H4O-bf-JNN">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Palettes" id="chq-8W-Hos">
+                        <items>
+                            <menuItem title="Fiche…" tag="1718182760" id="pUU-PQ-yzM">
+                                <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                                <connections>
+                                    <action selector="menuAction:" target="-1" id="2ny-8I-OKJ"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Tableur…" tag="1114795895" keyEquivalent="b" id="P7O-6F-9XZ">
+                                <connections>
+                                    <action selector="menuAction:" target="-1" id="Tgg-pQ-GMl"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Analyse univariée…" tag="1400132974" id="47r-yV-nks">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="menuAction:" target="-1" id="N49-bz-mbb"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Lien multimédia…" tag="1481404011" id="OSF-H3-6tF">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="menuAction:" target="-1" id="5ea-KI-gRO"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="94o-Ym-YkQ"/>
+                        </items>
+                    </menu>
+                </menuItem>
+                <menuItem title="Fenêtre" id="kRS-hM-aRA">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Fenêtre" systemMenu="window" id="m6r-jy-H2H">
+                        <items>
+                            <menuItem title="Placer dans le dock" keyEquivalent="M" id="nag-TW-cxM">
+                                <connections>
+                                    <action selector="performMiniaturize:" target="-1" id="ldO-XY-lW1"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Agrandire/Réduire" id="2J5-Cm-BGd">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="performZoom:" target="-1" id="BDR-OW-xu9"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="NQ9-eF-lVT"/>
+                            <menuItem title="Tout ramener au premier plan" id="vBT-ye-RsR">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="arrangeInFront:" target="-1" id="l91-P4-SEf"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
+                <menuItem title="Aide" id="k17-9g-4GB">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Aide" systemMenu="help" id="ECX-Vc-n5u">
+                        <items>
+                            <menuItem title="Aide MacMap" keyEquivalent="?" id="itt-MN-WeX">
+                                <connections>
+                                    <action selector="showHelp:" target="-1" id="RxC-gx-FLr"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
+            </items>
+            <point key="canvasLocation" x="-117" y="-210"/>
+        </menu>
+    </objects>
+</document>

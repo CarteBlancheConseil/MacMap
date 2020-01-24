@@ -1,0 +1,15 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>XMap Importer des données</title><link rel="stylesheet" href="../css/style.css"><meta name="AppleTitle" content="Aide MacMap"><meta name="AppleIcon" content="MacMap Help/img/MacMapIcon.png"><meta name="keywords" content="Importer des données"></head><body><a name=pg1_310></a><table class="switch" width=100%><tr><td align="left"><a href="pg0_3.html">Index Menu</a></td><td align="right"><a href="pg0_4.html">Index Alphabétique</a></td></tr></table><br><table border=0 cellspacing=0 cellspacing=0 width=100%><tr><td class="item">XMap Importer des données</td></tr><tr><td><p>Permet d'importer des données attributaires externes dans une base MacMap. Ces données peuvent êtres aux formats texte tabulé, csv, ou dbf. Après avoir spécifié le type dans lequel importer les données, on indique pour chaque champ du fichier l'action à appliquer:<br>- Ignorer pour ne pas prendre en compte le champ,<br>- Chercher pour définir une clef de recherche,<br>- Remplir pour transférer les données contenues dans ce champ,<br>- Créer puis remplir si un champ de même nom n'existe pas déjà dans la table cible.<br>Chaque champ du fichier externe doit donc être mis en relation avec un champ de la table cible.<br>L'option "Remplir un objet seulement" permet de détecter les cas ou une ligne du fichier concerne plusieurs objets.<br>L'option "Prendre en compte les objets masqués » permet d'inclure les objets masqués dans le traitement.<br>Les éventuelles erreurs d'import sont visibles dans le log Mac OS X (Application "Console"). Elles sont encadrées par les tags:<br>-- DATAJOIN REPORT BEGIN --<br>...<br>-- DATAJOIN REPORT END --<br>
+Elles sont également reportées dans un fichier texte d'extension".burp" situé au même niveau d'arborescence que le fichier importé.</p></td></tr>
+
+<tr>
+<td class="scripttitle">
+Commande script
+</td>
+</tr>
+<tr>
+<td class="scriptitem">
+<pre class="scriptitem">
+&lt;dataimport&gt;    &lt;path&gt;<i class=varitem>Chemin d'accès au fichier (POSIX)</i>&lt;/path&gt;    &lt;name&gt;<i class=varitem>Nom du fichier (dbf, tabbed texte or csv)</i>&lt;/name&gt;    &lt;name&gt;<i class=varitem>Nom du type</i>&lt;/name&gt;    &lt;bool&gt;<i class=varitem>1 pour inclure les objets masquée, 0 sinon</i>&lt;/bool&gt;    &lt;bool&gt;<i class=varitem>1 si la clef de recherche doit être unique, 0 sinon</i>&lt;/bool&gt;    &lt;!--Début de la description des opérations à effectuer sur les différentes colonnes, relativement à leur numéro--&gt;    &lt;int&gt;<i class=varitem>1(=Ignorer)|2(=Chercher)|3(=Remplir)|4(=Créer puis remplir)</i>&lt;/int&gt;    &lt;name&gt;<i class=varitem>Nom du champ</i>&lt;/name&gt;    &lt;!--Cette séquence doit être répétée pour chacune des colonnes du fichier--&gt;&lt;/dataimport&gt;</pre>
+</td>
+</tr>
+</table></body></html>

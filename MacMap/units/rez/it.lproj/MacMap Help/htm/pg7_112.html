@@ -1,0 +1,165 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>vDef Linee Gradienti</title>
+<link rel="stylesheet" href="../css/style.css">
+<meta name="AppleTitle" content="Aiuto MacMap">
+<meta name="AppleIcon" content="MacMap Help/img/MacMapIcon.png">
+<meta name="keywords" content="Linee Gradienti">
+</head>
+<body>
+<a name=pg7_112>
+</a>
+<table class="switch" width=100%>
+<tr>
+<td align="left">
+<a href="pg0_3.html">Indice Menu</a>
+</td>
+<td align="right">
+<a href="pg0_4.html">Indice Alfabetico</a>
+</td>
+</tr>
+</table>
+<br>
+<table border=0 cellspacing=0 cellspacing=0 width=100%>
+<tr>
+<td class="item">
+vDef Linee Gradienti
+</td>
+</tr>
+<tr>
+<td>
+<p>
+La vDef Linee Gradienti permette di rappresentare gli oggetti sotto forma di linee colorate in funzione del valore di un campo. Per definire questo stile bisogna suddividere in classi (discretizzare) una serie statistica e successivamente attribuire un colore ad ogni classe.</p>
+</td>
+</tr>
+
+<tr>
+<td class="item2">
+Statistiche
+</td>
+</tr>
+<tr>
+<td>
+<p>
+La rubrica "Sul campo" permette di specificare il campo sul quale sarà impostata la vista. Questo campo deve contenere dei valori numerici.<br>
+La rubrica "Discretizzazione" permette di scegliere un metodo automatico di definizione delle classi.<br>
+La rubrica "Numero di classi" permette di specificare il numero di classi desiderate.<br>
+Il popup "Calcolo del min" permette di calcolare automaticamente (sul tipo, sulla selezione o sui contrasti) il limite inferiore per la rappresentazione degli oggetti. Questo valore corrisponde al più piccolo valore del campo che di desidera rappresentare.<br>
+Il popup "Calcolo del max" permette di calcolare automaticamente (sul tipo, sulla selezione o sui contrasti) il limite superiore per la rappresentazione degli oggetti. Questo valore corrisponde al più grande valore del campo che di desidera rappresentare.<br>
+Il pulsante "Discretizza" lancia il calcolo dei limiti delle classi, in funzione dei parametri stabiliti. Questo calcolo può essere lanciato sul Tipo, sulla selezione o sui contrasti. Il risultato è visualizzato nella lista e può, all'occorrenza, essere modificato manualmente (clic su un valore della lista).<br>
+Il pulsante "+" e "-" permette di aggiungere o di eliminare manualmente le classi.
+</p>
+</td>
+</tr>
+
+<tr>
+<td class="item2">
+Vista per classe
+</td>
+</tr>
+<tr>
+<td>
+<p>
+La rubrica "Colorimetria" permette di scegliere i colori da applicare ad ogni classe. Questi colori sono calcolati automaticamente in funzione dei colori di riferimento.<br>
+La rubrica "Colore" permette di scegliere individualmente (per classe) un colore.
+
+</p>
+</td>
+</tr>
+
+<tr>
+<td class="item2">
+Vista generale
+</td>
+</tr>
+<tr>
+<td>
+<p>
+Gli elementi di questa rubrica si applicano a tutte le classi definite con la Discretizzazione.<br>
+La rubrica "Spessore" permette di fissare la larghezza della linee.<br>
+La rubrica "Spostamento" permette di ottenere un Spostamento della linea (a destra per un valore positivo, a sinistra per un valore negativo).<br>
+La rubrica "Angolo limite" permette di fissare il valore limite a partire dal quale gli angoli della spezzata vengono troncati.<br>
+La rubrica "Terminazione" permette di scegliere il tipo di estremità del tratto (aperta, tonda o chiusa).<br>
+La rubrica "Angolo" permette di scegliere il tipo di rappresentazione per tutti i punti di angolarità di una spezzata (angolo, arrotondato, smusso).<br>
+La rubrica "Tratteggio" permette di scegliere un tratteggio.<br>
+La rubrica "Arrotondamento" permette di arrotondare la Segmentazione (riduzione degli angoli).
+</p>
+</td>
+</tr>
+
+<tr>
+<td class="item2">
+Vista
+</td>
+</tr>
+<tr>
+<td>
+<p>
+I due pop-up permettono di regolare la sequenza delle scale alle quali lo stile sarà visibile.
+</p>
+</td>
+</tr>
+<tr>
+<td class="item2">
+Opzioni : Parametri generali
+</td>
+</tr>
+<tr>
+<td>
+<p>
+Il campo "Scala di riferimento" permette di ottenere una rappresentazione proporzionale alle varie scale. Tutte le dimensioni saranno ricalcolate in funzione della scala in corso e della scala di riferimento. Lasciando questo campo al valore "Dimensione fissa" si ottiene la stessa rappresentazione per tutte le scale.<br>
+Il campo "Unità" permette di scegliere tra una espressione dei valori (dimensione, spessore,...) in pixel o in millimetri.<br>
+Il campo "Inverti l'ordine" permette di invertire l'ordine di visualizzazione delle classi.<br>
+Il campo "CMYK" permette di scegliere il tipo di colore utilizzato : CMYK o RGB.
+</p>
+</td>
+</tr>
+<tr>
+<td class="item2">
+Opzioni : Mostra l'oggetto se
+</td>
+</tr>
+<tr>
+<td>
+<p>
+Questa opzione permette di fissare le condizioni di visualizzazione, per ciascun oggetto. Una condizione di visualizzazione si compone di tre elementi :<br>
+- Un campo del formato scheda,<br>
+- Un operatore,<br>
+- Un valore.<br>
+Se l'oggetto non risponde alle condizioni definite non sarà visualizzato dallo stile, senza necessità di essere mascherato.
+</p>
+</td>
+</tr>
+<tr>
+<td class="item2">
+Opzioni : Offset
+</td>
+</tr>
+<tr>
+<td>
+<p>
+Questa opzione permette di scegliere due campi x e y che modificano il punto di visualizzazione senza però modificare la geometria dell'oggetto. Questi campi possono essere compilati utilizzando lo strumento <a href="pg2_301.html">Offset</a>.
+</p>
+</td>
+</tr>
+
+<tr>
+<td class="item2">
+Applica
+</td>
+</tr>
+<tr>
+<td>
+<p>
+Registra le modifiche allo stile.<br>Se lo stile è rappresentato nella vista in corso, le modifiche sono subito applicate, senza la necessità di uscire dall'editor.<br>Per uscire dall'editor senza salvare le modifiche è sufficiente chiuderlo o premere "esc" sulla tastiera.
+</p>
+</td>
+</tr>
+
+</table>
+<p>
+<a href="pg1_604.html">Box Presentazione</a>
+</p>
+</body>
+</html>

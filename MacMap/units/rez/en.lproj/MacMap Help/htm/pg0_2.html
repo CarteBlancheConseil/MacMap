@@ -1,0 +1,86 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Essential Knowledge</title>
+<link rel="stylesheet" href="../css/style.css">
+<meta name="AppleTitle" content="MacMap Help">
+<meta name="AppleIcon" content="MacMap Help/img/MacMapIcon.png">
+<meta name="keywords" content="function">
+</head>
+<body>
+<a name=pg0_2>
+</a>
+<a name=fonction>
+</a>
+<table class="switch" width=100%>
+<tr>
+<td>
+<a href="../MacMap Help.html">MacMap Help</a>
+</td>
+</tr>
+</table>
+<br>
+<table border=0 cellspacing=0 cellspacing=0 width=100%>
+<tr>
+<td class="item">The Project File</td>
+</tr>
+<tr>
+<td>
+<p>The project file (&quot;<i>.project</i>&quot;) contains all of the references of a MacMapv3 database: It is the list of all of the &quot;<i>tables</i>.&quot; This file is opened by MacMap.</p>
+<p>It also contains all of the settings in common with the database:<br>- &quot;<i>Views</i>&quot;: collections of &quot;<i>Styles</i>&quot; which define a cartographic representation of the database,<br>- The scales used in the database, the units of measure,<br>- &quot;<i>Macros</i>&quot;: saved requests,<br>- All the global settings used by the different MacMap functions.</p>
+</td>
+</tr>
+<tr>
+<td class="item">Type Files</td>
+</tr>
+<tr>
+<td>
+<p>These files (with a &quot;.type&quot; extension) are geographic object tables. Objects from the same table have the following in common:<br>- An attribute table structure by default: &quot;<i>Subtype</i>&quot;, &quot;<i>Color</i>&quot;, and &quot;<i>Direction</i>&quot; or &quot;<i>Flag</i>&quot; fields,<br>- An optional user attribute table structure: fields of type &quot;<i>String</i>&quot;, &quot;<i>Integer</i>&quot;, &quot;<i>Floating</i>&quot;, &quot;<i>Boolean</i>&quot;, &quot;<i>Date</i>&quot; or &quot;<i>Time</i>&quot;),<br>- A type of geometry (the &quot;<i>kind</i>&quot; of the type): &quot;<i>Point</i>&quot;, &quot;<i>Line</i>&quot;, &quot;<i>Area</i>&quot;, &quot;<i>Text</i>&quot;, or &quot;<i>Raster</i>&quot;.</p>
+<p>Each table can be used by different projects.</p>
+<p>Each table contains settings used by the various MacMap functions: spreadsheet settings, vDef icons or raster images, ...</p>
+</td>
+</tr>
+<tr>
+<td class="item">Default Fields</td>
+</tr>
+<tr>
+<td>
+<p>
+<b>Name</b>: A field of type string with a maximum of 50 characters.</p>
+<p>
+<b>Subtype</b>: A field of type integer, with entry constraints. The default value is 1, with a heading at &quot;Default Subtype&quot;. The user can add as many subtypes as necessary.</p>
+<p>
+<b>Color</b>: A field of type integer, with entry constraints. The eight possible values are from 1 to 8 as follows: Black, White, Red, Green, Blue, Cyan, Magenta, Yellow.</p>
+<p>
+<b>Direction/Flag</b>: This is a field of type integer, with constraints.<br>For area, line or raster objects, the Direction field corresponds to an orientation with the following values: -1 = orientation opposite from the direction of entry, 0 = no orientation, -1 = orientation in the direction of entry.<br>For text or point objects, the use of the flag field is not required. The possible values are 0 or 1.</p>
+</td>
+</tr>
+<tr>
+<td class="item">Unit of Measure, Resolution and Projection</td>
+</tr>
+<tr>
+<td>
+<p>
+<b>Unit</b>: The unit in which distances will be expressed is specified when a new document is created. The unit can be meters, millimeters or kilometers.</p>
+<p>
+<b>Resolution</b>: The resolution is also specified when a new document is created. It can be, for example, 0.5 meters.</p>
+<p>
+<b>Projection</b>: Projection is implicit in MacMap, but it is still present in the interface. MacMap databases are necessarily formatted in a cartographic system and are, therefore, projected. It is possible to enter data outside of any repository, but it is better to wedge the data in a projection system (for example a UTM grid for your country). Some tools are available which let you change the projection of MacMap data.</p>
+</td>
+</tr>
+<tr>
+<td class="item">Object States</td>
+</tr>
+<tr>
+<td>
+<p>
+<b>Selected</b>: The selection is a list of objects which can belong to different types. A selected object appears on screen surrounded by a rectangle with a thin, solid border in inverse video. A large number of MacMap functions operate on the current selection.</p>
+<p>
+<b>Contrasted</b>: The contrasts are a list of objects which can belong to different types. A contrasted object appears on the screen surrounded by a rectangle with a thick raster border in inverse video. A number of MacMap functions operate on the current contrasts. The selection function, for example, uses contrasts to specify the objects which will serve as a reference in a search including distance criteria (at a distance greater than, within a distance of...).</p>
+<p>
+<b>Hidden</b>: An object can be hidden. In this case, it no longer appears in the main window. Certain MacMap functions do not operate on hidden objects.</p>
+</td>
+</tr>
+</table>
+</body>
+</html>

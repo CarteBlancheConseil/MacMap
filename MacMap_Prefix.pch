@@ -1,0 +1,27 @@
+//----------------------------------------------------------------------------
+// Benoit Ogier, Copyright CBC.
+//----------------------------------------------------------------------------
+// 
+//----------------------------------------------------------------------------
+// 01/01/02 creation.
+//----------------------------------------------------------------------------
+
+#include <CoreFoundation/CoreFoundation.h>
+#include <CoreGraphics/CoreGraphics.h>
+#include <CoreText/CoreText.h>
+#include <AppKit/AppKit.h>
+
+#include <stdlib.h>
+#include <stdio.h>
+#include <math.h>
+#include <string.h>
+#include <time.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+
+#define	sqr(x)			((x)*(x))
+#define __BOUNDS_MAX__	(INT_MAX/2)
+#define _PUSH_			{
+#define _POP_			}
+
+

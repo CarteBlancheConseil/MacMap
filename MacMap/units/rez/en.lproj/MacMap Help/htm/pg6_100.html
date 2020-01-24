@@ -1,0 +1,64 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>XMap - Formula Editor</title>
+<link rel="stylesheet" href="../css/style.css">
+<meta name="AppleTitle" content="MacMap Help">
+<meta name="AppleIcon" content="MacMap Help/img/MacMapIcon.png">
+<meta name="keywords" content="Formula, Editor, Calc, Constant, Macro">
+</head>
+<body>
+<a name=pg6_100>
+</a>
+<table class="switch" width=100%>
+<tr>
+<td align="left">
+<a href="pg0_3.html">Menu Index</a>
+</td>
+<td align="right">
+<a href="pg0_4.html">Alphabetical Index</a>
+</td>
+</tr>
+</table>
+<br>
+<table border=0 cellspacing=0 cellspacing=0 width=100%>
+<tr>
+<td class="item">
+XMap - Formula Editor
+</td>
+</tr>
+<tr>
+<td>
+<p>
+Lets you create or edit user-defined calcs.<br> The popup located at the top of the window lets you chose from among the elements forming a user-defined calc: Operators, Iterators, Functions, Constants, Fields, Calcs and Macros.<br> An additional popup is added when you select the &quot;Fields&quot; command: you can determine for which type you would like to obtain the list of fields.<br> The list located below these popups lets you display all of the elements available for a category.<br> The formulas are represented in tree form in the central drawing area. Double-click on this area to center the graph on the clicked point. Click on one of the elements in the formula to select it.<br> A selected element can be replaced by another element of the same category or erased using the &quot;Erase&quot; button.<br> Formulas are resolved from top to bottom, starting at the extremities of the tree.<br> Formulas are entered in Reverse Polish Notation, in other words placing first those elements which are resolved last.<br> To finish, you must specify the name and type of the returned value in the appropriate fields.<br>
+<b>Operators:</b>
+<br> Operators accept any two arguments. An operation between the two terms is carried out.<br> The currently available operators are:<br> and: logical and (boolean)<br> beginwith:  string starting with another string (boolean)<br> contain: string containing another string (boolean)<br> div: division (floating)<br> endwith: string ending with another string (boolean)<br> equal: equality between 2 terms (boolean)<br> higher: greater than (boolean)<br> higherorequal: greater than or equal to (boolean)<br> lower:  less than (boolean)<br> lowerorequal : less than or equal to (boolean)<br> minus: subtraction (floating)<br> modulo: modulo (integer)<br> mult: multiplication (floating)<br> notequal: different (boolean)<br> or: logical or (boolean)<br> plus:  addition (floating)<br> pow: power (floating)<br> strcat: string concatenation (string)<br> xor: exclusive logical or (boolean)<br>
+<b>Iterators:</b>
+<br> Iterators accept two arguments; the first must be either a macro or left blank. In the first case, the iterator starts by running the macro and then performs an operation on the second term for the selection resulting from the macro. In the second case, the iterator uses the current selection.<br> The currently available iterators are:<br> average: average (floating)<br> first: take into account only the first object of the selection (the result depends on the second term)<br> last: take into account only the last object of the selection (the result depends on the second term)<br> max: maximum (the result depends on the second term)<br> median: median (floating)<br> min: minimum (the result depends on the second term)<br> product: product (floating)<br> single: return the NaN value if the selection includes more than one object (the result depends on the second term)<br> stddeviation: standard deviation (floating)<br> sum: sum (floating)<br> variance: variance (floating)<br>
+<b>Functions:</b>
+<br> Functions accept any argument.<br> The currently available functions are:<br> ceil: returns the smallest integer number which is not smaller than its argument (floating)<br> cos: returns the cosine of an angle in radians (floating)<br> exp: returns the exponential of its argument (floating)<br> fact: returns the factorial of its argument (floating)<br> floor: returns the largest integer number which is not greater than its argument (floating)<br> inv: returns 1/its argument (floating)<br> In: returns the Naperian logarithm of its argument (floating)<br> log: returns the base 10 logarithm of its argument (floating)<br> not: returns the opposite of its argument (boolean)<br> round: returns the round of its argument (floating)<br> sin: returns the sine of an angle in radians (floating)<br> sqr: returns the square of its argument (floating)<br> sqrt: returns the square root of its argument (floating)<br> strlen: returns the length of its argument as a string (floating)<br> strlwr: returns its argument as a lowercase string (string)<br> strsntfcupr: returns its argument in string format with the first letter in uppercase (string)<br> strupr: returns its argument as an uppercase string (string)<br> strwrdfcupr: returns its argument in string format with the first letter of each word in uppercase (string)<br> tan: returns the tangent of an angle in radians (floating)<br>
+<b>Constants:</b>
+<br> Fields do not accept arguments.<br> Standard constants currently available are shown in the <a href="pg1_613.html">Constant Box</a>
+<br>
+<b>Fields:</b>
+<br> Fields do not accept arguments.<br>
+<b>Calcs:</b>
+<br> Calcs do not accept arguments.<br> Standard calcs currently available are shown in the <a href="pg1_607.html">Calc Box</a>
+<br>
+<b>Macros:</b>
+<br> Macros do not accept arguments.<br>
+</p>
+<p>
+<b>Examples</b>
+<br> Population Density: To calculate the population density of an area type in a database in meters, you start by placing the &quot;div&quot; operator, then the &quot;mult&quot; operator on the lower branch of the former.<br> Next you place the &quot;Population&quot; field on the upper &quot;div&quot; branch, the &quot;Area&quot; calc on the upper &quot;mult&quot; branch and the &quot;1000&quot; constant on the lower &quot;mult&quot; branch to obtain a result in sq. km. Next you give this calc a name, and you specify the type for the return value (floating).<br> The formula is represented as follows:<br>
+<img src="../img/formula1.png" alt="formula1.png">
+<br>
+</p>
+</td>
+</tr>
+</table>
+<p>
+<a href="pg1_607.html">Calc Box</a>
+</p>
+</body>
+</html>

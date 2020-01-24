@@ -1,0 +1,156 @@
+/*MESSAGES*/
+"ok"				= "OK";
+"cancel"			= "annulla";
+"save"              = "Registra";
+
+"plural"			= "oggetti del Tipo";
+
+"objects"			= "oggetti";
+"object"			= "oggetto";
+"types"				= "tipi";
+"type"				= "tipo";
+"card"				= "scheda";
+"cards"				= "scheda";
+"kind"				= "genere";
+
+"unit"				= "unità";
+"resolution"		= "risoluzione";
+
+"no selection"		= "nessuna selezione";
+"no document"		= "nessun documento";
+
+"progress"			= "sto lavorando";
+"options"			= "opzioni";
+
+"copy"				= "copia";
+"untitled"			= "senza titolo";
+"new view"			= "nuova vista";
+"new style"			= "nuovo stile";
+"virtual"			= "virtuale";
+
+"name"				= "nome";
+"color"				= "colore";
+"subtype"			= "sotto-tipo";
+"flag"				= "bandiera";
+"direction"			= "direzione";
+
+"point_kind"		= "puntuale";
+"line_kind"			= "lineare";
+"text_kind"			= "testuale";
+"area_kind"			= "superficiale";
+"raster_kind"		= "raster";
+
+"defaultsubtype"	= "Sotto-tipo di default";
+
+"black"				= "nero";
+"white"				= "biano";
+"red"				= "rosso";
+"green"				= "verde";
+"blue"				= "blu";
+"cyan"				= "cyano";
+"magenta"			= "magenta";
+"yellow"			= "giallo";
+
+"navigation"		= "Navigazione";
+"geometry"			= "Geometrie";
+"presentation"		= "Presentazione";
+
+"open"				= "apri";
+"close"				= "chiudi";
+"new"				= "nuovo";
+
+"length"			= "lunghezza";
+"area"				= "superficie";
+
+"decimals"			= "decimali";
+
+"format"			= "formato";
+
+"angstroms"			= "angstroems";
+"nanometers"		= "nanometri";
+"micrometers"		= "micrometri";
+"millimeters"		= "millimetri";
+"centimeters"		= "centimetri";
+"inches"			= "pollici";
+"decimeters"		= "decimetri";
+"feet"				= "piedi";
+"yards"				= "yards";
+"meters"			= "metri";
+"decameters"		= "decametri";
+"hectometers"		= "ettometri";
+"kilometers"		= "chilometri";
+"miles"				= "miglia";
+
+"angstromsAB"		= "Å";
+"nanometersAB"		= "nanometri";
+"micrometersAB"		= "µ";
+"millimetersAB"		= "mm";
+"centimetersAB"		= "cm";
+"inchesAB"			= "in";
+"decimetersAB"		= "dm";
+"feetAB"			= "ft";
+"yardsAB"			= "yard";
+"metersAB"			= "m";
+"decametersAB"		= "dam";
+"hectometersAB"		= "hm";
+"kilometersAB"		= "km";
+"milesAB"			= "mi";
+
+"Aseconds"			= "secondi";
+"Aminutes"			= "minuti";
+"degrees"			= "gradi";
+
+"AsecondsAB"		= "''";
+"AminutesAB"		= "'";
+"degreesAB"			= "°";
+
+"Tseconds"			= "secondi";
+"Tminutes"			= "minuti";
+"hours"				= "ore";
+"days"				= "giorni";
+"months"			= "mesi";
+"years"				= "anni";
+"centuries"			= "secoli";
+
+"TsecondsAB"		= "s";
+"TminutesAB"		= "mn";
+"hoursAB"			= "h";
+"daysAB"			= "j";
+"monthsAB"			= "m";
+"yearsAB"			= "a";
+"centuriesAB"		= "s";
+
+"name new style"	= "Registra col nome";
+
+/*ERRORS*/
+"unknown_err"		= "Codice d'errore sconosciuto";
+
+"-1001"             = "Non supportato \"%s\" codec";
+
+"-10001"			= "Non trovo la famiglia della libreria";
+"-10002"			= "Non trovo il creatore della libreria";
+"-10003"			= "Non trovo la versione della libreria";
+"-10004"			= "Nono trovo il nome della libreria";
+"-10005"			= "Non trovo l'identificatore della libreria";
+"-10006"			= "Non trovo la numerazione della libreria";
+"-10007"			= "Versione della libreria non trovata";
+"-10008"			= "Libreria non caricata";
+"-10009"			= "Errore durante il caricamento della libreria";
+"-10010"			= "Routine di allocazione della libreria non trovata";
+"-10011"			= "Routine di distruzione della libreria non trovata";
+"-10012"			= "Istanza della libreria non creata";
+
+"-10041"			= "Le classi XML non sono state caricate.";
+
+"-100001"			= "Errore di inizializzazione del log";
+"-100002"			= "Errore di inizializzazione dello specificatore del documento";
+"-100003"			= "Errore di inizializzazione del nib";
+"-100004"			= "Errore di inizializzazione dello spazione delle risorse";
+"-100005"			= "Errore di inizializzazione della protezione";
+
+"-110001"			= "Errore di lettura";
+"-110002"			= "Errore di scrittura";
+"-110003"			= "Errore durante l'aggiunta di un campo";
+"-110004"			= "Errore durante l'eliminazione di un campo";
+"-110005"			= "Errore durante la modifica diun campo";
+"-110006"			= "Errore durante l'attribuzione del valore di default";

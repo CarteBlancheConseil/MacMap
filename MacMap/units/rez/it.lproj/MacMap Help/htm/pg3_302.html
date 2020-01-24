@@ -1,0 +1,84 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>XMap Segmentazione</title>
+<link rel="stylesheet" href="../css/style.css">
+<meta name="AppleTitle" content="Aiuto MacMap">
+<meta name="AppleIcon" content="MacMap Help/img/MacMapIcon.png">
+<meta name="keywords" content="Nettoyer, Opzioni di segmentazione, Intersezione">
+</head>
+<body>
+<a name=pg3_302>
+</a>
+<table class="switch" width=100%>
+<tr>
+<td align="left">
+<a href="pg0_3.html">Indice Menu</a>
+</td>
+<td align="right">
+<a href="help:anchor='pg0_4' bookID=Aiuto MacMap">Indice Alphabétique</a>
+</td>
+</tr>
+</table>
+<br>
+<table border=0 cellspacing=0 cellspacing=0 width=100%>
+<tr>
+<td class="item">
+XMap Segmentazione
+</td>
+</tr>
+<tr>
+<td>
+<p>
+La segmentazione permette di correggere automaticamente un grafo, al fine di renderlo topologicamente corretto. Utilizza le <a href="pg3_301.html">Opzioni di segmentazione</a> per realizzare 6 operazioni :
+</p>
+<p>
+<b>Crea i nodi</b> :<br>
+Questa operazione crea i nodi alle intersezioni e alle estremità degli archi. Se l'intersezione è nel raggio di azione di un Ponte, l'oggetto nodo non viene creato.
+</p>
+<p>
+<b>Taglia gli archi</b> :<br>
+Gli archi sono tagliati ad ogni intersezione in cui è presente un nodo.
+</p>
+<p>
+<b>Unisci gli archi sui nodi</b> :<br>
+Le estremità degli archi vengono collegate al nodo più vicino. Questa funzione permette di ottenere un grafo topologicamente corretto.
+</p>
+<p>
+<b>Unisci i nodi sugli archi</b> :<br>
+I nodi sono collegati sulle estremità degli archi più vicini.
+</p>
+<p>
+<b>Esamina i nodi</b> :<br>
+Questa funzione esamina ogni incrocio e compila il campo "Controllo" con un codice a 8 caratteri :<br>
+xxxxxxxx : nessuna segnalazione<br>
+1xxxxxxx : nodo creato per taglio<br>
+x1xxxxxx : nodo collegato ad un arco per giunzione<br>
+xx1xxxxx : nodo isolato<br>
+xxx1xxxx : nodo ridondante (sovrapposto ad un altro)<br>
+xxxxx1xx : nodo in vicolo cieco<br>
+xxxxxx1x : nodo non collegato a 3 archi
+</p>
+<p>
+<b>Esamina gli archi</b> :<br>
+Questa funzione esamina ogni arco e compila il campo "Controllo" con un codice a 8 caratteri :<br>
+xxxxxxxx : nessuna segnalazione<br>
+1xxxxxxx : arco creato per taglio<br>
+x1xxxxxx : arco collegato ad un nodo per giunzione<br>
+xx1xxxxx : arco chiuso (punti di inizio e fine coincidenti)<br>
+xxx1xxxx : arco in vicolo cieco<br>
+xxxx1xxx : arco completamente isolato<br>
+xxxxx1xx : arco non collegato ad un nodo<br>
+xxxxxxx1 : segmentazione errata (ridotta ad un punto).
+</p>
+<p>
+Il campo "Controllo" è creato automaticamente, se non è già presente. Potete crearlo voi stessi, deve essere di tipo testo con almeno 8 caratteri.
+</p>
+</td>
+</tr>
+</table>
+<p>
+<a href="pg1_620.html">XMapBox Disegno II</a>
+</p>
+</body>
+</html>

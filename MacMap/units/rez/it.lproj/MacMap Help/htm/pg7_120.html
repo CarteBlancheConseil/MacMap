@@ -1,0 +1,178 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>vDef Istogrammi</title>
+<link rel="stylesheet" href="../css/style.css">
+<meta name="AppleTitle" content="Aiuto MacMap">
+<meta name="AppleIcon" content="MacMap Help/img/MacMapIcon.png">
+<meta name="keywords" content="Istogrammi">
+</head>
+<body>
+<a name=pg7_120>
+</a>
+<table class="switch" width=100%>
+<tr>
+<td align="left">
+<a href="pg0_3.html">Indice Menu</a>
+</td>
+<td align="right">
+<a href="pg0_4.html">Indice Alfabetico</a>
+</td>
+</tr>
+</table>
+<br>
+<table border=0 cellspacing=0 cellspacing=0 width=100%>
+<tr>
+<td class="item">
+vDef Istogrammi
+</td>
+</tr>
+<tr>
+<td>
+<p>
+Questa vDef permette di rappresentare i dati sotto forma di istogrammi.<br>
+Il popup, la lista e i pulsanti "+" e "-" situati in alto a desta permettono di selezionare i campi con i valori da prendere in considerazione.
+<br>
+</p>
+</td>
+</tr>
+
+<tr>
+<td class="item2">
+Colore delle barre
+</td>
+</tr>
+<tr>
+<td>
+<p>
+Per ogni serie potete definire il colore e il grado di trasparenza delle barre.
+</p>
+</td>
+</tr>
+
+<tr>
+<td class="item2">
+Dimensioni
+</td>
+</tr>
+<tr>
+<td>
+<p>
+In questa rubrica si definisce l'aspetto generale dell'istogramma: altezza e larghezza dell'area, spazio tra le barre, orientazione e spostamento in x e y.
+</p>
+</td>
+</tr>
+
+<tr>
+<td class="item2">
+Sfondo
+</td>
+</tr>
+<tr>
+<td>
+<p>
+Gli elementi di questa rubrica si attivano se la casella Sfondo è selezionata. Potete quindi definire anche la grafica dello sfondo dell'istogramma.
+</p>
+</td>
+</tr>
+
+<tr>
+<td class="item2">
+Statistiche
+</td>
+</tr>
+<tr>
+<td>
+<p>
+Il popup "Calcola i min/max" permette di calcolare automaticamente i valori minimo e massimo su tutti gli oggetti del tipo, sulla selezione o sui contrasti.<br>
+La casella di spunta "Usca scale indipendenti" permette di determinare se ciascun dato deve essere rappresentato secondo il proprio min/max (scale indipendenti) o secondo i min/max di tutte le serie mescolate (scale comuni).<br>
+<br>
+La scelta dipende dal tipo di valori che volete rappresentare :
+<br><br>
+- per un gruppo di serie statistiche (=campi) contenenti valori confrontabili (come le percentuali di risultati elettorali per candidato) si utilizza una scala comune, vale a dire che il rapporto tra la dimensione delle barre e i valori corrispondenti è lo stesso per tutti i campi. In altre parole, se si stabilisce che il 100% misura 30 pixel, tutte le barre di 30 pixel rappresenteranno il 100%, per qualsiasi campo. In questo caso i minimi e i massimi di tutte le serie saranno identici.
+<br><br>
+- per un gruppo di serie statistiche (=campi) i cui valori sono compresi all'interno di intervalli non confrontabili, come i valori bruti, è preferibile utilizzare delle scale individuali. In questo modo il rapporto tra la dimensione delle barre e i valori corrispondenti varia da campo a campo, in funzione del minimo e del massimo di ciascuno, in modo da non avere alcuni campi troppo poco visibili (dimensioni delle barre molto piccole). Per esempio, volendo rappresentare il numero di abitanti per comune con il numero di veicoli per famiglia in ogni comune, le barre relative ai veicoli saranno quasi invisibili se utilizziamo lo stesso rapporto dimensione/valore per ogni campo. Per avere una visualizzazione corretta bisogna quindi uilizzare delle scale individuali.
+<br><br>
+Nelle due aree di testo potete inserire direttamente i minimi e i massimi preferiti.
+</p>
+</td>
+</tr>
+
+<tr>
+<td class="item2">
+Vista
+</td>
+</tr>
+<tr>
+<td>
+<p>
+I due pop-up permettono di regolare l'intervallo di scale in cui è visibile lo stile.
+</p>
+</td>
+</tr>
+
+<tr>
+<td class="item2">
+Opzioni : Parametri generali
+</td>
+</tr>
+<tr>
+<td>
+<p>
+Il campo "Scala di riferimento" permette di ottenere una rappresentazione proporzionale alle varie scale. Tutte le dimensioni saranno ricalcolate in funzione della scala in corso e della scala di riferimento. Lasciando questo campo al valore "Dimensione fissa" si ottiene la stessa rappresentazione per tutte le scale.<br>
+Il campo "Unità" permette di scegliere tra una espressione dei valori (dimensione, spessore,...) in pixel o in millimetri.<br>
+Il campo "CMYK" permette di scegliere il tipo di colore utilizzato : CMYK o RGB.
+</p>
+</td>
+</tr>
+
+<tr>
+<td class="item2">
+Opzioni : Mostra l'oggetto se
+</td>
+</tr>
+<tr>
+<td>
+<p>
+
+Questa opzione permette di fissare le condizioni di visualizzazione, per ciascun oggetto. Una condizione di visualizzazione si compone di tre elementi :<br>
+- Un campo del formato scheda,<br>
+- Un operatore,<br>
+- Un valore.<br>
+Se l'oggetto non risponde alle condizioni definite non sarà visualizzato dallo stile, senza necessità di essere mascherato.
+</p>
+</td>
+</tr>
+
+<tr>
+<td class="item2">
+Opzioni : Offset
+</td>
+</tr>
+<tr>
+<td>
+<p>
+Questa opzione permette di scegliere due campi x e y che modificano il punto di visualizzazione senza però modificare la geometria dell'oggetto. Questi campi possono essere compilati utilizzando lo strumento <a href="pg2_301.html">Offset</a>.
+</p>
+</td>
+</tr>
+
+<tr>
+<td class="item2">
+Applica
+</td>
+</tr>
+<tr>
+<td>
+<p>
+Registra le modifiche allo stile.<br>Se lo stile è rappresentato nella vista in corso, le modifiche sono subito applicate, senza la necessità di uscire dall'editor.<br>Per uscire dall'editor senza salvare le modifiche è sufficiente chiuderlo o premere "esc" sulla tastiera.
+</p>
+</td>
+</tr>
+
+</table>
+<p>
+<a href="pg1_604.html">Box presentazione</a>
+</p>
+</body>
+</html>
