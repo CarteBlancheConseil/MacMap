@@ -358,6 +358,9 @@ bool b=false;
 			pop(*(cocoaMenuPrm*)prm);
 			b=true;
 			break;
+        case kExtProcessCallWithXMLTree:
+            edit(NULL);
+            break;
 	}
 	return(b);
 }
@@ -1195,7 +1198,7 @@ CGPoint			a;
 // 
 // -----------
 void bStdTool::track_obj(){
-//_bTrace_("bStdTool::track_obj",true);
+_bTrace_("bStdTool::track_obj",true);
 bArray*				ga;
 bGenericStyle*		style;
 bGenericGeoElement	*o=NULL,*prev;

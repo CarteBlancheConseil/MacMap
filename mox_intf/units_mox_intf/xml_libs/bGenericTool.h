@@ -39,7 +39,8 @@
 
 enum{
 //	kToolProcessMenu		=2,
-	kToolProcessCocoaMenu	=3
+//    kToolProcessCocoaMenu    =3
+    kToolProcessCocoaMenu    =10
 };
 
 enum{

@@ -86,6 +86,7 @@ _tm_((__bridge void*)self);
 // 
 // -----------
 -(IBAction)validDialog:(id)sender{
+_bTrace_("[bStdNSAppModalWindowController validDialog]",true);
 	_code=1;
 	[NSApp stopModal];
 }
@@ -94,6 +95,7 @@ _tm_((__bridge void*)self);
 // 
 // -----------
 -(IBAction)cancelDialog:(id)sender{
+_bTrace_("[bStdNSAppModalWindowController cancelDialog]",true);
 	_code=0;
 	[NSApp stopModal];
 }

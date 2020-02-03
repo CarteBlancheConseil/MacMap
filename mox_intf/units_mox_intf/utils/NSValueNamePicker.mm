@@ -301,6 +301,8 @@ _bTrace_("[NSValuePicker awakeFromNib]",true);
         strcpy(_title,"");
     }
     NSTextFieldSetValue(_prttxt,_title);
+//NSString*    nsstr=[NSString stringWithCString:_title encoding:NSUTF8StringEncoding];
+//   [_prttxt setStringValue:nsstr];
 }
 
 // ---------------------------------------------------------------------------
@@ -321,7 +323,7 @@ _bTrace_("[NSValuePicker awakeFromNib]",true);
 //
 // -----------
 -(void)setValue:(char*)text{
-_bTrace_("[NSValuePicker setValue]",true);
+//_bTrace_("[NSValuePicker setValue]",true);
     if(text){
         strcpy(_value,text);
     }
@@ -440,7 +442,9 @@ long                code;
     
     localPool=[[NSAutoreleasePool alloc] init];
     controller=[[NSValuePicker alloc] initWithType:tp];
-    
+//_tm_(title);
+//_tm_(value);
+
     [controller setTitle:title];
     [controller setField:field];
     [controller setValue:value];

@@ -43,14 +43,6 @@ extern "C" {
 
 //----------------------------------------------------------------------------
 
-// Populate MenuRef of "c" with types
-// Disables type if kind not equal to "kind"
-// Enables all if "kind" equal to kBaseNoKind
-/*void	PopulatePopupControlWithType	(	bGenericMacMapApp* gapp,
-											ControlRef c, 
-											int kind,
-											int cur);// A VIRER*/
-
 // Returns 0 if selection is not mono type
 // Returns type index if selection is mono type
 int		SelectionIsMonoType				(	bGenericMacMapApp* gapp);

@@ -30,7 +30,8 @@
 #import <std_ext/bStdNSAppModalWindowController.h>
 
 //----------------------------------------------------------------------------
-@interface bToolNSGeomWithJoinWindowController : bStdNSAppModalWindowController{
+@interface bToolNSGeomWithJoinWindowController : bStdNSAppToolModalWindowController{
+//bStdNSAppModalWindowController{
     IBOutlet NSButton*      _nea_chk;
     IBOutlet NSTextField*   _nea_txt;
     IBOutlet NSButton*      _dir_chk;

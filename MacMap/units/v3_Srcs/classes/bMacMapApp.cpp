@@ -386,6 +386,9 @@ bGenericExt* ext=_xmapmgr->find(cmd);
 	if(!ext){
 		ext=_xboxmgr->find(cmd);
 	}
+    if(!ext){
+        ext=_toolmgr->find(cmd);
+    }
 	if(!ext){
 _tm_("command <"+(unsigned int*)&cmd+"> not available");
 		return(false);
