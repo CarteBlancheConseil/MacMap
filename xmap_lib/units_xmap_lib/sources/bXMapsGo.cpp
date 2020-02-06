@@ -248,7 +248,7 @@ bool bXMapGoCurs::process(int msg, void* prm){
 i2dvertex		vx;
 bGenericTool*	tool=(bGenericTool*)CurTool(_gapp);
 	tool->get_cur(&vx);
-	if(vx.h==LONG_MIN){
+	if(vx.h==INT_MIN){
 		return(true);
 	}
 	_gapp->mapIntf()->setScreenCenter(vx);
@@ -294,7 +294,7 @@ bool bXMapZoomInCurs::process(int msg, void* prm){
 i2dvertex		vx;
 bGenericTool*	tool=(bGenericTool*)CurTool(_gapp);
 	tool->get_cur(&vx);
-	if(vx.h==LONG_MIN){
+	if(vx.h==INT_MIN){
 		return(true);
 	}
 	
@@ -343,7 +343,7 @@ bool bXMapZoomOutCurs::process(int msg, void* prm){
 i2dvertex		vx;
 bGenericTool*	tool=(bGenericTool*)CurTool(_gapp);
 	tool->get_cur(&vx);
-	if(vx.h==LONG_MIN){
+	if(vx.h==INT_MIN){
 		return(true);
 	}
 	
