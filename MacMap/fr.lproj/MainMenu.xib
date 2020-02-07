@@ -250,7 +250,7 @@ CA
                             </menuItem>
                             <menuItem title="Tout désélectionner" tag="1718383475" keyEquivalent="A" id="7ul-TF-h5P">
                                 <connections>
-                                    <action selector="menuAction:" target="-1" id="svc-yu-jEa"/>
+                                    <action selector="menuAction:" target="Voe-Tx-rLC" id="0ia-gl-yM0"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="N9x-14-KLh"/>

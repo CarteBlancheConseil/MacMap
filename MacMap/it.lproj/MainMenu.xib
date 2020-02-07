@@ -291,7 +291,7 @@ CA
                                     <action selector="menuAction:" target="Voe-Tx-rLC" id="OXn-cJ-LNH"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Ré-indicizza" tag="1380541560" id="eAY-Vw-Ifl">
+                            <menuItem title="Re-indicizza" tag="1380541560" id="eAY-Vw-Ifl">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="menuAction:" target="Voe-Tx-rLC" id="zwD-Qa-Vaj"/>
