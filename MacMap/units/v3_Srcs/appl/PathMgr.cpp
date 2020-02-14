@@ -42,7 +42,7 @@
 // ---------------------------------------------------------------------------
 // 
 // ------------
-bool PATH_get(int n, int* dbtype, char* path){
+bool PATH_get(long n, int* dbtype, char* path){
 _bTrace_("PATH_get",false);
 bGenericXMLBaseElement*	root;	
 	if(map_doc->readXMLParam(&root,"","types.xml")==false){
@@ -78,14 +78,14 @@ _te_("clssmgr->NthElement "+n+" failed for \"path\"");
 // ---------------------------------------------------------------------------
 // 
 // ------------
-int PATH_count(void){
+long PATH_count(void){
 _bTrace_("PATH_count",false);	
 bGenericXMLBaseElement*	root;	
 	if(map_doc->readXMLParam(&root,"","types.xml")==false){
 _te_("readXMLParam failed");
 		return(false);
 	}
-int	n=clssmgr->CountElements(root,"int");
+long	n=clssmgr->CountElements(root,"int");
 	clssmgr->ReleaseXMLInstance(root);	
 	return(n);
 }
@@ -93,10 +93,10 @@ int	n=clssmgr->CountElements(root,"int");
 // ---------------------------------------------------------------------------
 // 
 // ------------
-char* PATH_getExt(int n, int *pthType, const char *ext){
+char* PATH_getExt(long n, int *pthType, const char *ext){
 _bTrace_("PATH_getExt",false);
 char	path[1024];
-int		sz;
+size_t	sz;
 char*	pth;
 	
 	pth=NULL;
@@ -122,7 +122,7 @@ _te_("malloc failed : sz="+(unsigned int)(sz+strlen(_datadir)+strlen(ext)+1));
 // ---------------------------------------------------------------------------
 // 
 // ------------
-int PATH_add(int pthType, const char* path){
+long PATH_add(int pthType, const char* path){
 _bTrace_("PATH_add",false);	
 bGenericXMLBaseElement*	root;	
 	if(map_doc->readXMLParam(&root,"","types.xml")==false){
@@ -130,7 +130,7 @@ _te_("readXMLParam failed");
 		return(false);
 	}
 	
-int						k=clssmgr->CountElements(root,"int");
+long					k=clssmgr->CountElements(root,"int");
 bGenericXMLBaseElement*	elt;
 char					val[_values_length_max_];
 	
@@ -163,7 +163,7 @@ _te_("PATH_count ("+PATH_count()+")!=(k+1)");
 // ---------------------------------------------------------------------------
 // 
 // ------------
-bool PATH_change(int n, const char* path){
+bool PATH_change(long n, const char* path){
 _bTrace_("PATH_change",true);
 bGenericXMLBaseElement*	root;	
 	if(map_doc->readXMLParam(&root,"","types.xml")==false){
@@ -173,7 +173,7 @@ _te_("readXMLParam failed");
 	
 char					val[_names_length_max_];
 bGenericXMLBaseElement*	elt;
-int						k;
+long					k;
 	
 	k=0;
 	for(int i=1;i<=root->countelements();i++){
@@ -198,7 +198,7 @@ _te_("readXMLParam failed");
 // ---------------------------------------------------------------------------
 // 
 // ------------
-bool PATH_rmv(int n){
+bool PATH_rmv(long n){
 _bTrace_("PATH_rmv",true);
 bGenericXMLBaseElement*	root;	
 	if(map_doc->readXMLParam(&root,"","types.xml")==false){
@@ -208,7 +208,7 @@ _te_("readXMLParam failed");
 	
 char					val[_names_length_max_];
 bGenericXMLBaseElement*	elt;
-int						k;
+long					k;
 	
 	k=0;
 	for(int i=1;i<=root->countelements();i++){

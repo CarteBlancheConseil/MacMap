@@ -60,8 +60,9 @@ public:
     
     virtual void editOptions				(	);
     
-    virtual void putCodec                   (	UInt32 codec);
-    
+    virtual void putCodec                   (    UInt32 codec);
+    virtual UInt32 getCodec                 (    );
+
     virtual void get_param                  (	raster_export_prm* prm){*prm=_prm;};
     virtual void set_param                  (	raster_export_prm prm){_prm=prm;};
     

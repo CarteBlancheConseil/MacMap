@@ -66,8 +66,10 @@ _bTrace_("bXMapCopy::process",true);
     
     if([NSApp keyWindow]!=[NSApp mainWindow]){
 bool b=[[[NSApp keyWindow] firstResponder] tryToPerform:@selector(copy:) with:nil];
+        if(b){
 _tm_("déléguer le copy :"+(int)b);
-        return false;
+            return false;
+        }
     }
 
 bArray	arr(*_gapp->selMgr()->elements());

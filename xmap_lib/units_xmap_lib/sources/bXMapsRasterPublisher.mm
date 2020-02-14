@@ -424,6 +424,14 @@ _bTrace_("bXMapsRasterPublisher::putCodec(UInt32)",true);
 }
 
 // ---------------------------------------------------------------------------
+//
+// ------------
+UInt32 bXMapsRasterPublisher::getCodec(){
+_bTrace_("bXMapsRasterPublisher::getCodec()",true);
+    return _prm.codec;
+}
+
+// ---------------------------------------------------------------------------
 // 
 // ------------
 bool bXMapsRasterPublisher::raster_export(){

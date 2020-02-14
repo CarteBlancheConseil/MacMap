@@ -206,6 +206,10 @@
 	</array>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleHelpBookFolder</key>
+	<string>MacMap Help</string>
+	<key>CFBundleHelpBookName</key>
+	<string>MacMap Help</string>
 	<key>CFBundleIconFile</key>
 	<string></string>
 	<key>CFBundleIdentifier</key>
@@ -217,11 +221,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.10.2</string>
+	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleSignature</key>
 	<string>Map™</string>
 	<key>CFBundleVersion</key>
-	<string>3.10.2</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
 	<key>NSHumanReadableCopyright</key>
@@ -230,9 +234,5 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>MacMapApplication</string>
-	<key>CFBundleHelpBookFolder</key>
-	<string>MacMap Help</string>
-	<key>CFBundleHelpBookName</key>
-	<string>MacMap Help</string>
 </dict>
 </plist>

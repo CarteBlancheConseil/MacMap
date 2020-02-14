@@ -38,18 +38,18 @@ extern "C" {
 
 // ---------------------------------------------------------------------------
 
-int		PATH_count		(	void);
-bool	PATH_get		(	int n, 
+long	PATH_count		(	void);
+bool	PATH_get		(	long n, 
 							int* dbtype,
 							char* path);
-char*	PATH_getExt		(	int n,	
+char*	PATH_getExt		(	long n,
 							int* pthType, 
 							const char* ext);
-int		PATH_add		(	int pthType, 
+long    PATH_add		(	int pthType,
 							const char* path);
-bool	PATH_change		(	int n, 
+bool	PATH_change		(	long n,
 							const char* path);
-bool	PATH_rmv		(	int n);
+bool	PATH_rmv		(	long n);
 bool	PATH_make		(	);
 
 // ---------------------------------------------------------------------------

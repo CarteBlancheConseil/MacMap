@@ -64,8 +64,10 @@ _bTrace_("bXMapPaste::process",true);
     
     if([NSApp keyWindow]!=[NSApp mainWindow]){
 bool b=[[[NSApp keyWindow] firstResponder] tryToPerform:@selector(paste:) with:nil];
-_tm_("déléguer le paste :"+(int)b);
-        return false;
+        if(b){
+_tm_("déléguer le copy :"+(int)b);
+            return false;
+        }
     }
     
 void*	data=NULL;

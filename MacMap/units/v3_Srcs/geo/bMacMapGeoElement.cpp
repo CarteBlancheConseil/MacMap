@@ -53,8 +53,11 @@ enum{
 };
 
 static void echoVxs(ivertices*  vxs){
+    for(long i=0;i<vxs->no;i++){
+        fprintf(stderr,"%d\n",vxs->offs[i]);
+    }
     for(long i=0;i<vxs->nv;i++){
-        fprintf(stderr,"%d:%d\n",vxs->vx.vx2[i].h,vxs->vx.vx2[i].v);
+       // fprintf(stderr,"%d:%d\n",vxs->vx.vx2[i].h,vxs->vx.vx2[i].v);
     }
 }
 
@@ -184,7 +187,13 @@ _te_("bad _vxs for "+_offset+" (unknown)");
     if((*status)==0){
         (*status)=ivs_integrity(typ->kind(),_vxs);
         if((*status)){
+            
 _tw_("ivs_integrity returns "+(*status));
+/*echoVxs(_vxs);
+char* txt=ivs2text(typ->kind(),1,_vxs);
+fprintf(stderr,"%s\n",txt);
+free(txt);*/
+//exit(0);
         }
         (*status)=0;
     }
