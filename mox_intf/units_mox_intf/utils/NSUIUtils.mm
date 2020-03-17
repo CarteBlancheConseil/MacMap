@@ -180,6 +180,30 @@ long    nb=[c numberOfItems];
 }
 
 // ---------------------------------------------------------------------------
+//
+// ------------
+void NSPopupButtonPopulateWithConstrainedNumFields(NSPopUpButton* c, bGenericType* tp, long start, long current){
+long    nb=[c numberOfItems];
+    
+    [c setAutoenablesItems:NO];
+    NSPopupButtonPopulateWithFields(c,tp,start,current);
+    for(long i=start;i<=tp->fields()->count();i++){
+        if(tp->fields()->count_constraints(i)==0){
+            NSPopupButtonMenuItemDisable(c,i-start+nb);
+        }
+int     k;
+        tp->fields()->get_kind(i,&k);
+        if(k==_char){
+            NSPopupButtonMenuItemDisable(c,i-start+nb);
+        }
+        k=tp->fields()->get_constraints_kind(i);
+        if(k==_bit){
+            NSPopupButtonMenuItemDisable(c,i-start+nb);
+        }
+    }
+}
+
+// ---------------------------------------------------------------------------
 // 
 // ------------
 void NSPopupButtonPopulateWithTypes(NSPopUpButton* c, bGenericMacMapApp* gapp, long kind, long current){

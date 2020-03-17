@@ -219,7 +219,7 @@ MMsMatrix*	clss;
 	}
 	
 	if(_qmax<=_qmin){
-		_qmax=LONG_MAX;
+		_qmax=INT_MAX;
 	}
 	
 	switch([_dsc_pop indexOfSelectedItem]+1){

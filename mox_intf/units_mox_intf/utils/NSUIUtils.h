@@ -89,6 +89,10 @@ void		NSPopupButtonPopulateWithConstrainedFields	(	NSPopUpButton* c,
 															bGenericType* tp, 
 															long start, 
 															long current);
+void        NSPopupButtonPopulateWithConstrainedNumFields(  NSPopUpButton* c,
+                                                            bGenericType* tp,
+                                                            long start,
+                                                            long current);
 void		NSPopupButtonPopulateWithConstraints        (   NSPopUpButton* c,
                                                             bGenericType* tp,
                                                             int field,

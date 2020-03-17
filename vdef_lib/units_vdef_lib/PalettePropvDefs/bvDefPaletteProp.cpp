@@ -94,7 +94,7 @@ UInt32	sign=_sign;
 	add_cdesc(arr,2,"classboundsarray","");
 	add_ddesc(arr,3,"classbound",1,0);
 	add_cdesc(arr,3,"classname","min");
-	add_ddesc(arr,3,"classbound",LONG_MAX,0);
+	add_ddesc(arr,3,"classbound",INT_MAX,0);
 	add_cdesc(arr,3,"classname","max");
 	
 // Condition	
@@ -127,7 +127,7 @@ bGenericXMLBaseElement* elt;
 bvDefPalettePropStyle*	stl;
 char					val[_values_length_max_];
 int						i;
-double					bmax=LONG_MAX;
+double					bmax=INT_MAX;
 	
 	for(;;){
 // Identification		
@@ -177,7 +177,7 @@ double					bmax=LONG_MAX;
 				bmax=matof(val);
 			}
 		}while(elt);
-		_oor=(bmax==LONG_MAX)?kvDefPropOutOfRangeEmpty:kvDefPropOutOfRangeInvisible;
+		_oor=(bmax==INT_MAX)?kvDefPropOutOfRangeEmpty:kvDefPropOutOfRangeInvisible;
 		
 		elt=_gapp->classMgr()->NthElement(chld,1,"scaleref");
 		if(!elt){
@@ -293,7 +293,7 @@ bvDefPalettePropStyle*	stl;
 	add_ddesc(arr,3,"classbound",stl->_qref,15);
 	add_cdesc(arr,3,"classname","min");
 	if(_oor==kvDefPropOutOfRangeEmpty){
-		add_ddesc(arr,3,"classbound",LONG_MAX,0);
+		add_ddesc(arr,3,"classbound",INT_MAX,0);
 	}
 	else{
 		add_ddesc(arr,3,"classbound",stl->_qmax+0.000001,6);

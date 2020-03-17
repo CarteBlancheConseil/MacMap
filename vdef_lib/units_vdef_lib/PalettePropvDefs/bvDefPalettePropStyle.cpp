@@ -51,7 +51,7 @@ bvDefPalettePropStyle	::bvDefPalettePropStyle(bGenericMacMapApp* gapp,
 	_exp=1;
 	
 	_smin=1;
-	_smax=LONG_MAX;
+	_smax=INT_MAX;
 	_pass=1;
 	
 	_offx=0;
@@ -138,7 +138,7 @@ bool bvDefPalettePropStyle::std_dump(bArray& arr, int indent){
 	add_idesc(arr,indent+3,"classmin",1);
 	add_idesc(arr,indent+3,"classmax",2);
 	add_ddesc(arr,indent+3,"scalemin",_smin,6);
-	add_ddesc(arr,indent+3,"scalemax",(_smax==LONG_MAX)?_smax:_smax+1,6);
+	add_ddesc(arr,indent+3,"scalemax",(_smax==INT_MAX)?_smax:_smax+1,6);
 	add_idesc(arr,indent+3,"pass",_pass);
 	return(true);
 }

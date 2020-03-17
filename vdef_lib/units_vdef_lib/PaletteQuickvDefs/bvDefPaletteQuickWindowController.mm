@@ -93,7 +93,7 @@ bGenericMacMapApp*	gapp=(bGenericMacMapApp*)_ext->getapp();
 // Options
     [_o_clf_pop setAutoenablesItems:NO];
 	NSPopupButtonRemoveAllItems(_o_clf_pop);
-	NSPopupButtonPopulateWithConstrainedFields(_o_clf_pop,_ext->type_get(),kOBJ_Name_,1);
+	NSPopupButtonPopulateWithConstrainedNumFields(_o_clf_pop,_ext->type_get(),kOBJ_Name_,1);
 	NSPopupButtonPopulateWithScales(_o_srf_pop,gapp,1);
 	NSPopupButtonRemoveAllItems(_o_cnf_pop);
 	NSPopupButtonPopulateWithFields(_o_cnf_pop,_ext->type_get(),kOBJ_Name_,1);

@@ -2180,11 +2180,11 @@
 		1423940B2195BE0E00204A9D /* units_vdef_lib */ = {
 			isa = PBXGroup;
 			children = (
-				1423940C2195BE0E00204A9D /* PaletteVirtualvDefs */,
 				1423940F2195BE0E00204A9D /* colors.xml */,
 				142394112195BE0E00204A9D /* vdef_utils.h */,
-				142394132195BE0E00204A9D /* PaletteQuickvDefs */,
 				1423941A2195BE0E00204A9D /* vdef_utils.cpp */,
+				1423940C2195BE0E00204A9D /* PaletteVirtualvDefs */,
+				142394132195BE0E00204A9D /* PaletteQuickvDefs */,
 				1423941B2195BE0E00204A9D /* PalettePropvDefs */,
 				142394232195BE0E00204A9D /* PaletteRangevDefs */,
 			);

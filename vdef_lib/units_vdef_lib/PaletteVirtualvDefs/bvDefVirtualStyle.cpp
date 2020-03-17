@@ -37,7 +37,7 @@ bvDefVirtualStyle::bvDefVirtualStyle(bGenericMacMapApp* gapp){
 	_gapp=gapp;
 	_gstl=NULL;	
 	_smin=1;
-	_smax=LONG_MAX;
+	_smax=INT_MAX;
 	_pass=1;
 }
 
@@ -97,7 +97,7 @@ bool bvDefVirtualStyle::std_dump(bArray& arr, int indent){
 	add_cdesc(arr,indent+1,"stylerun","");
 	add_cdesc(arr,indent+2,"validity","");
 	add_ddesc(arr,indent+3,"scalemin",_smin,6);
-	add_ddesc(arr,indent+3,"scalemax",(_smax==LONG_MAX)?_smax:_smax+1,6);
+	add_ddesc(arr,indent+3,"scalemax",(_smax==INT_MAX)?_smax:_smax+1,6);
 	add_idesc(arr,indent+3,"pass",_pass);
 	return(true);
 }

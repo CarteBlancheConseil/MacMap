@@ -202,24 +202,26 @@ typedef bGenericType* agregateintopoly;
 // MakeRect
 //------------
 typedef struct makerect_prm{
-	int				justo;
-	d2dvertex		o;
-	double			w;
-	double			h;
-	bGenericType*	tp;
-	int				sui;
+	int				    justo;
+	d2dvertex		    o;
+	double			    w;
+	double			    h;
+	bGenericType*	    tp;
+	int				    sui;
+    bGenericGeoElement* go;
 }makerect_prm;
 
 //----------------------------------------------------------------------------
 // MakePoly
 //------------
 typedef struct makepoly_prm{
-	int				justo;
-	d2dvertex		o;
-	int				nb;
-	double			sz;
-	bGenericType*	tp;
-	int				sui;
+	int				    justo;
+	d2dvertex		    o;
+	int				    nb;
+	double			    sz;
+	bGenericType*	    tp;
+	int				    sui;
+    bGenericGeoElement* go;
 }makepoly_prm;
 
 //----------------------------------------------------------------------------

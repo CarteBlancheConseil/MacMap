@@ -108,7 +108,8 @@ NSMenu      *subMenu=[subMenuItem submenu];
     
     [subMenu removeItem:[subMenu itemWithTag:(NSInteger)cmd]];
     
-_te_("command "+(UInt32*)&cmd+" exist in menu "+menu);
+//_tm_("command "+(UInt32*)&cmd+" exist in menu "+menu);
+    
     return(false);
 }
 
