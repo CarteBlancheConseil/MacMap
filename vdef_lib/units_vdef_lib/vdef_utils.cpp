@@ -138,7 +138,7 @@ void getMin(bGenericMacMapApp* gapp,
 bArray	arr(sizeof(double));
 read_p	rp={&arr,0,field};
 bArray	cnt(*gapp->cntMgr()->elements());
-bArray	sel(*gapp->cntMgr()->elements());
+bArray	sel(*gapp->selMgr()->elements());
 bool	cntok=false,selok=false;
 	
 	if(cnt.count()>0){
@@ -187,7 +187,7 @@ void getMax(bGenericMacMapApp* gapp,
 bArray	arr(sizeof(double));
 read_p	rp={&arr,0,field};
 bArray	cnt(*gapp->cntMgr()->elements());
-bArray	sel(*gapp->cntMgr()->elements());
+bArray	sel(*gapp->selMgr()->elements());
 bool	cntok=false,selok=false;
 	
 	if(cnt.count()>0){
@@ -214,7 +214,7 @@ int		idx=SelectionIsMonoType(gapp);
 int		n=1;
 double	a,b;
 	if(arr.get(arr.count(),&a)){
-		for(int i=arr.count()-1;(i>0)&&(n<nth);i--){
+		for(long i=arr.count()-1;(i>0)&&(n<nth);i--){
 			arr.get(i,&b);
 			if(b!=a){
 				n++;
@@ -236,7 +236,7 @@ void getBornes(bGenericMacMapApp* gapp,
 bArray	arr(sizeof(double));
 read_p	rp={&arr,0,field};
 bArray	cnt(*gapp->cntMgr()->elements());
-bArray	sel(*gapp->cntMgr()->elements());
+bArray	sel(*gapp->selMgr()->elements());
 bool	cntok=false,selok=false;
 	
 	if(cnt.count()>0){
@@ -277,7 +277,7 @@ void getMatrix(bGenericMacMapApp* gapp,
 bArray	arr(sizeof(double));
 read_p	rp={&arr,0,field};
 bArray	cnt(*gapp->cntMgr()->elements());
-bArray	sel(*gapp->cntMgr()->elements());
+bArray	sel(*gapp->selMgr()->elements());
 bool	cntok=false,selok=false;
 	
 	if(cnt.count()>0){
