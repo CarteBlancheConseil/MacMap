@@ -141,12 +141,12 @@ bArray	cnt(*gapp->cntMgr()->elements());
 bArray	sel(*gapp->selMgr()->elements());
 bool	cntok=false,selok=false;
 	
-	if(cnt.count()>0){
+	if(cnt.count()>1){
 int		idx=ContrastesAreMonoType(gapp);
 		cntok=idx==tp->index();
 	}
 	
-	if(sel.count()>0){
+	if(sel.count()>1){
 int		idx=SelectionIsMonoType(gapp);
 		selok=idx==tp->index();
 	}
@@ -190,12 +190,12 @@ bArray	cnt(*gapp->cntMgr()->elements());
 bArray	sel(*gapp->selMgr()->elements());
 bool	cntok=false,selok=false;
 	
-	if(cnt.count()>0){
+	if(cnt.count()>1){
 int		idx=ContrastesAreMonoType(gapp);
 		cntok=idx==tp->index();
 	}
 	
-	if(sel.count()>0){
+	if(sel.count()>1){
 int		idx=SelectionIsMonoType(gapp);
 		selok=idx==tp->index();
 	}
@@ -239,12 +239,12 @@ bArray	cnt(*gapp->cntMgr()->elements());
 bArray	sel(*gapp->selMgr()->elements());
 bool	cntok=false,selok=false;
 	
-	if(cnt.count()>0){
+	if(cnt.count()>1){
 int		idx=ContrastesAreMonoType(gapp);
 		cntok=idx==tp->index();
 	}
 	
-	if(sel.count()>0){
+	if(sel.count()>1){
 int		idx=SelectionIsMonoType(gapp);
 		selok=idx==tp->index();
 	}
@@ -280,12 +280,12 @@ bArray	cnt(*gapp->cntMgr()->elements());
 bArray	sel(*gapp->selMgr()->elements());
 bool	cntok=false,selok=false;
 	
-	if(cnt.count()>0){
+	if(cnt.count()>1){
 int		idx=ContrastesAreMonoType(gapp);
 		cntok=idx==tp->index();
 	}
 	
-	if(sel.count()>0){
+	if(sel.count()>1){
 int		idx=SelectionIsMonoType(gapp);
 		selok=idx==tp->index();
 	}
