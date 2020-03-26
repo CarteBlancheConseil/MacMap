@@ -136,7 +136,6 @@ bLayersMgr	::bLayersMgr()
 	_cntg=NULL;
 	_drawing=false;
                 
-                
     _cursor=0;
     _elts=new bArray(sizeof(bStyle*));
 
@@ -165,7 +164,7 @@ bGenericGraphicContext*	ctx;
 int bLayersMgr::load(){
 _lbTrace_("bLayersMgr::load",true);
 	if(_ctx==NULL){
-		_ctx=(bGenericGraphicContext*)(extmgr->get_component(kComponentGraphics)->i_allocate(kCGGraphicContext,_MMAPP_,NULL));
+        _ctx=(bGenericGraphicContext*)(extmgr->get_component(kComponentGraphics)->i_allocate(kCGGraphicContext,_MMAPP_,NULL));
 	}
 	
 bGenericGraphicContext*	ctx;

@@ -38,6 +38,7 @@
 #import <mox_intf/endian.h>
 #import <mox_intf/bitmap_utils.h>
 #import <mox_intf/NSOpenSavePanelWrappers.h>
+#import <mox_intf/CGUtils.h>
 #import <mox_intf/NSUIUtils.h>
 
 #import <std_ext/bStdNSAppModalWindowController.h>
@@ -665,6 +666,7 @@ d2dvertex		dtl,dbr;
 				vx.v=vxr.bottom;				
 				Convert(&dbr,&vx);
 				
+                UTF82MacRoman(fnam,FILENAME_MAX);
 bStdFile		f(fnam,"w");
 double			d[4]={0,0,0,0};
 				

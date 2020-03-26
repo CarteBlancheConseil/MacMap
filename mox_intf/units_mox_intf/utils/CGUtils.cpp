@@ -1040,7 +1040,7 @@ CFURLRef	url=CFBundleCopyResourceURL(bndl,name,NULL,NULL);
 //
 // -----------
 void MacRoman2UTF8(char* str, int sz){
-    CFStringRef	cfs=CFStringCreateWithCString(kCFAllocatorDefault,str,kCFStringEncodingMacRoman);
+CFStringRef	cfs=CFStringCreateWithCString(kCFAllocatorDefault,str,kCFStringEncodingMacRoman);
     CFStringGetCString(cfs,str,sz,kCFStringEncodingUTF8);
     CFRelease(cfs);
 }
@@ -1049,7 +1049,7 @@ void MacRoman2UTF8(char* str, int sz){
 //
 // -----------
 void UTF82MacRoman(char* str, int sz){
-    CFStringRef	cfs=CFStringCreateWithCString(kCFAllocatorDefault,str,kCFStringEncodingUTF8);
+CFStringRef	cfs=CFStringCreateWithCString(kCFAllocatorDefault,str,kCFStringEncodingUTF8);
     CFStringGetCString(cfs,str,sz,kCFStringEncodingMacRoman);
     CFRelease(cfs);
 }
