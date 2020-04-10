@@ -470,6 +470,8 @@ void bStyle::setlayer(void* elt){
 // 
 // ------------
 void bStyle::setmargin(int margin){
+_bTrace_("bStyle::setmargin",true);
+_tm_((void*)this+"> margin="+margin);
 	if(margin>=0){
 		_margin=margin;
 	}
@@ -487,6 +489,7 @@ bGenericXMLBaseElement* bStyle::getlayer(){
 // 
 // ------------
 void bStyle::setbounds(ivx_rect* bounds){
+_bTrace_("bStyle::setbounds",true);
 	if(!_vis){
 		return;
 	}
@@ -510,6 +513,7 @@ bGenericType* tp=typesmgr->get(_typeindex);
 	_lock=true;
 
 /**/
+_tm_((void*)this+"> _margin="+_margin);
 	_area.left-=_margin;
 	_area.right+=_margin;
 	_area.top-=_margin;

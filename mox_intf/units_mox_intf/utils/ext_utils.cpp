@@ -833,9 +833,12 @@ bGenericXMLBaseElement*	root=gapp->classMgr()->ParseXMLData(buffer,sz);
 // ------------
 void SetMarginToCurview(bGenericMacMapApp* gapp, 
 						double d){
+_bTrace_("SetMarginToCurview",true);
 bGenericStyle*	stl;
 long			margin=Measure_d2i(gapp,d);
-	
+
+_tm_(d+" > "+margin);
+
     for(long i=1;i<=gapp->layersMgr()->count();i++){
         stl=gapp->layersMgr()->get(i);
 		stl->setmargin(margin);

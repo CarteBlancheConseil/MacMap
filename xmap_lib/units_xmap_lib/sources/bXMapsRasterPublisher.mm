@@ -209,6 +209,7 @@ char                    unit[256];
 //
 // -----------
 -(IBAction)validDialog:(id)sender{
+_bTrace_("[GISIOExportRasterOptionsViewController validDialog]",true);
 bXMapsRasterPublisher*  ext=(bXMapsRasterPublisher*)_ext;
 raster_export_prm       prm;
     
@@ -244,8 +245,8 @@ raster_export_prm       prm;
     }
     prm.r=[_restxt intValue];
     prm.gr=[_geochk intValue];
+_tm_("marge="+prm.mrg);
     ext->set_param(prm);
-    
     [super validDialog:sender];
 }
 
@@ -533,11 +534,26 @@ bGenericXMLBaseElement*	elt;
 }
 
 // ---------------------------------------------------------------------------
+//
+// ------------
+static void SetMarginToClonedview(bGenericMacMapApp* gapp,
+                           bGenericLayersMgr* mgr,
+                           double d){
+bGenericStyle*  stl;
+long            margin=Measure_d2i(gapp,d);
+
+    for(long i=1;i<=mgr->count();i++){
+        stl=mgr->get(i);
+        stl->setmargin(margin);
+    }
+}
+
+// ---------------------------------------------------------------------------
 // 
 // ------------
 bool bXMapsRasterPublisher::raster_export(raster_export_prm* ep){
 _bTrace_("bXMapsRasterPublisher::raster_export",true);
-ivx_rect				area=*(_gapp->printMgr()->get_print_area());
+ivx_rect			area=*(_gapp->printMgr()->get_print_area());
 
 	if(!ivr_ok(&area)){
 _te_("bad area "+area.left+";"+area.top+";"+area.right+";"+area.bottom);
@@ -597,13 +613,17 @@ _te_("bad directory "+ep->path+"->"+dr.status());
 
 	h=(double)(area.right-area.left)/(double)ep->nh;
 	v=(double)(area.bottom-area.top)/(double)ep->nv;
-	
-bArray*					arr;
-	SaveCurrentMargins(_gapp,&arr);
-	SetMarginToCurview(_gapp,ep->mrg);
+
+//_tm_("marge="+ep->mrg);
+    
+//bArray*					arr;
+//	SaveCurrentMargins(_gapp,&arr);
+//	SetMarginToCurview(_gapp,ep->mrg);
 
 bGenericLayersMgr*      mgr=_gapp->layersMgr()->clone();
-   
+//   SetMarginToCurview(_gapp,ep->mrg);
+    SetMarginToClonedview(_gapp,mgr,ep->mrg);
+
 	for(j=0;j<ep->nv;j++){
 		vxr.top=area.top+round((double)j*v);
 		vxr.bottom=area.top+round((double)(j+1)*v);
@@ -637,6 +657,7 @@ _te_("dt.data==NULL");
 			_gapp->mapIntf()->screenBounds(&back);
             _gapp->locConverter()->reset(&vxr);
             mgr->SwitchContext(kBitMapGraphicContext,&dt);
+            
             mgr->DrawLayers(NULL,&vxr);
 
 _tm_("dt.outbm="+(void*)dt.outbm);
@@ -689,8 +710,8 @@ double			d[4]={0,0,0,0};
 	
     _gapp->layersMgr()->cloneDelete(mgr);
 
-	RestoreCurrentMargins(_gapp,arr);
-	delete arr;
+//	RestoreCurrentMargins(_gapp,arr);
+//	delete arr;
 
 	return(true);
 }
@@ -763,4 +784,3 @@ bXMapPNGPublisher::~bXMapPNGPublisher(){
 bGenericXMLBaseElement* bXMapPNGPublisher::create(bGenericXMLBaseElement* elt){
 	return(new bXMapPNGPublisher(elt,_gapp,elt->getbundle()));
 }
-

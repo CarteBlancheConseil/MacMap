@@ -356,7 +356,7 @@ void bLayersMgr::DrawLayers(void* wd, ivx_rect* bounds){
 _lbTrace_("bLayersMgr::DrawLayers",true);
 long    i;
 bStyle* style;
-		
+_lm_((void*)this);
 	_breaked=false;
 	
 double	d=scalemgr->get()->coef();
