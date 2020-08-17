@@ -73,7 +73,7 @@ void bToolLength::open(int* flags){
 // -----------
 void bToolLength::clic(CGPoint pt, int count){
 	if(count>1){
-		clearTempPathContext(true);
+		//clearTempPathContext(true);
 		validTempPathContext();
 		_len=0;
 	}
@@ -105,7 +105,7 @@ bool	b=false;
 		case kReturnCharCode:
 			action(0);
 			(void)bStdToolNav::set_key(k);
-			clearTempPathContext(true);
+			//clearTempPathContext(true);
 			validTempPathContext();
 			k=0;
 			WriteMessage(_gapp,"");
@@ -113,7 +113,7 @@ bool	b=false;
 			break;
 		case kEscapeCharCode:
 			(void)bStdToolNav::set_key(k);
-			clearTempPathContext(true);
+			//clearTempPathContext(true);
 			validTempPathContext();
 			k=0;			
 			WriteMessage(_gapp,"");
@@ -124,7 +124,7 @@ bool	b=false;
 				break;
 			}
 			(void)bStdToolNav::set_key(k);
-			clearTempPathContext(true);
+			//clearTempPathContext(true);
 			track_draw();
 			validTempPathContext();
 			k=0;

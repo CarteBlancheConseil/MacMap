@@ -61,7 +61,7 @@ public:
 	virtual void draw				(	)=0;
 	virtual void idle				(	)=0;
 	virtual void updatePath			(	)=0;
-	virtual CGLayerRef getPathLayer	(	)=0;
+//	virtual CGLayerRef getPathLayer	(	)=0;
 	
 	virtual void screenCenter		(	i2dvertex* vx)=0;
 	virtual void screenTopLeft		(	i2dvertex* vx)=0;

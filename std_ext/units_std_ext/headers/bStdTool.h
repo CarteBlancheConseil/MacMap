@@ -199,7 +199,7 @@ public:
 
 	virtual CGContextRef getTempPathContext	(	);
 	virtual CGRect getTempPathContextRect	(	);
-	virtual void clearTempPathContext		(	bool utrc);
+//	virtual void clearTempPathContext		(	bool utrc);
 	virtual void validTempPathContext		(	);
 	virtual void set_use_trace				(	char val){_use_trace=val;};
     virtual void setCursorLock				(	bool val){_curs_lock=val;};

@@ -151,9 +151,9 @@ bEventLog	log(_gapp,
 // 
 // -----------
 void bToolGeomShift::update(bool global){
-	if(!global){
+	/*if(!global){
 		clearTempPathContext(false);
-	}	
+	}*/
 	if(get_on_drag()){
 ivertices*	vxs=get_output();
         if(vxs){

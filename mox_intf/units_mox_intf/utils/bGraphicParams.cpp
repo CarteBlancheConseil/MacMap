@@ -87,7 +87,7 @@ char	fname[256];
 		_fill[0]=0.75;
 		_fill[1]=0.75;
 		_fill[2]=1.00;
-		_fill[3]=0.60;
+        _fill[3]=0.60;
 	}
 	
 bGenericXMLBaseElement* root=NULL;
@@ -205,9 +205,9 @@ void bGraphicParams::apply(CGContextRef ctx){
 	}	
 	CGContextSetLineWidth(ctx,_width);
 	CGContextSetRGBStrokeColor(ctx,_stroke[0],_stroke[1],_stroke[2],_stroke[3]);
-	CGContextSetRGBFillColor(ctx,_fill[0],_fill[1],_fill[2],_fill[3]);
+    CGContextSetRGBFillColor(ctx,_fill[0],_fill[1],_fill[2],_fill[3]);
 
- /*   CGContextSetLineWidth(ctx,2);
+    /*CGContextSetLineWidth(ctx,2);
     CGContextSetRGBStrokeColor(ctx,0,0,0,1);
     CGContextSetRGBFillColor(ctx,1,1,1,1);*/
 }

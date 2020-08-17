@@ -207,7 +207,7 @@ void bStdTool::close(){
 // -----------
 bool bStdTool::nsevent(void* nsevt){
 //_bTrace_("bStdTool::nsevent(void*)",false);
-//_tm_("");
+//_tm_(_cfname);
 long etype=NSEvent_type(nsevt);
     if(_curs_lock){
         return false;
@@ -300,11 +300,11 @@ CGPoint     loc=NSEvent_locationInWindow(nsevt);
 // 
 // -----------
 void bStdTool::idle(void* prm){
-//_bTrace_("bStdTool::idle(void*)",true);
+//_bTrace_("bStdTool::idle(void*)",false);
     if(_curs_lock){
         return;
     }
-
+//_tm_(_cfname);
 	if(_on_edit){
 //_tm_("on edit");
 		return;
@@ -318,7 +318,7 @@ void bStdTool::idle(void* prm){
     
     if(prm)set_cur((CGPoint*)prm);
 	
-	clearTempPathContext(true);
+//	clearTempPathContext(true);
 	
 	if(get_use_join()){
 //_tm_("track_join");
@@ -406,7 +406,7 @@ void bStdTool::deactivate(){
 	}
 	push();
 
-	clearTempPathContext(true);
+//	clearTempPathContext(true);
 	
 	if(get_use_join()){
 		track_join();
@@ -527,6 +527,7 @@ _te_("no desc");
 // -----------
 void bStdTool::update(bool global){
 //_bTrace_("bStdTool::update",false);
+//_tm_(_cfname);
 //char	nm[256];
 //	getclassname(nm);
 //_tw_("DON'T CALL bStdTool::update >"+nm);
@@ -545,7 +546,7 @@ void bStdTool::drag(CGPoint cgp){
 	}
 	if(get_use_drag()){
 //_tm_("get_use_drag");
-		clearTempPathContext(true);
+//		clearTempPathContext(true);
 		track_join();
 		track_draw();
 		if(_use_trace){
@@ -1487,28 +1488,33 @@ menuitem_desc*			desc;
 // 
 // -----------
 CGContextRef bStdTool::getTempPathContext(){
-	return CGLayerGetContext(_gapp->mapIntf()->getPathLayer());
+NSWindow*    wd=(NSWindow*)_gapp->mapIntf()->ref();
+    return [[NSGraphicsContext graphicsContextWithWindow:wd] CGContext];
+    //return CGLayerGetContext(_gapp->mapIntf()->getPathLayer());
 }
 
 // ---------------------------------------------------------------------------
 // 
 // -----------
 CGRect bStdTool::getTempPathContextRect(){
-CGLayerRef	lyr=_gapp->mapIntf()->getPathLayer();
+NSWindow*    wd=(NSWindow*)_gapp->mapIntf()->ref();
+NSRect       nsrect=[wd contentLayoutRect];
+    return(CGRectMake(0,0,nsrect.size.width,nsrect.size.height));
+/*CGLayerRef	lyr=_gapp->mapIntf()->getPathLayer();
     if(lyr==NULL){
         return CGRectZero;
     }
 CGSize		sz=CGLayerGetSize(lyr);
-	return(CGRectMake(0,0,sz.width,sz.height));
+	return(CGRectMake(0,0,sz.width,sz.height));*/
 }
 
 // ---------------------------------------------------------------------------
 // 
 // -----------
-void bStdTool::clearTempPathContext(bool utrc){
-//_bTrace_("bStdTool::clearTempPathContext",true);
-//_tm_(utrc);
-CGLayerRef		lyr=_gapp->mapIntf()->getPathLayer();
+/*void bStdTool::clearTempPathContext(bool utrc){
+_bTrace_("bStdTool::clearTempPathContext",false);
+_tw_(_cfname+"=> unused");
+*//*CGLayerRef		lyr=_gapp->mapIntf()->getPathLayer();
     if(lyr==NULL){
 //_te_("lyr==NULL");
         return;
@@ -1522,7 +1528,7 @@ CGContextRef	ctx=CGLayerGetContext(lyr);
 //_tm_("ctx:"+(void*)ctx);
 CGSize			sz=CGLayerGetSize(lyr);
 	CGContextClearRect(ctx,CGRectMake(0,0,sz.width,sz.height));
-	
+    
 	if(utrc){
 bGenericTool*	tool;
 		for(long i=1;i<=_gapp->toolMgr()->count();i++){
@@ -1531,14 +1537,15 @@ bGenericTool*	tool;
 				tool->update(true);
 			}
 		}
-	}
-}
+	}*/
+/*}*/
 
 // ---------------------------------------------------------------------------
 // 
 // -----------
 void bStdTool::validTempPathContext(){
-//_bTrace_("bStdTool::validTempPathContext",true);
+//_bTrace_("bStdTool::validTempPathContext",false);
+//_tm_(_cfname);
 	_gapp->mapIntf()->updatePath();
 }
 

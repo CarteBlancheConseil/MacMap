@@ -117,9 +117,9 @@ bEventLog	log(_gapp,
 // 
 // -----------
 void bToolMove::update(bool global){
-	if(!global){
+	/*if(!global){
 		clearTempPathContext(false);
-	}
+	}*/
 	if(get_on_drag()){
 CGPoint	v1,v2;
 		get_clic(&v1);
