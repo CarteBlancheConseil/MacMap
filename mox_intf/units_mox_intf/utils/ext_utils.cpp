@@ -264,6 +264,9 @@ char    lname[FILENAME_MAX];
     else if(strstr(lname,".JPEG")){
         t=kFileTypeJPEG;
     }
+    if(strstr(lname,".JP2")){
+        t=kFileTypeJPEG2000;
+    }
     else if(strstr(lname,".TIF")){
         t=kFileTypeTIFF;
     }

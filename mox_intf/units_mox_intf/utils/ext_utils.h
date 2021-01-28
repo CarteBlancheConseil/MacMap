@@ -80,10 +80,11 @@
 };*/
 
 enum{
-    kFileTypeJPEG   = 'JPEG',
-    kFileTypeTIFF   = 'TIFF',
-    kFileTypePNG    = 'PNGf',
-    kFileTypePDF    = 'PDF ',
+    kFileTypeJPEG       = 'JPEG',
+    kFileTypeJPEG2000   = 'JPG2',
+    kFileTypeTIFF       = 'TIFF',
+    kFileTypePNG        = 'PNGf',
+    kFileTypePDF        = 'PDF ',
 };
 
 #warning TEMP

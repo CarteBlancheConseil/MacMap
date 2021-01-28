@@ -239,6 +239,10 @@ CFStringRef imgType;
             imgType=kUTTypeJPEG;
 _tm_("kUTTypeJPEG");
             break;
+        case kFileTypeJPEG2000:
+            imgType=kUTTypeJPEG2000;
+_tm_("kUTTypeJPEG2000");
+            break;
         case kFileTypeTIFF:
             imgType=kUTTypeTIFF;
 _tm_("kUTTypeTIFF");

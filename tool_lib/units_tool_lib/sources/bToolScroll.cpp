@@ -111,10 +111,10 @@ void bToolScroll::end_clic(){
 i2dvertex	a,b,c;
 		get_clic(&a);
 		get_cur(&b);
-		if(b.h==LONG_MIN){
+		if(b.h==INT_MIN){
 			get_last(&b);
 		}
-		if((b.h!=LONG_MIN)&&(!eq_ivx2(&a,&b))){
+		if((b.h!=INT_MIN)&&(!eq_ivx2(&a,&b))){
 			_gapp->mapIntf()->screenCenter(&c);
 			c.h-=(b.h-a.h);
 			c.v-=(b.v-a.v);

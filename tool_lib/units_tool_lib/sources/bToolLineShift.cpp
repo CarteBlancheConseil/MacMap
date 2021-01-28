@@ -256,7 +256,7 @@ void bToolLineShift::track_draw(){
 CGPoint		cgp;
 i2dvertex	vx;
 	get_cur(&vx);
-	if(vx.h==LONG_MIN){
+	if(vx.h==INT_MIN){
 		return;
 	}
 	Convert(&cgp,&vx);

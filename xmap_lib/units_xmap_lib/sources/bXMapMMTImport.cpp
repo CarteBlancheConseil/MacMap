@@ -303,9 +303,6 @@ _te_("read vertices err");
 		}
 		if(	(tp->kind()==kBaseKindPolygon)	||
 			(tp->kind()==kBaseKindRaster)	){
-			if(!ivs_closed(vxs)){
-				vxs=ivx2_add(vxs,&vxs->vx.vx2[0]);
-			}
 		}
 
 		if(!tp->new_object(&o)){
@@ -401,7 +398,7 @@ _te_("bse->add failed for "+name+" with "+x);
 		else{
 			bse->get_kind(x,&fk);
 			if(fk!=k){
-				sprintf(to_name,"%s:%.4s",name,&k);
+				sprintf(to_name,"%s:%.4s",name,(char*)&k);
 				x=bse->get_index(to_name);
 				if(!x){
 					if(bse->add(k,l,d,to_name)){
