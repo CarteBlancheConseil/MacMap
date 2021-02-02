@@ -80,7 +80,7 @@ OSStatus			status=noErr;
 bArray				b(*l);
 	
 //	layersmgr->DrawSelection(NULL);
-	for(int i=b.count();i>0;i--){
+	for(long i=b.count();i>0;i--){
 		if(b.get(i,&o)){
 			if(o->selected()){
 				if(!b.rmv(i)){
@@ -123,11 +123,11 @@ int bSelectionMgr::rmv(bGenericGeoElement* o){
 // 
 // -----------
 void bSelectionMgr::flush(){
-int					n=count();
+long                n=count();
 bGenericGeoElement*	o;
 	
 //	layersmgr->DrawSelection(NULL); 
-	for(int i=n;i>0;i--){
+	for(long i=n;i>0;i--){
 		if(_elts->get(i,&o)){
 			o->setselect(false);
 		}

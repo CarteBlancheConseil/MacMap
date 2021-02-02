@@ -68,7 +68,7 @@ int bContrastesMgr::add(bGenericGeoElement* o){
 // -----------
 int bContrastesMgr::add(bArray* l){
 bMacMapGeoElement*	o;
-int					i;
+long				i;
 OSStatus			status=noErr;
 bArray				*a,*b;
 	
@@ -121,7 +121,7 @@ int bContrastesMgr::rmv(bGenericGeoElement* o){
 // 
 // -----------
 void bContrastesMgr::flush(){
-int					i,n=count();
+long				i,n=count();
 bMacMapGeoElement*	o;
 	
 //	layersmgr->DrawContrastes(NULL);

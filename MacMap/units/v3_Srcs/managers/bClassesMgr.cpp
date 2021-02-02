@@ -55,7 +55,7 @@ typedef struct cewnPrm{
 
 typedef struct giewnPrm{
 	long					idx;
-	int						n;
+	long					n;
 	char					name[_names_length_max_];
 	bGenericXMLBaseElement* elt;
 }giewnPrm;
@@ -126,7 +126,7 @@ bClassesMgr::~bClassesMgr(){
 // -----------
 int bClassesMgr::load(){
 _bTrace_("bClassesMgr::load",true);
-int						i,n=0;
+long					i,n=0;
 OSStatus				err;
 bGenericExtLib*			ext;
 bGenericXMLBaseElement*	elt;
@@ -196,7 +196,7 @@ bGenericXMLBaseElement* bClassesMgr::CreateXMLInstance(const char* name){
 _bTrace_("bClassesMgr::CreateXMLInstance",false);
 bXMLDummyElement	dummy((char*)name,_MMAPP_);
 bXMLDummyElement*	pdummy=&dummy;
-int					idx=_elts.search(&pdummy,comp);
+long				idx=_elts.search(&pdummy,comp);
 	if(idx<=0){
 _te_("not found :"+name);
 		return(NULL);
@@ -237,7 +237,7 @@ _te_("parent->addChild returns NULL for "+name);
 // 
 // -----------
 bGenericXMLBaseElement* bClassesMgr::FindXMLInstance(int sign){
-int			i;
+long			i;
 bGenericExtLib*	ext;
 	
 	for(i=1;i<=_extelts.count();i++){
@@ -255,7 +255,7 @@ bGenericExtLib*	ext;
 // 
 // -----------
 bool bClassesMgr::GetXMLInstanceName(int sign, char *name){
-int			i;
+long			i;
 bGenericExtLib*	ext;
 
 	for(i=1;i<=_extelts.count();i++){
@@ -274,7 +274,7 @@ bGenericExtLib*	ext;
 // 
 // -----------
 void bClassesMgr::FindXMLInstanceByClass(bArray& arr, int sign){
-int						i;
+long					i;
 bGenericXMLBaseElement*	elt;
 	
 	for(i=1;i<=_elts.count();i++){
@@ -292,7 +292,7 @@ bGenericXMLBaseElement*	elt;
 // 
 // -----------
 void bClassesMgr::FindXMLInstanceBySubClass(bArray& arr, int sign){
-int						i;
+long					i;
 bGenericXMLBaseElement*	elt;
 	
 	for(i=1;i<=_elts.count();i++){
