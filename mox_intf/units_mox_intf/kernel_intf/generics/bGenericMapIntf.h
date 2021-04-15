@@ -41,38 +41,39 @@
 
 class bGenericMapIntf : public bGenericElement{
 public:		
-	virtual ~bGenericMapIntf		(	){};
+	virtual ~bGenericMapIntf		    (	){};
 
 // Gestion fenêtre
-	virtual OSStatus open			(	void* cc)=0;
-	virtual void close				(	)=0;
+	virtual OSStatus open			    (	void* cc)=0;
+	virtual void close				    (	)=0;
 				
-	virtual CGRect bounds			(	)=0;
-	virtual void setBounds			(	CGRect r)=0;
+	virtual CGRect bounds			    (	)=0;
+	virtual void setBounds			    (	CGRect r)=0;
 	
-	virtual void inval				(	)=0;
-	virtual void inval				(	CGRect r)=0;
+	virtual void inval				    (	)=0;
+	virtual void inval				    (	CGRect r)=0;
 	
-	virtual void* ref				(	)=0;
+	virtual void* ref				    (	)=0;
 	
-	virtual bool active				(	)=0;
+	virtual bool active				    (	)=0;
 
 // Gestion MacMap
-	virtual void draw				(	)=0;
-	virtual void idle				(	)=0;
-	virtual void updatePath			(	)=0;
-//	virtual CGLayerRef getPathLayer	(	)=0;
+	virtual void draw				    (	)=0;
+	virtual void idle				    (	)=0;
+	virtual void updatePath			    (	)=0;
+//	virtual CGLayerRef getPathLayer	    (	)=0;
+    virtual CGContextRef getPathContext (   )=0;
+
+	virtual void screenCenter		    (	i2dvertex* vx)=0;
+	virtual void screenTopLeft		    (	i2dvertex* vx)=0;
+	virtual void screenBotLeft		    (	i2dvertex* vx)=0;
+	virtual void screenBounds		    (	ivx_rect* vxr)=0;
 	
-	virtual void screenCenter		(	i2dvertex* vx)=0;
-	virtual void screenTopLeft		(	i2dvertex* vx)=0;
-	virtual void screenBotLeft		(	i2dvertex* vx)=0;
-	virtual void screenBounds		(	ivx_rect* vxr)=0;
+	virtual void setScreenCenter	    (	i2dvertex vx)=0;
 	
-	virtual void setScreenCenter	(	i2dvertex vx)=0;
-	
-	virtual void reset				(	)=0;
-	virtual long drawCount			(	)=0;
-	virtual void registerAction		(	)=0;
+	virtual void reset				    (	)=0;
+	virtual long drawCount			    (	)=0;
+	virtual void registerAction		    (	)=0;
 
 };
 

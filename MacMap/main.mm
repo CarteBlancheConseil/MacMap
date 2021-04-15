@@ -50,5 +50,6 @@ _USE_STDERR_=_DEVELOPMENT_VERS_;
 _USE_STDERR_=1;
     
 _bTrace_("MacMap",true);
+
     return NSApplicationMain(argc, argv);
 }

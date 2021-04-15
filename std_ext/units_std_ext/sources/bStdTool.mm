@@ -1032,6 +1032,9 @@ CGPoint	a,b;
 	get_cur(&b);
 	if(b.x!=SHRT_MIN){
 CGContextRef	ctx=getTempPathContext();
+        if(!ctx){
+            return;
+        }
 CGRect			r=CGRectMake(a.x,a.y, b.x-a.x,b.y-a.y);			
 		CGContextSaveGState(ctx);
 		if(_gprm){
@@ -1055,6 +1058,9 @@ CGPoint	a,b;
 	get_cur(&b);
 	if(b.x!=SHRT_MIN){	
 CGContextRef	ctx=getTempPathContext();
+        if(!ctx){
+            return;
+        }
 CGFloat			dx=b.x-a.x;
 CGFloat			dy=b.y-a.y;
 CGRect			r=CGRectMake(a.x-dx,a.y-dy,dx*2,dy*2);			
@@ -1080,6 +1086,9 @@ CGPoint	a,b;
 	get_cur(&b);
 	if(b.x!=SHRT_MIN){
 CGContextRef	ctx=getTempPathContext();
+        if(!ctx){
+            return;
+        }
 CGFloat			d=CGPointsDist(&a,&b);
 CGPoint			c=CGPointMake((a.x+b.x)/2.0,(a.y+b.y)/2.0);
 CGRect			r=CGRectMake(c.x-(d/2.0),c.y-(d/2.0),d,d);			
@@ -1105,6 +1114,9 @@ CGPoint	a,b;
 	get_cur(&b);
 	if(b.x!=SHRT_MIN){
 CGContextRef	ctx=getTempPathContext();
+        if(!ctx){
+            return;
+        }
 CGFloat			d=CGPointsDist(&a,&b);
 CGRect			r=CGRectMake(a.x-d,a.y-d,d*2,d*2);
 		CGContextSaveGState(ctx);
@@ -1126,6 +1138,9 @@ void bStdTool::draw_poly(bool use_handles, bool addCur){
 	}
 
 CGContextRef	ctx=getTempPathContext();
+    if(!ctx){
+        return;
+    }
 CGPoint			a;
 i2dvertex		vx;
 		
@@ -1173,6 +1188,9 @@ i2dvertex		vx;
 void bStdTool::draw_poly(ivertices* vxs, bool use_handles){
 //_bTrace_("bStdTool::draw_poly",true);
 CGContextRef	ctx=getTempPathContext();
+    if(!ctx){
+        return;
+    }
 CGPoint			a;
 				
 	CGContextSaveGState(ctx);
@@ -1290,7 +1308,6 @@ bGenericXMLBaseElement* root=get_param(groot,"graphic");
 			_gprm=new bGraphicParams(nm,_gapp);
 		}
 	}
-
 	return(groot);
 }
 
@@ -1350,7 +1367,10 @@ char					val[_values_length_max_];
 // 
 // ------------
 void bStdTool::hilite_oval(CGContextRef ctx, CGRect r){
-	CGContextSaveGState(ctx);
+    if(!ctx){
+        return;
+    }
+    CGContextSaveGState(ctx);
 	if(_gprm){
 		_gprm->apply(ctx);
 	}			
@@ -1363,7 +1383,10 @@ void bStdTool::hilite_oval(CGContextRef ctx, CGRect r){
 // 
 // ------------
 void bStdTool::hilite_rect(CGContextRef ctx, CGRect r, bool paint, bool frame){
-	CGContextAddRect(ctx,r);
+    if(!ctx){
+        return;
+    }
+    CGContextAddRect(ctx,r);
 	CGContextSaveGState(ctx);
 	if(_gprm){
 		_gprm->apply(ctx);
@@ -1384,6 +1407,9 @@ void bStdTool::hilite_rect(CGContextRef ctx, CGRect r, bool paint, bool frame){
 // 
 // ------------
 void bStdTool::hilite_node(CGContextRef ctx, CGPoint pt){
+    if(!ctx){
+        return;
+    }
 CGRect	r=CGRectMake(pt.x-2,pt.y-2,pt.x+2,pt.y+2);
 	CGContextSaveGState(ctx);
 	if(_gprm){
@@ -1398,6 +1424,9 @@ CGRect	r=CGRectMake(pt.x-2,pt.y-2,pt.x+2,pt.y+2);
 // 
 // ------------
 void bStdTool::hilite_cross(CGContextRef ctx, CGPoint pt){
+    if(!ctx){
+        return;
+    }
 	CGContextMoveToPoint(ctx,pt.x-4,pt.y-4);
 	CGContextAddLineToPoint(ctx,pt.x+4,pt.y+4);
 	CGContextMoveToPoint(ctx,pt.x-4,pt.y+4);
@@ -1488,24 +1517,16 @@ menuitem_desc*			desc;
 // 
 // -----------
 CGContextRef bStdTool::getTempPathContext(){
-NSWindow*    wd=(NSWindow*)_gapp->mapIntf()->ref();
-    return [[NSGraphicsContext graphicsContextWithWindow:wd] CGContext];
-    //return CGLayerGetContext(_gapp->mapIntf()->getPathLayer());
+    return _gapp->mapIntf()->getPathContext();
 }
 
 // ---------------------------------------------------------------------------
 // 
 // -----------
 CGRect bStdTool::getTempPathContextRect(){
-NSWindow*    wd=(NSWindow*)_gapp->mapIntf()->ref();
-NSRect       nsrect=[wd contentLayoutRect];
+NSWindow*   wd=(NSWindow*)_gapp->mapIntf()->ref();
+NSRect      nsrect=[wd contentLayoutRect];
     return(CGRectMake(0,0,nsrect.size.width,nsrect.size.height));
-/*CGLayerRef	lyr=_gapp->mapIntf()->getPathLayer();
-    if(lyr==NULL){
-        return CGRectZero;
-    }
-CGSize		sz=CGLayerGetSize(lyr);
-	return(CGRectMake(0,0,sz.width,sz.height));*/
 }
 
 // ---------------------------------------------------------------------------
@@ -1544,8 +1565,6 @@ bGenericTool*	tool;
 // 
 // -----------
 void bStdTool::validTempPathContext(){
-//_bTrace_("bStdTool::validTempPathContext",false);
-//_tm_(_cfname);
 	_gapp->mapIntf()->updatePath();
 }
 

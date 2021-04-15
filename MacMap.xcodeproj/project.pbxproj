@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		141F6C612624765B00F861CD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 141F6C602624765B00F861CD /* QuartzCore.framework */; };
 		142393E221958C8300204A9D /* MMCreateDocAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 142393E021958C8300204A9D /* MMCreateDocAccessoryView.xib */; };
 		142394022195BCE100204A9D /* vdef_lib.h in Headers */ = {isa = PBXBuildFile; fileRef = 142393F22195BCE100204A9D /* vdef_lib.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		142394052195BCE100204A9D /* vdef_lib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 142393F02195BCE100204A9D /* vdef_lib.framework */; };
@@ -1012,6 +1013,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		141F6C602624765B00F861CD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		142393E121958C8300204A9D /* fr */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = fr; path = fr.lproj/MMCreateDocAccessoryView.xib; sourceTree = "<group>"; };
 		142393E721958DD500204A9D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MMCreateDocAccessoryView.xib; sourceTree = "<group>"; };
 		142393E821958DE000204A9D /* it */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = it; path = it.lproj/MMCreateDocAccessoryView.xib; sourceTree = "<group>"; };
@@ -1837,6 +1839,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				141F6C612624765B00F861CD /* QuartzCore.framework in Frameworks */,
 				1475EC1121941745001AEF27 /* libxml2.tbd in Frameworks */,
 				143D82A21FE2B338004A671A /* Cocoa.framework in Frameworks */,
 				143D82B01FE2C23E004A671A /* CoreServices.framework in Frameworks */,
@@ -2476,6 +2479,7 @@
 		1475254D2190AB6B00A54365 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				141F6C602624765B00F861CD /* QuartzCore.framework */,
 				1475EC1021941745001AEF27 /* libxml2.tbd */,
 				147525BD2190B4D000A54365 /* libxml2.2.tbd */,
 				143D82AF1FE2C23E004A671A /* CoreServices.framework */,
@@ -4343,7 +4347,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 3.10.4.4;
+				CURRENT_PROJECT_VERSION = 3.10.7;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
@@ -4352,7 +4356,7 @@
 				INFOPLIST_FILE = MacMap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				MARKETING_VERSION = 3.10.4.4;
+				MARKETING_VERSION = 3.10.7;
 				PRODUCT_BUNDLE_IDENTIFIER = cbc.MacMap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
