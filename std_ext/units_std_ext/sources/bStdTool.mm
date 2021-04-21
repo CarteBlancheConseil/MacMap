@@ -224,34 +224,34 @@ long etype=NSEvent_type(nsevt);
             end_clic();
 			break;
 		case NSEvent_typeRightMouseDown://_tm_("event type:NSEvent_typeRightMouseDown");
-            set_modifiers(convertModifier(nsevt));
+            //set_modifiers(convertModifier(nsevt));
             pop_tools(NSEvent_locationInWindow(nsevt),NSEvent_window(nsevt));
 			break;
 		case NSEvent_typeRightMouseUp://_tm_("event type:NSEvent_typeRightMouseUp");
 			break;
 		case NSEvent_typeMouseMoved://_tm_("event type:NSEvent_typeMouseMoved");
 			{
-            set_modifiers(convertModifier(nsevt));
+            //set_modifiers(convertModifier(nsevt));
 CGPoint     loc=NSEvent_locationInWindow(nsevt);
             idle(&loc);
 			}
 			break;
 		case NSEvent_typeLeftMouseDragged://_tm_("event type:NSEvent_typeLeftMouseDragged");
-            set_modifiers(convertModifier(nsevt));
+            //set_modifiers(convertModifier(nsevt));
             drag(NSEvent_locationInWindow(nsevt));
             break;
 		case NSEvent_typeRightMouseDragged://_tm_("event type:NSEvent_typeRightMouseDragged");
 			break;
 		case NSEvent_typeMouseEntered://_tm_("event type:NSEvent_typeMouseEntered");
-            set_modifiers(convertModifier(nsevt));
+            //set_modifiers(convertModifier(nsevt));
             activate();
 			break;
 		case NSEvent_typeMouseExited://_tm_("event type:NSEvent_typeMouseExited");
-            set_modifiers(convertModifier(nsevt));
+            //set_modifiers(convertModifier(nsevt));
             deactivate();
 			break;
 		case NSEvent_typeKeyDown://_tm_("event type:NSEvent_typeKeyDown");
-			set_modifiers(convertModifier(nsevt));
+			//set_modifiers(convertModifier(nsevt));
 //kVK_Tab kVK_Space kVK_LeftArrow kVK_RightArrow kVK_DownArrow kVK_UpArrow
             switch(NSEvent_keyCode(nsevt)){
                 case kVK_Return:
@@ -384,6 +384,8 @@ CGImageRef bStdTool::symb(){
 // -----------
 void bStdTool::activate(){
 //_bTrace_("bStdTool::activate",true);
+//_tm_(_cfname);
+    set_modifiers(0);
 	if(_on_edit){
 		//return;
 	}
@@ -401,6 +403,7 @@ void bStdTool::activate(){
 // -----------
 void bStdTool::deactivate(){
 //_bTrace_("bStdTool::deactivate",true);
+//_tm_(_cfname);
 	if(_on_edit){
 		return;
 	}
@@ -1024,6 +1027,7 @@ void bStdTool::push(){
 // ------------
 void bStdTool::draw_rect(){
 //_bTrace_("bStdTool::draw_rect()",true);
+//_tm_(_cfname);
 CGPoint	a,b;
 	get_clic(&a);
 	if(a.x==SHRT_MIN){
@@ -1035,7 +1039,7 @@ CGContextRef	ctx=getTempPathContext();
         if(!ctx){
             return;
         }
-CGRect			r=CGRectMake(a.x,a.y, b.x-a.x,b.y-a.y);			
+CGRect	r=CGRectMake(a.x,a.y, b.x-a.x,b.y-a.y);
 		CGContextSaveGState(ctx);
 		if(_gprm){
 			_gprm->apply(ctx);
@@ -1217,7 +1221,7 @@ CGPoint			a;
 // 
 // -----------
 void bStdTool::track_obj(){
-_bTrace_("bStdTool::track_obj",true);
+//_bTrace_("bStdTool::track_obj",true);
 bArray*				ga;
 bGenericStyle*		style;
 bGenericGeoElement	*o=NULL,*prev;
@@ -1383,6 +1387,8 @@ void bStdTool::hilite_oval(CGContextRef ctx, CGRect r){
 // 
 // ------------
 void bStdTool::hilite_rect(CGContextRef ctx, CGRect r, bool paint, bool frame){
+//_bTrace_("bStdTool::hilite_rect",true);
+//_tm_(_cfname);
     if(!ctx){
         return;
     }
@@ -1565,6 +1571,8 @@ bGenericTool*	tool;
 // 
 // -----------
 void bStdTool::validTempPathContext(){
+//_bTrace_("bStdTool::validTempPathContext()",true);
+//_tm_(_cfname);
 	_gapp->mapIntf()->updatePath();
 }
 

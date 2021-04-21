@@ -98,27 +98,6 @@ void bToolMgr::close(){
 // ---------------------------------------------------------------------------
 // Certains tools peuvent gérer une trace, même désactivé
 // -----------
-/*bool bToolMgr::event(EventRef evt){
-	if(_closed){
-		return(false);
-	}*/
-/*	if(	(GetEventClass(evt)==kEventClassWindow)			&&
-		(GetEventKind(evt)==kEventWindowDrawContent)	){
-bGenericTool*	ext;
-		for(int i=1;i<=count();i++){
-			ext=(bGenericTool*)(void*)get(i);
-			if(ext){
-				(void)ext->event(evt);
-			}
-		}
-		return(true);
-	}*/
-	/*return(bStdExtMgr::event(evt));
-}*/
-
-// ---------------------------------------------------------------------------
-//
-// -----------
 bool bToolMgr::event(void* nsevt){
 //_bTrace_("bToolMgr::event",true);
 	if(_closed){
@@ -146,13 +125,11 @@ bGenericTool*	ext;
 // -----------
 void bToolMgr::set_current(long index){
 //_bTrace_("bToolMgr::set_current",true);
-
 bGenericTool*	t=(bGenericTool*)(void*)get();
-
-bGenericExt*    e=t;
+//bGenericExt*    e=t;
 //_tm_((void*)t);
-char name[256];
-    e->getclassname(name);
+//char name[256];
+//    e->getclassname(name);
 //_tm_(name);
    
     if(t){
