@@ -117,6 +117,7 @@ bEventLog	log(_gapp,
 // 
 // -----------
 void bToolMove::update(bool global){
+//_bTrace_("bToolMove::update",true);
 	/*if(!global){
 		clearTempPathContext(false);
 	}*/
@@ -147,10 +148,11 @@ ivx_rect			vr;
 // ---------------------------------------------------------------------------
 // 
 // -----------
-void bToolMove::set_modifiers(int k){	
+void bToolMove::set_modifiers(int k){
+//_bTrace_("bToolMove::set_modifiers",true);
 	bStdToolGeom::set_modifiers(k);
 	if(!get_active()){
-		return;
+//		return;
 	}
 	if(is_modifiers(optionKey)){
 		set_curs(_ccopy);
@@ -161,6 +163,7 @@ void bToolMove::set_modifiers(int k){
 		_copy=false;
 	}
 	_srep=!is_modifiers(shiftKey);
+//_tm_(_srep);
 }
 
 // ---------------------------------------------------------------------------
@@ -175,6 +178,7 @@ void bToolMove::drag(CGPoint pt){
 // 
 // -----------
 void bToolMove::track_obj(){
+//_bTrace_("bToolMove::track_obj",true);
 	if(get_use_sel()){
 bGenericGeoElement* o=get_obj();
 		bStdToolGeom::track_obj();

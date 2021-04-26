@@ -380,16 +380,14 @@ CGImageRef bStdTool::symb(){
 }
 
 // ---------------------------------------------------------------------------
-// 
+//
 // -----------
 void bStdTool::activate(){
 //_bTrace_("bStdTool::activate",true);
 //_tm_(_cfname);
-    set_modifiers(0);
-	if(_on_edit){
-		//return;
-	}
-    else{
+//_tm_(_mod);
+//    set_modifiers(0);=> NON
+    if(!_on_edit){
         if(!_curs_lock){
             NSMakeMapKeyWindow(_gapp);
         }
@@ -1389,6 +1387,7 @@ void bStdTool::hilite_oval(CGContextRef ctx, CGRect r){
 void bStdTool::hilite_rect(CGContextRef ctx, CGRect r, bool paint, bool frame){
 //_bTrace_("bStdTool::hilite_rect",true);
 //_tm_(_cfname);
+//_tm_("context="+(long)ctx);
     if(!ctx){
         return;
     }
