@@ -317,9 +317,7 @@ void bStdTool::idle(void* prm){
 	push();
     
     if(prm)set_cur((CGPoint*)prm);
-	
-//	clearTempPathContext(true);
-	
+		
 	if(get_use_join()){
 //_tm_("track_join");
 		track_join();
@@ -406,8 +404,6 @@ void bStdTool::deactivate(){
 		return;
 	}
 	push();
-
-//	clearTempPathContext(true);
 	
 	if(get_use_join()){
 		track_join();
@@ -547,7 +543,6 @@ void bStdTool::drag(CGPoint cgp){
 	}
 	if(get_use_drag()){
 //_tm_("get_use_drag");
-//		clearTempPathContext(true);
 		track_join();
 		track_draw();
 		if(_use_trace){
@@ -1385,9 +1380,10 @@ void bStdTool::hilite_oval(CGContextRef ctx, CGRect r){
 // 
 // ------------
 void bStdTool::hilite_rect(CGContextRef ctx, CGRect r, bool paint, bool frame){
-//_bTrace_("bStdTool::hilite_rect",true);
-//_tm_(_cfname);
-//_tm_("context="+(long)ctx);
+_bTrace_("bStdTool::hilite_rect",false);
+_tm_(_cfname);
+_tm_((long)ctx);
+
     if(!ctx){
         return;
     }
@@ -1533,38 +1529,6 @@ NSWindow*   wd=(NSWindow*)_gapp->mapIntf()->ref();
 NSRect      nsrect=[wd contentLayoutRect];
     return(CGRectMake(0,0,nsrect.size.width,nsrect.size.height));
 }
-
-// ---------------------------------------------------------------------------
-// 
-// -----------
-/*void bStdTool::clearTempPathContext(bool utrc){
-_bTrace_("bStdTool::clearTempPathContext",false);
-_tw_(_cfname+"=> unused");
-*//*CGLayerRef		lyr=_gapp->mapIntf()->getPathLayer();
-    if(lyr==NULL){
-//_te_("lyr==NULL");
-        return;
-    }
-//_tm_("lyr:"+(void*)lyr);
-CGContextRef	ctx=CGLayerGetContext(lyr);
-    if(ctx==NULL){
-//_te_("ctx==NULL");
-        return;
-    }
-//_tm_("ctx:"+(void*)ctx);
-CGSize			sz=CGLayerGetSize(lyr);
-	CGContextClearRect(ctx,CGRectMake(0,0,sz.width,sz.height));
-    
-	if(utrc){
-bGenericTool*	tool;
-		for(long i=1;i<=_gapp->toolMgr()->count();i++){
-			tool=(bGenericTool*)(void*)_gapp->toolMgr()->get(i);
-			if(tool!=this){
-				tool->update(true);
-			}
-		}
-	}*/
-/*}*/
 
 // ---------------------------------------------------------------------------
 // 

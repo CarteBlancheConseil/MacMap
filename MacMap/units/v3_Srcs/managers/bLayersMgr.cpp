@@ -943,7 +943,6 @@ int bLayersMgr::get_current(){
 //
 // ------------
 bool bLayersMgr::move(int idx, int offset){
-_bTrace_("bLayersMgr::move",true);
     if(!_elts->push(idx,offset)){
         return(false);
     }
@@ -959,7 +958,6 @@ _bTrace_("bLayersMgr::move",true);
 //
 // ------------
 bool bLayersMgr::remove(int idx){
-_bTrace_("bLayersMgr::remove",true);
 bStyle*	style;
     if(!_elts->get(idx,&style)){
         return(false);
@@ -985,7 +983,6 @@ bGenericXMLBaseElement*	elt=_array->getelement(idx);
 //
 // ------------
 bool bLayersMgr::add(int tidx, int sidx){
-_bTrace_("bLayersMgr::add",true);
 bGenericType*	tp=typesmgr->get(tidx);
 bStyle*			style;
     

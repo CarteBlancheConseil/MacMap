@@ -98,7 +98,7 @@ bMacMapApp*	gapp=(bMacMapApp*)bMacMapApp::instance();
 _bTrace_("[AppDelegate applicationDidFinishLaunching]", true);
 bMacMapApp* gapp=(bMacMapApp*)bMacMapApp::instance("MacMap");
 OSStatus	status=gapp->run();
-NSTimer*    tmr=[NSTimer scheduledTimerWithTimeInterval:0.50//0.25
+NSTimer*    tmr=[NSTimer scheduledTimerWithTimeInterval:0.50
                                                  target:self
                                                selector:@selector(idle)
                                                userInfo:nil
