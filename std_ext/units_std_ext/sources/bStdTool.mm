@@ -1380,9 +1380,9 @@ void bStdTool::hilite_oval(CGContextRef ctx, CGRect r){
 // 
 // ------------
 void bStdTool::hilite_rect(CGContextRef ctx, CGRect r, bool paint, bool frame){
-_bTrace_("bStdTool::hilite_rect",false);
-_tm_(_cfname);
-_tm_((long)ctx);
+//_bTrace_("bStdTool::hilite_rect",false);
+//_tm_(_cfname);
+//_tm_((long)ctx);
 
     if(!ctx){
         return;

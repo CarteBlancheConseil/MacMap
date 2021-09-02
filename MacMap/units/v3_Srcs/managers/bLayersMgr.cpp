@@ -397,7 +397,8 @@ _lm_("Init "+i+" : "+(int)(clock()-t));
 	}
 
 	_drawing=true;
-
+_tm_(_drawing);
+    
 bCursWait	wt(true);
 	
 // Dessin des styles	
@@ -422,6 +423,7 @@ _lm_("Draw "+i+" : "+(int)(clock()-t));
 	_ctx->endDraw();
 	
 	_drawing=false;	
+_tm_(_drawing);
 }
 
 // ---------------------------------------------------------------------------
@@ -728,6 +730,7 @@ char	val[_values_length_max_];
 //
 // -----------
 bGenericLayersMgr*  bLayersMgr::clone(){
+_bTrace_("bLayersMgr::clone",true);
 bLayersMgr* mgr=new bLayersMgr();
 
 bGenericGraphicContext*	ctx;
