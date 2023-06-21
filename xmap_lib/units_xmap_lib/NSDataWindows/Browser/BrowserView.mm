@@ -1043,6 +1043,9 @@ _bTrace_("[BrowserObjView dealloc]",true);
 // 
 // ------------
 -(void)drawRect:(NSRect)rect{
+
+    [self setNeedsDisplay:YES];// New 2023 pour portage AppleSilicon
+
 	[[NSColor whiteColor] set];
 
 NSScrollView*	scrollView=[self enclosingScrollView];	
@@ -1120,7 +1123,7 @@ NSPoint	ptb=NSMakePoint(NSMaxX(lineRect),NSMinY(lineRect));
 		return;		
 	}
 	[super scrollWheel:evt];
-	[_hdr setNeedsDisplay:YES];
+    [_hdr setNeedsDisplay:YES];
 }
 
 // ---------------------------------------------------------------------------

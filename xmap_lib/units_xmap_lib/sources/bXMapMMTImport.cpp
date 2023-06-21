@@ -245,7 +245,7 @@ _te_("mmt table err "+status);
 	}
 	tbl_kind=status;
 
-bGenericType*   tp=GISIOImport_getImportType(_gapp,tbl_kind,_prm);
+bGenericType*   tp=GISIOImport_getImportType(_gapp,tbl_kind,*prm);
 	
 	if(tp==NULL){
 		wtbl_free(mmt);

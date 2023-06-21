@@ -265,13 +265,13 @@ char            tname[FILENAME_MAX];
     strcpy(tname,_prm.name);
     
     sprintf(_prm.name,"%s_pt",tname);
-    tp[kBaseKindPoint-1]=GISIOImport_getImportType(_gapp,kBaseKindPoint,_prm);
+    tp[kBaseKindPoint-1]=GISIOImport_getImportType(_gapp,kBaseKindPoint,*prm);
     sprintf(_prm.name,"%s_pl",tname);
-    tp[kBaseKindPolyline-1]=GISIOImport_getImportType(_gapp,kBaseKindPolyline,_prm);
+    tp[kBaseKindPolyline-1]=GISIOImport_getImportType(_gapp,kBaseKindPolyline,*prm);
     sprintf(_prm.name,"%s_tx",tname);
-    tp[kBaseKindText-1]=GISIOImport_getImportType(_gapp,kBaseKindText,_prm);
+    tp[kBaseKindText-1]=GISIOImport_getImportType(_gapp,kBaseKindText,*prm);
     sprintf(_prm.name,"%s_pg",tname);
-    tp[kBaseKindPolygon-1]=GISIOImport_getImportType(_gapp,kBaseKindPolygon,_prm);
+    tp[kBaseKindPolygon-1]=GISIOImport_getImportType(_gapp,kBaseKindPolygon,*prm);
 
     strcpy(_prm.name,tname);
 	
