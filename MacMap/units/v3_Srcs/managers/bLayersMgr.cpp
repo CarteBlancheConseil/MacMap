@@ -319,16 +319,18 @@ char    csgn[8];
 
 _lm_("_ctx set to "+csgn);
     
-	if(data){
+//	if(data){
 		switch(sgn){
 			case kPDFGraphicContext:
 			case kKMLGraphicContext:
             case kSVGGraphicContext:{
+_lm_("kPDFGraphicContext & more context");
 VectorData*	dt=(VectorData*)data;
 				_ctx->set_path(dt->path);
 				_ctx->set_box(dt->bounds);
 				}break;
 			case kBitMapGraphicContext:{
+_lm_("kBitMapGraphicContext context");
 BitmapData*	dt=(BitmapData*)data;
 				_ctx->set_bitmap_info(dt->data,
 									  dt->width,
@@ -342,11 +344,15 @@ BitmapData*	dt=(BitmapData*)data;
 				break;
 			case kCtxGraphicContext:{
 CGContextRef	cgctx=(CGContextRef)data;
+_lm_("kCtxGraphicContext context = "+(void*)cgctx);
 				_ctx->set_context(cgctx);
 				}
 				break;
+            default:
+_lm_("WTF context ???");
+                break;
 		}
-	}
+//	}
 }
 
 // ---------------------------------------------------------------------------

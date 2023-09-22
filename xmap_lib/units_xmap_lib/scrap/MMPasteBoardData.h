@@ -43,19 +43,21 @@ typedef struct tag{
 }tag;
 
 //----------------------------------------------------------------------------
-@interface MMPasteBoardData : NSObject <NSCoding, NSPasteboardWriting, NSPasteboardReading> {
+@interface MMPasteBoardData : NSObject <NSCoding, NSSecureCoding, NSPasteboardWriting, NSPasteboardReading> {
+
     NSData* _nsdata;
 }
 
 //----------------------------------------------------------------------------
 -(id)initWithData:(const void*)data size:(size_t)sz;
+@property (class, readonly) BOOL supportsSecureCoding;
 
 //----------------------------------------------------------------------------
 @end
 
 //----------------------------------------------------------------------------
 void putPasteBoardData  (const void* cdata,
-                        size_t cdataSize);
+                         size_t cdataSize);
 void* getPasteBoardData (void** cdata,
                          size_t* cdataSize);
 void cleanPasteBoardData(void* nsdata);

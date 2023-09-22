@@ -31,7 +31,7 @@
 #import "mm_messages.h"
 #import "bGenericGeog.h"
 #import <MacMapSuite/bTrace.h>
-#import <AppKit/NSMenuView.h>
+//#import <AppKit/NSMenuView.h>
 
 // ---------------------------------------------------------------------------
 // 

@@ -140,10 +140,7 @@ CGRect	bnds;
 		_styl->rect(o,&bnds);
 		_gapp->mapIntf()->inval(bnds);		
 		
-bEventLog	log(_gapp,
-				getbundle(),
-				kTextEditionMessageID,
-				GetSignature(this));
+bEventLog    log(_gapp,this);
 		o->setValue(_fld,&val);	
 		log.close();
 		_styl->rect(o,&bnds);

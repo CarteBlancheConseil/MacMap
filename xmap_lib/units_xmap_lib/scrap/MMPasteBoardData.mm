@@ -41,16 +41,13 @@
 // -----------
 @implementation MMPasteBoardData
 
+
+
 // ---------------------------------------------------------------------------
 //
 // -----------
 +(id)alloc{
 _bTrace_("[MMPasteBoardData alloc]",true);
-//MMPasteBoardData* zisse=[super alloc];
-//    if(zisse){
-//        zisse->_nsdata=nil;
-//    }
-//    return zisse;
     return [super alloc];
 }
 
@@ -181,6 +178,13 @@ static NSArray* readableTypes=nil;
 // -----------
 -(NSData*)getNSData{
     return _nsdata;
+}
+
+// ---------------------------------------------------------------------------
+//
+// -----------
++(BOOL)supportsSecureCoding {
+    return YES;
 }
 
 // ---------------------------------------------------------------------------

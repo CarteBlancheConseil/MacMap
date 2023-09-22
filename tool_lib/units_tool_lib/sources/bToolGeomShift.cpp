@@ -116,28 +116,8 @@ ivertices*  out=get_output();
         _d=0;
         return;
     }
-bEventLog	log(_gapp,
-				getbundle(),
-				kGeomShiftMessageID,
-				GetSignature(this));
-//    ivs_shift(&out,_d);
-//    if(is_modifiers(optionKey)){
-//        if(ivs_n_parts(out)==ivs_n_parts(_vxs)){
-//i2dvertex   *pout,*pvxs;
-//int         nout,nvxs;
-//            for(long i=0;i<ivs_n_parts(out);i++){
-//                pout=ivs2_part(out,i,&nout);
-//                pvxs=ivs2_part(_vxs,i,&nvxs);
-//                pout[0]=pvxs[0];
-//                pout[nout-1]=pvxs[nvxs-1];
-//            }
-//        }
-//        else{
-//            out->vx.vx2[0]=_vxs->vx.vx2[0];
-//            out->vx.vx2[out->nv-1]=_vxs->vx.vx2[_vxs->nv-1];
-//        }
-//    }
-	o->setVertices(out);
+bEventLog    log(_gapp,this);
+    o->setVertices(out);
 	log.close();
 	
 	set_obj(NULL);
@@ -151,32 +131,12 @@ bEventLog	log(_gapp,
 // 
 // -----------
 void bToolGeomShift::update(bool global){
-	/*if(!global){
-		clearTempPathContext(false);
-	}*/
 	if(get_on_drag()){
 ivertices*	vxs=get_output();
         if(vxs){
             draw_poly(vxs,false);
             ivs_free(vxs);
         }
-//ivertices*	vxs=NULL;
-//		for(;;){
-//			if(!_vxs){
-//				break;
-//			}
-//			ivs2ivs(_vxs,&vxs);
-//			if(!_vxs){
-//				break;
-//			}	
-//			ivs_shift(&vxs,_d);
-//			if(!vxs){
-//				break;
-//			}
-//			break;
-//		}
-//		draw_poly(vxs,false);
-//		ivs_free(vxs);
 	}
 	if(!global){
 		validTempPathContext();

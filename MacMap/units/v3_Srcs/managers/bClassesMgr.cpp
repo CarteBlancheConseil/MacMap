@@ -438,7 +438,7 @@ giewnPrm	p;
 	p.idx=idx;
 	p.n=0;
 	p.elt=NULL;
-	(void)root->dotoall(&p,0,_getIndElementWithName);
+    (void)root->dotoall(&p,0,_getIndElementWithName);
 	if(!p.elt){
 		return(NULL);
 	}

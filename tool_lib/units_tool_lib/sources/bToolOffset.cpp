@@ -175,17 +175,14 @@ d2dvertex	off;
 	o->setValue(_fy,_orig.y);
 CGRect	bnds;
 	_styl->rect(o,&bnds);
-	_gapp->mapIntf()->inval(bnds);		
+	_gapp->mapIntf()->inval(bnds);
 	
-bEventLog	log(_gapp,
-				getbundle(),
-				kOffsetMessageID,
-				GetSignature(this));
+bEventLog    log(_gapp,this);
 	o->setValue(_fx,off.x);
 	o->setValue(_fy,off.y);
 	log.close();
 	_styl->rect(o,&bnds);
-	_gapp->mapIntf()->inval(bnds);		
+	_gapp->mapIntf()->inval(bnds);
 	
 	set_obj(NULL);
 	set_use_drag(false);
@@ -195,15 +192,11 @@ bEventLog	log(_gapp,
 // 
 // -----------
 void bToolOffset::update(bool global){
-	/*if(!global){
-		clearTempPathContext(false);
-	}*/
 	bGenericGeoElement*	o=get_obj();
 	if(o){
-		//clearTempPathContext(true);
 		_gapp->layersMgr()->SwitchContext(kCtxGraphicContext,getTempPathContext());
 		_styl->draw(o);
-		_gapp->layersMgr()->SwitchContext(kCGGraphicContext,NULL);
+        _gapp->layersMgr()->SwitchContext(kCGGraphicContext,NULL);
 		validTempPathContext();
 	}
 	if(!global){

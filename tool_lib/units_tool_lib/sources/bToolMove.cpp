@@ -104,10 +104,7 @@ void bToolMove::end_clic(){
 	set_use_drag(false);
 	set_use_sel(true);
 	
-bEventLog	log(_gapp,
-				getbundle(),
-				kMoveMessageID,
-				GetSignature(this));
+bEventLog    log(_gapp,this);
 	move();
 	log.close();
 	_vxs=NULL;
@@ -118,9 +115,6 @@ bEventLog	log(_gapp,
 // -----------
 void bToolMove::update(bool global){
 //_bTrace_("bToolMove::update",true);
-	/*if(!global){
-		clearTempPathContext(false);
-	}*/
 	if(get_on_drag()){
 CGPoint	v1,v2;
 		get_clic(&v1);
@@ -151,9 +145,9 @@ ivx_rect			vr;
 void bToolMove::set_modifiers(int k){
 //_bTrace_("bToolMove::set_modifiers",true);
 	bStdToolGeom::set_modifiers(k);
-	if(!get_active()){
+//	if(!get_active()){
 //		return;
-	}
+//	}
 	if(is_modifiers(optionKey)){
 		set_curs(_ccopy);
 		_copy=true;

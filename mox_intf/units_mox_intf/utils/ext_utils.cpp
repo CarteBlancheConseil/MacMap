@@ -110,96 +110,6 @@ int				k=0;
 // ---------------------------------------------------------------------------
 // 
 // -----------
-/*void PopulatePopupControlWithScales(bGenericMacMapApp* gapp, ControlRef c, int current){
-MenuRef				m=GetPopupControlMenu(c);
-char				cname[256];
-bGenericUnitMgr*	mgr=gapp->scaleMgr();	
-bGenericUnit*		u;	
-ControlKind			k;
-
-	for(int i=1;i<=mgr->count();i++){
-		u=mgr->get(i);
-		u->long_name(cname);
-		if(strlen(cname)==0){
-			u->short_name(cname);
-		}
-		if(strlen(cname)==0){
-			sprintf(cname,"%.0f",u->coef());;
-		}
-		AddMenuItemValue(m,cname);
-	}
-	GetControlKind(c,&k);
-	if(k.kind==kControlKindPopupButton){
-		SetControl32BitMaximum(c,CountMenuItems(m));
-		SetControl32BitValue(c,current);	
-	}
-}
-
-// ---------------------------------------------------------------------------
-// 
-// -----------
-static void PopulatePopupControlWithConstraints(bGenericType* tp, int field, ControlRef c, int cur){
-MenuRef		m=GetPopupControlMenu(c);
-ControlKind	k;
-int			n=tp->fields()->count_constraints(field);
-	if(n<1){
-		return;
-	}
-	
-int		i,fk,ck,d;
-char	cval[256];
-int		ival;
-double	dval;
-
-	tp->fields()->get_kind(field,&fk);
-	tp->fields()->get_decs(field,&d);
-	ck=tp->fields()->get_constraints_kind(field);
-
-	if(ck!=fk){
-		fk=_char;
-	}
-	switch(fk){
-		case _bool:
-		case _int:
-			for(i=1;i<=n;i++){
-				tp->fields()->get_constraint(field,i,&ival);
-				sprintf(cval," %d",ival);
-				AddMenuItemValue(m,cval);
-				if(i==cur){
-					CheckMenuItem(m,CountMenuItems(m),true);
-				}
-			}
-			break;
-		case _double:
-			for(i=1;i<=n;i++){
-				tp->fields()->get_constraint(field,i,&dval);
-				sprintf(cval," %.*f",d,dval);
-				AddMenuItemValue(m,cval);
-				if(i==cur){
-					CheckMenuItem(m,CountMenuItems(m),true);
-				}
-			}
-			break;
-		case _char:
-			for(i=1;i<=n;i++){
-				tp->fields()->get_constraint(field,i,cval);
-				AddMenuItemValue(m,cval);
-				if(i==cur){
-					CheckMenuItem(m,CountMenuItems(m),true);
-				}
-			}
-			break;
-	}
-	GetControlKind(c,&k);
-	if(k.kind==kControlKindPopupButton){
-		SetControl32BitMaximum(c,CountMenuItems(m));
-		SetControl32BitValue(c,cur);	
-	}
-}*/
-
-// ---------------------------------------------------------------------------
-// 
-// -----------
 CGFloat* GetDash(bGenericMacMapApp* gapp,
                  bGenericType* tp,
                  const char* name,
@@ -246,14 +156,6 @@ CGFloat*				dsh=new CGFloat[n];
 // -----------
 OSType GetImageKind(const char* name){
 OSType	t=0;
-//Str255	s;
-
-//    memcpy(s+1,name,strlen(name));
-//	s[0]=strlen(name);
-//	if(QTGetFileNameExtension(s,0,&t)){
-//		t=0;
-//	}
-    
 char    lname[FILENAME_MAX];
     strcpy(lname,name);
     strupper(lname);
@@ -292,7 +194,6 @@ CGPDFDocumentRef GetPDFPattern(	bGenericMacMapApp* gapp,
 		return(NULL);
 	}
 OSType	t=GetImageKind(name);
-//	if(t!=kQTFileTypePDF){
     if(t!=kFileTypePDF){
 		return(NULL);
     }
@@ -317,7 +218,6 @@ CGPDFDocumentRef GetPDFIcon(bGenericMacMapApp* gapp,
 		return(NULL);
 	}
 OSType	t=GetImageKind(name);
-//	if(t!=kQTFileTypePDF){
     if(t!=kFileTypePDF){
 		return(NULL);
 	}
@@ -571,8 +471,6 @@ char			name[_names_length_max_];
 				return(i);
 			}
 		}*/
-		
-		
 	} 
 	return(0);
 }
@@ -613,14 +511,12 @@ char			name[_names_length_max_];
 int RecoverMacro(	bGenericMacMapApp* gapp,
 					const char* formula){
 _bTrace_("RecoverMacro",true);
-//bStdUserMacro*	ext=NULL;
 bGenericExt*    ext=NULL;
 bGenericExtMgr*	mgr=gapp->macroMgr();
 char			sgn[10];
 user_ext_data	prm={NULL,0,NULL};
 
 	for(int i=1;i<=mgr->count();i++){
-//        ext=(bStdUserMacro*)(void*)mgr->get(i);
         ext=(bGenericExt*)(void*)mgr->get(i);
 		ext->process(kExtProcessCallGetData,&prm);
 		if(prm.sign!=0){
@@ -644,14 +540,12 @@ user_ext_data	prm={NULL,0,NULL};
 int RecoverScript(	bGenericMacMapApp* gapp,
 					const char* formula){
 _bTrace_("RecoverScript",true);
-//bStdUserScript*	ext=NULL;
 bGenericExt*    ext=NULL;
 bGenericExtMgr*	mgr=gapp->scriptMgr();
 char			sgn[10];
 user_ext_data	prm={NULL,0,NULL};
 
 	for(int i=1;i<=mgr->count();i++){
-//		ext=(bStdUserScript*)(void*)mgr->get(i);
         ext=(bGenericExt*)(void*)mgr->get(i);
 		ext->process(kExtProcessCallGetData,&prm);
 		if(prm.sign!=0){

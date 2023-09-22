@@ -46,6 +46,7 @@
 //
 // -----------
 static void NSMakeMapKeyWindow(bGenericMacMapApp* gapp){
+//_bTrace_("bStdTool NSMakeMapKeyWindow",true);
     if([[NSApplication sharedApplication] modalWindow]==nil){
 NSWindow*   ref=(__bridge NSWindow*)gapp->mapIntf()->ref();
         [ref makeKeyWindow];
@@ -1518,6 +1519,7 @@ menuitem_desc*			desc;
 // 
 // -----------
 CGContextRef bStdTool::getTempPathContext(){
+//_bTrace_("bStdTool::getTempPathContext()",true);
     return _gapp->mapIntf()->getPathContext();
 }
 
@@ -1525,6 +1527,7 @@ CGContextRef bStdTool::getTempPathContext(){
 // 
 // -----------
 CGRect bStdTool::getTempPathContextRect(){
+//_bTrace_("bStdTool::getTempPathContext()",true);
 NSWindow*   wd=(NSWindow*)_gapp->mapIntf()->ref();
 NSRect      nsrect=[wd contentLayoutRect];
     return(CGRectMake(0,0,nsrect.size.width,nsrect.size.height));

@@ -209,10 +209,7 @@ CGRect	bnds;
 	_styl->rect(o,&bnds);
 	_gapp->mapIntf()->inval(bnds);		
 // Report de la nouvelle valeur
-bEventLog	log(_gapp,
-				getbundle(),
-				kLineShiftMessageID,
-				GetSignature(this));
+bEventLog    log(_gapp,this);
 	o->setValue(_fa,&_cur);
 	log.close();
 	_styl->rect(o,&bnds);
@@ -225,12 +222,8 @@ bEventLog	log(_gapp,
 // 
 // -----------
 void bToolLineShift::update(bool global){
-	/*if(!global){
-		clearTempPathContext(false);
-	}*/
 bGenericGeoElement*	o=get_obj();
 	if(o){
-		//clearTempPathContext(true);
 		_gapp->layersMgr()->SwitchContext(kCtxGraphicContext,getTempPathContext());
 		_styl->draw(o);
 		_gapp->layersMgr()->SwitchContext(kCGGraphicContext,NULL);

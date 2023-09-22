@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="16096" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16096"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -267,8 +267,7 @@ CA
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Data" id="fxY-of-r4B">
                         <items>
-                            <menuItem title="Fill…" tag="1179019628" id="EGB-ky-0Ij">
-                                <modifierMask key="keyEquivalentModifierMask"/>
+                            <menuItem title="Fill…" tag="1179019628" keyEquivalent="r" id="EGB-ky-0Ij">
                                 <connections>
                                     <action selector="menuAction:" target="Voe-Tx-rLC" id="nUq-2U-fEy"/>
                                 </connections>

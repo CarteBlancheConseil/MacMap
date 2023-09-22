@@ -467,7 +467,7 @@ float	w;
 	}
 
 // Calcs	
-	for(long i=1;i<=[self app]->calcMgr()->count();i++){
+	/*for(long i=1;i<=[self app]->calcMgr()->count();i++){
 		clc=(bGenericCalc*)(void*)[self app]->calcMgr()->get(i);
 		col=[self allocator:_lines field:0 calc:clc start:strtx width:[BrowserColumn stdColumnWidth]];
 		if(col){
@@ -476,7 +476,9 @@ float	w;
 		}				  		
 		strtx+=[BrowserColumn stdColumnWidth];
 	}
+    */
 	
+// Complément colonnes vides
 	l=[_cols count]+1;
 	k=128-l;
 	if(k<=0){
@@ -484,7 +486,7 @@ _tm_("dépassement");
 		[_obj putBounds];
 		return;
 	}
-	
+     
 	for(long i=l;i<=k;i++){
 		col=[self allocator:_lines field:0 calc:NULL start:strtx width:[BrowserColumn stdColumnWidth]];
 		if(col){
@@ -1043,6 +1045,9 @@ _bTrace_("[BrowserObjView dealloc]",true);
 // 
 // ------------
 -(void)drawRect:(NSRect)rect{
+
+    [self setNeedsDisplay:YES];// New 2023 pour portage AppleSilicon
+
 	[[NSColor whiteColor] set];
 
 NSScrollView*	scrollView=[self enclosingScrollView];	
@@ -1120,7 +1125,7 @@ NSPoint	ptb=NSMakePoint(NSMaxX(lineRect),NSMinY(lineRect));
 		return;		
 	}
 	[super scrollWheel:evt];
-	[_hdr setNeedsDisplay:YES];
+    [_hdr setNeedsDisplay:YES];
 }
 
 // ---------------------------------------------------------------------------

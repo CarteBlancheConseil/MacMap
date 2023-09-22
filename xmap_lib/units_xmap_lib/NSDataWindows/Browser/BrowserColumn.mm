@@ -390,10 +390,14 @@ NSPoint	ptb=NSMakePoint(NSMaxX(_frame),NSMaxY(rect));
 		inArray:(bArray*)arr
 		   rect:(NSRect)frame{
 char	str[1024];
-NSRect	box=_frame;
-	box.size.height=_DEFAULT_HEIGHT_;
-	box.origin.y=_frame.origin.y+lin*_DEFAULT_HEIGHT_;
 	[self value:str forLine:lin inArray:arr];
+    if(strlen(str)==0 && [self lineSelected:lin inArray:arr]==false && _sel==false ){// => rien à dessiner
+        return;
+    }
+
+NSRect    box=_frame;
+    box.size.height=_DEFAULT_HEIGHT_;
+    box.origin.y=_frame.origin.y+lin*_DEFAULT_HEIGHT_;
 	[NSGraphicsContext saveGraphicsState];
 	NSRectClip(box);
 	if(([self lineSelected:lin inArray:arr])||_sel){
@@ -402,7 +406,7 @@ NSRect	box=_frame;
 	}
 	if(strlen(str)>0){
 NSString* nstr=[NSString stringWithCString:str encoding:NSMacOSRomanStringEncoding];	
-		[nstr drawAtPoint:NSMakePoint(box.origin.x+2,box.origin.y+1) withAttributes:_strAttr];		
+		[nstr drawAtPoint:NSMakePoint(box.origin.x+2,box.origin.y+1) withAttributes:_strAttr];
 	}
 	[NSGraphicsContext restoreGraphicsState];
 }

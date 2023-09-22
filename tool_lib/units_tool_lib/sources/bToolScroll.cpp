@@ -84,7 +84,6 @@ void bToolScroll::clic(CGPoint pt, int count){
 		_cgrcur=getTempPathContextRect();
 		_cgrlast=CGRectZero;
 		_cgrlast.size=_cgrcur.size;
-		//clearTempPathContext(true);
 		hilite_rect(getTempPathContext(),_cgrcur,true,true);
 		validTempPathContext();
 	}
@@ -131,9 +130,6 @@ i2dvertex	a,b,c;
 // 
 // -----------
 void bToolScroll::update(bool global){
-	/*if(!global){
-		clearTempPathContext(false);
-	}*/
 	if(get_on_drag()){
 CGPoint	a,b;
 		get_clic(&a);

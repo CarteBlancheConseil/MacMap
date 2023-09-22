@@ -29,12 +29,14 @@
 
 #include "MacMapCWrappers.h"
 #include "bGenericMacMapApp.h"
+//#include <MacMapSuite/bTrace.h>
 
 #pragma mark -> StatusWindow
 // ---------------------------------------------------------------------------
 // 
 // ------------
 void WriteMessage(void* xapp, const char* msg){
+//_bTrace_("MacMapCWrappers::WriteMessage",true);
 bGenericMacMapApp* gapp=(bGenericMacMapApp*)xapp;
 	if(gapp->statusIntf()){
 		gapp->statusIntf()->writeMessage(msg);

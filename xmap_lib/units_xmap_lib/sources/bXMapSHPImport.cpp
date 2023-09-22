@@ -252,7 +252,7 @@ _te_("shape table err "+status);
 		return(false);
 	}
     
-bGenericType*	tp=GISIOImport_getImportType(_gapp,status,_prm);
+bGenericType*	tp=GISIOImport_getImportType(_gapp,status,*prm);
 	
 	if(tp==NULL){
 		wtbl_free(shp);

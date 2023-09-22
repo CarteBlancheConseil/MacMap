@@ -105,7 +105,6 @@ bool	b=false;
 		case kReturnCharCode:
 			action(0);
 			(void)bStdToolNav::set_key(k);
-			//clearTempPathContext(true);
 			validTempPathContext();
 			k=0;
 			WriteMessage(_gapp,"");
@@ -113,7 +112,6 @@ bool	b=false;
 			break;
 		case kEscapeCharCode:
 			(void)bStdToolNav::set_key(k);
-			//clearTempPathContext(true);
 			validTempPathContext();
 			k=0;			
 			WriteMessage(_gapp,"");
@@ -124,7 +122,6 @@ bool	b=false;
 				break;
 			}
 			(void)bStdToolNav::set_key(k);
-			//clearTempPathContext(true);
 			track_draw();
 			validTempPathContext();
 			k=0;

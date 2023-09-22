@@ -190,6 +190,7 @@ _tm_((__bridge void*)self);
 // 
 // ------------
 -(void)setExt:(bStdNSXBox*)ext{
+_bTrace_("[bStdNSXBoxWindowController setExt]",true);
 	_ext=ext;
 CGRect	bnds;
 	
