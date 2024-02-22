@@ -42,6 +42,7 @@
 -(void)close{
 _bTrace_("[BrowserPanel close]",true);
 _tm_((void*)self);
+_tm_((void*)_hdr);
 	[_hdr write_p];
 BrowserWindowController*	mmc=(BrowserWindowController*)[self windowController];
 	if(mmc){
@@ -86,7 +87,9 @@ BrowserWindowController*	mmc=(BrowserWindowController*)[self windowController];
 -(id)init{
 _bTrace_("[BrowserWindowController init]",true);
 	self=[super init];
-	_ext=NULL;
+    if(self){
+        _ext=NULL;
+    }
 _tm_((void*)self);
     return self;
 }

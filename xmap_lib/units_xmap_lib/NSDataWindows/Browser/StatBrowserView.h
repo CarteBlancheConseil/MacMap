@@ -73,6 +73,7 @@
 }
 
 //----------------------------------------------------------------------------
+-(id)initWithFrame:(NSRect)frameRect;
 -(MMsMatrix*)matrix;
 -(MMsMatrix*)onlySelectedMatrix;
 

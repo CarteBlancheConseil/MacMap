@@ -95,8 +95,10 @@
 // ------------
 -(id)initWithFrame:(NSRect)frameRect{
 _bTrace_("[StatBrowserHeaderView initWithFrame]",true);
-	self=[super initWithFrame:frameRect];
-	_acol=[[NSMutableArray alloc] init];
+    self=[super initWithFrame:frameRect];
+    if(self){
+        _acol=[[NSMutableArray alloc] init];
+    }
     return self;
 }
 
@@ -223,11 +225,20 @@ col_p	prm;
 // 
 // ------------
 @implementation StatBrowserView
+// ---------------------------------------------------------------------------
+//
+// ------------
+-(id)initWithFrame:(NSRect)frameRect{
+_bTrace_("[StatBrowserView initWithFrame]",true);
+    self=[super initWithFrame:frameRect];
+    return self;
+}
 
 // ---------------------------------------------------------------------------
 // 
 // ------------
 -(MMsMatrix*)matrix{
+_bTrace_("[StatBrowserView matrix]",true);
 double			x;
 MMsMatrix*		data=MMsMatrixAlloc([_hdr lines]->count(),[_hdr selectedColumns]->count());
 BrowserColumn*	col;

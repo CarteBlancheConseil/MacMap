@@ -390,14 +390,24 @@ NSPoint	ptb=NSMakePoint(NSMaxX(_frame),NSMaxY(rect));
 		inArray:(bArray*)arr
 		   rect:(NSRect)frame{
 char	str[1024];
+//_bTrace_("[BrowserColumn drawLine:line:inArray:rect]",true);
+//_tm_(_trxysz_(frame));
+    
+    [self name:str];
+//_tm_("drawing column "+str);
+    
 	[self value:str forLine:lin inArray:arr];
     if(strlen(str)==0 && [self lineSelected:lin inArray:arr]==false && _sel==false ){// => rien à dessiner
+//_tm_("drawing nothing at line "+lin);
         return;
     }
+
+//_tm_("drawing "+str+" at line "+lin);
 
 NSRect    box=_frame;
     box.size.height=_DEFAULT_HEIGHT_;
     box.origin.y=_frame.origin.y+lin*_DEFAULT_HEIGHT_;
+//_tm_(_trxysz_(box));
 	[NSGraphicsContext saveGraphicsState];
 	NSRectClip(box);
 	if(([self lineSelected:lin inArray:arr])||_sel){
@@ -635,7 +645,7 @@ bEventLog	log(_gapp,
 		if(FieldInView(_gapp,_gtp,_field)){
 			geo->inval(_field);
 		}
-		[view setNeedsDisplay:YES];
+//		[view setNeedsDisplay:YES];
 	}
 	return YES;
 }
@@ -698,7 +708,7 @@ bEventLog	log(_gapp,
 	if(FieldInView(_gapp,_gtp,_field)){
 		geo->inval(_field);
 	}
-	[view setNeedsDisplay:YES];
+//	[view setNeedsDisplay:YES];
 
 	return NO;
 }
@@ -882,14 +892,14 @@ bEventLog	log(_gapp,
 			NSBeep();
 		}
 		else{
-			[view setNeedsDisplayInRect:_frame];
+//			[view setNeedsDisplayInRect:_frame];
 		}
 		log.close();
 		if(FieldInView(_gapp,_gtp,_field)){
 			geo->inval(_field);
 		}
 		
-		[view setNeedsDisplay:YES];
+//		[view setNeedsDisplay:YES];
 	}	
 
 	return NO;

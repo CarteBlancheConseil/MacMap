@@ -45,7 +45,6 @@
 	bArray*				_lines;	// Rows (MacMap objects)
 	NSPoint				_o;		// Origin
 	long				_cur;	// Resizing column index
-
 	IBOutlet NSView*	_obj;	// ObjView
 }
 
@@ -114,7 +113,7 @@ bool readProc(bGenericXMLBaseElement* elt,
 @interface BrowserLeftView : NSView{
 	NSPoint						_o;
 	IBOutlet BrowserHeaderView*	_hdr;
-	IBOutlet NSView*			_obj;
+    IBOutlet NSView*            _obj;
 }
 
 //----------------------------------------------------------------------------
@@ -130,7 +129,7 @@ bool readProc(bGenericXMLBaseElement* elt,
 
 
 //----------------------------------------------------------------------------
-@interface BrowserObjView : NSView{
+@interface BrowserObjView : NSView{ //NSScrollView{ //NSView{
 	IBOutlet BrowserHeaderView*	_hdr;
 	IBOutlet BrowserLeftView*	_lft;
 	long	_cidx;

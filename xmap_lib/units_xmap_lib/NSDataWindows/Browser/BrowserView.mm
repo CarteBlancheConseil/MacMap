@@ -159,8 +159,9 @@ int					k;
 // ------------
 -(id)initWithFrame:(NSRect)frameRect{
 _bTrace_("[BrowserHeaderView initWithFrame]",true);
-	if((self=[super initWithFrame:frameRect])!=nil){
-		_cols=[[NSMutableArray alloc] init];
+    self=[super initWithFrame:frameRect];
+    if(self){
+        _cols=[[NSMutableArray alloc] init];
 		_tp=NULL;
 		_lines=NULL;
 		_csels=new bArray(sizeof(BrowserColumn*));
@@ -199,9 +200,8 @@ _bTrace_("[BrowserHeaderView dealloc]",true);
 -(void)drawRect:(NSRect)rect{
 	[BrowserColumn setHeaderBackground];
 	NSRectFill(rect);
-
 BrowserColumn*	col;
-NSEnumerator*		numer;
+NSEnumerator*   numer;
 	numer=[_cols objectEnumerator];
 	while((col=[numer nextObject])){
 		if(NSMaxX([col frame])-_o.x<NSMinX([self bounds])){
@@ -225,8 +225,7 @@ NSEnumerator*		numer;
 // 
 // ------------
 -(void)putLines:(bArray*)lines{
-_bTrace_("[BrowserHeaderView putLines]",true);
-bGenericGeoElement* geo;	
+bGenericGeoElement* geo;
 	_lines=lines;
 	if(!_lines->get(1,&geo)){
 		return;
@@ -507,14 +506,17 @@ _tm_("dépassement");
 	[self initType];
 	[self write_p];
 	[_obj putBounds];
+    [self setNeedsDisplay:YES];
 }
 
 // ---------------------------------------------------------------------------
 // 
 // ------------
--(void)setOrigin:(NSPoint)o{
-	_o=o;
-	[self setNeedsDisplay:YES];
+-(void)setOrigin{
+NSScrollView*   scrollView=[_obj enclosingScrollView];
+NSRect          drawRect=[scrollView documentVisibleRect];
+    _o=drawRect.origin;
+    [self setNeedsDisplay:YES];
 }
 
 // ---------------------------------------------------------------------------
@@ -764,7 +766,7 @@ NSRect				frame=[col frame];
 // ---------------------------------------------------------------------------
 // OK
 // ------------
--(void)scrollWheel:(NSEvent *)evt{
+-(void)scrollWheel:(NSEvent*)evt{
 	[super scrollWheel:evt];
 	[_obj scrollWheel:evt];
 }
@@ -778,6 +780,15 @@ NSRect				frame=[col frame];
 // 
 // ------------
 @implementation BrowserLeftView
+
+// ---------------------------------------------------------------------------
+//
+// ------------
+-(id)initWithFrame:(NSRect)frameRect{
+_bTrace_("[BrowserLeftView initWithFrame]",true);
+    self=[super initWithFrame:frameRect];
+    return self;
+}
 
 // ---------------------------------------------------------------------------
 // 
@@ -818,9 +829,11 @@ BrowserColumn*	col=[[_hdr columns] objectAtIndex:0];
 // ---------------------------------------------------------------------------
 // OK
 // ------------
--(void)setOrigin:(NSPoint)o{
-	_o=o;
-	[self setNeedsDisplay:YES];
+-(void)setOrigin{
+NSScrollView*   scrollView=[_obj enclosingScrollView];
+NSRect          drawRect=[scrollView documentVisibleRect];
+    _o=drawRect.origin;
+    [self setNeedsDisplay:YES];
 }
 
 // ---------------------------------------------------------------------------
@@ -973,6 +986,15 @@ bGenericGeoElement* geo=(bGenericGeoElement*)[col ref:i-1 inArray:[_hdr lines]];
 @implementation BrowserNameLeftView
 
 // ---------------------------------------------------------------------------
+//
+// ------------
+-(id)initWithFrame:(NSRect)frameRect{
+_bTrace_("[BrowserNameLeftView initWithFrame]",true);
+    self=[super initWithFrame:frameRect];
+    return self;
+}
+
+// ---------------------------------------------------------------------------
 // Dessin du row header OK
 // ------------
 -(void)drawRect:(NSRect)rect{
@@ -1020,10 +1042,24 @@ BrowserColumn*	col=[[_hdr columns] objectAtIndex:0];
 // ------------
 -(id)initWithFrame:(NSRect)frameRect{
 _bTrace_("[BrowserObjView initWithFrame]",true);
-	if((self=[super initWithFrame:frameRect])!=nil){
-		_cidx=-1;
+    self=[super initWithFrame:frameRect];
+    if(self){
+        _cidx=-1;
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(updateHeaders:)
+                                                     name:NSViewBoundsDidChangeNotification
+                                                   object:[[self enclosingScrollView] contentView]];
 	}
 	return self;
+}
+
+
+// ---------------------------------------------------------------------------
+//
+// ------------
+-(void)updateHeaders:(id)sender{
+    [_hdr setOrigin];
+    [_lft setOrigin];
 }
 
 // ---------------------------------------------------------------------------
@@ -1045,22 +1081,15 @@ _bTrace_("[BrowserObjView dealloc]",true);
 // 
 // ------------
 -(void)drawRect:(NSRect)rect{
-
-    [self setNeedsDisplay:YES];// New 2023 pour portage AppleSilicon
-
 	[[NSColor whiteColor] set];
 
-NSScrollView*	scrollView=[self enclosingScrollView];	
-NSRect			drawRect=[scrollView documentVisibleRect];
-	
+NSRect  drawRect=rect;
+    
 	[NSGraphicsContext saveGraphicsState];
 	NSRectClip(drawRect);
 	
 	NSRectFill(drawRect);
 	
-	[_hdr setOrigin:drawRect.origin];
-	[_lft setOrigin:drawRect.origin];
-
 long	first=ceil(drawRect.origin.y/[BrowserColumn stdLineHeight]);
 long	last=first+floor(drawRect.size.height/[BrowserColumn stdLineHeight]);
 
@@ -1125,7 +1154,6 @@ NSPoint	ptb=NSMakePoint(NSMaxX(lineRect),NSMinY(lineRect));
 		return;		
 	}
 	[super scrollWheel:evt];
-    [_hdr setNeedsDisplay:YES];
 }
 
 // ---------------------------------------------------------------------------
@@ -1198,16 +1226,16 @@ BrowserColumn*	col=[[_hdr columns] objectAtIndex:_cidx];
 // -----------
 -(void)endEdit{
 	_cidx=-1;
+    [self setNeedsDisplay:YES];
 }
 
 // ---------------------------------------------------------------------------
 // 
 // -----------
 -(void)putBounds{
-_bTrace_("[BrowserObjView putBounds]",true);	
-NSScrollView*		scrollView=[self enclosingScrollView];	
+NSScrollView*   scrollView=[self enclosingScrollView];
 BrowserColumn*	col=[[_hdr columns] lastObject];
-NSRect				bnds=NSZeroRect;
+NSRect          bnds=NSZeroRect;
 	
 	bnds.size.width=NSMaxX([col frame]);
 	bnds.size.height=[_hdr lines]->count()*12;
@@ -1224,10 +1252,8 @@ bool	hscroll=bnds.size.height>[scrollView bounds].size.height;
 		bnds.size.height-=17;
 		bnds.origin.y+=17;
 	}
-	
+    [self setNeedsDisplay:YES];
 	[[scrollView documentView] setFrame:bnds];
-	
-	[self setNeedsDisplay:YES];
 }
 
 
@@ -1302,6 +1328,15 @@ bool	hscroll=bnds.size.height>[scrollView bounds].size.height;
 @implementation BrowserCornerView
 
 // ---------------------------------------------------------------------------
+//
+// ------------
+-(id)initWithFrame:(NSRect)frameRect{
+_bTrace_("[BrowserCornerView initWithFrame]",true);
+    self=[super initWithFrame:frameRect];
+    return self;
+}
+
+// ---------------------------------------------------------------------------
 // 
 // ------------
 -(BOOL)isFlipped{
@@ -1326,6 +1361,16 @@ bool	hscroll=bnds.size.height>[scrollView bounds].size.height;
 // 
 // ------------
 @implementation BrowserView
+
+// ---------------------------------------------------------------------------
+//
+// ------------
+-(id)initWithFrame:(NSRect)frameRect{
+_bTrace_("[BrowserView initWithFrame]",true);
+    self=[super initWithFrame:frameRect];
+    return self;
+}
+
 // ---------------------------------------------------------------------------
 // 
 // ------------
@@ -1339,7 +1384,6 @@ bool	hscroll=bnds.size.height>[scrollView bounds].size.height;
 // 
 // ------------
 -(void)putLines:(bArray*)lines{
-	_bTrace_("[BrowserView putLines]",true);
 	[_hdr putLines:lines];
 }
 
@@ -1420,7 +1464,6 @@ bool	hscroll=bnds.size.height>[scrollView bounds].size.height;
 // 
 // ------------
 -(BOOL)checkMacMapEvent{
-_bTrace_("[BrowserController checkMacMapEvent]",true);
 bArray*				arr=[_hdr app]->eventMgr()->events();
 bGenericEvent*		evt;
 int					i,j,k;
@@ -1615,8 +1658,8 @@ NSEnumerator*		numer=[[_hdr columns] objectEnumerator];
 			[col setSelected:YES inArray:[_hdr selectedColumns]];
 		}
 	}
-	[_obj setNeedsDisplay:YES];
-	[_hdr setNeedsDisplay:YES];
+	//[_obj setNeedsDisplay:YES];
+	//[_hdr setNeedsDisplay:YES];
 }
 
 // ---------------------------------------------------------------------------
@@ -1946,7 +1989,6 @@ bBarberWait wt("",msg,false);
 -(void)	savePanelDidEnd:(NSSavePanel *)sheet 
 			 returnCode:(int)returnCode 
 			contextInfo:(void *)contextInfo{
-_bTrace_("[BrowserWindowController savePanelDidEnd]",true);
     if(NSOKButton==returnCode){
 		unsigned long fkind;
 		switch([_fmt indexOfSelectedItem]){
@@ -1975,9 +2017,6 @@ char	fpath[PATH_MAX];
 		if(strlen(fpath)>0){
 			strcat(fpath,"/");
 		}
-_tm_(fname);		
-_tm_(fpath);	
-_tm_([_fmt indexOfSelectedItem]);
 
 int		status=0;
 wtable	tbl=wtbl_alloc(fkind,fpath,fname,true,1,-1,&status);

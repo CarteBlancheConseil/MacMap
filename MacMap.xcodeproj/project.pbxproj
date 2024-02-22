@@ -50,9 +50,6 @@
 		143D83321FE2DFF4004A671A /* angle_units.xml in Resources */ = {isa = PBXBuildFile; fileRef = 143D82B51FE2DFF4004A671A /* angle_units.xml */; };
 		143D83331FE2DFF4004A671A /* contrastes.xml in Resources */ = {isa = PBXBuildFile; fileRef = 143D82B61FE2DFF4004A671A /* contrastes.xml */; };
 		143D83341FE2DFF4004A671A /* dist_units.xml in Resources */ = {isa = PBXBuildFile; fileRef = 143D82B71FE2DFF4004A671A /* dist_units.xml */; };
-		143D83351FE2DFF4004A671A /* MoXApp.icns in Resources */ = {isa = PBXBuildFile; fileRef = 143D82B81FE2DFF4004A671A /* MoXApp.icns */; };
-		143D83361FE2DFF4004A671A /* MoXProject.icns in Resources */ = {isa = PBXBuildFile; fileRef = 143D82B91FE2DFF4004A671A /* MoXProject.icns */; };
-		143D83371FE2DFF4004A671A /* MoXType.icns in Resources */ = {isa = PBXBuildFile; fileRef = 143D82BA1FE2DFF4004A671A /* MoXType.icns */; };
 		143D83381FE2DFF4004A671A /* scales.xml in Resources */ = {isa = PBXBuildFile; fileRef = 143D82BB1FE2DFF4004A671A /* scales.xml */; };
 		143D83391FE2DFF4004A671A /* selection.xml in Resources */ = {isa = PBXBuildFile; fileRef = 143D82BC1FE2DFF4004A671A /* selection.xml */; };
 		143D833A1FE2DFF4004A671A /* time_units.xml in Resources */ = {isa = PBXBuildFile; fileRef = 143D82BD1FE2DFF4004A671A /* time_units.xml */; };
@@ -1060,9 +1057,6 @@
 		143D82B51FE2DFF4004A671A /* angle_units.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = angle_units.xml; sourceTree = "<group>"; };
 		143D82B61FE2DFF4004A671A /* contrastes.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = contrastes.xml; sourceTree = "<group>"; };
 		143D82B71FE2DFF4004A671A /* dist_units.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = dist_units.xml; sourceTree = "<group>"; };
-		143D82B81FE2DFF4004A671A /* MoXApp.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = MoXApp.icns; sourceTree = "<group>"; };
-		143D82B91FE2DFF4004A671A /* MoXProject.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = MoXProject.icns; sourceTree = "<group>"; };
-		143D82BA1FE2DFF4004A671A /* MoXType.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = MoXType.icns; sourceTree = "<group>"; };
 		143D82BB1FE2DFF4004A671A /* scales.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = scales.xml; sourceTree = "<group>"; };
 		143D82BC1FE2DFF4004A671A /* selection.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = selection.xml; sourceTree = "<group>"; };
 		143D82BD1FE2DFF4004A671A /* time_units.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = time_units.xml; sourceTree = "<group>"; };
@@ -2266,9 +2260,6 @@
 				143D82B51FE2DFF4004A671A /* angle_units.xml */,
 				143D82B61FE2DFF4004A671A /* contrastes.xml */,
 				143D82B71FE2DFF4004A671A /* dist_units.xml */,
-				143D82B81FE2DFF4004A671A /* MoXApp.icns */,
-				143D82B91FE2DFF4004A671A /* MoXProject.icns */,
-				143D82BA1FE2DFF4004A671A /* MoXType.icns */,
 				143D82BB1FE2DFF4004A671A /* scales.xml */,
 				143D82BC1FE2DFF4004A671A /* selection.xml */,
 				143D82BD1FE2DFF4004A671A /* time_units.xml */,
@@ -3633,9 +3624,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				145BBF271F20E0640082EA91 /* Images.xcassets in Resources */,
-				143D83351FE2DFF4004A671A /* MoXApp.icns in Resources */,
 				14B088E62191D30A00C74E0F /* default_line_style.xml in Resources */,
-				143D83361FE2DFF4004A671A /* MoXProject.icns in Resources */,
 				1436E8512317F5BB00781EBC /* MacMap Help in Resources */,
 				14B088EC2191D30A00C74E0F /* Localizable.strings in Resources */,
 				145BBF2A1F20E0640082EA91 /* MainMenu.xib in Resources */,
@@ -3645,7 +3634,6 @@
 				143D833A1FE2DFF4004A671A /* time_units.xml in Resources */,
 				14B088EB2191D30A00C74E0F /* InfoPlist.strings in Resources */,
 				143D83341FE2DFF4004A671A /* dist_units.xml in Resources */,
-				143D83371FE2DFF4004A671A /* MoXType.icns in Resources */,
 				14B088E82191D30A00C74E0F /* default_raster_style.xml in Resources */,
 				143D83321FE2DFF4004A671A /* angle_units.xml in Resources */,
 				14B088E92191D30A00C74E0F /* default_surf_style.xml in Resources */,
@@ -4347,7 +4335,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 3.10.7;
+				CURRENT_PROJECT_VERSION = 3.11.1;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
@@ -4356,7 +4344,7 @@
 				INFOPLIST_FILE = MacMap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				MARKETING_VERSION = 3.10.7;
+				MARKETING_VERSION = 3.11.1;
 				PRODUCT_BUNDLE_IDENTIFIER = cbc.MacMap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

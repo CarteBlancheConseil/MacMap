@@ -49,8 +49,9 @@
 // ------------
 -(id)initWithFrame:(NSRect)frameRect{
 _bTrace_("[MatrixBrowserHeaderView initWithFrame]",true);
-	if((self=[super initWithFrame:frameRect])!=nil){
-		_shd=NULL;
+    self=[super initWithFrame:frameRect];
+    if(self){
+        _shd=NULL;
 	}
 	return self;
 }
@@ -176,8 +177,9 @@ _bTrace_("[MatrixBrowserHeaderView make_p]",true);
 // ------------
 -(id)initWithFrame:(NSRect)frameRect{
 _bTrace_("[MatrixBrowserNonGeoHeaderView initWithFrame]",true);
-	if((self=[super initWithFrame:frameRect])!=nil){
-		_lines=new bArray(sizeof(bXMapStatFieldElement*));
+    self=[super initWithFrame:frameRect];
+    if(self){
+        _lines=new bArray(sizeof(bXMapStatFieldElement*));
 	}
 	return self;
 }
@@ -219,6 +221,16 @@ bXMapStatFieldElement*	fld;
 // 
 // ------------
 @implementation MatrixBrowserIndicatorsHeaderView
+
+// ---------------------------------------------------------------------------
+//
+// ------------
+-(id)initWithFrame:(NSRect)frameRect{
+_bTrace_("[MatrixBrowserIndicatorsHeaderView initWithFrame]",true);
+    self=[super initWithFrame:frameRect];
+    return self;
+}
+
 // ---------------------------------------------------------------------------
 // 
 // ------------
@@ -319,6 +331,15 @@ long	sgn=kStatBrowserIndicatorPanelContentSignature;
 @implementation MatrixBrowserNameNonGeoLeftView
 
 // ---------------------------------------------------------------------------
+//
+// ------------
+-(id)initWithFrame:(NSRect)frameRect{
+_bTrace_("[MatrixBrowserNameNonGeoLeftView initWithFrame]",true);
+    self=[super initWithFrame:frameRect];
+    return self;
+}
+
+// ---------------------------------------------------------------------------
 // 
 // ------------
 -(void)mouseDown:(NSEvent*)event{
@@ -337,6 +358,15 @@ long	sgn=kStatBrowserIndicatorPanelContentSignature;
 // 
 // ------------
 @implementation MatrixBrowserObjView
+
+// ---------------------------------------------------------------------------
+//
+// ------------
+-(id)initWithFrame:(NSRect)frameRect{
+_bTrace_("[MatrixBrowserObjView initWithFrame]",true);
+    self=[super initWithFrame:frameRect];
+    return self;
+}
 
 // ---------------------------------------------------------------------------
 // 
@@ -379,6 +409,15 @@ bool	hscroll=bnds.size.height>[scrollView bounds].size.height;
 // 
 // ------------
 @implementation MatrixBrowserView
+
+// ---------------------------------------------------------------------------
+//
+// ------------
+-(id)initWithFrame:(NSRect)frameRect{
+_bTrace_("[MatrixBrowserView initWithFrame]",true);
+    self=[super initWithFrame:frameRect];
+    return self;
+}
 
 // ---------------------------------------------------------------------------
 // 
@@ -500,6 +539,15 @@ NSEnumerator*	numer=[[_hdr columns] objectEnumerator];
 // ------------
 @implementation MatrixNonGeoBrowserView
 
+// ---------------------------------------------------------------------------
+//
+// ------------
+-(id)initWithFrame:(NSRect)frameRect{
+_bTrace_("[MatrixNonGeoBrowserView initWithFrame]",true);
+    self=[super initWithFrame:frameRect];
+    return self;
+}
+
 #pragma mark ---- Actions ----
 // ---------------------------------------------------------------------------
 // Pour les non-geo
@@ -531,7 +579,6 @@ bXMapStatFieldElement*	fld;
 	
 	[_lft setNeedsDisplay:YES];
 	[_obj setNeedsDisplay:YES];
-
 }
 
 #pragma mark ---- Update Intf ----

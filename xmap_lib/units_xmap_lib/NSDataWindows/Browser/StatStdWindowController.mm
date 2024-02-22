@@ -298,6 +298,7 @@ _te_("MMsIOWriteParam");
 // 
 // -----------
 -(void)updateUI{
+_bTrace_("[StatStdWindowController updateUI]",true);
 NSTabViewItem*		item;
 MatrixBrowserView*	sheet;
 NSEnumerator*		numer;
@@ -354,7 +355,7 @@ _te_(clssname);
 static bool parsePanel(	bGenericXMLBaseElement *elt, 
 							void *prm, 
 							int indent){
-_bTrace_("[StatStdWindowController parsePanel]",false);
+_bTrace_("[StatStdWindowController parsePanel]",true);
 StatStdWindowController*	swc=(StatStdWindowController*)prm;
 char						clssname[_values_length_max_];
 	
@@ -555,6 +556,8 @@ MatrixBrowserView*	sheet;
 // 
 // -----------
 -(void)copyColumns{
+_bTrace_("[StatStdWindowController copyColumns]",true);
+
 	if([(StatBrowserHeaderView*)[_brw header] analysisColumns]){
 		[[(StatBrowserHeaderView*)[_brw header] analysisColumns] removeAllObjects];
 BrowserColumn*	col;
@@ -569,6 +572,7 @@ BrowserColumn*	col;
 // 
 // -----------
 -(BOOL)recoverColumn:(const char*)name{
+_bTrace_("[StatStdWindowController recoverColumn]",true);
 BrowserColumn*	col;
 NSEnumerator*	numer=[[_brw columns] objectEnumerator];
 char			cname[256];
@@ -591,6 +595,7 @@ char			cname[256];
 			bundle:(NSBundle*)bndl
 			 label:(NSString*)lbl
 			matrix:(MMsMatrix*)mmx{
+_bTrace_("[StatStdWindowController initBrowser]",true);
 NSViewController*	vcn=nil;
 NSTabViewItem*		sheet=nil;
 MatrixBrowserView*	mbv=nil;
@@ -616,6 +621,7 @@ MatrixBrowserView*	mbv=nil;
 		  bundle:(NSBundle*)bndl
 		   label:(NSString*)lbl
 		  matrix:(MMsMatrix*)mmx{
+_bTrace_("[StatStdWindowController initGraph]",true);
 NSViewController*	vcn=nil;
 NSTabViewItem*		sheet=nil;
 GraphView*			grv=nil;
@@ -639,12 +645,14 @@ GraphView*			grv=nil;
 // 
 // -----------
 -(void)initGraphExtra:(GraphView*)grv{
+_bTrace_("[StatStdWindowController initGraphExtra]",true);
 }
 
 // ---------------------------------------------------------------------------
 // 
 // -----------
 -(MMsPath*)loadPath{
+_bTrace_("[StatStdWindowController loadPath]",true);
 	return _lpath;
 }
 

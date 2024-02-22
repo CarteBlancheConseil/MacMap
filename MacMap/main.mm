@@ -53,3 +53,4 @@ _bTrace_("MacMap",true);
 
     return NSApplicationMain(argc, argv);
 }
+
