@@ -197,8 +197,14 @@ _bTrace_("[BrowserHeaderView dealloc]",true);
 // ---------------------------------------------------------------------------
 // Dessin du column header OK
 // ------------
--(void)drawRect:(NSRect)rect{
+-(void)drawRect:(NSRect)dummy_rect{
+//_bTrace_("[BrowserHeaderView drawRect]",true);
 	[BrowserColumn setHeaderBackground];
+//[[NSColor blueColor] set];
+
+NSRect rect=[self bounds];
+//_tm_(_trxysz_(rect));
+    
 	NSRectFill(rect);
 BrowserColumn*	col;
 NSEnumerator*   numer;
@@ -211,6 +217,7 @@ NSEnumerator*   numer;
 			break;
 		}
 		[col drawHeader:[self frame] offset:_o.x];
+//_tm_(_trxysz_([self frame])+" off="+_o.x);
 	}
 }
 
@@ -800,13 +807,17 @@ _bTrace_("[BrowserLeftView initWithFrame]",true);
 // ---------------------------------------------------------------------------
 // Dessin du row header OK
 // ------------
--(void)drawRect:(NSRect)rect{
+-(void)drawRect:(NSRect)dummy_rect{
 	[BrowserColumn setHeaderBackground];
+NSRect rect=[self bounds];
+
+    NSRectClip(rect);
 	NSRectFill(rect);
+    
 long		first=ceil(_o.y/[BrowserColumn stdLineHeight]);
-long		last=first+floor([self frame].size.height/[BrowserColumn stdLineHeight]);
+long        last=first+floor(rect.size.height/[BrowserColumn stdLineHeight]);
 NSString*	nstr;
-NSRect		box=[self bounds];
+NSRect		box=rect;
 	box.size.height=[BrowserColumn stdLineHeight];
 	if(first>0){
 		first--;
@@ -997,14 +1008,19 @@ _bTrace_("[BrowserNameLeftView initWithFrame]",true);
 // ---------------------------------------------------------------------------
 // Dessin du row header OK
 // ------------
--(void)drawRect:(NSRect)rect{
-	[BrowserColumn setHeaderBackground];
-	NSRectFill(rect);
-long		first=ceil(_o.y/[BrowserColumn stdLineHeight]);
-long		last=first+floor([self frame].size.height/[BrowserColumn stdLineHeight]);
-NSString*	nstr;
-char		str[256];
-NSRect		box=[self bounds];
+-(void)drawRect:(NSRect)dummy_rect{
+    [BrowserColumn setHeaderBackground];
+NSRect rect=[self bounds];
+
+    NSRectClip(rect);
+    NSRectFill(rect);
+    
+long        first=ceil(_o.y/[BrowserColumn stdLineHeight]);
+long        last=first+floor(rect.size.height/[BrowserColumn stdLineHeight]);
+NSString*   nstr;
+NSRect      box=rect;
+char        str[256];
+    
 	box.size.height=[BrowserColumn stdLineHeight];
 	if(first>0){
 		first--;
@@ -1081,11 +1097,16 @@ _bTrace_("[BrowserObjView dealloc]",true);
 // 
 // ------------
 -(void)drawRect:(NSRect)rect{
+_bTrace_("[BrowserObjView drawRect]",false);
 	[[NSColor whiteColor] set];
 
 NSRect  drawRect=rect;
-    
-	[NSGraphicsContext saveGraphicsState];
+//NSRect  drawRect=[self bounds];
+//_tm_("rect :"+_trxysz_(rect));
+//_tm_("bounds :"+_trxysz_([self bounds]));
+//_tm_("frame :"+_trxysz_([self frame]));
+
+//	[NSGraphicsContext saveGraphicsState];
 	NSRectClip(drawRect);
 	
 	NSRectFill(drawRect);
@@ -1103,6 +1124,7 @@ long	last=first+floor(drawRect.size.height/[BrowserColumn stdLineHeight]);
 NSRect	lineRect=drawRect;
 	lineRect.origin.y=round(lineRect.origin.y/[BrowserColumn stdLineHeight])*[BrowserColumn stdLineHeight];
 	lineRect.size.height=[BrowserColumn stdLineHeight];
+//_tm_("lineRect :"+_trxysz_(lineRect));
 
 // Dessin des valeurs
 BrowserColumn*	col;
@@ -1117,6 +1139,7 @@ NSEnumerator*		numer;
 		}
 		for(long i=first;i<=last;i++){
 			[col drawLine:i inArray:[_hdr lines] rect:drawRect];
+//_tm_("draw line "+i);
 		}
 		[col drawRight:rect];
 	}
@@ -1129,7 +1152,7 @@ NSPoint	ptb=NSMakePoint(NSMaxX(lineRect),NSMinY(lineRect));
 		lineRect.origin.y+=[BrowserColumn stdLineHeight];
 	}
 	
-	[NSGraphicsContext restoreGraphicsState];
+//	[NSGraphicsContext restoreGraphicsState];
 }
 
 // ---------------------------------------------------------------------------
@@ -1348,6 +1371,8 @@ _bTrace_("[BrowserCornerView initWithFrame]",true);
 // ------------
 -(void)drawRect:(NSRect)rect{
 	[BrowserColumn setHeaderBackground];
+//[[NSColor greenColor] set];
+    
 	NSRectFill([self bounds]);
 	[BrowserColumn frameHeader:[self bounds]];
 }

@@ -90,7 +90,7 @@ NSRect	box=NSInsetRect(rect,0.5,0.5);
 // 
 // -----------
 +(void)setHeaderBackground{
-	[[NSColor lightGrayColor] set];
+    [[NSColor lightGrayColor] set];
 }
 
 // ---------------------------------------------------------------------------

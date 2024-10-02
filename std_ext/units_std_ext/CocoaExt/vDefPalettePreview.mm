@@ -41,6 +41,7 @@
 // ------------
 -(id)initWithFrame:(NSRect)frameRect{
 _bTrace_("[vDefPalettePreview initWithFrame]",true);
+_tm_(_trxysz_(frameRect));
 	if((self=[super initWithFrame:frameRect])!=nil){
 	}
 	return self;
@@ -65,8 +66,7 @@ _bTrace_("[vDefPalettePreview dealloc]",true);
 // 
 // ------------
 -(void)drawRect:(NSRect)rect{
-_bTrace_("[vDefPalettePreview drawRect]",true);
-CGRect				cgr=(*((CGRect*)(&rect)));
+CGRect              cgr=NSRectToCGRect([self bounds]);
 NSGraphicsContext*	nsctx=[NSGraphicsContext currentContext];
 CGContextRef		ctx=(CGContextRef)[nsctx graphicsPort];
 
@@ -85,16 +85,7 @@ CGContextRef		ctx=(CGContextRef)[nsctx graphicsPort];
 -(void)mouseDown:(NSEvent*)event{
 NSPoint	nsp=[event locationInWindow];
 	nsp=[self convertPointFromBase:nsp];
-	
-/*	NSAlphaShiftKeyMask         = 1 << 16,
-    NSShiftKeyMask              = 1 << 17,
-    NSControlKeyMask            = 1 << 18,
-    NSAlternateKeyMask          = 1 << 19,
-    NSCommandKeyMask            = 1 << 20,
-    NSNumericPadKeyMask         = 1 << 21,*/
-	
 NSUInteger	modi=[event modifierFlags];
-    
 	[_ctrlr clickPreview:CGPointMake(nsp.x,nsp.y) modifiers:modi];
 }
 

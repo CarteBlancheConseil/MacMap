@@ -139,17 +139,17 @@ _tm_((__bridge void*)self);
 CGRect	bnds;
 NSRect	frm;
 	
-	_ext->get_bounds(&bnds);
+	/*_ext->get_bounds(&bnds);
 	if(!CGRectIsEmpty(bnds)){
 		frm=[[self window] frame];
 		frm.origin.x=bnds.origin.x;
 		frm.origin.y=bnds.origin.y;
 		[[self window] setFrame:frm display:NO];
 	}
-	else{
+	else{*/
 		bnds=NSRectToCGRect([[self window] frame]);
 		_ext->set_bounds(&bnds);
-	}
+	/*}*/
 	
 	[[self window] makeKeyAndOrderFront:nil];
 	[[self window] makeFirstResponder:nil];

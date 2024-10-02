@@ -21,7 +21,7 @@
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2017 Carte Blanche Conseil. All rights reserved.</string>
+	<string>Copyright © 2024 Carte Blanche Conseil. All rights reserved.</string>
 	<key>NSPrincipalClass</key>
 	<string></string>
 </dict>

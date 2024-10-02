@@ -167,7 +167,6 @@
 		149138C71FE3DEF70016DF40 /* mox_intf.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 149138AF1FE3DEF60016DF40 /* mox_intf.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		149139471FE3EB050016DF40 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 143D82A11FE2B338004A671A /* Cocoa.framework */; };
 		149139491FE3EB240016DF40 /* MacMapStats.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 149793E31FCC0C9700FF5851 /* MacMapStats.framework */; };
-		1491394A1FE3EB240016DF40 /* MacMapSuite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 145A06731FDFDA8600A928F2 /* MacMapSuite.framework */; };
 		149139551FE4017F0016DF40 /* std_ext.h in Headers */ = {isa = PBXBuildFile; fileRef = 149139541FE4017F0016DF40 /* std_ext.h */; };
 		149139671FE4017F0016DF40 /* std_ext.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 149139501FE4017F0016DF40 /* std_ext.framework */; };
 		149139681FE4017F0016DF40 /* std_ext.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 149139501FE4017F0016DF40 /* std_ext.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -365,6 +364,11 @@
 		149364F622D5F896007B86A5 /* NSValueNamePicker.mm in Sources */ = {isa = PBXBuildFile; fileRef = 149364F422D5F896007B86A5 /* NSValueNamePicker.mm */; };
 		149364F722D5F896007B86A5 /* NSValueNamePicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 149364F522D5F896007B86A5 /* NSValueNamePicker.h */; };
 		149793E51FCC0C9700FF5851 /* MacMapStats.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 149793E31FCC0C9700FF5851 /* MacMapStats.framework */; };
+		14AC39C62CAD2CE90009C1CB /* MacMapSuite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 145A06731FDFDA8600A928F2 /* MacMapSuite.framework */; };
+		14AC39C72CAD2CE90009C1CB /* MacMapSuite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 145A06731FDFDA8600A928F2 /* MacMapSuite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		14AC39E32CAD55B10009C1CB /* CHeading.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14AC39E02CAD55B00009C1CB /* CHeading.bundle */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		14AC39E42CAD55B10009C1CB /* CCapLin.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14AC39E12CAD55B00009C1CB /* CCapLin.bundle */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		14AC39E52CAD55B10009C1CB /* CCapLinOri.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14AC39E22CAD55B00009C1CB /* CCapLinOri.bundle */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		14B088E62191D30A00C74E0F /* default_line_style.xml in Resources */ = {isa = PBXBuildFile; fileRef = 14B088012191D30A00C74E0F /* default_line_style.xml */; };
 		14B088E72191D30A00C74E0F /* default_point_style.xml in Resources */ = {isa = PBXBuildFile; fileRef = 14B088032191D30A00C74E0F /* default_point_style.xml */; };
 		14B088E82191D30A00C74E0F /* default_raster_style.xml in Resources */ = {isa = PBXBuildFile; fileRef = 14B088052191D30A00C74E0F /* default_raster_style.xml */; };
@@ -781,6 +785,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				14AC39E32CAD55B10009C1CB /* CHeading.bundle in CopyFiles */,
+				14AC39E42CAD55B10009C1CB /* CCapLin.bundle in CopyFiles */,
+				14AC39E52CAD55B10009C1CB /* CCapLinOri.bundle in CopyFiles */,
 				14E7EDE221B914E900F445FC /* AgregateIntoLine.bundle in CopyFiles */,
 				14E7EDE321B914E900F445FC /* AgregateIntoPoly.bundle in CopyFiles */,
 				14E7EDE421B914E900F445FC /* CAngle.bundle in CopyFiles */,
@@ -1003,6 +1010,17 @@
 				14B08A032191DC2700C74E0F /* xmap_lib.framework in Embed Frameworks */,
 				147525892190AC0500A54365 /* tool_lib.framework in Embed Frameworks */,
 				149138C71FE3DEF70016DF40 /* mox_intf.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		14AC39C82CAD2CE90009C1CB /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				14AC39C72CAD2CE90009C1CB /* MacMapSuite.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1417,6 +1435,9 @@
 		149364F422D5F896007B86A5 /* NSValueNamePicker.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NSValueNamePicker.mm; sourceTree = "<group>"; };
 		149364F522D5F896007B86A5 /* NSValueNamePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSValueNamePicker.h; sourceTree = "<group>"; };
 		149793E31FCC0C9700FF5851 /* MacMapStats.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MacMapStats.framework; path = /Library/Frameworks/MacMapStats.framework; sourceTree = "<absolute>"; };
+		14AC39E02CAD55B00009C1CB /* CHeading.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = CHeading.bundle; path = "../../Plug-Ins/CHeading.bundle"; sourceTree = "<group>"; };
+		14AC39E12CAD55B00009C1CB /* CCapLin.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = CCapLin.bundle; path = "../../Plug-Ins/CCapLin.bundle"; sourceTree = "<group>"; };
+		14AC39E22CAD55B00009C1CB /* CCapLinOri.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = CCapLinOri.bundle; path = "../../Plug-Ins/CCapLinOri.bundle"; sourceTree = "<group>"; };
 		14B087FE2191CD6100C74E0F /* fr */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = fr; path = fr.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		14B087FF2191CD6100C74E0F /* it */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = it; path = it.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		14B088002191CD6500C74E0F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -1867,8 +1888,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				149139491FE3EB240016DF40 /* MacMapStats.framework in Frameworks */,
-				1491394A1FE3EB240016DF40 /* MacMapSuite.framework in Frameworks */,
 				149139471FE3EB050016DF40 /* Cocoa.framework in Frameworks */,
+				14AC39C62CAD2CE90009C1CB /* MacMapSuite.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1916,6 +1937,8 @@
 				14E7ED1521B914E400F445FC /* CAngle.bundle */,
 				14E7ED1621B914E400F445FC /* CAngleLin.bundle */,
 				14E7ED1721B914E400F445FC /* CArea.bundle */,
+				14AC39E12CAD55B00009C1CB /* CCapLin.bundle */,
+				14AC39E22CAD55B00009C1CB /* CCapLinOri.bundle */,
 				14E7ED1821B914E400F445FC /* CCentroidX.bundle */,
 				14E7ED1921B914E400F445FC /* CCentroidY.bundle */,
 				14E7ED1A21B914E400F445FC /* CCoordX.bundle */,
@@ -1925,6 +1948,7 @@
 				14E7ED1E21B914E400F445FC /* CDist.bundle */,
 				14E7ED1F21B914E400F445FC /* CenterNext.bundle */,
 				14E7ED2021B914E400F445FC /* CenterPrev.bundle */,
+				14AC39E02CAD55B00009C1CB /* CHeading.bundle */,
 				14E7ED2121B914E400F445FC /* CID.bundle */,
 				14E7ED2221B914E400F445FC /* CLastX.bundle */,
 				14E7ED2321B914E400F445FC /* CLastY.bundle */,
@@ -2202,8 +2226,8 @@
 			children = (
 				142394142195BE0E00204A9D /* bvDefPaletteQuick.cpp */,
 				142394152195BE0E00204A9D /* bvDefPaletteQuickStyle.h */,
-				142394162195BE0E00204A9D /* bvDefPaletteQuickWindowController.h */,
 				142394172195BE0E00204A9D /* bvDefPaletteQuickStyle.cpp */,
+				142394162195BE0E00204A9D /* bvDefPaletteQuickWindowController.h */,
 				142394182195BE0E00204A9D /* bvDefPaletteQuickWindowController.mm */,
 				142394192195BE0E00204A9D /* bvDefPaletteQuick.h */,
 			);
@@ -3484,6 +3508,7 @@
 				149138AB1FE3DEF60016DF40 /* Frameworks */,
 				149138AC1FE3DEF60016DF40 /* Headers */,
 				149138AD1FE3DEF60016DF40 /* Resources */,
+				14AC39C82CAD2CE90009C1CB /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -4264,7 +4289,7 @@
 				INFOPLIST_FILE = vdef_lib/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cbconseil.vdef-lib";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -4317,6 +4342,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SDKROOT)/usr/include/libxml2",
 				);
+				LD_RUNPATH_SEARCH_PATHS = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SDKROOT)/usr/include/libxml2",
@@ -4335,7 +4361,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 3.11.1;
+				CURRENT_PROJECT_VERSION = 3.11.2;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
@@ -4343,8 +4369,8 @@
 				);
 				INFOPLIST_FILE = MacMap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				MARKETING_VERSION = 3.11.1;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				MARKETING_VERSION = 3.11.2;
 				PRODUCT_BUNDLE_IDENTIFIER = cbc.MacMap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -4371,7 +4397,7 @@
 				INFOPLIST_FILE = tool_lib/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cbconseil.tool-lib";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -4399,7 +4425,7 @@
 				INFOPLIST_FILE = mox_intf/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -4426,7 +4452,7 @@
 				INFOPLIST_FILE = std_ext/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -4453,7 +4479,7 @@
 				INFOPLIST_FILE = loader/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cbconseil.loader;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -4484,7 +4510,7 @@
 				INFOPLIST_FILE = xmap_lib/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cbconseil.xmap-lib";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
